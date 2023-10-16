@@ -1,0 +1,45 @@
+#topDiv {
+    width: 100%;
+}
+
+#topDiv table {
+    width: 100%;
+}
+
+#topDiv td:nth-child(2) {
+    width: 1px;
+}
+
+.box,.sideButtonsDiv button {
+    background: #FFFFFF22 0% 0% no-repeat padding-box;
+    color: #FEFEFE;
+    padding: 0.3vh;
+    padding-left: 0.5vh;
+    border-radius: 1vh;
+    border-style: none;
+    white-space: nowrap;
+}
+
+.stars {
+    display: inline;
+    background: transparent linear-gradient(180deg, #21D0DE 0%, #11686F 100%) 0% 0% no-repeat padding-box;
+    width: fit-content;
+    padding-right: 1vh;
+}
+
+.stars > img {
+    margin-right: 0.5vh;
+    margin-bottom: 0.2vh;
+    object-fit: contain;
+    min-height: 1vh;
+}
+
+.trophyDiv {
+    padding-right: 1.5vh;
+    pointer-events: none;
+    width: fit-content;
+}
+
+.trophyDiv img {
+    height: 5vh;
+}

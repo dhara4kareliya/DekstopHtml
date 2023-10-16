@@ -1,0 +1,36 @@
+.checkbox {
+    box-shadow: inset 1px 2px 5px #000000BF;
+    width: 2vh;
+    height: 2vh;
+    display: inline-block;
+    border-radius: 0.3vh;
+    overflow: visible;
+    cursor: pointer;
+}
+
+.checkbox img {
+    display: none;
+    height: 130%;
+    object-fit: contain;
+    position: relative;
+    bottom: 0.5vh;
+}
+
+.checkbox.checked img {
+    display: block;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .checkbox {
+        width: 3vw;
+        height: 3vw;
+    }
+
+    .checkbox img {
+        bottom: 1vw;
+    }
+
+    #mobileSideBar .checkbox img {
+        right: 2vw;
+    }
+}

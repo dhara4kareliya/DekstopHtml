@@ -1,0 +1,130 @@
+#tabsTop {
+    margin-bottom: 1vh;
+}
+
+
+.tab {
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-color: rgba(159, 161, 161, 0.507);
+    border-width: 0.1vh;
+    padding: 1vh;
+}
+
+.tab:hover,
+.viewOptionsButton:hover,
+.gameButton:hover,
+.gameAction:hover,
+.migrateTab:hover {
+    background-color: #FFFFFF27;
+    cursor: pointer;
+}
+
+.tab .index {
+    color: #1FD21F;
+    font-size: 2.5vh;
+}
+
+.tabTop {
+    width: 100%;
+}
+
+.tabTop td:nth-child(2) {
+    width: 1px;
+}
+
+.gameButton {
+    display: flex;
+    padding: 0.5vh;
+    margin-top: 1vh;
+}
+
+.gameButton img {
+    height: 2.5vh;
+}
+
+.gameActionsContainer {
+    float: right;
+}
+
+/* .statusText {
+    margin-left: 1vh;
+} */
+
+/* .gameButton.next .statusText {
+    color: #fefefe;
+}
+
+.gameButton.next .statusText::after {
+    content: "You are next!";
+} */
+
+.gameButton.turn {
+    box-shadow: inset 3px 3px 3px 0 yellow, inset -3px -3px 3px 0 yellow;
+}
+/* 
+.gameButton.turn .statusText {
+    color: #04CCFF;
+}
+
+.gameButton.turn .statusText::after {
+    content: "Time is running";
+} */
+
+/* .gameButton.win .statusText {
+    color: #FFEB00;
+}
+
+.gameButton.win .statusText::after {
+    content: "WINNER!";
+}
+
+.gameButton.win {
+    border-style: solid;
+    border-color: #ffea00d3;
+    border-width: 0.1vh;
+    border-radius: 0.5vh;
+}
+
+.gameButton.lose .statusText {
+    color: #FF0404;
+}
+
+.gameButton.lose .statusText::after {
+    content: "Sorry! You lost!";
+}
+
+.turnTime {
+    margin-top: 0.25vh;
+    width: 100%;
+    height: 0.5vh;
+    box-shadow: inset 5px 6px 25px #504d4d;
+    border-radius: 1vh;
+}
+
+.gameButton:not(.turn) .turnTime {
+    visibility: hidden;
+}
+
+.turnTime div {
+    width: 0%;
+    height: 100%;
+    background: #00CCFF 0% 0% no-repeat padding-box;
+    border-radius: 1vh;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-duration: 30s;
+    animation-name: timeRunOut;
+}
+
+@keyframes timeRunOut {
+    0% {
+        width: 100%;
+        background-color: #00CCFF;
+    }
+
+    100% {
+        width: 0%;
+        background-color: #FF0000;
+    }
+} */

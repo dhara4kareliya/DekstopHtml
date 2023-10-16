@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17.07" height="795.196" viewBox="0 0 17.07 795.196">
+  <g id="Group_636" data-name="Group 636" transform="translate(-2279.465 -226.402)">
+    <g id="Group_635" data-name="Group 635" transform="translate(2280 227)">
+      <path id="Icon_awesome-arrows-alt-h" data-name="Icon awesome-arrows-alt-h" d="M7.661,10.906V1.747C7.661.194,6.184-.584,5.32.514L.4,6.767a2.093,2.093,0,0,0,0,2.466L5.32,15.486c.864,1.1,2.341.32,2.341-1.233V10.906Z" transform="translate(16 0) rotate(90)" fill="#fbebb8" stroke="#fbebb8" stroke-width="1"/>
+      <path id="Icon_awesome-arrows-alt-h-2" data-name="Icon awesome-arrows-alt-h" d="M7.661,10.906V1.747C7.661.194,6.184-.584,5.32.514L.4,6.767a2.093,2.093,0,0,0,0,2.466L5.32,15.486c.864,1.1,2.341.32,2.341-1.233V10.906Z" transform="translate(0 794) rotate(-90)" fill="#fbebb8" stroke="#fbebb8" stroke-width="1"/>
+      <path id="Path_160" data-name="Path 160" d="M0,0V787.912" transform="translate(8.5 3.539)" fill="#fbebb8" stroke="#fbebb8" stroke-width="2"/>
+    </g>
+    <g id="Rectangle_458" data-name="Rectangle 458" transform="translate(2284 613)" fill="#fbebb8" stroke="#fbebb8" stroke-width="1">
+      <rect width="8" height="23" stroke="none"/>
+      <rect x="0.5" y="0.5" width="7" height="22" fill="none"/>
+    </g>
+  </g>
+</svg>

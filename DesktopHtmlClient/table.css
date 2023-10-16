@@ -1,0 +1,193 @@
+#tableDiv {
+    position: absolute;
+    top: calc( 27 * var(--aspect-ratio));
+    left: 10vw;
+    width: 80vw;
+    height: calc( 45 * var(--aspect-ratio));
+    box-shadow: inset 0px 0.4vw 0.6vw #FFE8E829, 0px 5vw 2.1vw #0B1B504D;
+    border: 3vw solid #0E0B27;
+    border-radius: 20vw;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#tableTable {
+    margin: auto;
+    margin-bottom: calc( 13 * var(--aspect-ratio));
+}
+
+#tableTable td {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: calc( 2 * var(--aspect-ratio));
+    padding-right: calc( 3 * var(--aspect-ratio));
+}
+
+#tableTable tr {
+    display: flex;
+    height: fit-content;
+}
+
+.tableCards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 500px;
+}
+
+.tableCard {
+    display: flex;
+    animation-name: slideInDown;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    position: relative;
+    margin-right: 0.3rem;
+}
+
+.tableCard.with_mask {
+    position: relative;
+}
+
+.tableCard.with_mask:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0.5;
+}
+
+.timers {
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    font-size: calc(5.5 * var(--aspect-ratio));
+    visibility: hidden;
+    left: calc( 74.5 * var(--aspect-ratio)) !important;
+    position: fixed;
+    top: calc( 38.5 * var(--aspect-ratio)) !important;
+    /* margin-left: 30%; */
+}
+
+.timers>div {
+    padding: calc(1.5* var(--aspect-ratio));
+    border-radius: calc(1.5 * var(--aspect-ratio));
+    background: #00BF96;
+    display: inline-block;
+}
+
+.timers div>span {
+    padding: calc(4 * var(--aspect-ratio));
+    border-radius: calc(0.5 * var(--aspect-ratio));
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext {
+    padding-top: calc(0.5 * var(--aspect-ratio));
+    font-size: calc(2.5 * var(--aspect-ratio));
+}
+
+@keyframes slideInDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+        visibility: visible;
+    }
+    30% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+        transform: translateY(0%) rotateY(-180deg);
+    }
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: calc( 12.5 * var(--aspect-ratio));
+    width: calc( 8.9 * var(--aspect-ratio));
+}
+
+.front {
+    transform: rotateY( 180deg);
+    position: absolute;
+}
+
+.sidePot {
+    width: fit-content;
+    background-color: #0e0b276c;
+    padding-right: calc( 1 * var(--aspect-ratio));
+    padding-left: calc( 1 * var(--aspect-ratio));
+    margin-bottom: calc( 1 * var(--aspect-ratio));
+    margin-right: calc( -17 * var(--aspect-ratio));
+    margin-left: calc( -8 * var(--aspect-ratio));
+    visibility: hidden;
+}
+
+.sidePot img {
+    height: calc( 3 * var(--aspect-ratio));
+}
+
+.chipImg {
+    height: calc( 3 * var(--aspect-ratio));
+}
+
+#mobileTable {
+    padding-top: calc( 25 * var(--aspect-ratio));
+}
+
+#mobileTable .tableCards {
+    width: 40vw;
+}
+
+#mobileTable>* {
+    margin: auto;
+}
+
+
+/*
+@media (max-aspect-ratio: 1/1) {
+    #tableDiv {
+        top:calc( 10 * var(--aspect-ratio));
+        left: 10vw;
+        width: 80vw;
+        height:calc( 80 * var(--aspect-ratio));
+        box-shadow: inset 0px 0.4vw 0.6vw #FFE8E829, 0pxcalc( 5 * var(--aspect-ratio)) calc(2.1 * var(--aspect-ratio)) #0B1B504D;
+        border:calc( 3 * var(--aspect-ratio)) solid #0E0B27;
+        border-radius:calc( 20 * var(--aspect-ratio));
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+    }
+}
+*/
+
+.chipRow {
+    text-align: center;
+    position: absolute;
+    top: calc(-2 * var(--aspect-ratio));
+    left: calc( 0 * var(--aspect-ratio));
+}
+
+.chipRow>.chipImg {
+    position: relative;
+}
+
+.chipRow>.chipImg:nth-child(1) {
+    left: calc(2.5 * var(--aspect-ratio));
+}
+
+.chipRow>.chipImg:nth-child(3) {
+    right: calc(2.5 * var(--aspect-ratio));
+}

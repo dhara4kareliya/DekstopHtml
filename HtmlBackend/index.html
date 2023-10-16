@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <style>
+    input[type='range'] {
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      height: $slider-padding*2 + $track-height; // IE's thumb gets cut
+      background: transparent;
+      position: relative;
+      cursor: pointer;
+      background:
+        linear-gradient(90deg, $rule-color 1px, rgba(238, 238, 238, 0) 1px) repeat-x content-box,
+        linear-gradient(90deg, $rule-color 1px, rgba(238, 238, 238, 0) 1px) repeat-x content-box;
+      background-size: 25% $rule-height, calc(100% - 5px) $rule-height*2;
+      background-position: 1px 30%, 1px 20%;
+      padding: 0 $slider-padding;
+      overflow: visible;
+      transform: rotateZ(-90deg);
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <title>Poker Thing</title>
+</head>
+
+<body>
+  <div class="container mobile_wrapper" style="background-image: url('./images/table2.jpg'); ">
+    <div id="buy_in_div">
+      <input type="number" id="buyInInput">
+      <button id="buyInButton">Buy In</button>
+    </div>
+    <div id = "waitForBBDiv">
+      <input type="checkbox" id="waitForBBCheckbox">
+      <label for="waitForBBCheckbox">Wait For BB</label>
+    </div>
+    <div id = "sitOutNextHandDiv">
+      <input type="checkbox" id="sitOutNextHandCheckbox">
+      <label for="SitOutNextHandCheckbox">Sit Out Next Hand</label>
+    </div>
+    <div id = "fourColorsDiv">
+      <input type="checkbox" id="fourColorsCheckbox">
+      <label for="fourColorCheckbox">4 Colors</label>
+    </div>
+    <div class="menu_wrapper"><a href="#"><img src="./images/menu.png"></a></div>
+    <div class="row top_players_row">
+      <div class="col-md-6">
+        <div class="player_wrapper 0">
+          <div class="avtar_img">
+            <img src="./images/avtar.png">
+            <div class="open"> <img src="./images/open.png"></div>
+            <div class="closed"> <img src="./images/clossed.png"></div>
+          </div>
+          <div class="title">Tangotag</div>
+          <div class="price">$5.24</div>
+          <div class="raise">RAISE</div>
+          <div class="bottom_price"><img src="./images/cicle.png"> $55</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="player_wrapper 1">
+          <div class="avtar_img">
+            <img src="./images/avtar.png">
+            <div class="open"> <img src="./images/open.png"></div>
+            <div class="closed"> <img src="./images/clossed.png"></div>
+          </div>
+          <div class="title">Tangotag</div>
+          <div class="price">$5.24</div>
+          <div class="raise">RAISE</div>
+          <div class="bottom_price">$55 <img src="./images/cicle.png"></div>
+        </div>
+      </div>
+    </div>
+    <!--Middle Player-->
+    <div class="row middle_players_row leftright_gap">
+      <div class="player_wrapper 8">
+        <div class="avtar_img">
+          <img src="./images/avtar.png">
+          <div class="open"> <img src="./images/open.png"></div>
+          <div class="closed"> <img src="./images/clossed.png"></div>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="price">$5.24</div>
+        <div class="raise">BET</div>
+        <div class="d_btn">
+          <img src="./images/D.png">
+          <div class="bottom_price"><img src="./images/cicle.png"> $55</div>
+        </div>
+      </div>
+      <div class="player_wrapper 2">
+        <div class="avtar_img">
+          <img src="./images/avtar.png">
+          <div class="closed"> <img src="./images/clossed.png"></div>
+          <div class="open"> <img src="./images/open.png"></div>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="price">$5.24</div>
+        <div class="raise">BIG BLIND</div>
+        <div class="bb_btn">
+          <img class="bbbtn" src="./images/BB.png">
+          <div class="bottom_price"><img src="./images/cicle.png"> $55</div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row middle_players_row leftright_gap">
+      <div class="player_wrapper 7">
+        <div class="avtar_img">
+          <img src="./images/avtar.png"><span class="score">+40</span>
+          <div class="open"> <img src="./images/open.png"></div>
+          <div class="closed"> <img src="./images/clossed.png"></div>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="price">$5.24</div>
+        <div class="raise">CHECK</div>
+        <div class="d_btn">
+          <div class="bottom_price"><img src="./images/cicle.png"> $55</div>
+        </div>
+      </div>
+      <div class="player_wrapper 3">
+        <div class="avtar_img">
+          <span class="score">+50</span>
+          <img src="./images/avtar.png">
+          <div class="closed"> <img src="./images/clossed.png"></div>
+          <div class="open"> <img src="./images/open.png"></div>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="price">$5.24</div>
+        <div class="raise">SMALL BLIND</div>
+        <div class="bb_btn">
+          <img src="./images/SB.png">
+          <div class="bottom_price"><img src="./images/cicle.png"> $55</div>
+        </div>
+      </div>
+    </div>
+    <!--Main Cards-->
+    <div class="row main_cards_wrapper">
+      <div class="col-md-12">
+        <div class="totalpost">Total pot: <span>$100</span></div>
+        <div class="main-cards-container">
+          <canvas id = "main-cards-canvas"></canvas>
+        </div>
+        <!--<ul>
+          <li><img src="./images/4D.png"></li>
+          <li><img src="./images/KS.png"></li>
+          <li><img src="./images/JD.png"></li>
+          <li><img src="./images/KS.png"></li>
+          <li><img src="./images/JD.png"></li>
+        </ul>-->
+      </div>
+    </div>
+    <!--Main Cards End-->
+    <div class="row middle_players_row">
+      <div class="player_wrapper 6" style="top: -162px;left: -26px;">
+        <div class="avtar_img">
+          <img src="./images/avtar.png"><span class="score">+150</span>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="price">$5.24</div>
+        <div class="raise">RAISE</div>
+      </div>
+      <div class="center_div">
+        <div class="bottom_price"><img src="./images/green.png"> $55</div>
+        <span id = "smallBlindSpan">10</span>$/
+        <span id = "bigBlindSpan">20</span>$ 
+        <div class="tournament_only">
+          Ante <span id = "anteSpan">5</span>$<br>
+          Level <span id = "levelSpan">13</span>
+        </div>
+      </div>
+      <div class="player_wrapper 4 win" style="top: -143px;left: 69px;">
+        <div class="avtar_img">
+          <span class="score">+50</span>
+          <img src="./images/avtar.png">
+          <div class="closed"> <img src="./images/clossed.png"></div>
+          <div class="open"> <img src="./images/open.png"></div>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="raise">CALL</div>
+        <div class="price">$5.24</div>
+        <div class="winner"> <img src="./images/WINNER.png"></div>
+      </div>
+
+
+    </div>
+    <div class="main_plyer" style="margin-top: -145px;">
+      <div class="player_wrapper 5">
+        <div class="avtar_img">
+          <img src="./images/avtar.png">
+          <div class="open"> <img src="./images/open1.png"></div>
+          <div class="closed"> <img src="./images/clossed1.png"></div>
+          <div class="view"><img src="./images/view.png"> Show Cards</div>
+        </div>
+        <div class="title">Tangotag</div>
+        <div class="price">$5.24</div>
+        <div class="raise">BET</div>
+      </div>
+    </div>
+    <!--Bottom Button-->
+    <div class="bottom_buttons_Wrapper">
+      <div class="flod" id = "fold-button" style="background-image: url('./images/flod.png');">FLOD</div>
+      <div class="flod" id = "call-button" style="background-image: url('./images/call.png');">CALL</div>
+      <div id = "bet-button">
+        <div class="flod" style="background-image: url('./images/bet.png'); cursor:pointer;">BET</div>
+      </div>
+    </div>
+    <style>
+      .range-box {
+        background: url(images/bet-plus.png) no-repeat;
+        position: relative;
+        width: 148px;
+        height: 394px;
+        float: right;
+      }
+
+      .range-box input[type='range'],
+      .range-line {
+        transform: rotateZ(-90deg);
+        background: #333333;
+        margin-top: 140px;
+        width: 280px;
+        margin-left: -66px;
+        height: 9px;
+        box-shadow: -4px 3px 4px #fff;
+      }
+
+      .control-plus {
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        font-size: 40px;
+        cursor: pointer;
+      }
+
+      .control-minus {
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        font-size: 40px;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .slide-text {
+        /*width:240px;*/
+        float: left;
+        text-align: right;
+      }
+
+      .slide-text ul {
+        list-style: none;
+      }
+
+      .slide-text li {
+        display: block;
+        cursor: pointer;
+      }
+
+      .slide-text li:hover,
+      .slide-text:focus {
+        opacity: .4;
+      }
+
+      .width-50 {
+        width: 50%;
+        position: relative;
+        float: right;
+      }
+
+      .width-90 {
+        width: 90%;
+        position: relative;
+        float: left;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .onclick {
+        width: 100%;
+        float: right;
+        margin-top: -618px;
+        display: none;
+      }
+    </style>
+    <div class="onclick" id="myDIV">
+      <div class="width-50" id = "bet-ui">
+        <div class="slide-text">
+          <ul>
+            <li id = "all-in-button"><img src="./images/all-in.png" /></li>
+            <li id = "4x-button"><img src="./images/4x.png" /></li>
+            <li id = "3x-button"><img src="./images/3x.png" /></li>
+            <li id = "2_5x-button"><img src="./images/2.5x.png" /></li>
+          </ul>
+        </div>
+        <div class="range-box">
+          <div title="increase" class="control-plus">+</div>
+          <input id="bet-input" type="range" min="0" max="18" value="0">
+          <div title="Decrease" class="control-minus">-</div>
+        </div>
+      </div>
+    </div>
+    <div class="width-90 text-center" id = "back-button"><img src="./images/back-button.png" /></div>
+  </div>
+  <script type="text/javascript">
+    var range = document.getElementById("bet-input");
+    var minusButton = document.querySelector(".control-minus");
+    var plusButton = document.querySelector(".control-plus");
+    var tooltip = document.querySelector(".current-value");
+    var steps = 16, padding = 15;
+    // There's a small error due to pixel truncating in Chrome
+    var subpixelCorrection = 0.4;
+
+    // All browsers but IE
+    range.addEventListener("input", function (evt) {
+      updateTooltip();
+    }, false);
+    // IE10
+    range.addEventListener("change", function (evt) {
+      updateTooltip();
+    }, false);
+
+    function updateTooltip() {
+      tooltip.firstElementChild.textContent = range.value;
+
+      var startPosition = - (tooltip.clientWidth) / 2 + padding + 4;
+      var stepWidth = (range.getBoundingClientRect().width - padding * 2) / steps - subpixelCorrection;
+      var currentStep = range.value - range.min;
+
+      // Reposition tooltip on top of the thumb
+      tooltip.style.visibility = "visible";
+      tooltip.style.left = Math.round(stepWidth * currentStep + startPosition) + "px";
+
+    }
+    /*
+    minusButton.addEventListener("click", function () {
+      range.stepDown();
+      updateTooltip();
+    }, false);
+
+    plusButton.addEventListener("click", function () {
+      range.stepUp();
+      updateTooltip();
+    }, false);
+    */
+  </script>
+</body>
+
+</html>
+<script type="module" src="/main.js"></script>
+

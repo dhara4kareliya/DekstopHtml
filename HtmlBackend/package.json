@@ -1,0 +1,17 @@
+{
+  "name": "nr-poker",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "postbuild": "node distFixer.js",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "postcss-nested": "^5.0.6",
+    "socket.io-client": "^4.4.1"
+  }
+}

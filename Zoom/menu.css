@@ -1,0 +1,194 @@
+.menuDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0e0b27c4 0% 0% no-repeat padding-box;
+    display: flex;
+    visibility: hidden;
+    z-index: 100;
+    font-size: 2vh;
+}
+
+.menuDiv div:not(.menuTitle) > img:not(.menuLogo) {
+    width: 3vh;
+}
+
+.menuDiv > div {
+    border-radius: 100%;
+    height: 70vh;
+    width: 80vh;
+    background: #15122D 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 70px #FFFFFF29;
+    border: 0.5vh solid #FFEB00;
+    margin: auto;
+    display: grid;
+    padding-bottom: 5vh;
+    padding-top: 4vh;
+}
+
+.menuDiv > div > * {
+    margin: auto;
+}
+
+.menuTitle {
+    color: #FFEB00;
+    font-size: 3vh;
+}
+
+.menuTitle img {
+    height: 5vh;
+}
+
+#bankroll {
+    color: #b8b7bfce;
+}
+
+#buyInCount,#buyInSlider {
+    box-shadow: inset 0.3vh 0.5vh 1vh #000000B8;
+    border-radius: 3vh;
+}
+
+#buyInCount {
+    padding: 1vh;
+    min-width: 10vw;
+    text-align: center;
+}
+
+.menuLogo {
+    object-fit: contain;
+    height: 10vh;
+}
+
+#buyInSliderContainer {
+    width: 60%;
+}
+
+#buyInSliderContainer > div {
+    padding: 1vh;
+}
+
+#buyInSliderContainer > div:nth-child(1) > div {
+    display: inline;
+    font-size: 3vh;
+    cursor: pointer;
+}
+
+#buyInSliderContainer > div:nth-child(1) > div:nth-child(2) {
+    float: right;
+}
+
+#buyInSlider {
+    width: 100%;
+    height: 1vh;
+    cursor: grab;
+}
+
+#buyInSlider div {
+    width: 97%;
+    position: relative;
+    top: -1vh;
+    left: -2%;
+}
+
+#buyInSlider img {
+    position: relative;
+    left: 0%;
+}
+
+#autoRebuyContainer {
+    text-align: center;
+    font-size: 1.5vh;
+}
+
+#autoRebuyContainer > div {
+    margin-bottom: 2vh;
+}
+
+#autoRebuyContainer > div:nth-child(2) > div {
+    display: inline;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    vertical-align: middle;
+}
+
+.menuBottomButtons button {
+    border-style: none;
+    border-radius: 1vh;
+    width: 10vh;
+    height: 4vh;
+    color: white;
+    box-shadow: 0px 2px 5px #FFFFFF45;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+    font-size: 2vh;
+    cursor: pointer;
+}
+
+.cancleButton {
+    background: transparent linear-gradient(0deg, #15122D 0%, #676060 100%) 0% 0% no-repeat padding-box;
+}
+
+.okButton {
+    background: transparent linear-gradient(0deg, #FFEB00 0%, #B2B2B2 100%) 0% 0% no-repeat padding-box;
+}
+
+#settingsMenu > div > div {
+    display: flex;
+}
+
+#settingsMenu > div > div > * {
+    margin: auto;
+    margin-right: 2vh;
+}
+
+#settingsMenu > div > div:not(.menuBottomButtons,.menuTitle) {
+    margin-left: 20vh;
+    cursor: pointer;
+}
+
+#openMenuButton {
+    cursor: pointer;
+    object-fit: contain;
+    width: 10vw;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .menuDiv > div {
+        height: unset;
+        width: 100%;
+        font-size: 2vw;
+    }
+
+    #settingsMenu > div > div:not(.menuBottomButtons,.menuTitle) {
+        margin-left: 20vw;
+    }
+
+    .menuLogo {
+        height: unset;
+        width: 10vw;
+    }
+}
+
+
+input {
+    background-color: transparent;
+    border-style: none;
+    color: inherit;
+    font-size: 2vh;
+}
+
+/* Hide the arrows on the input */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <div id="topDiv">
+                    <table>
+                        <tr>
+                            <td>
+                                <div id="meDiv">
+                                    <span>Hey <span id="myName">Tangotag</span>!</span>
+                                    <div class="stars box">
+                                        <img src="./images/material-star.svg"> 4.2
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="trophyDiv box landscapeOnly">
+                                    <img src="./images/trophy@2x.png"> <span>250/2454</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="contentDiv">
+                    <table>
+                        <tr>
+                            <td>
+                                <div id="tabsDiv">
+                                    <table>
+                                        <tr>
+                                            <td style="vertical-align: inherit;">
+                                                <span class="highlight">
+                                                    <span id="numberOfGames">0</span> Games Runnings
+                                                </span>
+                                            </td>
+                                            <td style="text-align: end;">
+                                                <span class="highlight">Auto Focus</span>
+                                                <input type="checkbox" name="autoFocus" id="autoFocus">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                            <td id="gamesTd">
+                                <div id="gamesDiv">
+                                    <table>
+                                        <tr>
+                                            <td class="gameCell active" index="0">
+                                                <iframe src="http://127.0.0.1:5500/dist/index.html" frameborder="0"></iframe>
+                                            </td>
+                                            <td class="gameCell active" index="2">
+                                                <iframe src="http://127.0.0.1:5500/dist/index.html" frameborder="0"></iframe>
+                                            </td>
+                                            <td class="gameCell" index="4">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="gameCell active" index="1">
+                                                <iframe src="http://127.0.0.1:5500/dist/index.html" frameborder="0"></iframe>
+                                            </td>
+                                            <td class="gameCell active" index="3">
+                                                <div class="addGameButton">
+                                                    <div>
+                                                        <span>
+                                                            + Add Table
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="gameCell" index="5">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div id="viewOptionsMenu" class="popupMenu">
+        View Options
+        <div class="viewOption">
+            <table>
+                <tr>
+                    <td>
+                        <div class="viewOptionsButton" windowCount="1"></div>
+                    </td>
+                    <td>
+                        <span>1 Game</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="viewOption">
+            <table>
+                <tr>
+                    <td>
+                        <div class="viewOptionsButton" windowCount="4"></div>
+                    </td>
+                    <td>
+                        <span>4 Games</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="viewOption">
+            <table>
+                <tr>
+                    <td>
+                        <div class="viewOptionsButton" windowCount="6"></div>
+                    </td>
+                    <td>
+                        <span>6 Games</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="viewOption">
+            <table>
+                <tr>
+                    <td>
+                        <div class="viewOptionsButton" windowCount="9"></div>
+                    </td>
+                    <td>
+                        <span>9 games</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- <div class="viewOption">
+            <table>
+                <tr>
+                    <td>
+                        <div class="viewOptionsButton" windowCount="5"></div>
+                    </td>
+                    <td>
+                        <span>5 Games</span>
+                    </td>
+                </tr>
+            </table>    
+        </div>
+        <div class="viewOption">
+            <table>
+                <tr>
+                    <td>
+                        <div class="viewOptionsButton" windowCount="6"></div>
+                    </td>
+                    <td>
+                        <span>6 Games</span>
+                    </td>
+                </tr>
+            </table>    
+        </div> -->
+    </div>
+    <div id="gameActionsMenu" class="popupMenu">
+        <div id="externalWindowButton" class="gameAction">
+            <img src="./images/Icon open-external-link.png"> Move to External Window
+        </div>
+        <div id="backToLobbyButton" class="gameAction">
+            <img src="./images/Shape 1.svg"> Back to Lobby
+        </div>
+        <div id="sitOutButton" class="gameAction">
+            <img src="./images/Group 60@2x.png"> Sit Out
+        </div>
+        <div id="leaveButton" class="gameAction">
+            <img src="./images/exit@2x.png"> Leave Game
+        </div>
+        <div id="rebuyButton" class="gameAction">
+            <img src="./images/Group 11@2x.png"> Rebuy/Add-on
+        </div>
+        <div id="addChipsButton" class="gameAction">
+            <img src="./images/icons8-coin-50@2x.png"> Add Chips
+        </div>
+        <div id="cashierButton" class="gameAction">
+            <img src="./images/icons8-dollar-50@2x.png"> Cashier
+        </div>
+    </div>
+    <div id="buyInMenu" class="menuDiv">
+        <div>
+            <div class="menuTitle">
+                <img src="./images/desktop/icons8-coin-50@2x.png"> Buy Chips
+            </div>
+            <div id="bankroll">
+                Bankroll: $5,000
+            </div>
+            <input type="number" id="buyInCount">
+            <img class="menuLogo" src="./images/desktop/TURTLE-STUDIOS-png.png">
+            <div id="buyInSliderContainer">
+                <div>
+                    <div id="buyInMinus">
+                        -
+                        <span id="buyInMin">50</span>
+                    </div>
+                    <div id="buyInPlus">
+                        +
+                        <span id="buyInMax">2000</span>
+                    </div>
+                </div>
+                <div id="buyInSlider" class="slider">
+                    <div>
+                        <img class="thumb" src="./images/desktop/1 copy 4-1@2x.png">
+                    </div>
+                </div>
+            </div>
+            <div id="autoRebuyContainer">
+                <div>Auto re-buy chips when:</div>
+                <div>
+                    <div>
+                        <div id="chipsLowerThenBuyInCheckbox" class="checkbox">
+                            <img src="./images/desktop/v@2x.png">
+                        </div> Chips are lower then Buy-in
+                    </div>
+                    <div>
+                        <div id="runOutOfChipsCheckbox" class="checkbox">
+                            <img src="./images/desktop/v@2x.png">
+                        </div> You run out of chips completely
+                    </div>
+                </div>
+            </div>
+            <div class="menuBottomButtons">
+                <button class="cancleButton">CANCLE</button>
+                <button class="okButton">OK</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script type="module" src="/main.js"></script>

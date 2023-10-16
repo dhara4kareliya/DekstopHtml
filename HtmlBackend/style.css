@@ -1,0 +1,383 @@
+.mobile_wrapper {
+    background-size: 100% 100%;
+    max-width: 780px;
+    min-height: 1400px;
+    margin: 0 auto;
+}
+.avtar_img img {
+    max-width: 154px;
+    border: 2px solid #fff;
+    border-radius: 100px;
+}
+.row.top_players_row {
+    margin-top: 16px;
+}
+.top_players_row {
+    padding: 29px 23px 0px;
+}
+.player_wrapper {
+    color: #fff;
+    font-size: 15px;
+}
+.player_wrapper {
+    display: table;
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+}
+.avtar_img img {
+    margin-bottom: 5px;
+}
+.price {
+    color: #f6ff00;
+    font-size: 33px;
+}
+.open {
+    position: absolute;
+    top: 49px;
+    left: -37px;
+}
+.open img {
+    border: 0;
+    border-radius: 0px;
+    max-width: 113px;
+}
+
+.closed img {
+    border-radius: 0px;
+    border: 0;
+    max-width: 61px;
+    position: absolute;
+    top: 45px;
+    left: -42px;
+    z-index: 9;
+}
+.center_div .bottom_price {
+    font-size: 30px;
+    margin-bottom: 27px;
+}
+.title {
+    font-size: 35px;
+}
+.bottom_price {
+    margin-top: 25px;
+}
+.bottom_price img {
+    width: 38px;
+}
+.player_wrapper.second {
+    position: absolute;
+    top: 64px;
+    right: 173px;
+}
+.raise {
+    font-weight: 600;
+    margin-bottom: -19px;
+    font-size: 25px;
+}
+.player_wrapper.third {
+    position: relative;
+    left: 81px;
+    top: 38px;
+}
+.player_wrapper.fourth {
+    left: 628px;
+}
+.right .closed img {
+    left: 10px;
+}
+.right .open {
+    left: 15px;
+}
+.bottom_price {
+    color: #fff;
+    font-size: 34px;
+}
+.d_btn {
+    text-align: center;
+}
+.d_btn .bottom_price {
+    margin-top: 9px;
+}
+.middle_players_row .d_btn {
+    position: absolute;
+    top: 136px;
+    left: 225px;
+}
+.bottom_buttons_Wrapper {
+    padding-bottom: 60px;
+}
+.bb_btn .bottom_price {
+    width: 39px;
+    height: 37px;
+    line-height: 31px;
+}
+.bb_btn {
+    position: absolute;
+    top: 136px;
+    right: 263px;
+}
+.bb_btn .bottom_price {
+    display: flex;
+}
+.bb_btn .bottom_price {
+    margin-top: 9px;
+}
+.leftright_gap .player_wrapper:nth-child(2) {
+    left: 110px;
+}
+.leftright_gap .player_wrapper:nth-child(1) {
+    left: -90px;
+}
+.row.top_players_row {
+    margin-bottom: -28px;
+}
+.row {
+    padding-bottom: 24px;
+}
+span.score {
+    top: -15px;
+    position: relative;
+    font-size: 28px;
+    color: #f4fc06;
+}
+.mobile_wrapper {
+    overflow-x: hidden;
+}
+.main_cards_wrapper ul {
+    margin: 0 auto;
+    text-align: center;
+    display: flow-root;
+}
+.main_cards_wrapper li img {
+    max-width: 90px;
+}
+.main_cards_wrapper li {
+    display: inline-block;
+}
+.menu_wrapper {
+    text-align: right;
+    margin-right: 20px;
+    margin-top: 30px;
+    margin-bottom: -46px;
+}
+.menu_wrapper img {
+    max-width: 105px;
+}
+.menu_wrapper a {
+    position: relative;
+    z-index: 99;
+}
+.totalpost span {
+    color: #e8e646;
+}
+.totalpost {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 33px;
+    align-content: center;
+}
+.d_btn .bottom_price {
+    max-width: 9px;
+    height: 38px;
+    line-height: 30px;
+}
+.d_btn .bottom_price {
+    display: flex;
+}
+.winner img {
+    max-width: 119px;
+    position: relative;
+    top: -24px;
+}
+.center_div {
+    left: 0;
+    display: table;
+    text-align: center;
+    color: #fff;
+    font-weight: 300;
+    right: 0;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 19px;
+}
+.flod {
+    background-size: 100% 100%;
+    font-size: 45px;
+    height: 102px;
+    max-width: 100%;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    line-height: 100px;
+}
+.bottom_buttons_Wrapper {
+    bottom: 21px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.bottom_buttons_Wrapper div {
+    width: 100%;
+    letter-spacing: 2px;
+    margin: 0 auto;
+}
+.bottom_buttons_Wrapper {
+    display: flex;
+    width: 100%;
+}
+.main_plyer .avtar_img img {
+    max-width: 180px;
+}
+.view img {
+    border-radius: 0px;
+    border: 0;
+    max-width: 17px !important;
+    margin-right: 2px;
+}
+.main_plyer .closed img {
+    max-width: 67px;
+    left: 6px;
+    top: 65px;
+}
+.main_plyer .open img {
+    width: 142px !important;
+    left: 39px !important;
+    position: relative;
+    top: 15px !important;
+}
+.main_plyer .avtar_img img {
+    width: 123px;
+}
+.main_plyer {
+    padding-bottom: 58px;
+    text-align: left;
+    float: left;
+    margin-left: 47px;
+}
+body {
+    background: #141519;
+}
+
+
+@media only screen and (min-device-width : 768px)  and (max-device-width : 1024px)  {
+    .title {
+        font-size: 21px;
+    }
+    .main_plyer .avtar_img img {
+        width: 101px;
+    }
+    .main_plyer .open img {
+        width: 99px !important;
+    }
+    .closed img {
+        max-width: 46px !important;
+    }
+    .totalpost {
+        font-size: 21px;
+    }
+    .flod {
+        background-size: 100% 100%;
+        font-size: 34px;
+        height: 82px;
+        max-width: 100%;
+        text-align: center;
+        color: #fff;
+        font-weight: 600;
+        line-height: 81px;
+    }
+    .bb_btn img {
+        width: 43px;
+    }
+    .main_cards_wrapper li img {
+        max-width: 72px;
+    }
+    img.bbbtn {
+        max-width: 43px;
+    }
+    .avtar_img img {
+        max-width: 86px;
+    }
+    .d_btn img {
+        max-width: 43px;
+    }
+    .bottom_price {
+        font-size: 18px;
+    }
+    .raise {
+        font-size: 15px;
+    }
+    .menu_wrapper img {
+        max-width: 70px;
+    }
+    .price {
+        color: #f6ff00;
+        font-size: 18px;
+    }
+}
+
+
+
+@media (max-width: 992px) {
+    .mobile_wrapper {
+        max-width: 100%;
+    }
+}
+
+
+#data {
+    display: none;
+}
+
+.main-cards-container {
+    width: 100%;
+    text-align: center;
+}
+
+.main-cards-container canvas {
+    display: inline;
+}
+
+#main-cards-canvas {
+    width: 62%;
+}
+
+.cards-container canvas {
+    width: 142px !important;
+    left: 39px !important;
+    position: relative;
+    top: 15px !important;
+}
+
+.cards-container {
+    position: absolute;
+    top: 49px;
+    left: -37px;
+}
+
+.player_wrapper .bottom_price {
+    position: absolute;
+    top: 90%;
+}
+
+.player_wrapper .winner {
+    position: absolute;
+}
+
+.blind {
+    position: absolute;
+}
+
+.sit_down_button {
+    font-size: 40px;
+}
+
+.action,.bottom_price,.winner,.blind {
+    visibility: hidden;
+}
+
+label {
+    color: white;
+    font-size: large;
+}

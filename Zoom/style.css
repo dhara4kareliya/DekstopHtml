@@ -1,0 +1,44 @@
+@import "./top.css";
+@import "./tabs.css";
+@import "./popupMenu.css";
+@import "./tables.css";
+@import "./menu.css";
+@import "./checkbox.css";
+@import "./slider.css";
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #19163b;
+    display: grid;
+    font-family: myriad-arabic, sans-serif;
+    font-size: 2vh;
+    color: #fefefece;
+    user-select: none;
+    height: 95%;
+}
+
+.highlight {
+    color: #fefefe;
+}
+
+body > table {
+    height: 100%;
+    width: 100%;
+}
+
+#contentDiv {
+    height: 100%;
+}
+
+
+#contentDiv table {
+    height: 100%;
+    width: 100%;
+}
+
+#contentDiv td {
+    vertical-align: top;
+}
