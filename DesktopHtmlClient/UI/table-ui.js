@@ -203,9 +203,8 @@ export class Table {
                 player.showSitDownButton(this.mode === modes.Observing && this.siticonVisible && getPlayerSeat() < 0 && this.closeTable !== true)
             } else {
                 player.showPlayer(true);
-                if(seat.lastAction !== "fold" && getPlayerSeat() !== i && getPlayerSeat() > -1){
-                    player.setPlayerDetail(true, seat.player.name, seat.player.created_at, i);
-                }
+                // console.warn(`status: ${getPlayerSeat() != i  && seat.fold === undefined && getPlayerSeat() > -1}`)
+                player.setPlayerDetail(getPlayerSeat() != i  && seat.fold === undefined, seat.player.name, seat.player.created_at, i, seat.fold);
                 player.setPlayState(true);
                 player.setPlayerName(seat.player.name);
                 player.setPlayerMoney(seat.money);

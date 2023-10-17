@@ -227,6 +227,7 @@ function onTableStatus(status) {
 
     table.setFirstSeat(firstSeat);
     table.setSeats(status.seats, status.state);
+    
     table.setButtons(status.seatOfDealer, status.seatOfSmallBlind, status.seatOfBigBlind);
     table.setTableCards(status.cards);
     table.setTotalPot(status.pot);
@@ -245,6 +246,7 @@ function onTableStatus(status) {
         if (status.state == "HoleCards") {
             sound.playCardDealt();
             table.clearTableCards();
+            
         } else if (status.state == "Flop") {
             sound.playFlop();
         } else if (status.state == "Turn" || status.state == "River") {

@@ -400,8 +400,8 @@ export function sitDown(seatIndex) {
     if (playerState != "Playing")
         playerSitDown(seatIndex);
 }
-export function SubmitReport(type, description, id, callback) {
-        playerSubmitReport(type, description,id, ()=>{
+export function SubmitReport(type, description, playerSeat, callback) {
+        playerSubmitReport(type, description,playerSeat, ()=>{
             $('#SubmitReport').modal('show');
             callback();
         });

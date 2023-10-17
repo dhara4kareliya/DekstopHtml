@@ -180,15 +180,15 @@ const PlayerDetail = ` <div class="main-section">
         <div class="report-dd">
             <ul>
                  <li>
-                     <input type="radio"  name='option' id="checkbox1" class="check1">
+                     <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 check">
                      <label class="check-label">Offensive Language</label>    
                  </li>
                  <li>
-                    <input type="radio" name='option'  id="checkbox2" class="check2">
+                    <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 check">
                     <label class="check-label">Act like a bot</label>    
                 </li>
                 <li class="other">
-                    <input type="radio" name='option' id="checkbox3" class="check3">
+                    <input type="radio" name='option' value="Other" id="checkbox3" class="check3 check">
                     <label class="check-label">Other</label> 
                 </li>
             </ul>
@@ -569,124 +569,82 @@ export class Player {
 
     this.wrapper.innerHTML = playerWrapperHTML;
     this.wrapper.style.visibility = visible ? "visible" : "hidden";
-}
-setPlayerDetail(visible, name, created, playerSeat) {
-    if (this.isPlaying && visible)
-      return;
-
-      this.wrapper.innerHTML = playerWrapperHTML;
-      const playerName = $(this.wrapper).find('.report-name')[0]
-      playerName.innerText = name;
-      // $(this.wrapper).find('report-create')[0].innerText = created;
-    $(this.wrapper).find('.avatar')[0].addEventListener(
-      "click",
-      () => {
-        
-        if ($(this.wrapper).find(".main-section").length !== 0) {
-          $(this.wrapper).find(".main-section").remove();
-        } else {
-          $('#playerWrappers').find(".main-section").remove();
-          $(this.wrapper).append(PlayerDetail);
-          this.addevent(playerSeat);
-        }
+  }
+  
+  setPlayerDetail(visible, name, created, playerSeat, fold) {
+    console.log(`visible: ${visible}`);
+    this.wrapper.querySelector('.avatar').onclick = undefined;
+    if(visible == true){
+      
+      this.wrapper.querySelector('.avatar').onclick = () => {
+          if ($(this.wrapper).find(".main-section").length !== 0) {
+            $(this.wrapper).find(".main-section").remove();
+          } else {
+            $("#playerWrappers").find(".main-section").remove();
+            $(this.wrapper).append(PlayerDetail);
+            $(this.wrapper).find(".report-name")[0].innerText = name;
+            $(this.wrapper).find(".report-create")[0].innerText = created;
+            this.addReportMenu(playerSeat);
+          }
+      };
+    } else {
+      if ($(this.wrapper).find(".main-section").length !== 0) {
+        $(this.wrapper).find(".main-section").remove();
       }
-    );
-}
-
-  submitReport(type, id) {
-    if (this.isPlaying) {
-      const SubmitButton = $('.btn').find('.submit')[0];
-      SubmitButton.addEventListener(
-        "click",
-        () => {
-          const InputReport = $(this.wrapper).find('.write')[0];
-            const savedValue = InputReport.value;
-            SubmitReport(type, savedValue, id, ()=>{
-              $(this.wrapper).find(".main-section").remove();
-            })
-          },
-        { }
-      );
     }
   }
 
-  addevent(id) {
-    if(this.isPlaying){
-      const ReportButton = $(this.wrapper).find(".l-btn")[0];
-      ReportButton.addEventListener(
-        "click",
-        () => {
-          const reportMenu = $(this.wrapper).find(".report-dd");
-          if (reportMenu.hasClass("active")) {
-            reportMenu.removeClass("active");
-          } else {
-            reportMenu.addClass("active");
-            this.addCheckEvent(id);
-            this.closeReport();
-          }
-        }
-      );
+  submitReport(type, playerSeat) {
+    const SubmitButton = $(".btn").find(".submit")[0];
+    SubmitButton.addEventListener(
+      "click",
+      () => {
+        const InputReport = $(this.wrapper).find(".write")[0];
+        SubmitReport(type, InputReport.value, playerSeat, () => {
+          $(this.wrapper).find(".main-section").remove();
+        });
+      },
+      {}
+    );
   }
-}
 
-  addCheckEvent(id) {
-    if (this.isPlaying) {
-      const CheckButton = $(".player_wrapper").find(".check3")[0];
-      const CheckButton1 = $(".player_wrapper").find(".check1")[0];
-      const CheckButton2 = $(".player_wrapper").find(".check2")[0];
-      
-    let newValue = ''; 
+  addReportMenu(playerSeat) {
+    const ReportButton = $(this.wrapper).find(".l-btn")[0];
+    ReportButton.addEventListener("click", () => {
+      const reportMenu = $(this.wrapper).find(".report-dd");
+      if (reportMenu.hasClass("active")) {
+        reportMenu.removeClass("active");
+      } else {
+        reportMenu.addClass("active");
+        this.addReportOption(playerSeat);
+        this.closeReport();
+      }
+    });
+  }
 
-      CheckButton.addEventListener(
-        "click",
-        () => {
-          const Check = $(this.wrapper).find(".text");
-          if (Check.hasClass("active")) {
-            Check.removeClass("active");
-          } else {
-            Check.addClass("active");
-            this.enterReport();
-          }
-          $(CheckButton).attr('value','other');
-           newValue = $(CheckButton)[0].value;
-           this.submitReport(newValue,id);
+  addReportOption(playerSeat) {
+    const CheckButton = $(".player_wrapper").find(".check");
+
+    for (const button of CheckButton) {
+      button.addEventListener("click", () => {
+        const Check = $(this.wrapper).find(".text");
+        if (Check.hasClass("active")) {
+          Check.removeClass("active");
+        } else if ($(button)[0].value === "Other") {
+          Check.addClass("active");
         }
-      );
-      CheckButton1.addEventListener(
-        "click",
-        () => {
-          console.log(newValue);
-          const Check = $(this.wrapper).find(".text");
-            Check.removeClass("active");
-            $(CheckButton1).attr('value','offensive_language');
-           newValue = $(CheckButton1)[0].value;
-           this.submitReport(newValue, id);
-        }
-      );
-      CheckButton2.addEventListener(
-        "click",
-        () => {
-          console.log(newValue);
-          const Check = $(this.wrapper).find(".text");
-            Check.removeClass("active");
-            $(CheckButton2).attr('value','Act_like_a_bot');
-           newValue = $(CheckButton2)[0].value;
-           this.submitReport(newValue, id);
-        }
-      );
+        this.submitReport($(button)[0].value, playerSeat);
+      });
     }
   }
 
   closeReport() {
     if (this.isPlaying) {
       const CheckButton = $(".player_wrapper").find(".cancel")[0];
-      CheckButton.addEventListener(
-        "click",
-        () => {
-          const Check = $(this.wrapper).find(".report-dd");
-            Check.removeClass("active");
-        }
-      );
+      CheckButton.addEventListener("click", () => {
+        const Check = $(this.wrapper).find(".report-dd");
+        Check.removeClass("active");
+      });
     }
   }
 
