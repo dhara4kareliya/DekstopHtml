@@ -50,15 +50,20 @@ function getCardImage(cardName) {
 }
 
 export function getPlayerCardHandGroup(cards) {
-
+    var values = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"];
     cards = cards.map(card => {
         card = card.split("");
-        return { card: card[0], type: card[1] };
+        return { card: card[0], suites: card[1] };
     });
-    var group = cards[0].card + cards[1].card
+
+    cards.sort((a, b) => {
+        return values.indexOf(a.card) > values.indexOf(b.card) ? 1 : -1;
+    });
+
+    var group = cards[0].card + cards[1].card;
     if (cards[0].card == cards[1].card) {
         return group;
-    } else if (cards[0].type == cards[1].type) {
+    } else if (cards[0].suites == cards[1].suites) {
         return group + 's';
     } else {
         return group + 'o';

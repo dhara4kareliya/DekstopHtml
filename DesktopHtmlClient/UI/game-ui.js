@@ -1,4 +1,4 @@
-import { playerLeave } from "../socket-client";
+import { playerLeave, autoFold } from "../socket-client";
 import { modes, Table } from "./table-ui";
 import { getPlayerSeat, myTotalMoneyInGame } from '../services/table-server';
 import { tableSubscribe } from '../services/table-server';
@@ -39,6 +39,23 @@ showSUDCheckbox.addEventListener('change', () => {
     setShowInUSD(showSUDCheckbox.checked);
 });
 
+const autoFoldModeButtonCheckboxes = $(".autoFoldModeButton .checkbox")[0];
+autoFoldModeButtonCheckboxes.addEventListener('change', () => {
+    if (autoFoldModeButtonCheckboxes.checked && tableSettings.gameType == "nlh") {
+        autoFold(autoFoldModeButtonCheckboxes.checked, (data) => {
+            data = JSON.parse(data);
+            if (data.status == true) {
+                mainUI.setPlayerAutoFoldCards(data.AutoFoldCards);
+                const playerCards = table.getTurnPlayerCards(getPlayerSeat());
+                const activeSeats = table.getActiveSeats();
+                mainUI.doAutoFold(autoFoldModeButtonCheckboxes, playerCards, activeSeats);
+                return true;
+            }
+        });
+    }
+    mainUI.setPlayerAutoFoldCards([]);
+});
+
 
 
 
@@ -69,8 +86,6 @@ function setShowInUSD(value) {
     actionUI.setShowInUSD(value);
     table.setShowInUSD(value);
 }
-
-
 
 function onLeaveClick() {
     playerLeave();
@@ -227,7 +242,6 @@ function onTableStatus(status) {
 
     table.setFirstSeat(firstSeat);
     table.setSeats(status.seats, status.state);
-    
     table.setButtons(status.seatOfDealer, status.seatOfSmallBlind, status.seatOfBigBlind);
     table.setTableCards(status.cards);
     table.setTotalPot(status.pot);
@@ -246,7 +260,6 @@ function onTableStatus(status) {
         if (status.state == "HoleCards") {
             sound.playCardDealt();
             table.clearTableCards();
-            
         } else if (status.state == "Flop") {
             sound.playFlop();
         } else if (status.state == "Turn" || status.state == "River") {
@@ -318,6 +331,9 @@ function onRoundTurn(turn) {
     lastTurnSeat = turn.seat;
 
     if (turn.seat != -1 && turn.seat == getPlayerSeat()) {
+        const playerCards = table.getTurnPlayerCards(turn.seat);
+        const activeSeats = table.getActiveSeats();
+
         if (mainUI.doFoldToAnyBet())
             return;
 
@@ -327,7 +343,7 @@ function onRoundTurn(turn) {
         if (mainUI.doAutoCheck())
             return;
 
-        if (mainUI.doAutoFold())
+        if (tableSettings.gameType == "nlh" && mainUI.doAutoFold(autoFoldModeButtonCheckboxes, playerCards, activeSeats))
             return;
 
         actionUI.showActionUI(true);

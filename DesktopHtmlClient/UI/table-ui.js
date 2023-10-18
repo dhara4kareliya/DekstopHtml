@@ -43,7 +43,7 @@ export class Table {
         }
 
         totalPotDiv.style.visibility = "hidden";
-        streetPotDiv.style.visibility = "hidden";   
+        streetPotDiv.style.visibility = "hidden";
     }
 
     setSitVisible(value) {
@@ -138,7 +138,6 @@ export class Table {
                 return 0;
             return +a.classList[1] - +b.classList[1];
         });
-        
     }
 
     /**
@@ -203,8 +202,7 @@ export class Table {
                 player.showSitDownButton(this.mode === modes.Observing && this.siticonVisible && getPlayerSeat() < 0 && this.closeTable !== true)
             } else {
                 player.showPlayer(true);
-                // console.warn(`status: ${getPlayerSeat() != i  && seat.fold === undefined && getPlayerSeat() > -1}`)
-                player.setPlayerDetail(getPlayerSeat() != i  && seat.fold === undefined, seat.player.name, seat.player.created_at, i, seat.fold);
+                player.setPlayerDetail(getPlayerSeat() != i && seat.fold === undefined, seat, i);
                 player.setPlayState(true);
                 player.setPlayerName(seat.player.name);
                 player.setPlayerMoney(seat.money);
@@ -263,6 +261,15 @@ export class Table {
     setSeats(seats, RoundState) {
         this.seats = seats;
         this.arrangeSeats(seats, RoundState);
+    }
+
+    getActiveSeats() {
+        const activeSeate = [];
+        for (let i = 0; i < this.seats.length; ++i) {
+            if (this.seats[i].state == "Playing")
+                activeSeate.push(i);
+        }
+        return activeSeate;
     }
 
     setShowSbBbButtons(value) {
@@ -512,6 +519,10 @@ export class Table {
                 player.clearTurnTimer();
             }
         }
+    }
+
+    getTurnPlayerCards(seat) {
+        return this.seats[seat].cards;
     }
 
     showCards(seat, cards) {

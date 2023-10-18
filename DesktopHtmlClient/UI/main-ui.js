@@ -1,5 +1,5 @@
-import { showCards, sitIn, sitOut, playerLeaveTable, sitOutNextHand, tableSettings, tableSubscribe, waitForBB, doChat, submitSideBet, acceptInsurance } from "../services/table-server";
-import { disConnectSocket, playerLeave, updatePlayerInfo, autoFold, ShowTipToDealer, onShareHand } from "../socket-client";
+import { showCards, sitIn, sitOut, playerLeaveTable, sitOutNextHand, tableSettings, round, tableSubscribe, waitForBB, doChat, submitSideBet, acceptInsurance } from "../services/table-server";
+import { disConnectSocket, playerLeave, updatePlayerInfo, ShowTipToDealer, onShareHand } from "../socket-client";
 import { toggleCheckbox } from "./checkbox";
 import { getPlayerSeat, getCurrentTurn, turnAction, joinWaitingList } from '../services/table-server';
 import { showBuyIn } from './game-ui';
@@ -74,7 +74,6 @@ const insuranceNextTime = $(".insuranceNextTime")[0];
 const insurancePrice = $(".insurancePrice")[0];
 const allInPrice = $(".allInPrice");
 const autoFoldModeButtonDiv = $(".autoFoldModeButton")[0];
-const autoFoldModeButtonCheckboxes = $(".autoFoldModeButton .checkbox")[0];
 
 export class MainUI {
     constructor(buyInUI) {
@@ -252,18 +251,7 @@ export class MainUI {
             $(mobileSideBar).addClass("active");
         });
 
-        autoFoldModeButtonCheckboxes.addEventListener('change', () => {
-            if (autoFoldModeButtonCheckboxes.checked) {
-                autoFold(autoFoldModeButtonCheckboxes.checked, (data) => {
-                    data = JSON.parse(data);
-                    if (data.status == true) {
-                        this.playerAutoFoldCards = data.AutoFoldCards;
-                        return true;
-                    }
-                });
-            }
-            this.playerAutoFoldCards = [];
-        });
+
 
         mobileSideBar.addEventListener('click', () => {
             $(mobileSideBar).removeClass("active");
@@ -398,8 +386,67 @@ export class MainUI {
         return true;
     }
 
-    doAutoFold() {
+    doAutoFold(autoFoldModeButtonCheckboxes, playerCards, activeSeats) {
+        console.warn(round.state);
+        console.warn(autoFoldModeButtonCheckboxes.checked != true || round.state != "HoleCards" || getPlayerSeat() == -1 || getPlayerSeat() != getCurrentTurn().seat);
+        if (autoFoldModeButtonCheckboxes.checked != true || round.state != "HoleCards" || getPlayerSeat() == -1 || getPlayerSeat() != getCurrentTurn().seat)
+            return false;
 
+        var autoFoldType = "";
+        const activeSeatsCount = activeSeats.length;
+        if (round.seatOfSmallBlind == getPlayerSeat())
+            autoFoldType = "small_blind";
+        else if (round.seatOfBigBlind == getPlayerSeat())
+            autoFoldType = "big_blind";
+        else if (activeSeatsCount >= 5) {
+            const seatOfSmallBlind = round.seatOfSmallBlind;
+
+            if (seatOfSmallBlind == undefined)
+                return false;
+
+            var palyer = getPlayerSeat();
+            var playerPosition = 0;
+            var next = activeSeats.indexOf(seatOfSmallBlind);
+            for (let i = 0; i < activeSeatsCount; i++) {
+                playerPosition++;
+                if (activeSeats[next] == palyer)
+                    break;
+
+                if (activeSeats[next] == activeSeats[activeSeats.length - 1]) {
+                    next = 0;
+                } else {
+                    next++;
+                }
+            }
+
+            var autoFoldTypes = {};
+            if (activeSeatsCount == 5) {
+                autoFoldTypes = { "3": "early_position", "4": "middle_position", "5": "late_position" };
+            } else if (activeSeatsCount == 6) {
+                autoFoldTypes = { "3": "early_position", "4": "middle_position", "5": "middle_position", "6": "late_position" };
+            } else if (activeSeatsCount == 7) {
+                autoFoldTypes = { "3": "early_position", "4": "early_position", "5": "middle_position", "6": "late_position", "7": "late_position" };
+            } else if (activeSeatsCount == 8) {
+                autoFoldTypes = { "3": "early_position", "4": "early_position", "5": "middle_position", "6": "middle_position", "7": "late_position", "8": "late_position" };
+            } else if (activeSeatsCount == 9) {
+                autoFoldTypes = { "3": "early_position", "4": "early_position", "5": "middle_position", "6": "middle_position", "7": "middle_position", "8": "late_position", "9": "late_position" };
+            }
+            autoFoldType = autoFoldTypes[playerPosition];
+            console.warn(`sb: ${seatOfSmallBlind},palyer:${palyer},playerPosition : ${playerPosition}, autoFoldType:${autoFoldType}`);
+        }
+
+        if (autoFoldType == "")
+            return false;
+
+        const playerCardHandGroup = getPlayerCardHandGroup(playerCards);
+        console.warn(`playerCardHandGroup : ${playerCardHandGroup}, autoFoldType : ${autoFoldType}`);
+        console.warn(`playerAutoFoldCards : ${this.playerAutoFoldCards[autoFoldType][playerCardHandGroup]}`);
+        if (this.playerAutoFoldCards[autoFoldType] !== undefined && this.playerAutoFoldCards[autoFoldType][playerCardHandGroup] == true) {
+            this.onFoldClick();
+            return true;
+        }
+
+        return false;
     }
 
     doAutoCheck() {
@@ -456,6 +503,10 @@ export class MainUI {
 
     getPlayerSeat() {
         return this.playerInfo.seat;
+    }
+
+    setPlayerAutoFoldCards(autoFoldCard) {
+        this.playerAutoFoldCards = autoFoldCard;
     }
 
     setPlayerName(newPlayerInfo) {

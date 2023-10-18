@@ -1,7 +1,6 @@
-import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket, playerSubmitReport } from "../socket-client";
+import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket } from "../socket-client";
 import { setServer } from "./game-server";
 import { Get } from "../http-client";
-let $sitDownButtons = $(".main-section");
 
 export const PlayerState = Object.freeze({
     None: 0,
@@ -61,11 +60,12 @@ export class PlayerInfo {
 }
 
 export class TableSetting {
-    constructor(name, numberOfSeats, mode, level, nextSB,
+    constructor(name, numberOfSeats, mode, gameType, level, nextSB,
         nextBB, duration, smallBlind, bigBlind, ante, minBuyIn, maxBuyIn, displaySB, displayBB, displayAnte) {
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.mode = mode;
+        this.gameType = gameType;
         this.level = level;
         this.nextSB = nextSB;
         this.nextBB = nextBB;
