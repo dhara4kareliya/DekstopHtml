@@ -1,4 +1,4 @@
-import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket } from "../socket-client";
+import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket, playerSubmitReport } from "../socket-client";
 import { setServer } from "./game-server";
 import { Get } from "../http-client";
 

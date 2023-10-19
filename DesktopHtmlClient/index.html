@@ -15,10 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Desktop Client</title>
+    
 
 </head>
 
-<body>
+<body >
     <img id="backgroundLogo" src="./images/desktop/TURTLE-STUDIOS-png.png">
     <div id="mobileSideBar" class="sideButtonsDiv portrateOnly">
         <button class="backLobbyButton"><img src="./images/desktop/Shape 1.svg"> Back to Lobby</button>
@@ -50,7 +51,7 @@
     </div>
     <div id="tableDiv">
         <div id="totalPot" class="box">
-            Total Pot: <span class="money">$100</span>
+            <span class="lang" key="totalPot"></span>: <span class="money">$100</span>
             <div class="chipRow">
                 <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
                 <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
@@ -58,7 +59,7 @@
             </div>
         </div>
         <div id="winPot" class="box" style="visibility: hidden;">
-            Total Win Pot: <span class="money">$100</span>
+            <span class="lang" key="totalWinPot"></span>: <span class="money">$100</span>
             <div class="chipRow">
                 <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
                 <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
@@ -67,32 +68,32 @@
         </div>
         <div id="mobileTable" class="portrateOnly">
             <div class="sidePot box">
-                Side pot 1: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 1: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
             <div class="sidePot box">
-                Side pot 2: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 2: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
             <div class="sidePot box">
-                Side pot 3: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 3: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
             <div class="sidePot box ">
-                Side pot 4: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 4: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
             <canvas></canvas>
             <div class="sidePot box">
-                Side pot 5: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 5: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
             <div class="sidePot box">
-                Side pot 6: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 6: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
             <div class="sidePot box">
-                Side pot 7: <img src="./images/desktop/1 copy 4-1@2x.png">
+                <span class="lang" key="sidePot"></span> 7: <img src="./images/desktop/1 copy 4-1@2x.png">
                 <span class="money">$100</span>
             </div>
         </div>
@@ -110,15 +111,15 @@
             <tr>
                 <td class="td1">
                     <div class="sidePot box">
-                        Side pot 1: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 1: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                     <div class="sidePot box">
-                        Side pot 2: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 2: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                     <div class="sidePot box">
-                        Side pot 3: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 3: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                 </td>
@@ -126,11 +127,11 @@
                     <div class="timers">
                         <div>
                             <span class="minutes">00</span>
-                            <div class="smalltext">Minutes</div>
+                            <div class="smalltext lang" key="minutes">Minutes</div>
                         </div>
                         <div>
                             <span class="seconds">00</span>
-                            <div class="smalltext">Seconds</div>
+                            <div class="smalltext lang" key="seconds">Seconds</div>
                         </div>
                     </div>
                     <div class="tableCards">
@@ -138,15 +139,15 @@
                 </td>
                 <td class="td3">
                     <div class="sidePot box ">
-                        Side pot 4: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 4: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                     <div class="sidePot box">
-                        Side pot 5: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 5: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                     <div class="sidePot box">
-                        Side pot 6: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 6: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                 </td>
@@ -155,14 +156,14 @@
                 <td></td>
                 <td>
                     <div class="sidePot box side-custom">
-                        Side pot 7: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <span class="lang" key="sidePot"></span> 7: <img src="./images/desktop/1 copy 4-1@2x.png">
                         <span class="money">$100</span>
                     </div>
                 </td>
                 <td></td>
             </tr>
         </table>
-        <div class="handResult">Three of a kind</div>
+        <div class="handResult lang" key="threeOfKind"></div>
         <div id="playerWrappers">
             <div class="player_wrapper">
                 <img class="avatar" src="./images/desktop/22 copy 7@2x.png">
@@ -183,7 +184,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><span class="name">Tangotag</span></td>
+                                <td><span class="name lang" key="playerName"></span></td>
                                 <td></td>
                             </tr>
                             <tr>
@@ -248,38 +249,58 @@
     <table id="uiTable">
         <tr>
             <td>
-                <div class="sideButtonsDiv landscapeOnly">
-                    <button class="backLobbyButton"><img src="./images/desktop/Shape 1.svg"> Back to Lobby</button>
-                    <button class="sharehand"><i class="fa-solid fa-share-from-square"></i> Share Hand</button>
-                    <button class="sitOutButton"><img src="./images/desktop/Group 60@2x.png"> Sit Out</button>
-                    <button class="leaveButton"><img src="./images/desktop/exit@2x.png"> Leave Game</button>
+                <div class="mb-3">
+                    <button class="translate" id="en-gb">English</button>
+                    <button class="translate" id="zh-tw">Germany</button>
+                </div>
+                <div class="sideButtonsDiv landscapeOnly" >
+                    <button class="backLobbyButton" ><img src="./images/desktop/Shape 1.svg">
+                        <span class="lang" key="lobby" ></span>
+                    </button>
+                    <button class="sharehand"><i class="fa-solid fa-share-from-square"></i> 
+                        <span class="lang" key="shareHand"></span>
+                    </button>
+                    <button class="sitOutButton"><img src="./images/desktop/Group 60@2x.png"> 
+                        <span class="lang" key="sitOut"></span>
+                    </button>
+                    <button class="leaveButton"><img src="./images/desktop/exit@2x.png"> 
+                        <span class="lang" key="leaveGame"></span>
+                    </button>
                     <button class="forhid" style="visibility: hidden;"><img src="./images/desktop/Group 11@2x.png">
-                        Rebuy/Add-on</button>
+                        <span class="lang" key="reBuy"></span>
+                    </button>
                     <button class="addChipsButton">
-                        <img src="./images/desktop/icons8-coin-50@2x.png"> Add Chips
+                        <img src="./images/desktop/icons8-coin-50@2x.png"> 
+                        <span class="lang" key="addChips"></span>
                     </button>
                     <button class="addTipsButton">
-                        <i class="fa-solid fa-sack-dollar"></i> Tip the Dealer
+                        <i class="fa-solid fa-sack-dollar"></i> 
+                        <span class="lang" key="tipTheDealer"></span>
                     </button>
                     <button class="settingsButton">
-                        <img src="./images/desktop/icons8-settings-250.png"> Settings
+                        <img src="./images/desktop/icons8-settings-250.png"> 
+                        <span class="lang" key="settings"></span>
                     </button>
-                    <button class="multiTableButton"><img src="./images/desktop/multi table.png"> Multi Table</button>
-                    <button><img src="./images/desktop/icons8-dollar-50@2x.png"> Cashier</button>
+                    <button class="multiTableButton"><img src="./images/desktop/multi table.png"> 
+                        <span class="lang" key="multiTable"></span>
+                    </button>
+                    <button><img src="./images/desktop/icons8-dollar-50@2x.png"> 
+                        <span class="lang" key="Cashier"></span>
+                    </button>
                     <div class="waitingList">
                         <div class="waitingListSide">
-                            <div>5</div>
+                            <div class="lang" key="waitingnumber"></div>
                             <div><img src="./images/desktop/Group 372.svg" id="arrow"></div>
                         </div>
-                        <button>Join Waiting List</button>
+                        <button class="lang" key="joinWaitingList"></button>
                     </div>
                     <div id="usersDropdown">
                         <div class="users" id="user">
-                            <button>user 1</button>
-                            <div class="innerUser">user 2</div>
-                            <div class="innerUser">user 3</div>
-                            <div class="innerUser">user 4</div>
-                            <div class="innerUser">user 5</div>
+                            <button class="lang" key="user1"></button> 
+                            <div class="innerUser lang" key="user2"></div>
+                            <div class="innerUser lang" key="user3"></div>
+                            <div class="innerUser lang" key="user4"></div>
+                            <div class="innerUser lang" key="user5"></div>
                         </div>
                     </div>
                 </div>
@@ -292,7 +313,7 @@
                         <tr>
                             <td>
                                 <div id="meDiv">
-                                    <span>Hi <span id="myName">Tangotag</span>!</span>
+                                    <span>Hi <span id="myName" class="lang" key="playerName">Tangotag</span>!</span>
                                     <div class="stars box">
                                         <img src="./images/desktop/material-star.svg"> 4.2
                                     </div>
@@ -337,7 +358,7 @@
                             <!-- Content to be displayed/hidden -->
                             <div class="fund_prent mb-1">
                                 <div class="fund  font">
-                                    <div class="hudge"> Hudge Fund Panel</div>
+                                    <div class="hudge lang" key="hudgeFundPanel"></div>
                                     <div><i class="bi bi-question-circle"></i></div>
                                     <div class="troffie" id="open_history"><img src="images/Frame 161.png" alt=""></div>
                                 </div>
@@ -346,16 +367,16 @@
                                 <div class="fund1 text-center">
                                     <button id="button31_q31" class="div_fund1 ">
                                         <p class="Balance2">$200</p>
-                                        <p class="Balance">Free Balance</p>
+                                        <p class="Balance lang" key="freeBalance"></p>
                                     </button>
                                     <button id="button32_q31" class="div_fund2">
                                         <p class="Balance2">$200</p>
-                                        <p class="Balance">total paid</p>
+                                        <p class="Balance lang" key="totalPaid"></p>
                                     </button>
                                 </div>
                             </div>
                             <div class="street">
-                                <p class="text-street">street</p>
+                                <p class="text-street lang" key="street"></p>
                                 <div class="img-1"><img src="images/21.png" alt=""></div>
                                 <div class="img-2"><img src="images/22.png" alt="" srcset=""></div>
                             </div>
@@ -368,12 +389,12 @@
                                     <div class="dum">
                                         <div class="dum2">
                                             <p class="text_last_sum" id="total-payout">$0</p>
-                                            <p class="text_last_sum2">PAY OUT</p>
+                                            <p class="text_last_sum2 lang" key="payOut"></p>
                                         </div>
                                     </div>
                                     <button id="submit-sidebet" class="last_sum">
                                         <P id="total-amount" class="text_last_sum22"> $0 </P>
-                                        <P class="text_last_sum2">Submit</P>
+                                        <P class="text_last_sum2 lang" key="submit"></P>
                                     </button>
                                 </div>
                             </div>
@@ -386,14 +407,14 @@
                             <div class="fund_prents mb-1">
                                 <div class="fund  fonts">
                                     <div class="troffies mx-2"><img src="images/Group 177703.png" id="back_button" alt=""></div>
-                                    <div class="mx-3 mt-1"> Wining history</div>
+                                    <div class="mx-3 mt-1 lang" key="winingHistory"> </div>
 
                                 </div>
                             </div>
                             <div class="fund_prents1 mb-1">
                                 <div class="bg-imges" style="background-image: url('images/Group\ 177702.png') ; background-size: 100% 100%;">
                                     <img src="images/Group 177685.png" class="w-100 winner_image" alt="">
-                                    <p class="total ">Total Wins:<span class="xin"> $470</span> </p>
+                                    <p class="total lang"><span  key="totalWins" class="lang"></span>:<span class="xin"> $470</span> </p>
                                 </div>
                             </div>
                             <div id="scroll_bar ">
@@ -409,7 +430,8 @@
 
                                                         <div class="top px-1"><img src="images/dollar coinn.png">
                                                             <div class="allmix">
-                                                                <p class="pair">Hitting a Pair
+                                                                <p class="pair">
+                                                                    <span class="lang" key="hittingPair"></span>
                                                                     <p class="today">Today | 15:35</p>
                                                                 </p>
                                                             </div>
@@ -444,7 +466,8 @@
                 <div class="sideButtonsDiv landscapeOnly for-sc-edit">
                     <div class="btn-group dropright chatButton">
                         <button type="button" class="dropdown-toggle w-100 d-flex " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="./images/desktop/Icon material-chat.svg"> Chat
+                            <img src="./images/desktop/Icon material-chat.svg"> 
+                            <span class="lang" key="Chat"></span>
                         </button>
                         <div class="dropdown-menu  leftArrow py-0" id="third">
                             <div class="activities style-2" id="">
@@ -533,14 +556,15 @@
 
                     <div class="btn-group dropright logTabButton">
                         <button type="button" class="dropdown-toggle w-100 d-flex " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="./images/desktop/Icon metro-notification.svg"> Log Tab
+                            <img src="./images/desktop/Icon metro-notification.svg"> 
+                            <span class="lang" key="logTab"></span>
                         </button>
                         <div class="dropdown-menu  righht leftArrow py-0">
                             <div class="activities pb-3 style-2">
                                 <div class="activInner main_div_mes">
                                     <div class="act">
                                         <div class=" main_dib d-flex main justify-content-between mx-1 pt-2">
-                                            <div class="mx-2 pt-1 acc "> Activitie:</div>
+                                            <div class="mx-2 pt-1 acc lang" key="activitie"></div>
                                             <div>
                                                 <button type="button" class="btn-closes">
                                                     <i class="bi bi-x m-0"></i>
@@ -565,49 +589,56 @@
                     <button class="autoFoldButton">
                         <div class="checkbox">
                             <img src="./images/desktop/v@2x.png">
-                        </div> FOLD TO ANY BET
+                        </div> 
+                        <span class="lang" key="foldToAnyBet"></span>
                     </button>
                     <button class="sitOutNextHandButton">
                         <div class="checkbox">
                             <img src="./images/desktop/v@2x.png">
-                        </div> SIT OUT NEXT HAND
+                        </div> 
+                        <span class="lang" key="sitOutNextHand"></span>
                     </button>
                     <button class="waitForBBButton">
                         <div class="checkbox">
                             <img src="./images/desktop/v@2x.png">
-                        </div> WAIT FOR BB
+                        </div> 
+                        <span class="lang" key="waitForBB"></span>
                     </button>
 
                     <button class="autoModeButton">
                         <div class="checkbox">
                             <img src="./images/desktop/v@2x.png">
-                        </div> Auto Mode
+                        </div> 
+                        <span class="lang" key="autoMode"></span>
                     </button>
 
                     <button class="autoFoldModeButton">
                         <div class="checkbox">
                             <img src="./images/desktop/v@2x.png">
-                        </div> Auto Fold
+                        </div> 
+                        <span class="lang" key="autoFold"></span>
                     </button>
                 </div>
             </td>
             <td id="centerBottom">
                 <button id="showCardsButton" class="actionButton edit-btn-screen">
-                    SHOW CARDS
+                    <span class="lang" key="showCards"></span>
                 </button>
                 <button id="backButton">
                     <img src="./images/desktop/office-chair@2x.png">
-                    I AM BACK
+                    <span class="lang" key="IMback"></span>
                 </button>
             </td>
             <td></td>
         </tr>
     </table>
     <div id="turnActionsDiv">
-        <button id="foldButton" class="actionButton">FOLD</button>
-        <button id="callButton" class="actionButton">CALL</button>
-        <button id="raiseButton" class="actionButton">RAISE TO <span
-                class="valueDisplay betSlider moneyDisplay">50</span></button>
+        <button id="foldButton" class="actionButton lang" key="fold"></button>
+        <button id="callButton" class="actionButton lang" key="call"></button>
+        <button id="raiseButton" class="actionButton" >
+            <span key="raiseTo" class="lang"></span>
+            <span class="valueDisplay betSlider moneyDisplay">50</span>
+        </button>
         <div id="betDivWrapper" class="bet-mannual">
             <div id="betShow">
                 <!--
@@ -640,7 +671,7 @@
         </div>
     </div>
     <div id="tip-button">
-        <p>Tip:</p>
+        <p class="lang" key="tip"></p>
         <div class="button-prents">
             <button class="first_bb" value="1">1BB</button>
             <button class="first_bb1" value="5">5BB</button>
@@ -651,12 +682,14 @@
         <button id="autoCheckButton" class="actionButton">
             <div class="checkbox">
                 <img src="./images/desktop/v@2x.png">
-            </div> CHECK
+            </div> 
+            <span class="lang" key="check"></span>
         </button>
         <button id="autoCheckOrFoldButton" class="actionButton">
             <div class="checkbox">
                 <img src="./images/desktop/v@2x.png">
-            </div> CHECK/FOLD
+            </div> 
+            <span class="lang" key="check/Fold"></span>
         </button>
     </div>
 
@@ -665,18 +698,21 @@
         <div style="display: flex;justify-content: center;flex-direction: column;">
             <div style="width: 100%;width: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
                 <div style="text-align: center; color: #FFEB00;justify-content: center;display: flex;align-items: center;">
-                    <img src="./images/desktop/card.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> Transfer To Table Wallet
+                    <img src="./images/desktop/card.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> 
+                    <span class="lang" key="transferToTableWallet"></span>
                 </div>
-                <div style="text-align: center; margin-top: calc(1 * var(--aspect-ratio)) ;">Your Global Balance: <span id="global-balance">1450</span>$</div>
+                <div style="text-align: center; margin-top: calc(1 * var(--aspect-ratio)) ;">
+                    <span class="lang" key="yourGlobalBalance"></span>: <span id="global-balance">1450</span>$</div>
                 <div id="transferSliderContainer">
                     <div style="display: flex;justify-content: space-between; align-items: center;">
                         <div id="transferMinus">
-                            Min
+                            <span class="lang" key="min"></span>
                             <span>50</span>
                         </div>
                         <input type="number" id="transferCount">
                         <div id="transferPlus">
-                            <span>2000</span> Max
+                            <span>2000</span> 
+                            <span class="lang" key="max"></span>
                         </div>
                     </div>
                     <div id="transferSlider" class="slider">
@@ -694,28 +730,30 @@
                     </svg>
                 </div>
                 <div style="display: flex; justify-content: center; margin: calc(1 * var(--aspect-ratio)) 0px 0px 0px;">
-                    <button class="transferButton" style="background-color: #343964;">Transfer</button>
-
+                    <button class="transferButton lang" key="transfer" style="background-color: #343964;"></button>
                 </div>
             </div>
             <hr style="background-color: #FFEB00;color: #FFEB00;width: 80%;margin-top: calc(1 * var(--aspect-ratio));margin-bottom: 0rem;">
 
             <div style="text-align: center; color: #FFEB00;display: flex;align-items: center;margin-bottom: calc(1.5 * var(--aspect-ratio));margin-top: calc(1.5 * var(--aspect-ratio));">
-                <img src="./images/desktop/money-table.png" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;" alt=""> Add To Table
+                <img src="./images/desktop/money-table.png" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;" alt=""> 
+                <span class="lang" key="addtoTable"></span>
             </div>
             <div style="display: flex; justify-content: space-between;width: 75%;">
-                <div style="display: flex;align-items: center;"><img src="./images/desktop/card.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;">Table Wallet:<span id="table-balance">0</span>$</div>
-                <div style="display: flex;align-items: center;"> <img src="./images/desktop/round.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> Table Balance:<span id="table-chip">0</span>$</div>
+                <div style="display: flex;align-items: center;"><img src="./images/desktop/card.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;">
+                    <span class="lang" key="tableWallet"></span>:<span id="table-balance">0</span>$</div>
+                <div style="display: flex;align-items: center;"> <img src="./images/desktop/round.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> 
+                    <span class="lang" key="tableBalance"></span>:<span id="table-chip">0</span>$</div>
             </div>
             <div id="buyInSliderContainer">
                 <div style="display: flex;justify-content: space-between; align-items: center;">
                     <div id="buyInMinus">
-                        Min
+                        <span class="lang" key="min"></span>
                         <span>50</span>
                     </div>
                     <input type="number" id="buyInCount">
                     <div id="buyInPlus">
-                        <span>2000</span> Max
+                        <span>2000</span> <span class="lang" key="max"></span>
                     </div>
                 </div>
                 <div id="buyInSlider" class="slider">
@@ -725,22 +763,25 @@
                 </div>
             </div>
             <div id="autoRebuyContainer">
-                <div>Auto re-buy chips when:</div>
+                <div>
+                    <span class="lang" key="autoReBuyChipsWhen"></span>:</div>
                 <div>
                     <div>
                         <div id="chipsLowerThenBuyInCheckbox" class="checkbox" style="border-radius: 50%;">
                             <img src="./images/desktop/tickRed.png" style="height: 15px; max-width: 15px;bottom: 0px;">
-                        </div> Chips are lower then Buy-in
+                        </div> 
+                        <span class="lang" key="chipsAreLowerThenBuyin"></span>
                     </div>
                     <div>
                         <div id="runOutOfChipsCheckbox" class="checkbox" style="border-radius: 50%;">
                             <img src="./images/desktop/tickRed.png" style="height: 15px; max-width: 15px;bottom: 0px;">
-                        </div> You run out of chips completely
+                        </div> 
+                        <span class="lang" key="runOutChips"></span>
                     </div>
                 </div>
             </div>
             <div class="menuBottomButtons">
-                <button class="cancleButton">CANCLE</button>
+                <button class="cancleButton lang" key="cancel"></button>
                 <button class="okButton">OK</button>
             </div>
         </div>
@@ -748,37 +789,43 @@
     <div id="settingsMenu" class="menuDiv">
         <div>
             <div class="menuTitle">
-                <img src="./images/desktop/icons8-settings-250@2x.png"> Settings
+                <img src="./images/desktop/icons8-settings-250@2x.png"> 
+                <span class="lang" key="settings"></span>
             </div>
             <div>
                 <div id="muteCheckbox" class="checkbox">
                     <img src="./images/desktop/v@2x.png">
                 </div>
-                <img src="./images/desktop/volume-mute@2x.png"> Mute sounds
+                <img src="./images/desktop/volume-mute@2x.png"> 
+                <span class="lang" key="muteSounds"></span>
             </div>
             <div>
                 <div id="autoMuckCheckbox" class="checkbox">
                     <img src="./images/desktop/v@2x.png">
                 </div>
-                <img src="./images/desktop/view@2x.png"> Auto muck cards
+                <img src="./images/desktop/view@2x.png"> 
+                <span class="lang" key="autoMuckCards"></span>
             </div>
             <div>
                 <div id="showAsBBCheckbox" class="checkbox">
                     <img src="./images/desktop/v@2x.png">
                 </div>
-                <img src="./images/desktop/dollar@2x.png"> Show values as BB ratio
+                <img src="./images/desktop/dollar@2x.png"> 
+                <span class="lang" key="ValueAsBBRatio"></span>
             </div>
             <div style="display: none;">
                 <div id="showAsSUDCheckbox" class="checkbox">
                     <img src="./images/desktop/v@2x.png">
                 </div>
-                <img src="./images/desktop/dollar@2x.png"> Show values as USD
+                <img src="./images/desktop/dollar@2x.png"> 
+                <span class="lang" key="ValueAsUSD"></span>
             </div>
             <div>
                 <div id="fourColorsCheckbox" class="checkbox">
                     <img src="./images/desktop/v@2x.png">
                 </div>
-                <img src="./images/desktop/Group 53@2x.png"> 4 colors deck
+                <img src="./images/desktop/Group 53@2x.png"> 
+                <span class="lang" key="FourColours"></span>
             </div>
             <img class="menuLogo" src="./images/desktop/TURTLE-STUDIOS-png.png">
             <div class="menuBottomButtons">
@@ -788,8 +835,7 @@
     </div>
     <div id="breakTime" class="menuDiv">
         <div>
-            <div class="menuTitle">
-                Break Time
+            <div class="menuTitle lang" key="breakTime">
             </div>
             <div class="timer">
                 00:45
@@ -802,14 +848,14 @@
 
                 <div class="modal-body">
                     <div class="modal-header">
-                        <h5 id="myModalLabel">Error Message</h5>
+                        <h5 id="myModalLabel" class="lang" key="errorMessage"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body" style="font-size: 1rem;;">
-                        <p class="error-message">One fine body…</p>
+                        <p class="error-message" key="errorBody"></p>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn cancel" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button class="btn cancel lang" data-dismiss="modal" aria-hidden="true" key="close"></button>
                     </div>
                 </div>
 
@@ -822,7 +868,7 @@
             <div class="modal-content">
 
                 <div class="modal-body d-flex">
-                    <h5>Link Copied</h5>
+                    <h5 class="lang" key="shareHandMessage"></h5>
                     <button type="button" class="close ms-auto" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
 
@@ -841,11 +887,11 @@
                     </div>
                     <div class="d-flex justify-content-center mt-1 cash_div">
                         <div>
-                            <div style="font-size: 25px;">Thank You</div>
+                            <div style="font-size: 25px;" class="lang" key="thankYou"></div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button id="GO">GO TO TABLE</button>
+                        <button id="GO" class="lang" key="GoToTable"></button>
                     </div>
 
                 </div>
@@ -864,11 +910,11 @@
                     </div>
                     <div class="d-flex justify-content-center mt-1 cash_div">
                         <div>
-                            <div style="font-size: 25px;">Thank you for your feedback. <br> We will look into it shortly.</div>
+                            <div style="font-size: 25px;"><span class="lang" key="ReportMessage"></span><br> <span class="lang" key="reportAction"></span></div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button id="GO">GO TO TABLE</button>
+                        <button id="GO" class="lang" key="GoToTable"></button>
                     </div>
 
                 </div>
@@ -882,8 +928,7 @@
 
                 <div class="modal-body ">
                     <div class="border-around  mt-3">
-                        <p class="border-p">
-                            All In Insurance
+                        <p class="border-p lang" key="allInsurance">
                         </p>
                         <p class="border-p-text allInPrice">
                             $119.40
@@ -908,16 +953,15 @@
                     </div>
                     <div class="doller_prents mt-4">
                         <p class="doller_p">
-                            <span class="pay">Pay</span> <span class="sane insurancePrice">$8</span> <span class="pay">save</span> <span class="sane allInPrice">$119.40 </span>
+                            <span class="pay lang" key="pay"></span> <span class="sane insurancePrice">$8</span> <span class="pay lang" key="save"></span> <span class="sane allInPrice">$119.40 </span>
                         </p>
                     </div>
                     <div class="two_btn px-5 mt-5">
-                        <button class="text_btn insuranceYesButton">
-              Yes 
+                        <button class="text_btn insuranceYesButton lang" key="yes"> 
              </button>
                         <img src="images/Light Effect PNG Clip Art Image 5.png" alt="" srcset="">
-                        <button class="next insuranceNextTime">
-              Next Time
+                        <button class="next insuranceNextTime lang" key="nextTime">
+             
              </button>
                     </div>
                 </div>
@@ -942,13 +986,14 @@
 
                         <div class="row my-2 ">
                             <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
-                                <h5> <span style="color: #CE152E; ">Finished Tournament :</span> <span style="color: #E78D2B;"><span id="tournamentRank">39</span>th place</span>
+                                <h5> <span style="color: #CE152E; ">
+                                    <span class="lang" key="finishedTournament"></span> :</span> <span style="color: #E78D2B;"><span id="tournamentRank">39</span><span class="lang" key="PlaceNum"></span></span>
                                 </h5>
                             </div>
                         </div>
                         <div class="row my-4 tournament-prize">
                             <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
-                                <h5> <span style="color: #254A98;">Price:</span> <span style="color: #C92138;"><span
+                                <h5> <span style="color: #254A98;" class="lang" key="price"></span> <span style="color: #C92138;"><span
                                             id=tournamentPrize>150</span></span>
                                 </h5>
                             </div>
@@ -956,7 +1001,7 @@
                         <div class="row mt-2 mb-5">
                             <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
                                 <button data-dismiss="modal" style="width: 340px;height: 60px;background: transparent linear-gradient(0deg, #E50202 0%, #676060 100%) 0% 0% no-repeat padding-box;box-shadow: 0px 2px 5px #FFFFFF45;border-radius: 6px;opacity: 1; display: flex; justify-content: center;align-items: center; color: white;">
-                                    <h5 class="m-0">Back to Lobby</h5>
+                                    <h5 class="m-0 lang" key="lobby"></h5>
                                 </button>
                             </div>
                         </div>
@@ -1026,6 +1071,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
 <script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.min.js"></script>
+<script src="./script.js"></script>
 
 </html>
 <script type="module" src="/main.js"></script>

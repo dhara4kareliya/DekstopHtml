@@ -3,6 +3,28 @@ import { getMoneyValue, getMoneyText } from "./money-display";
 import { Card, getCardImageFilePath } from "./card-ui";
 import { userMode } from '../services/game-server';
 import { Sound } from './audio';
+import { getTranslation } from "../script";
+
+
+// $(document).ready(function() {
+//     updateTranslation();
+// });
+
+$(".translate").click(function() {
+    updateTranslation();
+});
+
+function updateTranslation() {
+    $("#describeReport").text(getTranslation("describeReport"));
+    $("#user").text(getTranslation("user"));
+    $("#memberFrom").text(getTranslation("memberFrom"));
+    $("#Report").text(getTranslation("Report"));
+    $("#offensiveLang").text(getTranslation("offensiveLang"));
+    $("#actLikeBot").text(getTranslation("actLikeBot"));
+    $("#other").text(getTranslation("other"));
+    $("#submit").text(getTranslation("submit"));
+    $("#Cancel").text(getTranslation("Cancel"));
+}
 
 const sound = new Sound();
 const actionColors = {
@@ -147,13 +169,14 @@ const PlayerDetail = ` <div class="main-section">
         <div class="button">
             <div class="first-section">
                 <div class="u-name">
-                    <p>User: 
+                    <p>
+                    <span id="user">${getTranslation("user")}</span>: 
                     <span class="report-name"></span>
                     </p>
                 </div>
 
                 <div class="date">
-                    <p>Member From</p>
+                    <p id="memberFrom">${getTranslation("memberFrom")}</p>
                     <span class="report-create"></span>
                 </div>
             </div>
@@ -171,7 +194,7 @@ const PlayerDetail = ` <div class="main-section">
                     <img src="images/error.png" alt="">
                 </button>
                 
-                <button class="l-btn">Report</button>
+                <button class="l-btn" id="Report">${getTranslation("Report")}</button>
             </div>
 
 
@@ -182,26 +205,26 @@ const PlayerDetail = ` <div class="main-section">
             <ul>
                  <li>
                      <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 check">
-                     <label class="check-label">Offensive Language</label>    
+                     <label class="check-label" id="offensiveLang">${getTranslation("offensiveLang")}</label>    
                  </li>
                  <li>
                     <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 check">
-                    <label class="check-label">Act like a bot</label>    
+                    <label class="check-label" id="actLikeBot">${getTranslation("actLikeBot")}</label>    
                 </li>
                 <li class="other">
                     <input type="radio" name='option' value="Other" id="checkbox3" class="check3 check">
-                    <label class="check-label">Other</label> 
+                    <label class="check-label" id="other">${getTranslation("other")}</label> 
                 </li>
             </ul>
 
             <div class="text">
-                <span>Describe Your Report</span>
+                <span id="describeReport">${getTranslation("describeReport")}</span>
                 <input type="text" class="write"  placeholder="Type report...">
             </div>
 
             <div class="btn">
-                <button class="submit">Submit</button>
-                <button class="cancel">cancel</button>
+                <button class="submit" id="submit">${getTranslation("submit")}</button>
+                <button class="cancel" id="Cancel">${getTranslation("Cancel")}</button>
             </div>
          </div> 
     </div>
