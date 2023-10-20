@@ -3,28 +3,6 @@ import { getMoneyValue, getMoneyText } from "./money-display";
 import { Card, getCardImageFilePath } from "./card-ui";
 import { userMode } from '../services/game-server';
 import { Sound } from './audio';
-import { getTranslation } from "../script";
-
-
-// $(document).ready(function() {
-//     updateTranslation();
-// });
-
-$(".translate").click(function() {
-    updateTranslation();
-});
-
-function updateTranslation() {
-    $("#describeReport").text(getTranslation("describeReport"));
-    $("#user").text(getTranslation("user"));
-    $("#memberFrom").text(getTranslation("memberFrom"));
-    $("#Report").text(getTranslation("Report"));
-    $("#offensiveLang").text(getTranslation("offensiveLang"));
-    $("#actLikeBot").text(getTranslation("actLikeBot"));
-    $("#other").text(getTranslation("other"));
-    $("#submit").text(getTranslation("submit"));
-    $("#Cancel").text(getTranslation("Cancel"));
-}
 
 const sound = new Sound();
 const actionColors = {
@@ -170,13 +148,13 @@ const PlayerDetail = ` <div class="main-section">
             <div class="first-section">
                 <div class="u-name">
                     <p>
-                    <span id="user">${getTranslation("user")}</span>: 
+                    <span class="lang" key="user">User</span>: 
                     <span class="report-name"></span>
                     </p>
                 </div>
 
                 <div class="date">
-                    <p id="memberFrom">${getTranslation("memberFrom")}</p>
+                    <p key="memberFrom" class="lang">Member From</p>
                     <span class="report-create"></span>
                 </div>
             </div>
@@ -194,7 +172,7 @@ const PlayerDetail = ` <div class="main-section">
                     <img src="images/error.png" alt="">
                 </button>
                 
-                <button class="l-btn" id="Report">${getTranslation("Report")}</button>
+                <button class="l-btn lang" key="Report" >Report</button>
             </div>
 
 
@@ -205,26 +183,26 @@ const PlayerDetail = ` <div class="main-section">
             <ul>
                  <li>
                      <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 check">
-                     <label class="check-label" id="offensiveLang">${getTranslation("offensiveLang")}</label>    
+                     <label class="check-label lang" key="offensiveLang">Offensive Language</label>    
                  </li>
                  <li>
                     <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 check">
-                    <label class="check-label" id="actLikeBot">${getTranslation("actLikeBot")}</label>    
+                    <label class="check-label lang" key="actLikeBot">Act like a bot</label>    
                 </li>
                 <li class="other">
                     <input type="radio" name='option' value="Other" id="checkbox3" class="check3 check">
-                    <label class="check-label" id="other">${getTranslation("other")}</label> 
+                    <label class="check-label lang" key="other">Other</label> 
                 </li>
             </ul>
 
             <div class="text">
-                <span id="describeReport">${getTranslation("describeReport")}</span>
+                <span key="describeReport" class="lang">Describe Your Report</span>
                 <input type="text" class="write"  placeholder="Type report...">
             </div>
 
             <div class="btn">
-                <button class="submit" id="submit">${getTranslation("submit")}</button>
-                <button class="cancel" id="Cancel">${getTranslation("Cancel")}</button>
+                <button class="submit lang" key="submit">Submit</button>
+                <button class="cancel lang" key="Cancel">Cancel</button>
             </div>
          </div> 
     </div>
