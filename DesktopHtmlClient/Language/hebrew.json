@@ -90,5 +90,7 @@
     "offensiveLang": "שפה פוגענית",
     "actLikeBot": "תתנהג כמו בוט",
     "other": "אַחֵר",
-    "describeReport": "תאר את הדוח שלך"
+    "describeReport": "תאר את הדוח שלך",
+    "reportText": "הקלד דוח...",
+    "msg":"הקלד את ההודעה שלך"
 }

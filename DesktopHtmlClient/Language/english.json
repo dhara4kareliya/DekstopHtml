@@ -90,5 +90,7 @@
     "offensiveLang": "Offensive Language",
     "actLikeBot": "Act like a bot",
     "other": "Other",
-    "describeReport": "Describe Your Report "
+    "describeReport": "Describe Your Report ",
+    "reportText":"Type report...",
+    "msg":"Type your message"
   }

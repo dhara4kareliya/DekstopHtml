@@ -168,7 +168,7 @@ const PlayerDetail = ` <div class="main-section">
             </div>
 
             <div class="btn-section">
-                <button class="r-btn">
+                <button class="r-btn" >
                     <img src="images/error.png" alt="">
                 </button>
                 
@@ -197,7 +197,7 @@ const PlayerDetail = ` <div class="main-section">
 
             <div class="text">
                 <span key="describeReport" class="lang">Describe Your Report</span>
-                <input type="text" class="write"  placeholder="Type report...">
+                <input type="text" class="write lang" id="reportText"  placeholder="Type report..." key="reportText">
             </div>
 
             <div class="btn">

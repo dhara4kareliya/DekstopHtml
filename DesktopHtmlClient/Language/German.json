@@ -90,5 +90,7 @@
         "offensiveLang": "Anstößige Sprache",
         "actLikeBot": "Benimm dich wie ein Bot",
         "other": "Andere",
-        "describeReport": "Beschreiben Sie Ihren Bericht"
+        "describeReport": "Beschreiben Sie Ihren Bericht",
+        "reportText": "Typbericht...",
+        "msg": "Geben Sie Ihre Nachricht ein"
 }

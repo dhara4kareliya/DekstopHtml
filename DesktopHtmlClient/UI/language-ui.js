@@ -5,7 +5,6 @@
 
 $(".translate").click(function() {
     var selectedLang = $(this).attr("id");
-    var langElements = $(".lang");
 
     fetch(`../Language/${selectedLang}.json`)
     .then(function(response) {
@@ -14,14 +13,32 @@ $(".translate").click(function() {
     .then(function(jsonData) {
         $(".lang").each(function(index, element) {
             var key = $(this).attr("key");
-            $(this).text(jsonData[key]);
+            console.log("Key:", key);
+        $(this).attr("placeholder", jsonData[key]);
+        console.log("Placeholder:", $(this).attr("placeholder"));
+                $(this).text(jsonData[key]);
+        });
+        var elementWithTextAlign = $("body").find("*").filter(function() {
+            return $(this).css('text-align') === 'left'; 
         });
         if (selectedLang === 'hebrew') {
             $('body').attr('dir', 'rtl');
-            // langElements.css('text-align', 'right');
+            $("body").find(".btn-section").css({
+                "margin-right": "145px",
+                "width": "101px"
+            })
+            $("body").find(".btn-section .l-btn").css({
+                "height: ": "38px !important",
+                "width":"72px",
+                "order": "-1"
+            })
+            elementWithTextAlign.css('text-align', 'right');
         } else {
             $('body').attr('dir', 'ltr');
-            langElements.css('text-align', 'left');
+            var elementWithTextAlign = $("body").find("*").filter(function() {
+                return $(this).css('text-align') === 'right'; // Change 'left' to the specific value you are looking for
+            });
+            elementWithTextAlign.css('text-align', 'left');
         }
     })
     .catch(function(error) {
