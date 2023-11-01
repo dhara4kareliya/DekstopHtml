@@ -68,8 +68,8 @@ body {
 #backgroundLogo {
     position: absolute;
     object-fit: contain;
-    height: calc(10 * var(--aspect-ratio));
-    top: calc(50 * var(--aspect-ratio));
+    height: calc(17 * var(--aspect-ratio));
+    top: calc(40 * var(--aspect-ratio));
     left: 45vw;
 }
 

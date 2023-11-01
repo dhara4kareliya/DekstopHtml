@@ -1,11 +1,11 @@
 import { connectSocket, joinToMT, subscribe } from "../socket-client";
 
 // let userToken = getParamToken();
-let userToken = "NWt-Op95MZzQ_Df7Gs-LB";
+let userToken = "564203170402";
 
 let tsData = undefined;
 
-const mtServerURL = "http://localhost:3003";
+const mtServerURL = "http://5.9.77.244:3005";
 
 connect().catch(err => {
     console.error(err);

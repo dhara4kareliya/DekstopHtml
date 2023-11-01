@@ -44,6 +44,7 @@ autoFoldModeButtonCheckboxes.addEventListener('change', () => {
     if (autoFoldModeButtonCheckboxes.checked && tableSettings.gameType == "nlh") {
         autoFold(autoFoldModeButtonCheckboxes.checked, (data) => {
             data = JSON.parse(data);
+            console.log(data);
             if (data.status == true) {
                 mainUI.setPlayerAutoFoldCards(data.AutoFoldCards);
                 const playerCards = table.getTurnPlayerCards(getPlayerSeat());
@@ -370,7 +371,15 @@ function onSidePots(pots) {
 }
 
 function onSideBet(res) {
-    mainUI.updateSideBetOptions(res.street, res.options);
+    mainUI.updateSideBetOptions(res.street, res.streetText, res.options);
+}
+
+function onSideBetHistory(res) {
+    mainUI.updateSideBetHistory(res);
+}
+
+function onTableFreeBalance(balance) {
+    mainUI.updateFreeBalance(balance);
 }
 
 function onShowCards(showCards) {
@@ -437,6 +446,8 @@ tableSubscribe("onInsurance", onInsurance);
 tableSubscribe("onTourneyInfo", onTourneyInfo);
 tableSubscribe("onCashWaitList", onCashWaitList);
 tableSubscribe("onSideBet", onSideBet);
+tableSubscribe("onSideBetHistory", onSideBetHistory);
+tableSubscribe("onTableFreeBalance", onTableFreeBalance);
 tableSubscribe("onLog", onLog);
 tableSubscribe("onChat", onChat);
 

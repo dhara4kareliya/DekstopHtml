@@ -1,4 +1,4 @@
-import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket, playerSubmitReport } from "../socket-client";
+import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket, getSocket } from "../socket-client";
 import { setServer } from "./game-server";
 import { Get } from "../http-client";
 
@@ -348,6 +348,14 @@ function onSideBetOptions(res) {
     triggerEventListeners("onSideBet", res);
 }
 
+function onSideBetHistory(res) {
+    triggerEventListeners("onSideBetHistory", res);
+}
+
+function onTableFreeBalance(res) {
+    triggerEventListeners("onTableFreeBalance", res);
+}
+
 function onBuyInOpen(res) {
     triggerEventListeners("onBuyInPanelOpen", res);
 }
@@ -400,19 +408,16 @@ export function sitDown(seatIndex) {
     if (playerState != "Playing")
         playerSitDown(seatIndex);
 }
+
 export function SubmitReport(type, description, playerSeat, callback) {
-        playerSubmitReport(type, description,playerSeat, ()=>{
-            $('#SubmitReport').modal('show');
-            callback();
-        });
+    playerSubmitReport(type, description, playerSeat, () => {
+        $('#SubmitReport').modal('show');
+        callback();
+    });
 }
 
 export function joinWaitingList() {
     emit("REQ_PLAYER_JOINWAITLIST");
-}
-
-export function submitSideBet(bets) {
-    emit("REQ_PLAYER_SIDEBET", { sidebets: bets });
 }
 
 export function doChat(msg) {
@@ -442,6 +447,8 @@ subscribe("onTablePlayerShowCardsButton", onTablePlayerShowCardsButton);
 subscribe("onTablePlayerFoldAnyBet", onTablePlayerFoldAnyBet);
 subscribe("onBuyInOpen", onBuyInOpen);
 subscribe("onSideBetOptions", onSideBetOptions);
+subscribe("onSideBetHistory", onSideBetHistory);
+subscribe("onTableFreeBalance", onTableFreeBalance);
 subscribe("onMessage", onMessage);
 subscribe("onInsurance", onInsurance);
 subscribe("onAnimation", onAnimation);
@@ -470,6 +477,7 @@ function copyTo(source, destination) {
 const eventListeners = {};
 
 function triggerEventListeners(name, data) {
+    console.log(`event : ${name}`);
     if (!eventListeners[name])
         return;
     try {

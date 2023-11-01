@@ -5,18 +5,24 @@ import { getPlayerSeat, round, sitOut, tableSettings, tableSubscribe, turn } fro
 
 // Add the origin where the zoom page is hosted.
 const allowedZoomOrigins = [
-    "https://dev.nrpoker.net",
+    "http://localhost:3001",
 ];
 
 let playerResult = undefined;
-let gameId = getParamGameId();
+let gameId = getParamToken();
 
 const receivedMessagesIds = [];
 
-export function addEventListener (eventName, handler) {
+export function addEventListener(eventName, handler) {
+    console.error(eventName);
+
     window.addEventListener('message', message => {
+        // console.warn(window)
+        // console.warn(receivedMessagesIds.indexOf(message.data.messageId) != -1)
         if (receivedMessagesIds.indexOf(message.data.messageId) != -1)
             return;
+
+
         receivedMessagesIds.push(message.data.messageId);
         if (message.data.gameId != undefined)
             gameId = message.data.gameId;
@@ -25,13 +31,14 @@ export function addEventListener (eventName, handler) {
             console.warn(`Message rejected from origin ${message.origin}`);
             return;
         }
+        console.warn(1233)
         dispatchEvent('yes', message.data.eventName);
         if (message.data.eventName == eventName)
             handler(message.data.eventData);
     });
 }
 
-export function dispatchEvent (eventName, eventData) {
+export function dispatchEvent(eventName, eventData) {
     let targetWindow = window.parent;
     if (!targetWindow || targetWindow == window)
         targetWindow = window.opener;
@@ -42,7 +49,7 @@ export function dispatchEvent (eventName, eventData) {
     for (const allowedZoomOrigin of allowedZoomOrigins) {
         let sent = false;
         try {
-            targetWindow.postMessage({gameId: gameId, eventName: eventName, eventData: eventData}, allowedZoomOrigin);
+            targetWindow.postMessage({ gameId: gameId, eventName: eventName, eventData: eventData }, allowedZoomOrigin);
             sent = true;
         } catch (e) {
             //console.warn(e);
@@ -52,7 +59,7 @@ export function dispatchEvent (eventName, eventData) {
     }
 }
 
-export function updateZoom () {
+export function updateZoom() {
     const seatToPlay = turn.seat;
     const playerSeat = getPlayerSeat();
     const numberOfSeats = tableSettings.numberOfSeats;
@@ -72,6 +79,7 @@ export function updateZoom () {
 
     if (playerResult)
         detail.status = playerResult;
+
 
     dispatchEvent('update', detail);
 }
@@ -102,8 +110,8 @@ tableSubscribe('onRoundResult', result => {
         for (const seatIndex of pot.winners) {
             if (seatIndex == getPlayerSeat())
                 playerResult = "win";
-                updateZoom();
-                return;
+            updateZoom();
+            return;
         }
     }
     playerResult = "lose";

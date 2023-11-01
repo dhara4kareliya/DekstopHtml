@@ -39,6 +39,8 @@ function setSocketEventListeners() {
     socket.on("REQ_TABLE_LOG", eventTrigger("onLog"));
     socket.on("REQ_TABLE_CHAT", eventTrigger("onChat"));
     socket.on("REQ_SIDEBET_OPTIONS", eventTrigger("onSideBetOptions"));
+    socket.on("REQ_SIDEBET_HISTORY", eventTrigger("onSideBetHistory"));
+    socket.on("REQ_TABLE_FREE_BALANCE", eventTrigger("onTableFreeBalance"));
     socket.on("connect", eventTrigger("onConnect"));
     socket.on("disconnect", eventTrigger("onDisconnect"));
 }
@@ -67,13 +69,15 @@ const eventListeners = {
     onLog: [],
     onChat: [],
     onSideBetOptions: [],
+    onSideBetHistory: [],
+    onTableFreeBalance: [],
     onConnect: [],
     onDisconnect: []
 };
 
 function triggerEventListeners(name, data) {
-    console.log(`EventName: ${name}\nData:`);
-    console.log(data);
+    // console.log(`EventName: ${name}\nData:`);
+    // console.log(data);
     if (!eventListeners[name])
         return;
     try {
@@ -157,6 +161,14 @@ export function joinToTsWithMtData(userEncrypted, tsToken) {
             console.error("Failed to join table server. Quiting now.");
         }
     });
+}
+
+export function submitSideBet(bets, street) {
+    socket.emit("REQ_PLAYER_SIDEBET", { sidebets: bets, street },
+        (strResult) => {
+            const result = JSON.parse(strResult);
+            console.log('Side Bet submitted \n', result.sideBet);
+        });
 }
 
 export function playerLeave() {

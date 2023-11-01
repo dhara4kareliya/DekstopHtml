@@ -202,7 +202,7 @@ export class Table {
                 player.showSitDownButton(this.mode === modes.Observing && this.siticonVisible && getPlayerSeat() < 0 && this.closeTable !== true)
             } else {
                 player.showPlayer(true);
-                player.setPlayerDetail(getPlayerSeat() != i && seat.fold === undefined && getPlayerSeat() > -1, seat, i);
+                player.setPlayerDetail(getPlayerSeat() != i && seat.fold === undefined, seat, i);
                 player.setPlayState(true);
                 player.setPlayerName(seat.player.name);
                 player.setPlayerMoney(seat.money);

@@ -147,14 +147,13 @@ const PlayerDetail = ` <div class="main-section">
         <div class="button">
             <div class="first-section">
                 <div class="u-name">
-                    <p>
-                    <span class="lang" key="user">User</span>: 
+                    <p>User: 
                     <span class="report-name"></span>
                     </p>
                 </div>
 
                 <div class="date">
-                    <p key="memberFrom" class="lang">Member From</p>
+                    <p>Member From</p>
                     <span class="report-create"></span>
                 </div>
             </div>
@@ -168,11 +167,11 @@ const PlayerDetail = ` <div class="main-section">
             </div>
 
             <div class="btn-section">
-                <button class="r-btn" >
+                <button class="r-btn">
                     <img src="images/error.png" alt="">
                 </button>
                 
-                <button class="l-btn lang" key="Report" >Report</button>
+                <button class="l-btn">Report</button>
             </div>
 
 
@@ -183,26 +182,26 @@ const PlayerDetail = ` <div class="main-section">
             <ul>
                  <li>
                      <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 check">
-                     <label class="check-label lang" key="offensiveLang">Offensive Language</label>    
+                     <label class="check-label">Offensive Language</label>    
                  </li>
                  <li>
                     <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 check">
-                    <label class="check-label lang" key="actLikeBot">Act like a bot</label>    
+                    <label class="check-label">Act like a bot</label>    
                 </li>
                 <li class="other">
                     <input type="radio" name='option' value="Other" id="checkbox3" class="check3 check">
-                    <label class="check-label lang" key="other">Other</label> 
+                    <label class="check-label">Other</label> 
                 </li>
             </ul>
 
             <div class="text">
-                <span key="describeReport" class="lang">Describe Your Report</span>
-                <input type="text" class="write lang" id="reportText"  placeholder="Type report..." key="reportText">
+                <span>Describe Your Report</span>
+                <input type="text" class="write"  placeholder="Type report...">
             </div>
 
             <div class="btn">
-                <button class="submit lang" key="submit">Submit</button>
-                <button class="cancel lang" key="Cancel">Cancel</button>
+                <button class="submit">Submit</button>
+                <button class="cancel">cancel</button>
             </div>
          </div> 
     </div>

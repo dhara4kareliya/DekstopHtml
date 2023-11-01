@@ -123,7 +123,7 @@ function updateTab (tabIndex) {
     $(tab).find(".numberOfGames")[0].innerText = `${tabs[tabIndex].length}`;
 }
 
-export function addGameToTabByUrl (gameUrl, tab, gameCellIndex) {
+export function     addGameToTabByUrl (gameUrl, tab, gameCellIndex) {
     if (typeof tab !== "number")
         tab = indexOfTab(tab);
     const game = new Game(gameUrl);
