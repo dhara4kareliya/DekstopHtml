@@ -983,18 +983,19 @@ p {
     font-size: calc(2*var(--aspect-ratio));
     display: flex;
     justify-content: center;
+    padding: calc(.4*var(--aspect-ratio));
     align-items: center;
 }
 
 .Mod_body3 .img_div {
-    width: calc(45*var(--aspect-ratio));
-    height: calc(27*var(--aspect-ratio));
-    margin-top: -10px;
+    width: calc(46*var(--aspect-ratio));
+    height: calc(25*var(--aspect-ratio));
+    /* margin-top: -10px; */
 }
 
 .Mod_body3 .img_div img {
-    width: 85%;
-    height: 92%;
+    width: calc(40*var(--aspect-ratio));
+    height: calc(25*var(--aspect-ratio));
     filter: drop-shadow(2px 2px 50px #13c6f3);
     /* filter: invert (100%); */
     /* mix-blend-mode:multiply; */
@@ -1039,8 +1040,8 @@ p {
     color: #ffffff;
     border-radius: 90px;
     border: none;
-    Padding: 4px 8px 4px 8px;
     background: linear-gradient(180deg, #0E6F20 100%, #007300 100%);
+    margin-top: calc(5*var(--aspect-ratio));
 }
 
 .last_Con {

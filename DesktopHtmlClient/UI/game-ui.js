@@ -44,7 +44,6 @@ autoFoldModeButtonCheckboxes.addEventListener('change', () => {
     if (autoFoldModeButtonCheckboxes.checked && tableSettings.gameType == "nlh") {
         autoFold(autoFoldModeButtonCheckboxes.checked, (data) => {
             data = JSON.parse(data);
-            console.log(data);
             if (data.status == true) {
                 mainUI.setPlayerAutoFoldCards(data.AutoFoldCards);
                 const playerCards = table.getTurnPlayerCards(getPlayerSeat());
@@ -420,7 +419,6 @@ function onLog(res) {
 
 function onChat(res) {
     mainUI.addChat(res);
-    console.log("main ui", res)
 }
 
 function onBuyInPanelOpen(res) {

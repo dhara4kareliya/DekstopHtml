@@ -70,10 +70,12 @@ function slide(slider, event) {
 
 function updateDisplay(slider) {
     for (const display of displays) {
-        if ($(display).hasClass(slider.id))
+        if ($(display).hasClass(slider.id)){
+        const amountText = getMoneyText(slider.value);
             display.innerHTML = $(display).hasClass("moneyDisplay") ?
-            getMoneyText(slider.value) :
+            amountText.outerHTML :
             getMoneyValue(slider.value);
+        }
     }
 
     betInput.value = getMoneyValue(slider.value);

@@ -14,11 +14,7 @@ let gameId = getParamToken();
 const receivedMessagesIds = [];
 
 export function addEventListener(eventName, handler) {
-    console.error(eventName);
-
     window.addEventListener('message', message => {
-        // console.warn(window)
-        // console.warn(receivedMessagesIds.indexOf(message.data.messageId) != -1)
         if (receivedMessagesIds.indexOf(message.data.messageId) != -1)
             return;
 
@@ -31,7 +27,6 @@ export function addEventListener(eventName, handler) {
             console.warn(`Message rejected from origin ${message.origin}`);
             return;
         }
-        console.warn(1233)
         dispatchEvent('yes', message.data.eventName);
         if (message.data.eventName == eventName)
             handler(message.data.eventData);

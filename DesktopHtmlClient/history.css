@@ -289,8 +289,8 @@ max-width: 316px!important;
 /* max-height: 453px; */
 }
 .modal-header {
-/* padding: 0rem; */
-border-bottom: 1px solid transparent!important;
+    padding: 1rem;
+    border-bottom: 1px solid transparent!important;
 }
 /*  */
 #body_toge1{

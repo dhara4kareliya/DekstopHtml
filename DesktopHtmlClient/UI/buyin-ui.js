@@ -148,9 +148,11 @@ export class BuyInUI {
   }
 
     setBalances(globalBalance, tableBalance) {
-        tableBalanceSpan.innerText = getMoneyText(tableBalance);
+      const tableBalanceText = getMoneyText(tableBalance);
+        tableBalanceSpan.innerHTML = tableBalanceText.outerHTML;
         this.tableWalletBalance = tableBalance;
-        globalBalanceSpan.innerText = getMoneyText(globalBalance);
+        const globalBalanceText = getMoneyText(globalBalance);
+        globalBalanceSpan.innerHTML = globalBalanceText.outerHTML;
         this.globalBalance = globalBalance;
 
         this.checkConfirmValid();
@@ -215,7 +217,9 @@ export class BuyInUI {
 
         setSliderValue(buyInSlider, Math.max(this.currentTableMoney, this.minBuyIn));
         buyInInput.value = getMoneyValue(Math.max(this.currentTableMoney, this.minBuyIn));
-        tableChipSpan.innerText = getMoneyText(this.currentTableMoney);
+        
+        const tableChipText = getMoneyText(this.currentTableMoney);
+        tableChipSpan.innerHTML = tableChipText.outerHTML;
     }
 
   showBuyIn(visible) {

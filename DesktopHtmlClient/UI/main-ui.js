@@ -115,7 +115,7 @@ export class MainUI {
         this.isPlaying = false;
         this.insuranceAmount = 0;
         this.insuranceWinAmount = 0;
-        this.playerAutoFoldCards= [];
+        this.playerAutoFoldCards = [];
         // this.showAutoCheckOrFold = false;
         this.init();
     }
@@ -223,8 +223,10 @@ export class MainUI {
             button.addEventListener('click', () => {
                 const TipAmount = button.attributes['value'].value;
                 this.setActive(tipButtonDiv, false);
-                ShowTipToDealer(TipAmount, () => {
+                ShowTipToDealer(TipAmount, (msg) => {
+                    $('#TipToDealer .Mod_body3').find('.sub-report-text')[0].innerText = 'Thank You';
                     $('#TipToDealer').modal('show');
+
                 });
             })
         }
@@ -276,14 +278,12 @@ export class MainUI {
 
         chatInput.addEventListener('keyup', (e) => {
             if (e.key === 'Enter' || e.keyCode === 13) {
-                console.log(e.target.value);
                 doChat({ msg: e.target.value });
                 e.target.value = "";
             }
         });
 
         chatSendIcon.addEventListener('click', () => {
-            console.log(chatInput.value);
             if (chatInput.value) {
                 doChat({ msg: chatInput.value });
                 chatInput.value = "";
@@ -389,12 +389,10 @@ export class MainUI {
     }
 
     doAutoFold(autoFoldModeButtonCheckboxes, playerCards, activeSeats) {
-        console.warn(round.state);
-        console.warn(autoFoldModeButtonCheckboxes.checked != true || round.state != "HoleCards" || getPlayerSeat() == -1 || getPlayerSeat() != getCurrentTurn().seat);
         if (autoFoldModeButtonCheckboxes.checked != true || round.state != "HoleCards" || getPlayerSeat() == -1 || getPlayerSeat() != getCurrentTurn().seat)
             return false;
 
-        var autoFoldType = "" ;
+        var autoFoldType = "";
         const activeSeatsCount = activeSeats.length;
         if (round.seatOfSmallBlind == getPlayerSeat())
             autoFoldType = "small_blind";
@@ -434,22 +432,16 @@ export class MainUI {
                 autoFoldTypes = { "3": "early_position", "4": "early_position", "5": "middle_position", "6": "middle_position", "7": "middle_position", "8": "late_position", "9": "late_position" };
             }
             autoFoldType = autoFoldTypes[playerPosition];
-            console.warn(`sb: ${seatOfSmallBlind},palyer:${palyer},playerPosition : ${playerPosition}, autoFoldType:${autoFoldType}`);
         }
 
-        if (autoFoldType === "") {
+        if (autoFoldType == "")
             return false;
-        }
 
         const playerCardHandGroup = getPlayerCardHandGroup(playerCards);
-        console.warn(`playerCardHandGroup : ${playerCardHandGroup}, autoFoldType : ${autoFoldType}`);
-        console.warn(`playerAutoFoldCards : ${this.playerAutoFoldCards[autoFoldType]}`);
-        if (this.playerAutoFoldCards[autoFoldType] !== undefined) {
-        console.warn(`playerAutoFoldCards : ${this.playerAutoFoldCards[autoFoldType][playerCardHandGroup]}`);
         if (this.playerAutoFoldCards[autoFoldType] !== undefined && this.playerAutoFoldCards[autoFoldType][playerCardHandGroup] == true) {
             this.onFoldClick();
             return true;
-        }}
+        }
 
         return false;
     }
@@ -541,8 +533,10 @@ export class MainUI {
         this.levelInfo.ante = ante;
 
         if (level != undefined) {
-            smallBlindSpan.innerText = getMoneyText(sb);
-            bigBlindSpan.innerText = getMoneyText(bb);
+            const smallBlindText = getMoneyText(sb);
+            smallBlindSpan.innerHTML = 'hello';
+            const bigBlindText = getMoneyText(bb);
+            bigBlindSpan.innerHTML = bigBlindText.outerHTML;
             anteSpan.innerText = ante;
             levelSpan.innerText = level;
         }
@@ -598,13 +592,15 @@ export class MainUI {
 
     setSmallBlind(smallBlind) {
         this.tableInfo.smallBlind = smallBlind;
-        smallBlindSpan.innerText = getMoneyText(smallBlind);
+        const smallBlindText = getMoneyText(smallBlind);
+        smallBlindSpan.innerHTML = smallBlindText.outerHTML;
         this.setActive(tableSettingSpanDiv, true);
     }
 
     setBigBlind(bigBlind) {
         this.tableInfo.bigBlind = bigBlind;
-        bigBlindSpan.innerText = getMoneyText(bigBlind);
+        const bigBlindText = getMoneyText(bigBlind);
+        bigBlindSpan.innerHTML = bigBlindText.outerHTML;
         this.setActive(tableSettingSpanDiv, true);
     }
 
@@ -820,13 +816,15 @@ export class MainUI {
 
     showInsurance(data) {
         if (data.status == true) {
-            console.log(data);
             this.insuranceAmount = data.data.insurancePrice;
             this.insuranceWinAmount = data.data.allInPrice;
 
-            insurancePrice.innerHTML = data.data.insurancePrice;
-            for (const price of allInPrice)
-                price.innerHTML = data.data.allInPrice;
+            const insurancePriceText = getMoneyText(data.data.insurancePrice);
+            insurancePrice.innerHTML =insurancePriceText.outerHTML;
+            for (const price of allInPrice){
+            let allInPriceText = getMoneyText(data.data.allInPrice);
+                price.innerHTML = allInPriceText.outerHTML;
+            }
 
             $('#insuranceModal').modal('show');
         } else {
@@ -900,8 +898,8 @@ export class MainUI {
     }
 
     initSideBetPanel() {
-        $('#submit-sidebet').find('#total-amount')[0].innerText = '0$';
-        $('#total-payout')[0].innerText = '$0';
+        $('#submit-sidebet').find('#total-amount')[0].innerText = '0';
+        $('#total-payout')[0].innerText = '0';
 
         const payoutBtns = $(".scroll_prents").find(".button_payout");
         for (const payoutbtn of payoutBtns) {
@@ -919,8 +917,8 @@ export class MainUI {
     updateSideBetOptions(street, streetText, options) {
         this.sidebetStreet = street;
         $(".scroll_prents").find('.fund_prent').remove();
-        $('#submit-sidebet').find('#total-amount')[0].innerText = '0$';
-        $('#total-payout')[0].innerText = '$0';
+        $('#submit-sidebet').find('#total-amount')[0].innerText = '0';
+        $('#total-payout')[0].innerText = '0';
         $(".text-street")[0].innerText = streetsOnSideBet.get(streetText);
 
         let div = '';
@@ -933,20 +931,20 @@ export class MainUI {
                                             <p class="bet-name">${option.betName}</p>
                                             <p class="bet-ratio">1:${Number(option.ratio) - 1}</p>
                                         </div>
-                                        <button class="button_payout" style="visibility: hidden"> <span class="text-white-pay">Payout:</span><span class="text-yellow">$<span id="payout">0</span></span></button>
+                                        <button class="button_payout" style="visibility: hidden"> <span class="text-white-pay">Payout:</span><span class="text-yellow"><span id="payout">0</span></span></button>
                                     </div>
                                     <i class="bi bi-question-circle icon-question"
                                         data-bs-toggle="modal" data-bs-target="#modal-note"><span id="sidebet-note" style="display: none;">${option.note}</span></i>
                                 </div>
                                 <div class="main_right">
                                     <div class="">
-                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 10}" class="p-bule btun"><span class="btau_text">$${this.tableInfo.bigBlind * 10}</span></button>
+                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 10}" class="p-bule btun"><span class="btau_text">${(getMoneyText(this.tableInfo.bigBlind * 10)).outerHTML}</span></button>
                                     </div>
                                     <div class="">
-                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 20}" class="p-bule btun"><span class="btau_text">$${this.tableInfo.bigBlind * 20}</span></button>
+                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 20}" class="p-bule btun"><span class="btau_text">${(getMoneyText(this.tableInfo.bigBlind * 20)).outerHTML}</span></button>
                                     </div>
                                     <div class="">
-                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 50}" class="p-bule btun"><span class="btau_text">$${this.tableInfo.bigBlind * 50}</span></button>
+                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 50}" class="p-bule btun"><span class="btau_text">${(getMoneyText(this.tableInfo.bigBlind * 50)).outerHTML}</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -981,7 +979,7 @@ export class MainUI {
                     }
 
                     e.currentTarget.classList.add("selected");
-                    $(parentNode).find("#payout")[0].innerText = currentBetAmount * ratio;
+                    $(parentNode).find("#payout")[0].innerHTML = (getMoneyText(currentBetAmount * ratio)).outerHTML;
                     $(parentNode).find(".button_payout")[0].style.visibility = 'visible';
                 }
 
@@ -1000,21 +998,25 @@ export class MainUI {
                 for (const payout of $(".text-yellow")) {
                     totalPayout = totalPayout + Number($(payout).find("#payout")[0].innerText);
                 }
-
-                totalAmountNode.innerText = totalBet + '$';
-                $('#total-payout')[0].innerText = '$' + totalPayout;
+                
+        const totalBetText = getMoneyText(totalBet);
+        const totalPayoutText = getMoneyText(totalPayout);
+                totalAmountNode.innerHTML = totalBetText.outerHTML;
+                $('#total-payout')[0].innerHTML = totalPayoutText.outerHTML;
             });
         }
     }
 
     updateFreeBalance(balance) {
-        $('#free-balance')[0].innerText = `$${balance}`;
+        const balanceText = getMoneyText(balance);
+        $('#free-balance')[0].innerHTML = balanceText.outerHTML;
         this.freeBalance = Number(balance);
     }
 
     updateSideBetHistory(res) {
         if (Number(res.totalReward) > 0) {
-            $('.top_200')[0].innerText = `$${res.totalReward}`;
+            const totalRewardText = getMoneyText(res.totalReward);
+            $('.top_200')[0].innerHTML = totalRewardText.outerHTML;
             $('#modal-wining-payout').modal('show');
             setTimeout(() => {
                 $('#modal-wining-payout').modal('hide');
@@ -1051,6 +1053,7 @@ export class MainUI {
 
         $(".scroll_prentss").find('.fund_prents').remove();
         $(".scroll_prentss").append(div);
-        $(".sidebet-total-win")[0].innerText = `$${total}`;
+        const totalText = getMoneyText(total);
+        $(".sidebet-total-win")[0].innerHTML = totalText.outerHTML;
     }
-}
+    }

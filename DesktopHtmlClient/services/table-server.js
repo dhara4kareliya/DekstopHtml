@@ -1,4 +1,4 @@
-import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, connectSocket, getSocket } from "../socket-client";
+import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, playerSubmitReport, connectSocket, getSocket } from "../socket-client";
 import { setServer } from "./game-server";
 import { Get } from "../http-client";
 
@@ -411,7 +411,9 @@ export function sitDown(seatIndex) {
 
 export function SubmitReport(type, description, playerSeat, callback) {
     playerSubmitReport(type, description, playerSeat, () => {
-        $('#SubmitReport').modal('show');
+        
+        $('#TipToDealer .Mod_body3').find('.sub-report-text')[0].innerHTML = '<div>Thank you for your feedback. <br> We will look into it shortly.</div>';
+        $('#TipToDealer').modal('show');
         callback();
     });
 }
@@ -477,7 +479,6 @@ function copyTo(source, destination) {
 const eventListeners = {};
 
 function triggerEventListeners(name, data) {
-    console.log(`event : ${name}`);
     if (!eventListeners[name])
         return;
     try {

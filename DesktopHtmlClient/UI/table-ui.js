@@ -51,12 +51,14 @@ export class Table {
     }
 
     setTotalPot(amount) {
-        totalPotSpan.innerText = winPotSpan.innerText = getMoneyText(amount)
+        const amountText = getMoneyText(amount);
+        totalPotSpan.innerHTML = winPotSpan.innerText = amountText.outerHTML
         totalPotDiv.style.visibility = "visible";
     }
 
     setStreetPot(amount) {
-        streetPotSpan.innerText = getMoneyText(amount);
+        const amountText = getMoneyText(amount);
+        streetPotSpan.innerHTML = amountText.outerHTML;
         streetPotDiv.style.visibility = "visible";
     }
 
@@ -202,7 +204,7 @@ export class Table {
                 player.showSitDownButton(this.mode === modes.Observing && this.siticonVisible && getPlayerSeat() < 0 && this.closeTable !== true)
             } else {
                 player.showPlayer(true);
-                player.setPlayerDetail(getPlayerSeat() != i && seat.fold === undefined, seat, i);
+                player.setPlayerDetail(getPlayerSeat() != -1 && getPlayerSeat() != i && seat.fold === undefined, seat, i);
                 player.setPlayState(true);
                 player.setPlayerName(seat.player.name);
                 player.setPlayerMoney(seat.money);
@@ -312,7 +314,6 @@ export class Table {
     }
     PlayerAnimation(result) {
         const players = this.players;
-        console.log(result);
         if (result.type == "TableStatus") {
             if (result.data.state != prevState && lastAnimationAction != "AllIn") {
                 const div = document.querySelector('.chipRow');

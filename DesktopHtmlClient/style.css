@@ -63,13 +63,14 @@ body {
     position: absolute;
     top: calc(-13 * var(--aspect-ratio));
     left: 32vw;
+    display: flex !important;
 }
 
 #backgroundLogo {
     position: absolute;
     object-fit: contain;
-    height: calc(17 * var(--aspect-ratio));
-    top: calc(40 * var(--aspect-ratio));
+    height: calc(10 * var(--aspect-ratio));
+    top: calc(50 * var(--aspect-ratio));
     left: 45vw;
 }
 
@@ -219,7 +220,7 @@ input[type=number] {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0px;
+    margin-top: calc(8*var(--aspect-ratio));
     margin-bottom: 0px;
     height: 100vh;
 }
@@ -244,8 +245,8 @@ input[type=number] {
 }
 
 .modal-header {
-    /*padding: 0rem;*/
-    border-bottom: 1px solid #FFEB00;
+    padding: 1rem;
+border-bottom: 1px solid transparent!important;
 }
 
 .modal-footer {
@@ -264,11 +265,11 @@ input[type=number] {
 /* --------------- insuranceModal ------------------------*/
 
 .second-top {
-    width: 729px!important;
-    height: 598px!important;
+    width: calc( 52 * var(--aspect-ratio))!important;
+    height: calc( 70 * var(--aspect-ratio))!important;
     border-radius: 9.66px!important;
     background: linear-gradient(89.26deg, #181B3A 22.72%, #262A4E 52.04%, #181B3A 81.87%), linear-gradient(0deg, #D6CC18, #D6CC18);
-    border: 6px solid #D6CC18
+    border: calc(.2 * var(--aspect-ratio)) solid #D6CC18
 }
 
 .Second-mod {
@@ -279,197 +280,163 @@ input[type=number] {
 .main-header {
     border-radius: 10px;
     width: calc( 23.5 * var(--aspect-ratio));
-    height: calc( 14 * var(--aspect-ratio));
+    height: calc( 15 * var(--aspect-ratio));
     background: #0000001A;
 }
 
 .border-around {
-    width: 670px;
-    height: 128px;
+    /* width: 670px;
+    height: 128px; */
     justify-content: center!important;
     flex-direction: column!important;
     align-items: center!important;
     display: flex!important;
+    margin-top: calc( -4 * var(--aspect-ratio));
 }
 
 .border-p {
-    width: 417px;
-    height: 58px;
+    /* width: 417px;
+    height: 58px; */
     font-family: Yeseva One;
-    font-size: 50px;
-    font-weight: 400;
-    line-height: 58px;
-    letter-spacing: 0em;
+    font-size: calc( 5.5 * var(--aspect-ratio));
+    font-weight: 600;
     text-align: center;
     background: linear-gradient(180deg, #D8B2B2 0%, #FFFFFF 100%);
     background-clip: text;
-    /* Apply background to the text only */
     -webkit-background-clip: text;
-    /* For Safari */
     color: transparent;
+    margin-top: calc( -2 * var(--aspect-ratio)) !important; 
+
 }
 
 .border-p-text {
-    width: 176px;
-    height: 58px;
+    /* width: 176px;
+    height: 58px; */
     font-family: Yeseva One;
-    font-size: 50px;
-    font-weight: 400;
-    line-height: 58px;
-    letter-spacing: 0em;
+    font-size: calc(4.5 * var(--aspect-ratio));
+    font-weight: 600;
     text-align: center;
     background: linear-gradient(180deg, #FFB800 0%, #FFB800 52.6%, #FFFFFF 100%);
     background-clip: text;
-    /* Apply background to the text only */
     -webkit-background-clip: text;
-    /* For Safari */
     color: transparent;
 }
 
 .card-prents {
-    width: 644.1px;
-    height: 186.15px;
+    /* width: 644.1px;
+    height: 186.15px; */
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .img_1 {
-    position: absolute;
-    left: 42px;
-}
-
-.img_2 {
-    position: absolute;
-    left: 82px;
-}
-
-.img_3 {
-    position: absolute;
-    left: 122px;
-}
-
-.img_4 {
-    position: absolute;
-    left: 162px;
-}
-
-.img_5 {
-    position: absolute;
-    left: 202px;
-}
-
-.img_6 {
-    position: absolute;
-    left: 242px;
-}
-
-.img_7 {
-    position: absolute;
-    left: 282px;
-}
-
-.img_8 {
-    position: absolute;
-    left: 322px;
-}
-
-.img_9 {
-    position: absolute;
-    left: 362px;
-}
-
-.img_10 {
-    position: absolute;
-    left: 402px;
-}
-
-.img_11 {
-    position: absolute;
-    left: 442px;
-}
-
-.img_12 {
-    position: absolute;
-    left: 482px;
-}
-
-.img_14 {
-    position: absolute;
-    left: 522px;
-}
-
-.img_17 {
-    position: absolute;
-    left: 519px;
+    width: calc(49 * var(--aspect-ratio));
+    height: calc(14 * var(--aspect-ratio));
+    margin-top: calc(-1 * var(--aspect-ratio));
+    /* / left: 42px; / */
 }
 
 .doller_prents {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    margin-top: calc(2.5 * var(--aspect-ratio)) !important;
 }
-
 .doller_p {
-    width: 365px;
-    height: 44px;
+    /* width: 365px;
+    height: 44px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .pay {
     font-family: Yeseva One;
-    font-size: 38px;
-    font-weight: 400;
-    line-height: 44px;
-    letter-spacing: 0em;
+    font-size: calc(4 * var(--aspect-ratio));
+    font-weight: 600;
     text-align: center;
     background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
     background-clip: text;
-    /* Apply background to the text only */
+    /* / Apply background to the text only / */
     -webkit-background-clip: text;
-    /* For Safari */
+    /* / For Safari / */
     color: transparent;
+
 }
 
 .sane {
     font-family: Times New Roman;
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 44px;
-    letter-spacing: 0em;
+    font-size: calc(4 * var(--aspect-ratio));
+    font-weight: 600;
     text-align: center;
     background: linear-gradient(180deg, #FFB800 0%, #FFB800 47.92%, #FFFFFF 93.75%), linear-gradient(180deg, #FFB800 0%, #FFB800 50%, #FFFFFF 95.31%);
     background-clip: text;
-    /* Apply background to the text only */
+    /* / Apply background to the text only / */
     -webkit-background-clip: text;
-    /* For Safari */
+    /* / For Safari / */
     color: transparent;
 }
 
+.two_btn {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    margin-top: calc(3 * var(--aspect-ratio)) !important;
+    padding-left: calc(0 * var(--aspect-ratio)) !important;
+    padding-right: calc(0 * var(--aspect-ratio)) !important;
+}
+
 .text_btn {
-    width: 265.53px;
-    height: 72.42px;
-    font-family: Sarala;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 49px;
-    letter-spacing: 0em;
+    width: calc(60 * var(--aspect-ratio)) !important;
+    height: calc(8 * var(--aspect-ratio)) !important;
+    font-family: "Montserrat" ,sans-serif;
+    font-size: calc(3.5 * var(--aspect-ratio));
+    font-weight: 600;
     color: #FFFFFF;
-    border-radius: 14px;
+    border-radius: calc(2 * var(--aspect-ratio));
     border: 0.5px solid #2D9240;
     background: linear-gradient(180deg, #01B320 0%, #0E6F20 100%), linear-gradient(0deg, #2D9240, #2D9240);
     box-shadow: 2px 0px 10px 0px #25883766;
 }
 
 .next {
-    width: 265.53px;
-    height: 72.42px;
-    border-radius: 14px;
+    width: calc(60 * var(--aspect-ratio)) !important;
+    height: calc(8 * var(--aspect-ratio)) !important;
+    /* / padding: calc(.9  var(--aspect-ratio)) calc(7.5  var(--aspect-ratio)); / */
+    border-radius: calc(2 * var(--aspect-ratio));
     background: linear-gradient(0deg, #3D3A3A, #3D3A3A), linear-gradient(180deg, #646363 0%, #3D3A3A 95.83%);
-    font-family: Sarala;
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 49px;
-    letter-spacing: 0em;
-    text-align: center;
+    font-family: "Montserrat" ,sans-serif;
+    font-size: calc(3* var(--aspect-ratio));
+    font-weight: 600;
     color: #FFFFFF;
     border: 0.5px solid #3D3A3A;
     box-shadow: 2px 0px 10px 0px #515151A8;
+}
+
+/* currency */
+.imageFeatures, .imageFeatures1{
+    display: inline-block;
+    
+}
+#buyInMenu .imageFeatures1 img,.imageFeatures img{
+    width: calc((2 * var(--aspect-ratio)));
+}
+.imageFeatures1 img{
+    width: calc((1.5 * var(--aspect-ratio)));
+    padding-top: 2px;
+}
+.smallBlind .imageFeatures1 img, .bigBlind .imageFeatures1 img,.money .imageFeatures1 img, #buyInMenu .imageFeatures1 img{
+    margin-top: -3px;
+    padding-top: 0;
+}
+.player_wrapper .money .imageFeatures1 img{
+    margin: -1px !important;
+    padding-top: 0px !important;
+}
+#insuranceModal .imageFeatures img{
+    width: calc((3 * var(--aspect-ratio)));
 }

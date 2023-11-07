@@ -311,8 +311,8 @@
     /* max-height: 453px; */
     }
     .modal-header {
-    /* padding: 0rem; */
-    border-bottom: 1px solid transparent!important;
+        padding: 1rem;
+        border-bottom: 1px solid transparent!important;
     }
     .top_body {
     position: relative!important;
@@ -695,12 +695,11 @@
         text-align: center;
     }
     .second-top {
-    width: 510px!important;
-    height: 600px!important;
-    border-radius: 35px!important;
-    border: 2px solid #EFA434;
-    background: linear-gradient(90deg, #181B3A 0%, #262A4E 48.44%, #181B3A 100%);
-    position: relative;
+        width: calc( 52 * var(--aspect-ratio))!important;
+        height: calc( 70 * var(--aspect-ratio))!important;
+        border-radius: 9.66px!important;
+        background: linear-gradient(89.26deg, #181B3A 22.72%, #262A4E 52.04%, #181B3A 81.87%), linear-gradient(0deg, #D6CC18, #D6CC18);
+        border: calc(.2 * var(--aspect-ratio)) solid #D6CC18
     }
     .main-header {
     border-radius: 10px;

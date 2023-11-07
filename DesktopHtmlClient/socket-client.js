@@ -126,7 +126,7 @@ export function ShowTipToDealer(amount, callback) {
         (strResult) => {
             const result = JSON.parse(strResult);
             if (result.status) {
-                callback();
+                callback(result.msg);
             } else {
                 console.log(`Failed Tip to Deal event`);
             }
@@ -188,18 +188,18 @@ export function playerSitDown(sitIndex) {
 }
 export function playerSubmitReport(type, description, playerSeat, callback) {
     socket.emit("REQ_PLAYER_SUBMIT_REPORT", {
-        type: type,
-        description:description ? description : '-', 
-        seat: playerSeat}, 
+            type: type,
+            description: description ? description : '-',
+            seat: playerSeat
+        },
         (strResult) => {
             const result = JSON.parse(strResult);
-        if (result.status === true){
-            console.log(`Success to submit report of player ${playerSeat}`);
-            callback();
+            if (result.status === true) {
+                console.log(`Success to submit report of player ${playerSeat}`);
+                callback();
+            } else
+                console.log(`Failed to submit report of player ${playerSeat}`);
         }
-        else
-            console.log(`Failed to submit report of player ${playerSeat}`);
-    }
     );
 }
 

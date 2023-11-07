@@ -25,9 +25,9 @@ export class ActionUI {
         callButton.addEventListener('click', () => this.checkOrCall());
         raiseButton.addEventListener('click', () => this.raise());
         allInButton.addEventListener('click', () => this.setRaise(this.m_MaxRaise));
-        bet70.addEventListener('click', () => this.setRaise(Math.floor(this.m_POT * 2/3 * 100) / 100));
-        bet50.addEventListener('click', () => this.setRaise(Math.floor(this.m_POT * 1/2 * 100) / 100));
-        bet33.addEventListener('click', () => this.setRaise(Math.floor(this.m_POT * 1/3 * 100) / 100));
+        bet70.addEventListener('click', () => this.setRaise(Math.floor(this.m_POT * 2 / 3 * 100) / 100));
+        bet50.addEventListener('click', () => this.setRaise(Math.floor(this.m_POT * 1 / 2 * 100) / 100));
+        bet33.addEventListener('click', () => this.setRaise(Math.floor(this.m_POT * 1 / 3 * 100) / 100));
         plusButton.addEventListener('click', () => this.setRaise(this.m_Raise + this.m_Increment));
         minusButton.addEventListener('click', () => this.setRaise(this.m_Raise - this.m_Increment));
 
@@ -50,7 +50,7 @@ export class ActionUI {
 
         this.m_Call = 0.0;
         this.m_Raise = 0.0;
-        this.m_MinRaise = 0.0; 
+        this.m_MinRaise = 0.0;
         this.m_MaxRaise = 0.0;
         this.m_POT = 0.0;
         this.m_Increment = 0.0;
@@ -61,7 +61,7 @@ export class ActionUI {
         this.m_usdRate = undefined;
     }
 
-    setShowInBB (value) {
+    setShowInBB(value) {
         this.m_showInBB = value;
         this.setRaise(this.m_Raise);
     }
@@ -79,49 +79,49 @@ export class ActionUI {
         this.m_usdRate = usd;
     }
 
-    setActive (element, value) {
+    setActive(element, value) {
         element.style.visibility = (value == false) ? "hidden" : "visible";
     }
 
-    setDisplay (element, value) {
+    setDisplay(element, value) {
         element.style.display = (value == false) ? "none" : "block";
     }
 
-    setRaise (amount) {
+    setRaise(amount) {
         this.m_Raise = this.getValidAmount(amount);
         setSliderValue(betSlider, this.m_Raise + this.m_CurrentBet);
     }
 
-    getValidAmount (amount) {
+    getValidAmount(amount) {
         return amount > this.m_MaxRaise ? amount = this.m_MaxRaise : amount < this.m_MinRaise ? amount = this.m_MinRaise : amount;
     }
 
-    allIn () {
+    allIn() {
         this.setActive(automaticActionsDiv, false);
         this.showActionUI(false);
         this.setRaise(this.m_MaxRaise);
     }
-  
-    fold () {
+
+    fold() {
         this.setActive(automaticActionsDiv, false);
         this.setActive(actionUIDiv, false);
         this.showActionUI(false);
         turnAction("fold");
     }
 
-    call () {
+    call() {
         this.setActive(automaticActionsDiv, false);
         this.showActionUI(false);
         turnAction("bet", this.m_Call);
     }
 
-    check () {
+    check() {
         this.setActive(automaticActionsDiv, false);
         this.showActionUI(false);
         turnAction("bet", 0);
     }
 
-    checkOrCall () {
+    checkOrCall() {
         this.showActionUI(false);
         if (this.m_Call == 0)
             this.check();
@@ -129,14 +129,13 @@ export class ActionUI {
             this.call();
     }
 
-    raise () {
+    raise() {
         this.showActionUI(false);
         // turnAction("bet", this.m_Raise);
-        console.error(`betInput.value : ${betInput.value},getMoneyOriginalValue : ${getMoneyOriginalValue(parseFloat(betInput.value))},m_CurrentBet : ${this.m_CurrentBet} = ${getMoneyOriginalValue(parseFloat(betInput.value)) - this.m_CurrentBet}`);
         turnAction("bet", getMoneyOriginalValue(parseFloat(betInput.value)) - this.m_CurrentBet)
     }
 
-    showActionUI (value) {
+    showActionUI(value) {
         this.setActive(actionUIDiv, value);
         this.setActive(betDivWrapper, value);
         this.setActive(raiseButton, value);
@@ -154,24 +153,24 @@ export class ActionUI {
     showCall(call, currentChips) {
         this.m_Call = call;
 
-        if(call == 0) {
+        if (call == 0) {
             callButton.innerHTML = "CHECK";
-        } 
-        else {
-            callButton.innerHTML = `CALL ${getMoneyText(call)}`;
+        } else {
+            const callText = getMoneyText(call);
+            callButton.innerHTML = `CALL ${callText.outerHTML}`;
 
-            if(call >= currentChips) {
+            if (call >= currentChips) {
                 this.hideRaise();
-                callButton.innerHTML = `CALL ${getMoneyText(currentChips)}`;
+                const callText = getMoneyText(call);
+            callButton.innerHTML = `CALL ${callText.outerHTML}`;
             }
         }
     }
 
-    showRaise(minRaise, maxRaise, pot, increment, currentBet)
-    {
+    showRaise(minRaise, maxRaise, pot, increment, currentBet) {
         if (minRaise !== maxRaise)
             this.setActive(betDivWrapper, true);
-        else 
+        else
             this.setActive(betDivWrapper, false);
         this.setActive(raiseButton, true);
         this.m_MinRaise = minRaise;
@@ -183,8 +182,8 @@ export class ActionUI {
         setSliderMin(betSlider, minRaise + currentBet);
         setSliderMax(betSlider, maxRaise + currentBet);
         setSliderValue(betSlider, minRaise + currentBet);
-        this.m_Raise = minRaise;      
-        
+        this.m_Raise = minRaise;
+
         if (this.m_MaxRaise == this.m_POT) {
             allInButton.innerText = "POT"
         }
@@ -195,17 +194,15 @@ export class ActionUI {
         this.setActive(raiseButton, false);
     }
 
-    doAutoAction () {
+    doAutoAction() {
         const random = Math.floor(Math.random() * 10);
 
         if (random < 2) {
             this.fold();
-        }
-        else if (random < 7 && raiseButton.style.visibility == "visible") {
+        } else if (random < 7 && raiseButton.style.visibility == "visible") {
             betInput.value = Math.floor(Math.random() * (this.m_MaxRaise - this.m_MinRaise)) + this.m_MinRaise + this.m_CurrentBet;
             this.raise();
-        }
-        else {
+        } else {
             this.checkOrCall();
         }
     }

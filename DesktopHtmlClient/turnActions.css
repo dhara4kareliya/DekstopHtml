@@ -33,7 +33,7 @@
 }
 
 #callButton {
-    background: transparent linear-gradient(0deg, #171717 0%, #6E6E6E 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(0deg, #171717 0%, #6E6E6E 100%) 0% 0% no-repeat padding-box !important;
 }
 
 #raiseButton {
