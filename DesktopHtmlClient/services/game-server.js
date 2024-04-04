@@ -1,13 +1,17 @@
 import { Get, Post } from "../http-client";
 import { connectSocket, joinToTs, subscribe, joinToTsWithMtData } from "../socket-client";
 
+
+
 export let userToken = getParamToken();
+//    export let userToken ='test_thread';
 
 let tsData = undefined;
 let mtData = undefined;
 
-export const userMode = getParamUserMode();
-// export const userMode = 1;
+// export const userMode = getParamUserMode();
+ export const userMode = 0;
+
 
 connect().catch(err => {
     console.error(err);
@@ -85,6 +89,8 @@ export async function getTs (token) {
 }
 
 export function join () {
+    window.clearTableCards();
+
     if (!userToken) {
         joinToTsWithMtData(mtData.user, mtData.table_token);
         return;

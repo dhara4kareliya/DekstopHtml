@@ -1,17 +1,21 @@
 import { showCards, sitIn, sitOut, playerLeaveTable, sitOutNextHand, tableSettings, round, tableSubscribe, waitForBB, doChat, acceptInsurance } from "../services/table-server";
-import { disConnectSocket, playerLeave, updatePlayerInfo, submitSideBet, ShowTipToDealer, onShareHand } from "../socket-client";
+import { disConnectSocket, playerLeave, updatePlayerInfo, submitSideBet, ShowTipToDealer, onShareHand, hitGame01 } from "../socket-client";
 import { toggleCheckbox } from "./checkbox";
 import { getPlayerSeat, getCurrentTurn, turnAction, joinWaitingList } from '../services/table-server';
 import { showBuyIn } from './game-ui';
 import { userMode, userToken } from '../services/game-server';
-import { getMoneyText } from "./money-display";
-import { getPlayerCardHandGroup } from './card-ui';
+import { getMoneyText, getMoneyValue, getcurrencyIcon } from "./money-display";
+import { getCardImageFilePath, getPlayerCardHandGroup } from './card-ui';
 import { shareHandHostAddress } from '../http-client';
+import { changeSelectedLanguage, hideLanguageOption } from "./language-ui";
 
 const tableSettingSpanDiv = $(".tableSettingsSpan")[0];
 const tableNameDiv = $(".tableName")[0];
+const handIdDiv = $(".handId")[0];
 
 const actionUIDiv = $("#turnActionsDiv")[0];
+const betDivWrapper = $("#betDivWrapper")[0];
+const raiseButton = $("#raiseButton")[0];
 const automaticActionsDiv = $("#automaticActionsDiv")[0];
 const autoCheckCheckbox = $("#autoCheckButton .checkbox")[0];
 const autoCheckOrFoldCheckbox = $("#autoCheckOrFoldButton .checkbox")[0];
@@ -34,7 +38,8 @@ const menuBottomButtons = $(".menuBottomButtons button");
 const addChipsButtons = $(".addChipsButton");
 const addTipsButtons = $(".addTipsButton")[0];
 const TipsOptions = $("#tip-button button");
-const tipButtonDiv = $("#tip-button")[0]
+const tipButtonDiv = $("#tip-button")[0];
+const AutoTip = $(".AutoTip")[0];
 const settingsButtons = $(".settingsButton");
 const buyInMenu = $("#buyInMenu")[0];
 const settingsMenu = $("#settingsMenu")[0];
@@ -56,7 +61,7 @@ const waitList = $(".users")[0];
 const waitListDropdown = $("#usersDropdown")[0];
 const waitListArrow = $("#arrow")[0]
 const logDiv = $('.logTabButton .activInner .log_data')[0];
-const chatDiv = $('.chatButton .activInner #divmessage .userMessage')[0];
+const chatDiv = $('.chatButton .activInner #divmessages .userMessage')[0];
 const chatInput = $('.chatButton .input_div input')[0];
 const chatSendIcon = $('.chatButton .input_div > i')[0];
 const chatButton = $('.chatButton')[0];
@@ -65,20 +70,15 @@ const multiTableButtons = $(".multiTableButton");
 const dropdownMenus = $(".dropdown-menu");
 const chatButtons = $(".chatButtons");
 const btnCloses = $(".btn-closes");
-const CloseModal = $(".close, #GO");
-const preChatMsgOrEmoji = $('.preChatEmoji,.preChatMsg');
-const submitButton = $('#submit-sidebet')[0];
-const streetsOnSideBet = new Map();
-streetsOnSideBet.set('PreCards', 'Next Cards');
-streetsOnSideBet.set('PreFlop', 'Flop');
-streetsOnSideBet.set('Flop', 'Turn');
-streetsOnSideBet.set('Turn', 'River');
+const CloseModal = $(".close, #GO, .LobbyButton");
+const preChatMsgOrEmoji = $('.preChatMsg');
 const tournamentTimers = $(".timers")[0];
 const insuranceYesButton = $(".insuranceYesButton")[0];
 const insuranceNextTime = $(".insuranceNextTime")[0];
 const insurancePrice = $(".insurancePrice")[0];
 const allInPrice = $(".allInPrice");
 const autoFoldModeButtonDiv = $(".autoFoldModeButton")[0];
+const currencyImage = $(".currencyImage")[0];
 
 export class MainUI {
     constructor(buyInUI) {
@@ -122,12 +122,14 @@ export class MainUI {
 
     init() {
         breakCountdownDiv.style.visibility = "hidden";
+        hideLanguageOption();
         this.setActive(automaticActionsDiv, false);
         this.setActive(autoFoldModeButtonDiv, false);
         this.setActiveElements(leaveButtons, false);
         this.setActiveElements(backLobbyButtons, true);
         this.setActive(sitInBtn, false);
         this.setActive(addTipsButtons, false);
+        this.setActive(AutoTip, false);
         this.setActiveElements(tournamentDivs, false);
         this.setActive(tableNameDiv, false);
         this.setActive(tableSettingSpanDiv, false);
@@ -156,8 +158,8 @@ export class MainUI {
         for (const button of CloseModal)
             button.addEventListener('click', () => {
                 $('#shareHandMessage').modal('hide');
-                $('#TipToDealer').modal('hide');
-                $('#SubmitReport').modal('hide');
+                $('#successModal').modal('hide');
+                $('#tournamentResultModal').modal('hide');
             });
 
         for (const button of dropdownMenus)
@@ -216,23 +218,18 @@ export class MainUI {
         })
 
         addTipsButtons.addEventListener('click', () => {
-            this.setActive(tipButtonDiv, true);
+            //this.setActive(tipButtonDiv, true);
         });
 
         for (const button of TipsOptions) {
             button.addEventListener('click', () => {
                 const TipAmount = button.attributes['value'].value;
-                this.setActive(tipButtonDiv, false);
-                ShowTipToDealer(TipAmount, (msg) => {
-                    $('#TipToDealer .Mod_body3').find('.sub-report-text')[0].innerText = 'Thank You';
-                    $('#TipToDealer').modal('show');
-
-                });
+                // this.setActive(tipButtonDiv, false);
+                ShowTipToDealer(TipAmount);
             })
         }
 
         for (const waitForBBCheckbox of waitForBBCheckboxes) {
-            toggleCheckbox(waitForBBCheckbox, true);
             waitForBBCheckbox.addEventListener('change', () => { waitForBB(waitForBBCheckbox.checked) });
         }
         for (const sitOutNextHandCheckbox of sitOutNextHandCheckboxes) {
@@ -257,8 +254,6 @@ export class MainUI {
         openMenuButton.addEventListener('click', () => {
             $(mobileSideBar).addClass("active");
         });
-
-
 
         mobileSideBar.addEventListener('click', () => {
             $(mobileSideBar).removeClass("active");
@@ -293,18 +288,6 @@ export class MainUI {
         for (const button of multiTableButtons) {
             button.addEventListener('click', () => { window.open("https://nrpoker.net/frontUser/newhome", userToken); });
         }
-
-        submitButton.addEventListener('click', () => {
-            let sidebets = [];
-            const elements = $('.btun');
-            for (const button of elements) {
-                if (button.classList.contains('selected')) {
-                    sidebets.push(button.id);
-                }
-            }
-            submitSideBet(sidebets, this.sidebetStreet);
-            this.initSideBetPanel();
-        });
 
         insuranceYesButton.addEventListener('click', () => {
             acceptInsurance(this.insuranceAmount, this.insuranceWinAmount);
@@ -389,7 +372,7 @@ export class MainUI {
     }
 
     doAutoFold(autoFoldModeButtonCheckboxes, playerCards, activeSeats) {
-        if (autoFoldModeButtonCheckboxes.checked != true || round.state != "HoleCards" || getPlayerSeat() == -1 || getPlayerSeat() != getCurrentTurn().seat)
+        if (autoFoldModeButtonCheckboxes.checked != true || round.state != "PreFlop" || getPlayerSeat() == -1 || getPlayerSeat() != getCurrentTurn().seat)
             return false;
 
         var autoFoldType = "";
@@ -479,12 +462,16 @@ export class MainUI {
     onFoldClick() {
         turnAction("fold");
         this.setActive(actionUIDiv, false);
+        this.setActive(betDivWrapper, false);
+        this.setActive(raiseButton, false);
         this.setActive(automaticActionsDiv, false);
     }
 
     onBetClick(bet) {
         turnAction("bet", bet);
         this.setActive(actionUIDiv, false);
+        this.setActive(betDivWrapper, false);
+        this.setActive(raiseButton, false);
         this.setActive(automaticActionsDiv, false);
     }
 
@@ -533,10 +520,10 @@ export class MainUI {
         this.levelInfo.ante = ante;
 
         if (level != undefined) {
-            const smallBlindText = getMoneyText(sb);
-            smallBlindSpan.innerHTML = 'hello';
-            const bigBlindText = getMoneyText(bb);
-            bigBlindSpan.innerHTML = bigBlindText.outerHTML;
+            const smallBlindText = getMoneyValue(sb);
+            smallBlindSpan.innerHTML = smallBlindText;
+            const bigBlindText = getMoneyValue(bb);
+            bigBlindSpan.innerHTML = bigBlindText;
             anteSpan.innerText = ante;
             levelSpan.innerText = level;
         }
@@ -590,18 +577,28 @@ export class MainUI {
         this.setActive(tableNameDiv, true);
     }
 
+    setHandId(id) {
+        handIdDiv.innerText = `Hand ID : ${id}`;
+        this.setActive(handIdDiv, true);
+    }
+
     setSmallBlind(smallBlind) {
         this.tableInfo.smallBlind = smallBlind;
-        const smallBlindText = getMoneyText(smallBlind);
-        smallBlindSpan.innerHTML = smallBlindText.outerHTML;
+        const smallBlindText = getMoneyValue(smallBlind);
+        smallBlindSpan.innerHTML = smallBlindText;
         this.setActive(tableSettingSpanDiv, true);
     }
 
     setBigBlind(bigBlind) {
         this.tableInfo.bigBlind = bigBlind;
-        const bigBlindText = getMoneyText(bigBlind);
-        bigBlindSpan.innerHTML = bigBlindText.outerHTML;
+        const bigBlindText = getMoneyValue(bigBlind);
+        bigBlindSpan.innerHTML = bigBlindText;
         this.setActive(tableSettingSpanDiv, true);
+    }
+
+    setCurrencyIcon() {
+        const element = getcurrencyIcon();
+        currencyImage.innerHTML = element.outerHTML;
     }
 
     setShowDollarSign(value) {
@@ -667,7 +664,9 @@ export class MainUI {
         this.setActiveElements(leaveButtons, value);
     }
     showTipDealer(value) {
-        this.setActive(addTipsButtons, value);
+        this.setActive(tipButtonDiv, value);
+        this.setActive(AutoTip, value);
+        //this.setActive(addTipsButtons, value);
     }
 
     showBackLobbyButton(value) {
@@ -688,10 +687,10 @@ export class MainUI {
         if (!isBreak && this.interval != undefined) { this.clearBreakTime(); return; }
         if (!isBreak || this.interval != undefined) return;
 
-        this.breakDuration = breakDuration;
+        this.breakDuration = this.levelInfo.duration;
         breakCountdownDiv.style.visibility = "visible";
         breakCountdownDiv.style.display = "flex";
-        $(breakCountdownDiv).find("div")[0].style.animationDuration = `${breakDuration}s`;
+        $(breakCountdownDiv).find("div")[0].style.animationDuration = `${this.levelInfo.duration}s`;
         $(breakCountdownDiv).find("div")[0].style.animationName = "progressAnimation";
         this.interval = setInterval(() => {
             let min = Math.floor(this.breakDuration / 60);
@@ -779,10 +778,10 @@ export class MainUI {
     }
 
     addChat(data) {
-        var html = '<div class="third_p mt-2"><p class="tan mx-2">' + data.playerName + '</p><p class="he  ">' + data.msg + '</p></div>';
+        var html = '<div class="third_p mt-2"><p class="tan mx-2">' + data.playerName + ' : ' + data.msg + '</p></div>';
         chatDiv.innerHTML = chatDiv.innerHTML + html;
 
-        let x = $('.chatButton .activities')[0];
+        let x = $('.chatButton .activitiess')[0];
         x.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
     }
     showTournamentTime(tournamentStartTime) {
@@ -856,7 +855,7 @@ export class MainUI {
                     }, 1000);
                 }
 
-                $("#msgModal").on('hide.bs.modal', function() {
+                $("#msgModal").on('hide.bs.modal', function () {
                     if (!!interval)
                         clearInterval(interval);
                     Interval_time = 1000;
@@ -864,6 +863,7 @@ export class MainUI {
             }
         }
 
+        $('#msgModal #myModalLabel')[0].innerText = (data !== null && data.labelText !== undefined) ? data.labelText : "Error Message";
         $('.error-message')[0].innerHTML = msg;
         $('#msgModal').modal('show');
     }
@@ -875,7 +875,7 @@ export class MainUI {
 
         $('#msgModal').modal('show');
 
-        $("#msgModal").on('hide.bs.modal', function() {
+        $("#msgModal").on('hide.bs.modal', function () {
             disConnectSocket();
             window.close();
         });
@@ -886,174 +886,23 @@ export class MainUI {
             $('.tournament-prize')[0].style.visibility = 'hidden';
         }
 
-        $('#tournamentRank')[0].innerText = rank;
+        var place = "th";
+        if (/^[1]$/.test(rank))
+            place = 'st';
+        else if (/^[2]$/.test(rank))
+            place = 'nd';
+        else if (/^[3]$/.test(rank))
+            place = 'rd';
+
+        $('#tournamentRank')[0].innerText = `${rank} ${place} place`;
+
         $('#tournamentPrize')[0].innerText = prize;
 
         $('#tournamentResultModal').modal('show');
 
-        $("#tournamentResultModal").on('hide.bs.modal', function() {
+        $("#tournamentResultModal").on('hide.bs.modal', function () {
             alert('The modal is about to be hidden.');
             window.close();
         });
     }
-
-    initSideBetPanel() {
-        $('#submit-sidebet').find('#total-amount')[0].innerText = '0';
-        $('#total-payout')[0].innerText = '0';
-
-        const payoutBtns = $(".scroll_prents").find(".button_payout");
-        for (const payoutbtn of payoutBtns) {
-            payoutbtn.style.visibility = 'hidden';
-        }
-
-        const elements = $('.btun');
-        for (const button of elements) {
-            if (button.classList.contains('selected')) {
-                button.classList.remove("selected");
-            }
-        }
-    }
-
-    updateSideBetOptions(street, streetText, options) {
-        this.sidebetStreet = street;
-        $(".scroll_prents").find('.fund_prent').remove();
-        $('#submit-sidebet').find('#total-amount')[0].innerText = '0';
-        $('#total-payout')[0].innerText = '0';
-        $(".text-street")[0].innerText = streetsOnSideBet.get(streetText);
-
-        let div = '';
-        for (const option of options) {
-            div = div + `<div class="fund_prent mb-1 mt-1">
-                            <div class="fund3 ">
-                                <div class="top_prent">
-                                    <div class="Hitting_prents">
-                                        <div class="side-bet">
-                                            <p class="bet-name">${option.betName}</p>
-                                            <p class="bet-ratio">1:${Number(option.ratio) - 1}</p>
-                                        </div>
-                                        <button class="button_payout" style="visibility: hidden"> <span class="text-white-pay">Payout:</span><span class="text-yellow"><span id="payout">0</span></span></button>
-                                    </div>
-                                    <i class="bi bi-question-circle icon-question"
-                                        data-bs-toggle="modal" data-bs-target="#modal-note"><span id="sidebet-note" style="display: none;">${option.note}</span></i>
-                                </div>
-                                <div class="main_right">
-                                    <div class="">
-                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 10}" class="p-bule btun"><span class="btau_text">${(getMoneyText(this.tableInfo.bigBlind * 10)).outerHTML}</span></button>
-                                    </div>
-                                    <div class="">
-                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 20}" class="p-bule btun"><span class="btau_text">${(getMoneyText(this.tableInfo.bigBlind * 20)).outerHTML}</span></button>
-                                    </div>
-                                    <div class="">
-                                        <button id="${option.betName}-${this.tableInfo.bigBlind * 50}" class="p-bule btun"><span class="btau_text">${(getMoneyText(this.tableInfo.bigBlind * 50)).outerHTML}</span></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
-        }
-        $(".scroll_prents").append(div);
-
-        const questionIcons = $('.icon-question');
-        for (const icon of questionIcons) {
-            icon.addEventListener('click', (e) => {
-                $('.sidebet-note')[0].innerText = $(e.currentTarget).find("#sidebet-note")[0].innerText;
-            });
-        }
-
-        const elements = $('.btun');
-        for (const button of elements) {
-            button.addEventListener('click', (e) => {
-                const parentNode = e.currentTarget.parentNode.parentNode.parentNode;
-                const ratio = Number($(parentNode).find(".bet-ratio")[0].innerText.split(':')[1]);
-                const totalAmountNode = $('#submit-sidebet').find('#total-amount')[0];
-
-                if (e.currentTarget.classList.contains('selected')) {
-                    e.currentTarget.classList.remove("selected");
-                    $(parentNode).find("#payout")[0].innerText = 0;
-                    $(parentNode).find(".button_payout")[0].style.visibility = 'hidden';
-                } else {
-                    const currentBetAmount = Number(e.currentTarget.id.split('-')[1]);
-                    const totalBetedAmount = Number(totalAmountNode.innerText.split('$')[0]);
-
-                    if (currentBetAmount + totalBetedAmount > this.freeBalance) {
-                        return;
-                    }
-
-                    e.currentTarget.classList.add("selected");
-                    $(parentNode).find("#payout")[0].innerHTML = (getMoneyText(currentBetAmount * ratio)).outerHTML;
-                    $(parentNode).find(".button_payout")[0].style.visibility = 'visible';
-                }
-
-                let totalBet = 0;
-                for (const otherButton of elements) {
-                    if (otherButton.id !== e.currentTarget.id && (otherButton.id.split('-')[0] === e.currentTarget.id.split('-')[0])) {
-                        otherButton.classList.remove("selected");
-                    }
-
-                    if (otherButton.classList.contains('selected')) {
-                        totalBet = totalBet + Number(otherButton.id.split('-')[1]);
-                    }
-                }
-
-                let totalPayout = 0;
-                for (const payout of $(".text-yellow")) {
-                    totalPayout = totalPayout + Number($(payout).find("#payout")[0].innerText);
-                }
-                
-        const totalBetText = getMoneyText(totalBet);
-        const totalPayoutText = getMoneyText(totalPayout);
-                totalAmountNode.innerHTML = totalBetText.outerHTML;
-                $('#total-payout')[0].innerHTML = totalPayoutText.outerHTML;
-            });
-        }
-    }
-
-    updateFreeBalance(balance) {
-        const balanceText = getMoneyText(balance);
-        $('#free-balance')[0].innerHTML = balanceText.outerHTML;
-        this.freeBalance = Number(balance);
-    }
-
-    updateSideBetHistory(res) {
-        if (Number(res.totalReward) > 0) {
-            const totalRewardText = getMoneyText(res.totalReward);
-            $('.top_200')[0].innerHTML = totalRewardText.outerHTML;
-            $('#modal-wining-payout').modal('show');
-            setTimeout(() => {
-                $('#modal-wining-payout').modal('hide');
-            }, 1000);
-        }
-
-        console.log('Winning History', res.historyLists);
-        let total = 0;
-        let div = '';
-        for (const list of res.historyLists) {
-            total = total + list.award;
-            let day = new Date(list.timestamp).getDay();
-            const hour = new Date(list.timestamp).getHours();
-            const min = new Date(list.timestamp).getMinutes();
-            div = div + `<div class="fund_prents mb-1 mt-1">
-                            <div class="funds3 ">
-                                <div class="top_prents">
-                                    <div class="main_hittings">
-                                        <div class="top px-1"><img src="images/dollar coinn.png">
-                                            <div class="allmix">
-                                                <p class="pair">${list.betName}
-                                                <p class="today">Today | ${hour}:${min}</p>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="div_in_text">
-                                            <p class="amount">$${list.award}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
-        }
-
-        $(".scroll_prentss").find('.fund_prents').remove();
-        $(".scroll_prentss").append(div);
-        const totalText = getMoneyText(total);
-        $(".sidebet-total-win")[0].innerHTML = totalText.outerHTML;
-    }
-    }
+}

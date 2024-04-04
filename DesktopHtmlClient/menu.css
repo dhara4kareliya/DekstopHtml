@@ -62,6 +62,11 @@
     max-width: 5vw;
     text-align: center;
 }
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 #transferCount {
     padding: calc(1 * var(--aspect-ratio));
     min-width: 8vw;
@@ -81,7 +86,7 @@
 }
 
 #buyInSliderContainer > div {
-    padding: calc(1 * var(--aspect-ratio));
+    padding: calc(.5 * var(--aspect-ratio));
 }
 
 #buyInSliderContainer > div:nth-child(1) > div {
@@ -103,7 +108,7 @@
 }
 
 #transferSliderContainer > div {
-    padding: calc(1 * var(--aspect-ratio));
+    padding: calc(.5 * var(--aspect-ratio));
 }
 
 #transferSliderContainer > div:nth-child(1) > div {
@@ -113,7 +118,7 @@
 }
 
 #transferSliderContainer > div:nth-child(1) > div > span {
-    font-size: calc(3 * var(--aspect-ratio));
+    font-size: calc(2 * var(--aspect-ratio));
 }
 
 #transferSliderContainer > div:nth-child(1) > div:nth-child(2) {
@@ -143,6 +148,7 @@
 #buyInSlider img {
     position: relative;
     left: 0%;
+    top: calc(1 * var(--aspect-ratio));
 }
 #transferSlider div {
     width: 97%;
@@ -154,6 +160,7 @@
 #transferSlider img {
     position: relative;
     left: 0%;
+    top: calc(1 * var(--aspect-ratio));
 }
 
 #autoRebuyContainer {
@@ -282,4 +289,55 @@
             inset #15122d 0 -0.75em 0 0,
             inset #ffc502 0 -0.75em 0 0;
     }
+}
+
+.table_balance, .added_balance {
+    width: calc(13 * var(--aspect-ratio))!important;
+    height: calc(5 * var(--aspect-ratio))!important;
+    display: grid;
+    background: none;
+    color: white;
+    font-size: calc(1.5* var(--aspect-ratio))!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buyin_table_balance {
+    display: flex;
+    justify-content: space-around;
+    width:  calc(29 * var(--aspect-ratio))!important;
+}
+.totaladd {
+    font-size: calc(1* var(--aspect-ratio))!important;
+    color: #FFEB00;
+    margin-bottom: calc(0* var(--aspect-ratio))!important;
+    margin-top: calc(.4 * var(--aspect-ratio))!important;
+}
+.Edit-form {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-left: calc(4 * var(--aspect-ratio))!important;
+    margin-bottom: calc(1 * var(--aspect-ratio))!important;
+    width: calc(13 * var(--aspect-ratio))!important;
+    height: calc(2 * var(--aspect-ratio))!important;
+}
+.Edit-form:focus {
+    color: white;
+    background-color: transparent!important;
+    border-color: unset;
+    outline: 0!important;
+    border: none!important;
+    box-shadow: none!important;
+}
+#buyin-input {
+    padding: calc(.5 * var(--aspect-ratio))!important;
+    min-width: 7vw!important;
+    max-width: 5vw!important;
+    text-align: center!important;
+    max-width: 5vw!important;
+    box-shadow: inset calc(0.3* var(--aspect-ratio)) calc(0.5* var(--aspect-ratio)) calc(1* var(--aspect-ratio)) #000000B8;
+    border-radius: 0px;
 }

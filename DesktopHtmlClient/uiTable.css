@@ -20,7 +20,7 @@
     width: 10vw;
 }
 
-#uiTable tr td:nth-child(3) {
+#uiTable tr td:nth-child(4) {
     width: 10vw;
 }
 
@@ -40,9 +40,9 @@
 
 #topDivLine {
     width: 100%;
-    box-shadow: 1px 5px 16px #EBFF00;
-    border-bottom: 4px solid #FFEB00;
-    border-width: 1px;
+    box-shadow: calc( 0.2 * var(--aspect-ratio)) calc( 0.3 * var(--aspect-ratio)) calc( 1 * var(--aspect-ratio)) #EBFF00;
+    border-bottom: calc( 0.8 * var(--aspect-ratio)) solid #FFEB00;
+    border-width: calc( 0.5 * var(--aspect-ratio));
 }
 
 .tableName {
@@ -50,7 +50,11 @@
     letter-spacing: 0px;
     color: #FFEB00;
     text-shadow: 0px 3px 6px #FFEB004E;
-    font-size:calc( 3 * var(--aspect-ratio));
+    font-size: calc( 2 * var(--aspect-ratio));
+}
+
+.handId {
+    width: calc(0 * var(--aspect-ratio));
 }
 
 #meDiv {

@@ -2,7 +2,7 @@ const hostAddress = "https://dev.nrpoker.net";
 // const hostAddress = "http://localhost:3002";
 export const shareHandHostAddress = "http://localhost:3000";
 // const hostAddress = "http://server149.xite.io:3000";
-
+ 
 /**
  * Sends a GET request
  * @param {String} path 
@@ -37,7 +37,7 @@ export async function Post(path, params) {
                 else
                     reject(this.response);
             }
-        };
+			};
         xhttp.open("POST", `${hostAddress}/${path}`, true);
         // xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(JSON.stringify(params));

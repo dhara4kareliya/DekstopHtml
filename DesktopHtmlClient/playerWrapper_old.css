@@ -37,6 +37,7 @@
     top: calc(-15 * var(--aspect-ratio));
 }
 
+
 .player_wrapper:nth-child(3) {
     left: 58vw;
     top: calc(-13 * var(--aspect-ratio));
@@ -66,11 +67,17 @@
     left: -8vw;
     top: calc(8 * var(--aspect-ratio));
 }
+/* .player_wrapper:nth-child(8) {
+    left: -6vw;
+    top: calc(7 * var(--aspect-ratio));
+} */
+
 
 .player_wrapper:nth-child(9) {
     left: 3vw;
     top: calc(-13 * var(--aspect-ratio));
 }
+
 
 .avatar {
     object-fit: contain;
@@ -93,7 +100,7 @@
     margin-left: -1vw;
     margin-right: -1vw;
     border-collapse: separate;
-    border-spacing: 1vw 0;
+    border-spacing: .8vw 0;
     padding-bottom: 1vw;
 }
 
@@ -105,7 +112,7 @@
 .player_wrapper :not(table,
 tr,
 .action) {
-    margin-bottom: calc(1 * var(--aspect-ratio));
+    margin-bottom: calc(.1 * var(--aspect-ratio));
 }
 
 .player_wrapper.toPlay .box {
@@ -119,7 +126,7 @@ tr,
 .action {
     background-color: #1F9231;
     /* margin-top: calc(1 * var(--aspect-ratio)); */
-    margin-top: calc(2 * var(--aspect-ratio));
+    margin-top: calc(3 * var(--aspect-ratio));
     margin-left: calc(-0.5 * var(--aspect-ratio));
     text-align: center;
     margin-bottom: calc(-0.2 * var(--aspect-ratio));
@@ -130,7 +137,7 @@ tr,
     display: flex;
     justify-content: center;
     align-items: center;
-    top: calc(19.8 * var(--aspect-ratio));
+    top: calc(18.8 * var(--aspect-ratio));
 }
 
 .turnTime {
@@ -250,8 +257,8 @@ tr,
 
 .handResult {
     font-size: calc(1.5 * var(--aspect-ratio));
-    top: calc(20 * var(--aspect-ratio));
-    left: calc(-16 * var(--aspect-ratio));
+    top: calc(18 * var(--aspect-ratio));
+    left: calc(-10 * var(--aspect-ratio));
     visibility: hidden;
 }
 
@@ -325,17 +332,28 @@ tr,
     left: calc(5 * var(--aspect-ratio));
     bottom: calc( 4.5 * var(--aspect-ratio));
 }
-
+/* 
 .player_wrapper .missSb {
     left: calc( 2.2 * var(--aspect-ratio));
     bottom: calc( 4.5 * var(--aspect-ratio));
     width: calc( 3 * var(--aspect-ratio));
     height: calc( 2 * var(--aspect-ratio));
+} */
+.player_wrapper .missSb {
+    left: calc( 19.2 * var(--aspect-ratio));
+    bottom: calc( 2.5 * var(--aspect-ratio));
+    width: calc( 3 * var(--aspect-ratio));
+    height: calc( 2 * var(--aspect-ratio));
 }
-
-.player_wrapper .missBb {
+/* .player_wrapper .missBb {
     left: calc( -0.2 * var(--aspect-ratio));
     bottom: calc( 4.5 * var(--aspect-ratio));
+    width: calc( 3 * var(--aspect-ratio));
+    height: calc( 2 * var(--aspect-ratio));
+} */
+.player_wrapper .missBb {
+    left: calc( 17.8 * var(--aspect-ratio));
+    bottom: calc( 2.5 * var(--aspect-ratio));
     width: calc( 3 * var(--aspect-ratio));
     height: calc( 2 * var(--aspect-ratio));
 }
@@ -819,9 +837,9 @@ tr,
 }
 
 .winnerhand {
-    /* width: calc(5 * var(--aspect-ratio)); */
-    left: calc(14.5 * var(--aspect-ratio));
-    top: calc(23.5 * var(--aspect-ratio));
+    width: calc(12 * var(--aspect-ratio))!important;
+    left: calc(5.5 * var(--aspect-ratio))!important;
+    top: calc(19.5 * var(--aspect-ratio))!important;
     position: absolute;
     visibility: hidden;
 }
@@ -1084,8 +1102,8 @@ tr,
 
 .player_wrapper:nth-child(6) .player-card>.front,
 .player_wrapper:nth-child(6) .player-card>.back {
-    height: calc( 7 * var(--aspect-ratio));
-    width: calc( 4.9 * var(--aspect-ratio));
+    height: calc( 10 * var(--aspect-ratio));
+    width: calc( 7 * var(--aspect-ratio));
 }
 
 .player_wrapper .two-cards {

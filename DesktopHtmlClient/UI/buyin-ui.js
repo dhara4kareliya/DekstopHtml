@@ -15,7 +15,8 @@ const buyInMinus = $("#buyInMinus")[0];
 const buyInPlus = $("#buyInPlus")[0];
 const buyInMinSpan = $("#buyInMinus span")[0];
 const buyInMaxSpan = $("#buyInPlus span")[0];
-const buyInInput = $("#buyInCount")[0];
+const newTableBalanceInput = $(".table_balance #buyin-input")[0];
+const addedBalanceInput = $(".added_balance #buyin-input")[0];
 const chipsLowerThenBuyInCheckbox = $("#chipsLowerThenBuyInCheckbox")[0];
 const runOutOfChipsCheckbox = $("#runOutOfChipsCheckbox")[0];
 const buyInMenu = $("#buyInMenu")[0];
@@ -62,7 +63,7 @@ export class BuyInUI {
       if (this.currentBuyInAmount - this.currentTableMoney <= 0)
         return;
 
-            this.setBuyInValidValue(getMoneyOriginalValue(parseInt(buyInInput.value)).toFixed(2));
+            this.setBuyInValidValue(getMoneyOriginalValue(parseInt(newTableBalanceInput.value)).toFixed(2));
 
       playerBuyChips(this.currentBuyInAmount - this.currentTableMoney, this.autoTopUpLess, this.autoTopUpZero);
     });
@@ -81,15 +82,24 @@ export class BuyInUI {
       this.setBuyInValidValue(this.currentBuyInAmount + this.bb);
     });
 
-        buyInInput.addEventListener('change', () => {
-            this.setBuyInValidValue(getMoneyOriginalValue(parseInt(buyInInput.value).toFixed(2)));
+        newTableBalanceInput.addEventListener('change', () => {
+            this.setBuyInValidValue(getMoneyOriginalValue(parseInt(newTableBalanceInput.value).toFixed(2)));
         });
+
+    addedBalanceInput.addEventListener('change', () => {
+      this.setBuyInValidValue(getMoneyOriginalValue(parseInt(addedBalanceInput.value).toFixed(2)) + this.currentTableMoney);
+    });
 
     buyInSlider.addEventListener('change', () => {
       this.setBuyInValidValue(parseInt(buyInSlider.value).toFixed(2));
     });
 
-    transferConfirm.addEventListener('click', () => {
+    transferConfirm.addEventListener('click', (e) => {
+      e.preventDefault();
+      transferConfirm.disabled = true;
+      setTimeout(() => {
+        transferConfirm.disabled = false;
+      }, 3000)
       if (this.currentTransferAmount - this.globalBalance >= 0)
         return;
 
@@ -149,12 +159,20 @@ export class BuyInUI {
 
     setBalances(globalBalance, tableBalance) {
       const tableBalanceText = getMoneyText(tableBalance);
-        tableBalanceSpan.innerHTML = tableBalanceText.outerHTML;
-        this.tableWalletBalance = tableBalance;
-        const globalBalanceText = getMoneyText(globalBalance);
-        globalBalanceSpan.innerHTML = globalBalanceText.outerHTML;
-        this.globalBalance = globalBalance;
+      tableBalanceSpan.innerHTML = tableBalanceText.outerHTML;
+      const globalBalanceText = getMoneyText(globalBalance);
+      globalBalanceSpan.innerHTML = globalBalanceText.outerHTML;
+      
+      this.tableWalletBalance = tableBalance;
+          this.globalBalance = globalBalance;
 
+        if (this.tableWalletBalance < this.minBuyIn) {
+          $('.buyin').addClass("disabledDiv");
+        }
+        else {
+          $('.buyin').removeClass("disabledDiv");
+        }
+        
         this.checkConfirmValid();
     }
 
@@ -167,7 +185,8 @@ export class BuyInUI {
     tmpValue = Math.max(tmpValue, this.currentTableMoney == 0 ? this.minBuyIn : this.currentTableMoney);
 
         this.currentBuyInAmount = tmpValue;
-        buyInInput.value = getMoneyValue(tmpValue);
+        newTableBalanceInput.value = getMoneyValue(tmpValue);
+        addedBalanceInput.value = getMoneyValue(tmpValue - this.currentTableMoney);
         setSliderValue(buyInSlider, tmpValue);
     }
 
@@ -193,7 +212,7 @@ export class BuyInUI {
         //    setSliderValue(buyInSlider, minBuyIn);
         buyInMinSpan.innerText = getMoneyValue(minBuyIn);
         buyInMaxSpan.innerText = getMoneyValue(maxBuyIn);
-        buyInInput.value = getMoneyValue(minBuyIn);
+        newTableBalanceInput.value = getMoneyValue(minBuyIn);
         this.maxBuyIn = maxBuyIn;
         this.minBuyIn = minBuyIn;
         this.setBuyInValidValue(minBuyIn);
@@ -216,8 +235,7 @@ export class BuyInUI {
     if (!this.checkConfirmValid()) return;
 
         setSliderValue(buyInSlider, Math.max(this.currentTableMoney, this.minBuyIn));
-        buyInInput.value = getMoneyValue(Math.max(this.currentTableMoney, this.minBuyIn));
-        
+        newTableBalanceInput.value = getMoneyValue(Math.max(this.currentTableMoney, this.minBuyIn));
         const tableChipText = getMoneyText(this.currentTableMoney);
         tableChipSpan.innerHTML = tableChipText.outerHTML;
     }

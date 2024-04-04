@@ -1,6 +1,7 @@
-import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, playerSubmitReport, connectSocket, getSocket } from "../socket-client";
+import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, playerSubmitReport, connectSocket, getSocket, ShowTipToDealer } from "../socket-client";
 import { setServer } from "./game-server";
 import { Get } from "../http-client";
+import { changeSelectedLanguage } from "../UI/language-ui";
 
 export const PlayerState = Object.freeze({
     None: 0,
@@ -312,6 +313,37 @@ function onTableTurn(res) {
     triggerEventListeners("onRoundTurn", turn);
 }
 
+function onTableUpdateTurn(res) {
+    copyTo(res, turn);
+    if (turn.seat == undefined)
+        turn.seat = -1;
+    if (turn.seat >= 0) {
+        if (turn.canRaise) {
+            turn.minRaise = turn.raise[0];
+            if (type == "plo")
+                turn.maxRaise = turn.pot;
+            else
+                turn.maxRaise = turn.raise[1];
+        } else {
+            turn.minRaise = 0;
+            turn.maxRaise = 0;
+        }
+
+        turn.timeout = turn.time[0];
+        turn.timeToReact = turn.time[1];
+        turn.timeBank = turn.time[2];
+    } else {
+        turn.call = 0;
+        turn.canRaise = false;
+        turn.minRaise = 0;
+        turn.maxRaise = 0;
+        turn.timeout = 0;
+        turn.timeToReact = 0;
+        turn.timeBank = 0;
+        turn.currentBet = 0;
+    }
+}
+
 export function turnAction(action, bet = 0) {
     if (isNaN(bet))
         bet = 0;
@@ -356,6 +388,18 @@ function onTableFreeBalance(res) {
     triggerEventListeners("onTableFreeBalance", res);
 }
 
+function onTableExtraCard(res) {
+    triggerEventListeners("onTableExtraCard", res);
+}
+
+function onPlayerCard(res) {
+    triggerEventListeners("onPlayerCard", res);
+}
+
+function onPlayerSidebetCard(res) {
+    triggerEventListeners("onPlayerSidebetCard", res);
+}
+
 function onBuyInOpen(res) {
     triggerEventListeners("onBuyInPanelOpen", res);
 }
@@ -380,12 +424,19 @@ function onCashWaitList(res) {
     triggerEventListeners("onCashWaitList", res);
 }
 
+function onWaitForBB(res) {
+    triggerEventListeners("onWaitForBB", res);
+}
+
 function onLog(res) {
     triggerEventListeners("onLog", res);
 }
 
 function onChat(res) {
     triggerEventListeners("onChat", res);
+}
+function onTip(res) {
+    triggerEventListeners("onTip", res);
 }
 
 export function waitForBB(value = true) {
@@ -411,11 +462,16 @@ export function sitDown(seatIndex) {
 
 export function SubmitReport(type, description, playerSeat, callback) {
     playerSubmitReport(type, description, playerSeat, () => {
-        
-        $('#TipToDealer .Mod_body3').find('.sub-report-text')[0].innerHTML = '<div>Thank you for your feedback. <br> We will look into it shortly.</div>';
-        $('#TipToDealer').modal('show');
+
+        $('#successModal .successMessage')[0].innerHTML = '<div>Thank you for your feedback. <br> We will look into it shortly.</div>';
+        changeSelectedLanguage();
+        $('#successModal').modal('show');
         callback();
     });
+}
+
+export function TipToDealer(amount){
+    ShowTipToDealer(amount);
 }
 
 export function joinWaitingList() {
@@ -442,6 +498,7 @@ subscribe("onPlayerState", onPlayerState);
 subscribe("onTableStatus", onTableStatus);
 subscribe("onTableSidePots", onTableSidePots);
 subscribe("onTableTurn", onTableTurn);
+subscribe("onTableUpdateTurn", onTableUpdateTurn);
 subscribe("onTableRoundResult", onTableRoundResult);
 subscribe("onTablePlayerShowCards", onTablePlayerShowCards);
 subscribe("onTablePlayerMuckCards", onTablePlayerMuckCards);
@@ -456,8 +513,13 @@ subscribe("onInsurance", onInsurance);
 subscribe("onAnimation", onAnimation);
 subscribe("onTourneyInfo", onTourneyInfo);
 subscribe("onCashWaitList", onCashWaitList);
+subscribe("onWaitForBB", onWaitForBB);
 subscribe("onLog", onLog);
 subscribe("onChat", onChat);
+subscribe("onTip", onTip);
+subscribe("onTableExtraCard", onTableExtraCard);
+subscribe("onPlayerCard", onPlayerCard);
+subscribe("onPlayerSidebetCard", onPlayerSidebetCard);
 
 
 export async function getOptions() {
@@ -467,6 +529,7 @@ export async function getOptions() {
         throw "Failed to connect to game server."
     }
 }
+
 
 function copyTo(source, destination) {
     for (const key in destination)
@@ -483,7 +546,7 @@ function triggerEventListeners(name, data) {
         return;
     try {
         data = JSON.parse(data);
-    } catch {}
+    } catch { }
     eventListeners[name].forEach(listener => {
         listener(data);
     });

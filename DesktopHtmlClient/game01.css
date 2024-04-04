@@ -1,0 +1,346 @@
+
+.gane_div_prents{
+    width: calc(30 * var(--aspect-ratio));
+   
+    display: flex;
+    justify-content: center;
+    margin-top:calc(1.5 * var(--aspect-ratio)) ;
+    
+}
+.main_table_div {
+	width: calc(28* var(--aspect-ratio));
+	height: calc(58 * var(--aspect-ratio));
+	background: linear-gradient(0deg, #1E213F, #1E213F), linear-gradient(0deg, rgba(43, 83, 171, 0.3), rgba(43, 83, 171, 0.3));
+	border: calc(.1 * var(--aspect-ratio)) solid #2B53AB4D;
+	border-radius: calc(.8 * var(--aspect-ratio));
+	position: relative;
+	padding: 0%;
+    left: calc(-0.3 * var(--aspect-ratio));
+}
+.game_01_icon{
+    position: absolute;
+    right: calc(1.5 * var(--aspect-ratio));
+    top: calc(1 * var(--aspect-ratio));
+    width:calc(2 * var(--aspect-ratio));
+    height:calc(2 * var(--aspect-ratio));
+   
+
+}
+.game_01_q_icon{
+    font-size: 13px;
+    color: #EFA434;
+    font-size: calc(1.6 * var(--aspect-ratio));
+    ;
+}
+.card-table1{
+    position: relative;
+    height: calc(36 * var(--aspect-ratio));
+    margin: 0 calc(1 * var(--aspect-ratio)) 0 calc(1 * var(--aspect-ratio))
+
+}
+.card-table1 img{
+    width: 100%;
+    height: 100%;
+
+}
+.ard-acrd{
+    padding-top: calc(4.3 * var(--aspect-ratio));
+}
+.img_board{
+    position: absolute;
+}
+
+    .card_queen {
+        width: calc(11* var(--aspect-ratio));
+        height: calc(10 * var(--aspect-ratio));
+        position: absolute;
+        top: calc(-.0 * var(--aspect-ratio));
+        left: calc(8.4 * var(--aspect-ratio));
+        z-index: 111111111;
+    }
+
+.card_queen img{
+    width: 100%;
+    height: 100%;
+}
+.row1 .card1{
+    width: calc(4* var(--aspect-ratio));
+    /* height: calc(7* var(--aspect-ratio)); */
+    position: absolute;
+    top: calc(6* var(--aspect-ratio));
+    left: calc(3* var(--aspect-ratio));
+}
+.fronts, .backs{
+    width: calc(4* var(--aspect-ratio))!important;  
+    height: calc( 6 * var(--aspect-ratio))!important;  
+}
+.frontss, .backss{
+   position: absolute;
+   right: 12px;
+}
+.back01 {
+    position: absolute;
+    left: calc( 1 * var(--aspect-ratio))!important;
+}
+.frontsss {
+    position: absolute;
+    left: calc( 0 * var(--aspect-ratio))!important;
+}
+.row1 .card00 {
+    width: calc(8.5* var(--aspect-ratio));
+    position: absolute;
+    top: calc(6* var(--aspect-ratio));
+    left: calc(9.5* var(--aspect-ratio));
+    display: flex;
+}
+.row1 .card01 {
+    width: calc(8.5* var(--aspect-ratio));
+    position: absolute;
+    top: calc(6* var(--aspect-ratio));
+    left: calc(13.5* var(--aspect-ratio));
+    display: flex;
+}
+.insideamount button{
+    border: none!important;
+    background: none!important;
+}
+/* .row2 .card1 {
+	width: calc(4* var(--aspect-ratio));
+
+	left: calc(3* var(--aspect-ratio));
+} */
+.left_sidecard{
+    position: relative;
+    left: calc((1.1 * var(--aspect-ratio)));
+    transform: rotate(-7deg);
+    top: calc((.05 * var(--aspect-ratio)));
+}
+#dealer_cards{
+
+        position: absolute;
+        left: calc(-2.4* var(--aspect-ratio));
+        top: calc(1* var(--aspect-ratio));
+}
+#player_cards{
+    position: absolute;
+    left: calc(-2.4* var(--aspect-ratio));
+    top: calc(1* var(--aspect-ratio));
+}  
+
+.right_sidecard{
+    z-index: 10000000;
+}
+
+
+.row1{
+    position: relative;
+}
+.row3{
+    position: relative;
+    top: calc(11* var(--aspect-ratio));
+}
+.row2 {
+	display: flex;
+	position: relative;
+	top: calc(15* var(--aspect-ratio));
+	justify-content: space-between;
+	width: calc(21* var(--aspect-ratio));
+	left: calc(2* var(--aspect-ratio));
+}
+.row3 .card00 {
+    width: calc(8.5* var(--aspect-ratio));
+    position: relative;
+    top: calc(6* var(--aspect-ratio));
+    left: calc(9.5* var(--aspect-ratio));
+    display: flex;
+}
+.row3 .card01 {
+    width: calc(8.5* var(--aspect-ratio));
+    position: relative;
+    top: calc(6* var(--aspect-ratio));
+    left: calc(13.5* var(--aspect-ratio));
+    display: flex;
+}
+.row3 .coinsrow .coin1{
+    width: calc(3* var(--aspect-ratio));
+    /* position: absolute; */
+    padding: 0 calc(.5* var(--aspect-ratio)) 0 calc(.5* var(--aspect-ratio));
+    top: calc(6* var(--aspect-ratio));
+    left: calc(8.5* var(--aspect-ratio));
+}
+.row3 .coinsrow{
+    display: flex;
+    position: relative;
+    top: calc(7* var(--aspect-ratio));
+    justify-content: center;
+    padding: 0 calc(1.5* var(--aspect-ratio)) 0 calc(1.5* var(--aspect-ratio));
+}
+.chooseamount  {
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(30, 33, 63, 0) 0%, #256A88 100%);
+    margin: calc(2.4* var(--aspect-ratio)) calc(2.5* var(--aspect-ratio)) 0 calc(2.5* var(--aspect-ratio));
+    padding: calc(-0.5* var(--aspect-ratio)) 0 0 0;
+    border-radius: calc(41.5* var(--aspect-ratio));
+    height: calc(5.4* var(--aspect-ratio));
+    
+}
+.chooseamount  .insideamount{
+    margin: 0px;
+    padding: 0px;
+    
+}
+.chooseamount  .insideamount div{
+    width: calc(6* var(--aspect-ratio));
+    padding: 0 calc(1* var(--aspect-ratio)) 0 calc(1* var(--aspect-ratio));
+}
+.chooseamount  .insideamount .bigcoin1 img{
+    margin:0% ;
+   
+    width: calc(3.9* var(--aspect-ratio)) ;
+    max-height:none;
+}
+.chooseamount  .insideamount .bigcoin2 img{
+    margin:0% ;
+
+    width: calc(3.9* var(--aspect-ratio)) ;
+    max-height:none;
+}
+.chooseamount  .insideamount .bigcoin3 img{
+    margin:0% ;
+
+    width: calc(3.9* var(--aspect-ratio)) ;
+    max-height:none;
+}
+
+.totop{
+    margin-top: calc(-1.3* var(--aspect-ratio))!important;
+}
+
+.tobottom{
+    margin-top: calc(1.3* var(--aspect-ratio))!important;
+}
+
+.polygon img{
+    margin-top: calc(-1.3* var(--aspect-ratio));
+    
+}
+.chooseamount  .polygon{
+    width: calc(1.5* var(--aspect-ratio));
+}
+.card1 img , .chooseamount  .insideamount div img , .polygon img{
+width: 100%;
+height: 100%;
+}
+.amounttext{
+    color : #FFFFFF33;
+    text-align: center;    
+}
+.hitme{
+    color : #FFFFFF33;
+    text-align: center;    
+    border: 0.5px solid #2D9240 ;
+    background-color: #2D9240;
+    color: #EFA434;
+    /* font-weight: bold; */
+    font-size: calc(1.7* var(--aspect-ratio));
+    padding: calc(-0.5* var(--aspect-ratio)) 0 0 0;
+    border-radius: calc(41.5* var(--aspect-ratio));
+    height: calc(4.3 * var(--aspect-ratio));
+    margin: calc(2* var(--aspect-ratio)) calc(1.5* var(--aspect-ratio)) 0 calc(1.5* var(--aspect-ratio));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hidesidebar{
+    width: calc(4 * var(--aspect-ratio));
+    height: calc( 4 * var(--aspect-ratio));
+    position: absolute;
+    left: 9vw;
+}
+
+.row2 .card1.with_mask {
+    position: relative;
+}
+
+.row2 .card1.with_mask:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0.5;
+}
+
+.card13 .front.with_mask:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0.5;
+}
+
+.card12 .front.with_mask:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0.5;
+}
+
+@keyframes slideInDownss {
+    0% {
+        transform: translateY(-100%);
+        visibility: hidden;
+    }
+    30% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(0%) rotateY(-180deg);
+    }
+}
+
+.card11 {
+    animation-name: slideInDownss;
+    animation-duration: 0.5s; /* Updated duration to 0.5 seconds */
+    animation-fill-mode: both;
+    transition: transform 0.5s; /* Updated transition duration to 0.5 seconds */
+    transform-style: preserve-3d;
+    position: relative;
+    animation-delay: 0.9s;
+    margin-right: -0.5rem;
+
+}
+
+.card12 {
+    animation-name: slideInDownss;
+    animation-duration: 0.5s; /* Updated duration to 0.5 seconds */
+    animation-fill-mode: both;
+    transition: transform 0.5s; /* Updated transition duration to 0.5 seconds */
+    transform-style: preserve-3d;
+    position: relative;
+    animation-delay: 2.2s;
+    margin-right: -0.5rem;
+
+}
+.card13 {
+    animation-name: slideInDownss;
+    animation-duration: 0.5s; /* Updated duration to 0.5 seconds */
+    animation-fill-mode: both;
+    transition: transform 0.5s; /* Updated transition duration to 0.5 seconds */
+    transform-style: preserve-3d;
+    position: relative;
+    animation-delay: .3s;
+    margin-right: -0.5rem;
+
+}

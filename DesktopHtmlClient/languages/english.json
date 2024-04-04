@@ -92,5 +92,6 @@
     "other": "Other",
     "describeReport": "Describe Your Report ",
     "reportText":"Type report...",
-    "msg":"Type your message"
+    "msg":"Type your message",
+    "AutoTip":"Auto Tip"
   }

@@ -2,10 +2,10 @@ import { playerBuyChips, playerLeave } from "../socket-client";
 import { toggleCheckbox } from "../UI/checkbox";
 import { connectWithMtData, getParamGameId, userToken } from "./game-server";
 import { getPlayerSeat, round, sitOut, tableSettings, tableSubscribe, turn } from "./table-server";
-
+import { changeLanguage } from "../UI/language-ui";
 // Add the origin where the zoom page is hosted.
 const allowedZoomOrigins = [
-    "http://localhost:3001",
+    "https://dev.nrpoker.net",
 ];
 
 let playerResult = undefined;
@@ -13,13 +13,12 @@ let gameId = getParamToken();
 
 const receivedMessagesIds = [];
 
-export function addEventListener(eventName, handler) {
+export function addEventListener (eventName, handler) {
     window.addEventListener('message', message => {
         if (receivedMessagesIds.indexOf(message.data.messageId) != -1)
             return;
 
-
-        receivedMessagesIds.push(message.data.messageId);
+        //receivedMessagesIds.push(message.data.messageId);
         if (message.data.gameId != undefined)
             gameId = message.data.gameId;
         // Reject events from origins not on the list.
@@ -33,7 +32,7 @@ export function addEventListener(eventName, handler) {
     });
 }
 
-export function dispatchEvent(eventName, eventData) {
+export function dispatchEvent (eventName, eventData) {
     let targetWindow = window.parent;
     if (!targetWindow || targetWindow == window)
         targetWindow = window.opener;
@@ -44,7 +43,7 @@ export function dispatchEvent(eventName, eventData) {
     for (const allowedZoomOrigin of allowedZoomOrigins) {
         let sent = false;
         try {
-            targetWindow.postMessage({ gameId: gameId, eventName: eventName, eventData: eventData }, allowedZoomOrigin);
+            targetWindow.postMessage({gameId: gameId, eventName: eventName, eventData: eventData}, allowedZoomOrigin);
             sent = true;
         } catch (e) {
             //console.warn(e);
@@ -54,7 +53,7 @@ export function dispatchEvent(eventName, eventData) {
     }
 }
 
-export function updateZoom() {
+export function updateZoom () {
     const seatToPlay = turn.seat;
     const playerSeat = getPlayerSeat();
     const numberOfSeats = tableSettings.numberOfSeats;
@@ -75,7 +74,6 @@ export function updateZoom() {
     if (playerResult)
         detail.status = playerResult;
 
-
     dispatchEvent('update', detail);
 }
 addEventListener('tsdata', data => {
@@ -88,6 +86,10 @@ addEventListener('leave', playerLeave);
 addEventListener('buy-in', e => {
     playerBuyChips(e.detail);
 });
+addEventListener('changeLanguage', e => {
+    changeLanguage(e);
+});
+
 addEventListener('checkbox', e => {
     const checkbox = $(`#${e.detail.id}`)[0];
     const value = e.detail.value;
@@ -105,8 +107,8 @@ tableSubscribe('onRoundResult', result => {
         for (const seatIndex of pot.winners) {
             if (seatIndex == getPlayerSeat())
                 playerResult = "win";
-            updateZoom();
-            return;
+                updateZoom();
+                return;
         }
     }
     playerResult = "lose";

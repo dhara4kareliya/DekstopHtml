@@ -11,19 +11,19 @@ const cardsImageProperties = {
     cardHeight: 142
 }
 
-function setup() {
+function setup () {
     setupCardImages();
 }
 
-function setupCardImages() {
+function setupCardImages () {
     const suites = ["s", "c", "d", "h"];
     const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
     const addImage = (suit, value) => {
         const image = new Image();
         let name = value + suit;
         cardImages[name.toLowerCase()] = image;
-        if (fourColors && (suit == "c" || suit == "d"))
-            name += "1";
+        if (fourColors && (suit == "c" || suit == "d")) 
+                name += "1";
         image.src = `./images/png/102x142/${name}.png`;
     };
     for (const suit of suites) {
@@ -41,10 +41,10 @@ function setupCardImages() {
 
 }
 
-function getCardImage(cardName) {
-
+function getCardImage (cardName) {
+    
     let name = cardName.toString().toLowerCase();
-    name = name.replace("t", "10");
+    name = name.replace("t","10");
     if (name == "?") name = "back";
     return cardImages[name];
 }
@@ -73,7 +73,7 @@ export function getPlayerCardHandGroup(cards) {
 export function getCardImageFilePath(cardName) {
 
     let name = cardName.toString().toLowerCase();
-    name = name.replace("t", "10");
+    name = name.replace("t","10");
     if (name == "?") name = "back";
     if ((name.includes('c') || name.includes('d')) && fourColors)
         name = name + '1';
@@ -81,16 +81,17 @@ export function getCardImageFilePath(cardName) {
     return `./images/png/102x142/${name}.png`;
 }
 
-function setFourColors(value) {
+function setFourColors (value) {
     fourColors = value;
     setupCardImages();
-
+    
     const cards = $(".front");
     for (const card of cards) {
         const filePath = card.src;
         if (value && (filePath.at(-5) == 'c' || filePath.at(-5) == 'd')) {
             card.src = filePath.slice(0, filePath.length - 4) + "1.png";
-        } else if (!value && (filePath.at(-6) == 'c' || filePath.at(-6) == 'd')) {
+        }
+        else if (!value && (filePath.at(-6) == 'c' || filePath.at(-6) == 'd')) {
             card.src = filePath.slice(0, filePath.length - 5) + ".png";
         }
     }
@@ -102,7 +103,7 @@ export class Card {
         this.canvas = canvas;
         this.cardName = "?";
         this.position = 0;
-        this.ratio = 1;
+        this.ratio  = 1;
     }
 
     setCardName(cardName) {
@@ -121,14 +122,14 @@ export class Card {
         const context = this.canvas.getContext("2d");
         const dx = this.position * cardsImageProperties.cardWidth * this.ratio;
         context.drawImage(getCardImage(this.cardName),
-            dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
+        dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
     }
 
     setMask() {
         const context = this.canvas.getContext("2d");
         const dx = this.position * cardsImageProperties.cardWidth * this.ratio;
         context.drawImage(getCardImage("mask"),
-            dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
+        dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
     }
 }
 

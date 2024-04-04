@@ -1,6 +1,6 @@
 const soundCheckbox = $("#muteCheckbox")[0];
 soundCheckbox.addEventListener('change', () => {
-    setSoundEnable(soundCheckbox.checked);
+    setSoundEnable(!soundCheckbox.checked);
 });
 
 let soundEnable = true;
@@ -40,46 +40,59 @@ export class Sound {
     }
 
     playCardDealt() {
-        this.m_audioCardDealt.play();
+        if (soundEnable == true)
+            this.m_audioCardDealt.play();
     }
 
     playEndStreet() {
-        this.m_audioEndStreet.play();
+        if (soundEnable == true)
+            this.m_audioEndStreet.play();
     }
 
     playFlop() {
-        this.m_audioFlop.play();
+        if (soundEnable == true)
+            this.m_audioFlop.play();
     }
 
     playTurnRiver() {
-        this.m_audioTurnRiver.play();
+        if (soundEnable == true)
+            this.m_audioTurnRiver.play();
     }
 
     playWinnerPot() {
-        this.m_audioWinnerTakePot.play();
+        if (soundEnable == true)
+            this.m_audioWinnerTakePot.play();
     }
 
     playCall() {
-        this.m_audioCall.play();
+        if (soundEnable == true)
+            this.m_audioCall.play();
     }
 
     playCheck() {
-        this.m_audioCheck.play();
+        if (soundEnable == true)
+            this.m_audioCheck.play();
     }
 
     playRaise() {
-        this.m_audioRaise.play();
+        if (soundEnable == true)
+            this.m_audioRaise.play();
     }
 
     playAllin() {
-        this.m_audioAllin.play();
+        if (soundEnable == true)
+            this.m_audioAllin.play();
     }
 
     playFold() {
-        this.m_audioFold.play();
+        if (soundEnable == true)
+            this.m_audioFold.play();
     }
 
     playTurnTime(isPlay) {
+        if (soundEnable == true)
+            return true;
+
         if (isPlay) {
             this.m_audioTurnTimer.play();
         } else {
@@ -89,11 +102,13 @@ export class Sound {
     }
 
     playWin() {
-        this.m_audioWin.play();
+        if (soundEnable == true)
+            this.m_audioWin.play();
     }
 
     playNotification() {
-        this.m_audioNotification.play();
+        if (soundEnable == true)
+            this.m_audioNotification.play();
     }
 
 }

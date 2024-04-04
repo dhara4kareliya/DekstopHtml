@@ -71,7 +71,7 @@ function slide(slider, event) {
 function updateDisplay(slider) {
     for (const display of displays) {
         if ($(display).hasClass(slider.id)){
-        const amountText = getMoneyText(slider.value);
+            const amountText = getMoneyText(slider.value);
             display.innerHTML = $(display).hasClass("moneyDisplay") ?
             amountText.outerHTML :
             getMoneyValue(slider.value);

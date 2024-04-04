@@ -6,6 +6,7 @@
     border-radius: calc( 0.6 * var(--aspect-ratio));
     border-style: none;
     white-space: nowrap;
+
 }
 
 button:hover {

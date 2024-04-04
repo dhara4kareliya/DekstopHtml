@@ -24,6 +24,7 @@ function setSocketEventListeners() {
     socket.on("REQ_TABLE_STATUS", eventTrigger("onTableStatus"));
     socket.on("REQ_TABLE_SIDEPOTS", eventTrigger("onTableSidePots"));
     socket.on("REQ_TABLE_TURN", eventTrigger("onTableTurn"));
+    socket.on("REQ_TABLE_UPDATE_TURN", eventTrigger("onTableUpdateTurn"));
     socket.on("REQ_TABLE_ROUNDRESULT", eventTrigger("onTableRoundResult"));
     socket.on("REQ_TABLE_PLAYERSHOWCARDS", eventTrigger("onTablePlayerShowCards"));
     socket.on("REQ_TABLE_PLAYERMUCKCARDS", eventTrigger("onTablePlayerMuckCards"));
@@ -36,6 +37,7 @@ function setSocketEventListeners() {
     socket.on("REQ_Animation", eventTrigger("onAnimation"));
     socket.on("REQ_TOURNEY_INFO", eventTrigger("onTourneyInfo"));
     socket.on("REQ_TABLE_WAITLIST", eventTrigger("onCashWaitList"));
+    socket.on("REQ_TABLE_WAITFORBB", eventTrigger("onWaitForBB"));
     socket.on("REQ_TABLE_LOG", eventTrigger("onLog"));
     socket.on("REQ_TABLE_CHAT", eventTrigger("onChat"));
     socket.on("REQ_SIDEBET_OPTIONS", eventTrigger("onSideBetOptions"));
@@ -43,6 +45,10 @@ function setSocketEventListeners() {
     socket.on("REQ_TABLE_FREE_BALANCE", eventTrigger("onTableFreeBalance"));
     socket.on("connect", eventTrigger("onConnect"));
     socket.on("disconnect", eventTrigger("onDisconnect"));
+    socket.on("REQ_TABLE_TIP", eventTrigger("onTip"));
+    socket.on("REQ_TABLE_CARD", eventTrigger("onTableExtraCard"));
+    socket.on("REQ_PLAYER_CARD", eventTrigger("onPlayerCard"));
+    socket.on("REQ_PLAYER_SIDEBETCARD", eventTrigger("onPlayerSidebetCard"));
 }
 
 // TS -> client
@@ -54,6 +60,7 @@ const eventListeners = {
     onTableStatus: [],
     onTableSidePots: [],
     onTableTurn: [],
+    onTableUpdateTurn: [],
     onTableRoundResult: [],
     onTablePlayerShowCards: [],
     onTablePlayerMuckCards: [],
@@ -66,11 +73,16 @@ const eventListeners = {
     onAnimation: [],
     onTourneyInfo: [],
     onCashWaitList: [],
+    onWaitForBB: [],
     onLog: [],
     onChat: [],
+    onTip: [],
     onSideBetOptions: [],
     onSideBetHistory: [],
     onTableFreeBalance: [],
+    onTableExtraCard: [],
+    onPlayerCard: [],
+    onPlayerSidebetCard: [],
     onConnect: [],
     onDisconnect: []
 };
@@ -121,16 +133,32 @@ export function onShareHand(callback) {
                 callback(result.encryptText);
         });
 }
-export function ShowTipToDealer(amount, callback) {
-    socket.emit("REQ_TIP_DEALER", { amount: amount },
+export function ShowTipToDealer(amount) {
+    socket.emit("REQ_TIP_DEALER", { amount: amount });
+}
+
+export function hitGame01(bbRatio, callback) {
+    socket.emit("REQ_PLAYER_HITGAME01", bbRatio,
         (strResult) => {
             const result = JSON.parse(strResult);
+            
             if (result.status) {
-                callback(result.msg);
-            } else {
-                console.log(`Failed Tip to Deal event`);
+                callback(result);
             }
-        });
+        }
+    );
+}
+
+export function dealGame02(bbRatio, callback) {
+    socket.emit("REQ_PLAYER_DEALGAME02", bbRatio,
+        (strResult) => {
+            const result = JSON.parse(strResult);
+            
+            if (result.status) {
+                callback(result);
+            }
+        }
+    );
 }
 
 export function joinToTs(userToken, tsToken) {
@@ -163,11 +191,12 @@ export function joinToTsWithMtData(userEncrypted, tsToken) {
     });
 }
 
-export function submitSideBet(bets, street) {
+export function submitSideBet(bets, street, callback) {
     socket.emit("REQ_PLAYER_SIDEBET", { sidebets: bets, street },
         (strResult) => {
             const result = JSON.parse(strResult);
             console.log('Side Bet submitted \n', result.sideBet);
+            callback(result.sideBet);
         });
 }
 

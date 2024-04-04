@@ -1,9 +1,12 @@
 #tableDiv {
     position: absolute;
-    top: calc( 27 * var(--aspect-ratio));
-    left: 10vw;
-    width: 80vw;
-    height: calc( 45 * var(--aspect-ratio));
+    top: calc( 21 * var(--aspect-ratio));
+    /* left: 10vw; */
+    left: 8vw;
+    /* width: calc(1920/1920*1598  0.8px); */
+    width: 68vw;
+    /* width: calc(var(--aspect-ratio) / 1920  0.8  1598px); */
+    height: calc( 42.2 * var(--aspect-ratio));
     box-shadow: inset 0px 0.4vw 0.6vw #FFE8E829, 0px 5vw 2.1vw #0B1B504D;
     border: 3vw solid #0E0B27;
     border-radius: 20vw;
@@ -12,9 +15,26 @@
     justify-content: center;
 }
 
+.button_font_sizes {
+    width: calc(16 * var(--aspect-ratio))!important;
+    left: calc(16.8 * var(--aspect-ratio))!important;
+    bottom: calc(66.5 * var(--aspect-ratio))!important;
+    position: absolute;
+}
+
+.button_font_size {
+    width: calc(16 * var(--aspect-ratio))!important;
+    left: calc(16.8 * var(--aspect-ratio))!important;
+    position: absolute;
+}
+
 #tableTable {
     margin: auto;
     margin-bottom: calc( 13 * var(--aspect-ratio));
+}
+
+#last_di img {
+    width: calc( 13 * var(--aspect-ratio));
 }
 
 #tableTable td {
@@ -67,11 +87,11 @@
     color: #fff;
     display: inline-block;
     text-align: center;
-    font-size: calc(5.5 * var(--aspect-ratio));
+    font-size: calc(2 * var(--aspect-ratio));
     visibility: hidden;
-    left: calc( 74.5 * var(--aspect-ratio)) !important;
+    /*  left: calc( 74.5 * var(--aspect-ratio)) !important; */
     position: fixed;
-    top: calc( 38.5 * var(--aspect-ratio)) !important;
+    /*  top: calc( 38.5 * var(--aspect-ratio)) !important; */
     /* margin-left: 30%; */
 }
 
@@ -83,7 +103,7 @@
 }
 
 .timers div>span {
-    padding: calc(4 * var(--aspect-ratio));
+    padding: calc(3 * var(--aspect-ratio));
     border-radius: calc(0.5 * var(--aspect-ratio));
     background: #00816A;
     display: inline-block;
@@ -91,7 +111,7 @@
 
 .smalltext {
     padding-top: calc(0.5 * var(--aspect-ratio));
-    font-size: calc(2.5 * var(--aspect-ratio));
+    font-size: calc(2 * var(--aspect-ratio));
 }
 
 @keyframes slideInDown {
@@ -115,8 +135,8 @@
     backface-visibility: hidden;
     background-size: contain;
     background-repeat: no-repeat;
-    height: calc( 12.5 * var(--aspect-ratio));
-    width: calc( 8.9 * var(--aspect-ratio));
+    height: calc( 10 * var(--aspect-ratio));
+    width: calc( 6 * var(--aspect-ratio));
 }
 
 .front {

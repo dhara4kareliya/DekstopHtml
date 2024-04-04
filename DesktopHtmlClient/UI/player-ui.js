@@ -18,8 +18,7 @@ const actionColors = {
     "MISSING SB": "#595959",
     "BB": "#595959",
     "SB": "#595959",
-    "SittingOut": "#595959",
-    "Waiting For BB": "#595959",
+    "Sitting Out": "#595959",
     "MUCKED": "#EC262F",
 };
 
@@ -28,6 +27,7 @@ const playerFieldSelectors = {
     flag: ".flag",
     name: ".name",
     money: ".money",
+    rating: ".rating",
     lastAction: ".action",
     blind: ".blind",
     dealer: ".dealer",
@@ -81,7 +81,7 @@ function srcToken(element, value) {
         $(element).removeClass('shrink');
 }
 
-const playerWrapperHTML = `
+const playerWrapperHTML = `<div>
 <img class="avatar" src="./images/desktop/22 copy 7@2x.png">
 <div class="player-cards"></div>
 <div class = "betAnimation">
@@ -101,7 +101,7 @@ const playerWrapperHTML = `
         <td>
         <div class = "stars box">
             <img src="./images/desktop/material-star.svg">
-            4.2
+            <span class="rating">4.2</span>
         </div>
         </td>
     </tr>
@@ -131,85 +131,79 @@ const playerWrapperHTML = `
     <span class="textset">Prize Amount</span>
 </div>
 <img class = "blind" src="./images/desktop/SB.png">
-<img class = "dealer" src="./images/desktop/newdealer.png">
-<img class = "missSb"   src="./images/desktop/newms.png">
-<img class = "missBb"  src="./images/desktop/newmb.png">
+<img class = "dealer" src="./images/desktop/D.png">
+<img class = "missSb"   src="./images/desktop/MSB.png">
+<img class = "missBb"  src="./images/desktop/MBB.png">
 <div class="winnerhand">
     <span></span>
     <canvas></canvas>
+</div>
+<div class="toast-container text-black p-3">
+            <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Thank you user for 10BB Tips</strong>
+                  </div>
+            </div>
+          </div>
 </div>
 `;
 
 const PlayerDetail = ` <div class="main-section">
 <div class="wrapper">
-
     <div class="user-detail">
         <div class="button">
             <div class="first-section">
                 <div class="u-name">
-                    <p>User: 
+                    <p><span class="lang" key="user">User</span>: 
                     <span class="report-name"></span>
                     </p>
                 </div>
-
                 <div class="date">
-                    <p>Member From</p>
+                    <p key="memberFrom" class="lang">Member From</p>
                     <span class="report-create"></span>
                 </div>
             </div>
-
-            <div class="rating">
-                <img src="images/Star 1.png" alt="">
-                <img src="images/Star 1.png" alt="">
-                <img src="images/Star 1.png" alt="">
-                <img src="images/Star 1.png" alt="">
-                <img class="half" src="images/Group 237.png" alt="">
+            <div class="playerRating">
             </div>
-
             <div class="btn-section">
-            <button class="r-btn">!</button>
-                
-                <button class="l-btn">Report</button>
+                <button class="r-btn">
+                    <img src="images/error.png" alt="">
+                </button>
+                <button class="l-btn lang" key="Report">Report</button>
             </div>
-
-
-
         </div>
-
         <div class="report-dd">
             <ul>
                  <li>
                      <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 check">
-                     <label class="check-label">Offensive Language</label>    
+                     <label class="check-label lang" key="offensiveLang">Offensive Language</label>    
                  </li>
                  <li>
                     <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 check">
-                    <label class="check-label">Act like a bot</label>    
+                    <label class="check-label lang" key="actLikeBot">Act like a bot</label>    
                 </li>
                 <li class="other">
                     <input type="radio" name='option' value="Other" id="checkbox3" class="check3 check">
-                    <label class="check-label">Other</label> 
+                    <label class="check-label lang" key="other">Other</label> 
                 </li>
             </ul>
-
             <div class="text">
-                <span>Describe Your Report</span>
-                <input type="text" class="write"  placeholder="Type report...">
+            <span key="describeReport" class="lang">Describe Your Report</span>
+                <input type="text" class="write lang" key="reportText"  placeholder="Type report...">
             </div>
-
             <div class="btn">
-                <button class="submit">Submit</button>
-                <button class="cancel">cancel</button>
+                <button class="submit lang" key="submit">Submit</button>
+                <button class="cancel lang" key="Cancel">cancel</button>
             </div>
          </div> 
     </div>
 </div>
 </div>`;
-//<img class = "extraToken" src="./images/desktop/MSB.png">
+
 const sitDownHTML = "<button class=\"sitDownButton\"></button>";
 
-const smallBlindSrc = "./images/desktop/newsb.png";
-const bigBlindSrc = "./images/desktop/newbb.png";
+const smallBlindSrc = "./images/desktop/SB.png";
+const bigBlindSrc = "./images/desktop/BB.png";
 
 const dealerSrc = "./images/D.png";
 
@@ -257,6 +251,9 @@ export class Player {
         this.missingSB = false;
         this.mucked = false;
         this.isPlaying = false;
+        this.storedCards = [];
+
+
     }
 
     setPlayState(isPlaying) {
@@ -282,7 +279,52 @@ export class Player {
         this.usdRate = usd;
     }
 
-    setCards(cards) {
+    storeFoldCards(visible, cards) {
+        $(this.wrapper).find('> div')[0].onclick = undefined;
+        if (visible == true) {
+            this.storedCards = cards;
+
+            $(this.wrapper).find('> div')[0].onclick = () => {
+                if ($(this.wrapper).find(".fold-cards").length !== 0) {
+                    $(this.wrapper).find(".fold-cards").remove();
+                } else {
+                    this.showFoldCards(this.storedCards);
+                }
+            };
+        } else {
+            this.storedCards = [];
+            if ($(this.wrapper).find(".fold-cards").length !== 0) {
+                $(this.wrapper).find(".fold-cards").remove();
+            }
+        }
+    }
+
+    showFoldCards(cards) {
+        if (cards == undefined) return;
+
+        $(this.wrapper).append('<div class="fold-cards"></div>');
+        let twoCardsClassName = "";
+        let fourCardsClassName = "";
+
+        if (cards.length == 2) twoCardsClassName = "two-cards";
+        if (cards.length == 4 || cards.length == 5) fourCardsClassName = "four-cards";
+
+        if (fourCardsClassName != "") {
+            $(this.wrapper).find('.fold-cards').addClass(fourCardsClassName);
+        }
+        for (let i = 0; i < cards.length; ++i) {
+            const card = cards[i].toLowerCase();
+            const cardImgFilePath = getCardImageFilePath(card);
+            const tableCard = `<div class="content ${twoCardsClassName}">
+                                    <img src="${cardImgFilePath}"/>
+                                </div>`;
+
+            $(this.wrapper).find('.fold-cards').append(tableCard)
+        }
+
+    }
+
+    setCards(cards, isGrey) {
         if (cards == undefined) return;
 
         // const animated = this.cards.length > 0;
@@ -309,12 +351,14 @@ export class Player {
         for (let i = 0; i < cards.length; ++i) {
             const card = cards[i].toLowerCase();
             const cardImgFilePath = getCardImageFilePath(card);
-            const tableCard = `<div class="content player-card ${twoCardsClassName}" value=${card} style="animation-name:${card == '?' ? "slide-animation" : "slideInDown"}">
+            const playerCard = `<div class="content player-card ${twoCardsClassName}" 
+                                value=${card} 
+                                style="animation-name:${card == '?' ? "slide-animation" : "slideInDown"}">
                                     <img class="back" src="./images/png/102x142/back.png"/>
-                                    <img class="front" src="${cardImgFilePath}"/>
+                                    <img class="front" src="${cardImgFilePath}" style="opacity:${isGrey ? 0.5 : 1}"/>
                                 </div>`;
 
-            $(this.wrapper).find('.player-cards').append(tableCard)
+            $(this.wrapper).find('.player-cards').append(playerCard)
         }
     }
 
@@ -380,7 +424,7 @@ export class Player {
         }
 
         if (seat.state == 'SitOut') {
-            this.setWrapperField("lastAction", "SittingOut");
+            this.setWrapperField("lastAction", "Sitting Out");
         }
     }
 
@@ -407,6 +451,24 @@ export class Player {
 
         this.setWrapperField("lastBet", value);
     }
+
+    setPlayerRating(rating) {
+        if (!rating) return;
+
+        this.setWrapperField("rating", rating);
+        rating = rating / 2;
+        var playerRatingInStar = ``;
+        for (let i = 1; i <= 5; i++) {
+            if (i <= rating)
+                playerRatingInStar += `<img src="./images/desktop/full-star.png" alt="">`;
+            else if (i > rating && (i - 1) < rating)
+                playerRatingInStar += `<img class="half" src="./images/desktop/half-star.png" alt="">`;
+            else
+                playerRatingInStar += `<img class="half" src="./images/desktop/blank-star.png" alt="">`;
+        }
+        $(this.wrapper).find(".playerRating").html(playerRatingInStar);
+    }
+
 
     setAmountAnimation(amount) {
         let value = amount ? `+${getMoneyValue(amount)}` : false;
@@ -541,7 +603,7 @@ export class Player {
     }
 
     setPlayerAvatar(avatar) {
-        this.setWrapperField("avatar_img", avatar);
+        this.setWrapperField("avatar", avatar);
     }
 
     setTotalCardMask() {
@@ -581,6 +643,13 @@ export class Player {
         this.wrapper.style.visibility = visible ? "visible" : "hidden";
     }
 
+    setIsPlayer(visible) {
+        if (visible == true)
+            this.wrapper.classList.add("isPlayer");
+        else
+            this.wrapper.classList.remove("isPlayer");
+    }
+
     setPlayerDetail(visible, seat, playerSeat) {
         this.wrapper.querySelector('.avatar').onclick = undefined;
         if (visible == true) {
@@ -592,7 +661,9 @@ export class Player {
                     $("#playerWrappers").find(".main-section").remove();
                     $(this.wrapper).append(PlayerDetail);
                     $(this.wrapper).find(".report-name")[0].innerText = seat.player.name;
-                    $(this.wrapper).find(".report-create")[0].innerText = seat.player.created_at;
+                    $(this.wrapper).find(".report-create")[0].innerText = seat.player.joiningDate;
+
+                    this.setPlayerRating(seat.player.rating);
                     this.addReportMenu(playerSeat);
                 }
             };
@@ -665,7 +736,7 @@ export class Player {
     }
 
     showWaitForBBLabel(value) {
-        this.setWrapperField("lastAction", value ? "Waiting For BB" : false);
+        this.setWrapperField("lastAction", value ? "Sitting Out" : false);
     }
 
     showSitDownButton(visible) {
@@ -769,5 +840,16 @@ export class Player {
             clearInterval(this.turnCountInterval);
             this.turnCountInterval = undefined;
         }
+    }
+
+    TipDealer(data) {
+        const tostMessage = $(this.wrapper).find("#toastMessage")[0];
+        const tostText = $(this.wrapper).find('#toastMessage .me-auto')[0];
+        tostText.innerText = data.msg;
+        tostMessage.style.display = 'block';
+
+        setTimeout(() => {
+            tostMessage.style.display = 'none';
+        }, 2000);
     }
 }

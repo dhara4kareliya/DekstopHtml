@@ -1,7 +1,7 @@
 import { Player } from './player-ui';
 import { Sound } from './audio';
 import { getMoneyText, getMoneyValue } from "./money-display";
-import { getPlayerSeat, tableSettings } from '../services/table-server';
+import { TipToDealer, getPlayerSeat, tableSettings } from '../services/table-server';
 import { getCardImageFilePath } from './card-ui';
 
 const totalPotDiv = $("#totalPot")[0];
@@ -11,9 +11,13 @@ const winPotSpan = $("#winPot span")[0];
 const streetPotSpan = $("#currentSreetPotDiv span")[0];
 const sidePots = $(".sidePot");
 const logDiv = $('.logTabButton .activInner .log_data')[0];
+const AutoTip = $(".AutoTip")[0];
+const AutoTipCheckboxes = $(".AutoTip .checkbox")[0];
 let prevState = "";
+let lastBet = 0;
 let lastAnimationAction = "betAction";
 let lastBetPlayer = null;
+let tableCardsCount = 0;
 const sound = new Sound();
 
 export class Table {
@@ -30,20 +34,28 @@ export class Table {
         this.shift = 0;
         this.showSbBbButtons = false;
         this.siticonVisible = false;
-        this.tableCardsCount = 0;
         this.closeTable = false;
+        this.numberOfSeats = 9;
+        this.sixPlayerSeats = [0, 1, 3, 5, 6, 7];
+        this.ninePlayerSeats = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     }
 
     init() {
-        this.playerWrappers = this.getSortedPlayerWrappers();
-
-        for (let i = 0; i < 9; ++i) {
-            let player = new Player(this.playerWrappers[i], i);
-            this.players.push(player);
-        }
 
         totalPotDiv.style.visibility = "hidden";
         streetPotDiv.style.visibility = "hidden";
+    }
+
+    setNumberOfSeats(numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+
+        if (this.players.length > 0) return;
+
+        this.playerWrappers = this.getSortedPlayerWrappers();
+        for (let i = 0; i < numberOfSeats; ++i) {
+            let player = new Player(this.playerWrappers[i], i);
+            this.players.push(player);
+        }
     }
 
     setSitVisible(value) {
@@ -52,7 +64,7 @@ export class Table {
 
     setTotalPot(amount) {
         const amountText = getMoneyText(amount);
-        totalPotSpan.innerHTML = winPotSpan.innerText = amountText.outerHTML
+        totalPotSpan.innerHTML = winPotSpan.innerHTML = amountText.outerHTML
         totalPotDiv.style.visibility = "visible";
     }
 
@@ -89,7 +101,7 @@ export class Table {
                 if (j == 0)
                     totalPot += pots[i].amount;
             }
-            // this.setTotalPot(totalPot);
+        // this.setTotalPot(totalPot);
     }
 
     setShowInBB(isShowInBB) {
@@ -126,6 +138,10 @@ export class Table {
         this.closeTable = status;
     }
 
+    addTip(data) {
+        this.players[data.seat].TipDealer(data);
+    }
+
     setMode(mode) {
         this.mode = mode;
         if (this.mode === modes.Observing && this.closeTable !== true)
@@ -135,11 +151,15 @@ export class Table {
 
     getSortedPlayerWrappers() {
         let playerWrappers = $(".player_wrapper");
-        return playerWrappers.sort((a, b) => {
+        const sortedWrappers = playerWrappers.sort((a, b) => {
             if (a.classList[1] == undefined || b.classList[1] == undefined)
                 return 0;
             return +a.classList[1] - +b.classList[1];
         });
+
+        const seats = this.numberOfSeats == 6 ? this.sixPlayerSeats : this.ninePlayerSeats;
+
+        return sortedWrappers.filter((index, wrapper) => seats.indexOf(index) != -1);
     }
 
     /**
@@ -151,7 +171,9 @@ export class Table {
      */
     rotatePlayerWrappers(targetSeat, destinationSeat) {
         const tempArray = this.players.slice();
-        this.shift = (destinationSeat - targetSeat + this.players.length) % this.players.length;
+        const seats = this.numberOfSeats == 6 ? this.sixPlayerSeats : this.ninePlayerSeats;
+
+        this.shift = (seats.indexOf(destinationSeat) - seats.indexOf(targetSeat) + this.players.length) % this.players.length;
         for (let i = 0; i < this.players.length; i++) {
             this.players[i] = tempArray[(i + this.shift) % this.players.length];
         }
@@ -192,6 +214,13 @@ export class Table {
         }
     }
 
+    setMainPlayerCards(cards) {
+        const index = getPlayerSeat();
+        
+        if (index == -1) return;
+        this.players[index].setCards(cards, true);
+    }
+
     arrangeSeats(seats, RoundState) {
         let playingIndex = 0;
         const gameRunning = seats.find(seat => seat.state === 'Playing') !== undefined;
@@ -205,13 +234,17 @@ export class Table {
             } else {
                 player.showPlayer(true);
                 player.setPlayerDetail(getPlayerSeat() != -1 && getPlayerSeat() != i && seat.fold === undefined, seat, i);
+                player.setIsPlayer(getPlayerSeat() != -1 && getPlayerSeat() == i)
                 player.setPlayState(true);
                 player.setPlayerName(seat.player.name);
+                player.setPlayerAvatar(seat.player.avatar);
                 player.setPlayerMoney(seat.money);
                 player.setPlayerAction(seat.lastAction);
+                player.setPlayerRating(seat.player.rating);
                 player.setAmountAnimation(false);
                 // player.setPlayerBet(seat.lastAction == "allin" ? seat.bet : seat.lastBet);
                 player.setPlayerBet(seat.lastBet);
+                player.storeFoldCards(getPlayerSeat() != -1 && getPlayerSeat() == i && seat.fold, seat.cards);
                 if (lastBetPlayer == i) {
                     var checkAction = seat.lastAction == "check" || seat.lastAction == "fold";
                     this.PlayerAnimation({ type: "betAction", animation: !checkAction, actionCheck: checkAction, data: { index: lastBetPlayer } });
@@ -222,15 +255,12 @@ export class Table {
                                 break;
                             case "call":
                                 sound.playCall();
-                                player.setAmountAnimation(seat.lastBet);
                                 break;
                             case "raise":
                                 sound.playRaise();
-                                player.setAmountAnimation(seat.lastBet);
                                 break;
                             case "allin":
                                 sound.playAllin();
-                                player.setAmountAnimation(seat.lastBet);
                                 break;
                             case "fold":
                                 sound.playFold();
@@ -242,13 +272,13 @@ export class Table {
                     player.showWaitForBBLabel(seat.state === "Waiting");
                 }
 
-                if (seat.state == 'Playing' && !seat.fold) {
+                if ((seat.state == 'Playing' && !seat.fold)) {
                     setTimeout(() => {
                         player.setCards(seat.cards);
                     }, playingIndex * 50);
 
                     ++playingIndex;
-                } else
+                } else if (!(seat.state == 'Waiting' && RoundState == "PreFlop"))
                     player.clearCards();
 
 
@@ -297,9 +327,9 @@ export class Table {
 
         if (cards == undefined) return;
 
-        for (let i = this.tableCardsCount; i < cards.length; ++i) {
+        for (let i = tableCardsCount; i < cards.length; ++i) {
             const cardFilePath = getCardImageFilePath(cards[i]);
-            this.tableCardsCount = this.tableCardsCount + 1;
+            tableCardsCount = tableCardsCount + 1;
             setTimeout(() => {
                 const tableCard = `<div class="tableCard" value=${cards[i].toLowerCase()}>
                                     <img class="back" src="./images/png/102x142/back.png"/>
@@ -351,7 +381,9 @@ export class Table {
         } else if (result.type == "betAction") {
             const index = result.data.index;
             if (result.animation && lastBetPlayer != null && !result.actionCheck) {
-                const wrapper = players[index].wrapper;
+
+                const player = players[index];
+                const wrapper = player.wrapper;
                 const player_wrapper = $(wrapper)[0];
                 const lastBetDiv = player_wrapper.querySelector(".lastBetDiv");
                 lastBetDiv.style = "";
@@ -363,11 +395,15 @@ export class Table {
                 const rect = lastBetDivImg.getBoundingClientRect();
                 lastAnimationAction = result.type;
                 this.AnimateDivsToLocation(rect.left - 11, rect.top + 15, element, 0, `680ms`);
+                player.setAmountAnimation(lastBet);
                 lastBetPlayer = null;
+                lastBet = 0;
             } else if (result.actionCheck) {
                 lastBetPlayer = null;
+                lastBet = 0;
             } else {
                 lastBetPlayer = index;
+                lastBet = result.data.bet;
             }
         } else if (result.type == "WinnerAnimate") {
             const rect = result.wrapper.querySelector('.avatar').getBoundingClientRect();
@@ -397,7 +433,7 @@ export class Table {
     showRoundResult(result) {
         const playerMap = result.players;
         let index = 0;
-        result.pots.forEach(pot => {
+        result.pots.forEach((pot, potIndex) => {
             const winners = pot.winners;
             const indexDesktop = sidePots.length / 2 + index;
             const indexMobile = index;
@@ -425,7 +461,7 @@ export class Table {
                                 var sidePotClone = sidePotClones.cloneNode(true);
                                 var winPotClone = winPotClones.cloneNode(true);
                                 const moneySpan = $(sidePotClone).find(".money")[0];
-                                moneySpan.innerText = `$${pot.prize}`;
+                                moneySpan.innerText = `${pot.prize}`;
                                 sidePots[indexDesktop].parentElement.appendChild(sidePotClone);
                                 winPot.parentElement.appendChild(winPotClone);
                                 this.PlayerAnimation({ "type": "WinnerAnimate", "wrapper": player.wrapper, "element": sidePotClone, "winPot": winPotClone, "indexMobile": indexMobile, "indexDesktop": indexDesktop });
@@ -450,7 +486,8 @@ export class Table {
                         } else {
                             player.showWinnerHand(false);
                         }
-                        this.addLog(`${player.name} wins ${index === 1 ? 'main pot' : ('side pot ' + index)} of ${pot.prize} with ${data.hand ? data.hand.cards.join(' ') : ''}`)
+                        // this.addLog(`${player.name} wins ${index === 1 ? 'main pot' : ('side pot ' + index)} of ${pot.prize} with ${data.hand ? data.hand.cards.join(' ') : ''}`)
+                        this.addLog(`${player.name} wins: ${potIndex === 0 ? 'main pot' : ('side pot ' + potIndex)}, ${pot.prize} ${data.hand ? 'with ' + data.hand.rank : ''}`);
                     } else {
                         player.setTotalCardMask();
                     }
@@ -473,11 +510,25 @@ export class Table {
             this.players.forEach(player => {
                 player.HighlightCards();
                 player.showWinner(false);
-                this.clearTableCards();
                 player.clearPlayerAnimationCss();
                 prevState = "";
             });
+            clearTableCards();
         }, 2000 * index);
+    }
+    AutoTip(result){
+        result.pots.forEach(pot => {
+            const winners = pot.winners;
+                for (let i = 0; i < this.players.length; ++i) {
+                    if (winners.indexOf(i) != -1) {
+                            if (AutoTipCheckboxes.checked) {
+                                if(winners == getPlayerSeat()){
+                                TipToDealer((pot.prize* 0.02).toFixed(2));
+                                }
+                            }
+                    }
+                }
+        });
     }
 
     HighlightTableCards(cards) {
@@ -496,11 +547,6 @@ export class Table {
                 card.classList.add("with_mask")
             }
         }
-    }
-
-    clearTableCards() {
-        $('.tableCards')[0].innerHTML = '';
-        this.tableCardsCount = 0;
     }
 
     clearTurn() {
@@ -549,6 +595,11 @@ export class Table {
     }
 }
 
+function clearTableCards() {
+    $('.tableCards')[0].innerHTML = '';
+    tableCardsCount = 0;
+}
+
 export const modes = Object.freeze({
     None: 0,
     Joining: 1,
@@ -569,3 +620,5 @@ export const playerStates = Object.freeze({
 export default {
     playerStates,
 }
+
+window.clearTableCards = clearTableCards;

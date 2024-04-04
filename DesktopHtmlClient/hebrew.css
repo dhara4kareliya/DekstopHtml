@@ -1,0 +1,46 @@
+
+/* **********************hebrew**************** */
+
+#tableDiv {
+    direction: ltr;
+    position: absolute;
+    top: calc( 24 * var(--aspect-ratio));
+    left: 21vw!important;
+    /* width: calc(1920/1920*1598 * 0.8px); */
+    width: 68vw;
+    /* width: calc(var(--aspect-ratio) / 1920 * 0.8 * 1598px); */
+    height: calc( 42.2 * var(--aspect-ratio));
+    box-shadow: inset 0px 0.4vw 0.6vw #FFE8E829, 0px 5vw 2.1vw #0B1B504D;
+    border: 3vw solid #0E0B27;
+    border-radius: 20vw;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+}
+
+
+.player_wrapper:nth-child(2){
+    left: 45vw;
+    
+}
+.player_wrapper:nth-child(2) .action{
+    margin-top: calc(-1* var(--aspect-ratio))!important;
+}
+.player_wrapper:nth-child(3){
+   left: 57vw; 
+}
+.player_wrapper:nth-child(7){
+top:calc( 15 * var(--aspect-ratio)); ;
+}
+.chipRow>.chipImg:nth-child(1) {
+    left: calc(-2.5 * var(--aspect-ratio));
+}
+.chipRow>.chipImg:nth-child(3) {
+    right: calc(-2.5 * var(--aspect-ratio));
+}
+#backgroundLogo{
+    left: 52.5vw;
+}
+.button_hebrew_width{
+width: fit-content!important;
+}

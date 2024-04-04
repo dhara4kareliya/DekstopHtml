@@ -9,6 +9,7 @@ import { tableSettings, myInfo, myMoneyInGame } from "../services/table-server";
 import { Sound } from "./audio";
 import { toggleCheckbox } from "./checkbox";
 import { updatCurrency } from "./money-display";
+import { SidebetUI } from "./sidebet-ui";
 
 let previousMainPlayerIndex = -1;
 let lastTurnSeat = -1;
@@ -19,6 +20,7 @@ const mainPlayerIndex = 5;
 const table = new Table();
 const buyInUI = new BuyInUI();
 const mainUI = new MainUI(buyInUI);
+const sidebetUI = new SidebetUI(mainUI);
 const actionUI = new ActionUI();
 const sound = new Sound();
 
@@ -87,6 +89,8 @@ function setShowInUSD(value) {
     table.setShowInUSD(value);
 }
 
+
+
 function onLeaveClick() {
     playerLeave();
 }
@@ -97,12 +101,15 @@ function onPlayerLeave(res) {
 
     if (res.type === 'tournament_leave') {
         mainUI.showTournamentResult(res.hasWin, res.prize, res.rank);
-    } else if (res.type === 'double_browser_leave') {
+    } 
+    else if (res.type === 'double_browser_leave') {
         mainUI.showDoubleLoginMsg(res.msg);
     }
 }
 
 function onPlayerInfo(playerInfo) {
+    $("#uiTable,.side-bet_div").show();
+    $(".loader").hide();
     mainUI.setPlayerName(playerInfo);
 }
 
@@ -113,9 +120,13 @@ function onTableSettings(settings) {
     mainUI.setBigBlind(settings.bigBlind);
     actionUI.setBigBlind(settings.bigBlind);
     actionUI.setUsdRate(usdRate);
+    mainUI.setCurrencyIcon();
     table.setBigBlind(settings.bigBlind);
     table.setUsdRate(usdRate);
-    table.setCloseTable(settings.closeTable);
+    table.setCloseTable(settings.closeTable);    
+    table.setNumberOfSeats(settings.numberOfSeats);
+    sidebetUI.setSidebetBB(settings.sidebetBB);
+    mainUI.setHandId(settings.handId);
 
     if (settings.mode == "tournament") {
         mainUI.showLevel(true);
@@ -151,6 +162,8 @@ function onPlayerState(state) {
     actionUI.showActionUI(false);
     mainUI.showSitIn(state == "SitOut");
     mainUI.showFoldToAnyBetCheckbox(state == "Playing");
+    sidebetUI.toggleSideBetAndGame(state == "Waiting" || state == "SitOut");
+    sidebetUI.showPanel(state == "Waiting" || state == "Playing" || state == "SitOut");
 
     if (tableSettings.mode == "cash") {
 
@@ -159,8 +172,10 @@ function onPlayerState(state) {
         // mainUI.setWaitForBB(true);
         mainUI.showSitOutNextHand(state == "Playing");
         mainUI.setSitOutNextHand(false);
+        mainUI.showTipDealer(state == "Playing");
 
-        if (getPlayerSeat() >= 0 && (state == "Playing" || state == "Waiting") && buyInUI.visible) {} else if (getPlayerSeat() >= 0 && state == "Joining") {
+        if (getPlayerSeat() >= 0 && (state == "Playing" || state == "Waiting") && buyInUI.visible) { } 
+        else if (getPlayerSeat() >= 0 && state == "Joining") {
             showBuyIn();
         } else {
             hideBuyIn();
@@ -175,6 +190,7 @@ function onPlayerState(state) {
         mainUI.setSitOutNextHand(false);
         //     actionUi.setShowDollarSign(false);
         //     tableUi.setShowDollarSign(false);
+        mainUI.showTipDealer(false);
     }
 }
 
@@ -194,12 +210,10 @@ function onTableStatus(status) {
     if (mainPlayerSeat != previousMainPlayerIndex) {
         if (previousMainPlayerIndex != -1 && mainPlayerSeat == -1) {
             table.restorePlayerWrappers();
-            mainUI.showLeaveGameButton(false);
             mainUI.showTipDealer(false);
             mainUI.showBackLobbyButton(true);
         } else {
             table.rotatePlayerWrappers(mainPlayerSeat, mainPlayerIndex);
-            mainUI.showLeaveGameButton(true);
             mainUI.showTipDealer(true);
             mainUI.showBackLobbyButton(false);
         }
@@ -209,21 +223,24 @@ function onTableStatus(status) {
     if (mainPlayerSeat != -1) {
         mainUI.setHandResult(status.seats[firstSeat].handRank);
         mainUI.setPlayStatus(true);
+        mainUI.showLeaveGameButton(status.seats[mainPlayerSeat].lastAction === 'fold' || status.seats[mainPlayerSeat].state !== 'Playing');
     } else {
         mainUI.setHandResult();
         mainUI.setPlayStatus(false);
+        mainUI.showLeaveGameButton(false);
     }
 
     if (tableSettings.mode == "cash" && mainPlayerSeat >= 0) {
-        if (status.seats[mainPlayerSeat].lastAction === 'fold' || status.seats[mainPlayerSeat].state === 'SitOut')
-            mainUI.showAddChips(true);
-        else if (!buyInUI.visible) {
-            mainUI.showAddChips(false);
-        } else if (status.seats[mainPlayerSeat].state == 'Playing') {
-            mainUI.setFoldAnyBet(true);
+        mainUI.showAddChips(true);
+
+        if (status.seats[mainPlayerSeat].state === 'SitOut') {
+            mainUI.showSitOut(false);
+        }
+        else {
+            mainUI.showSitOut(true);
         }
 
-        mainUI.showSitOut(true);
+        sidebetUI.setFoldStatusAndSideGamePanel(status.seats[mainPlayerSeat].lastAction === 'fold');
     } else {
         mainUI.showAddChips(false);
         mainUI.showSitOut(false);
@@ -232,7 +249,7 @@ function onTableStatus(status) {
     if (status.state != "Showdown")
         mainUI.showShowCardsButton(false);
 
-    if (status.state == "None" || status.state == "HoleCards") {
+    if (status.state == "None" || status.state == "PreFlop") {
         table.setShowSbBbButtons(true);
     } else {
         table.setShowSbBbButtons(false);
@@ -257,9 +274,9 @@ function onTableStatus(status) {
 
     if (status.state != prevRoundState) {
         updatCurrency();
-        if (status.state == "HoleCards") {
+        if (status.state == "PreFlop") {
             sound.playCardDealt();
-            table.clearTableCards();
+            window.clearTableCards();
         } else if (status.state == "Flop") {
             sound.playFlop();
         } else if (status.state == "Turn" || status.state == "River") {
@@ -308,7 +325,11 @@ function checkAutoCheckFoldValid(seats, isShow) {
 
 function onRoundResult(roundResult) {
     table.showRoundResult(roundResult);
-
+    table.AutoTip(roundResult)
+    
+    if (getPlayerSeat() == -1) {
+        sidebetUI.removeAllSidebetCards();
+    }
     // const players = roundResult.lastPlayers;
     // mainUI.showShowCardsButton(roundResult.players.length > 1 && players.length == 1 && players[0].seat != getPlayerSeat());
 }
@@ -370,15 +391,28 @@ function onSidePots(pots) {
 }
 
 function onSideBet(res) {
-    mainUI.updateSideBetOptions(res.street, res.streetText, res.options);
+    sidebetUI.setCurrentSidebetOptions(res.street, res.streetText, res.options);
+    sidebetUI.updateSideBetOptions(res.street, res.streetText, res.options);
 }
 
 function onSideBetHistory(res) {
-    mainUI.updateSideBetHistory(res);
+    sidebetUI.updateSideBetHistory(res);
 }
 
 function onTableFreeBalance(balance) {
-    mainUI.updateFreeBalance(balance);
+    sidebetUI.setNewFreeBalance(balance);
+}
+
+function onTableExtraCard(cards) {
+    table.setTableCards(cards);
+}
+
+function onPlayerCard(cards) {
+    table.setMainPlayerCards(cards);
+}
+
+function onPlayerSidebetCard(cards) {
+    sidebetUI.addCards(cards);
 }
 
 function onShowCards(showCards) {
@@ -413,12 +447,20 @@ function onCashWaitList(res) {
     mainUI.setWaitList(res);
 }
 
+function onWaitForBB(res) {
+    mainUI.setWaitForBB(res);
+}
+
 function onLog(res) {
     mainUI.addLog(res);
 }
 
 function onChat(res) {
     mainUI.addChat(res);
+}
+
+function onTip(res) {
+    table.addTip(res);
 }
 
 function onBuyInPanelOpen(res) {
@@ -443,11 +485,16 @@ tableSubscribe("onMessage", onMessage);
 tableSubscribe("onInsurance", onInsurance);
 tableSubscribe("onTourneyInfo", onTourneyInfo);
 tableSubscribe("onCashWaitList", onCashWaitList);
+tableSubscribe("onWaitForBB", onWaitForBB);
 tableSubscribe("onSideBet", onSideBet);
 tableSubscribe("onSideBetHistory", onSideBetHistory);
 tableSubscribe("onTableFreeBalance", onTableFreeBalance);
 tableSubscribe("onLog", onLog);
 tableSubscribe("onChat", onChat);
+tableSubscribe("onTip", onTip);
+tableSubscribe("onTableExtraCard", onTableExtraCard);
+tableSubscribe("onPlayerCard", onPlayerCard);
+tableSubscribe("onPlayerSidebetCard", onPlayerSidebetCard);
 
 export default {
     showBuyIn,

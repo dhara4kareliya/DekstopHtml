@@ -5,61 +5,59 @@ const showAsSUDCheckbox = $("#showAsSUDCheckbox")[0];
 let bigBlind = 20;
 let usdRate = 0;
 var showcurrency = "XRP";
-
 /**
  * Gets the text that is to be displayed for the given amount.
  * If "Show values as BB ratio" is checked, gives ratio text.
  * @param {Number} amount 
  */
-// export function getMoneyText(amount) {
-//     if (amount == undefined)
-//         amount = 0;
-
-//     if (showcurrency == "BB") {
-//         return `${Math.floor(amount / bigBlind * 100) / 100} BB`;
-//     } else if (showcurrency == "USD") {
-//         return `$ ${Math.floor(amount * usdRate * 100) /100}`;
-//     } 
-//     return  `x ${Math.floor(amount * 100) / 100}`;
-
-// }
-export function getMoneyText(amount) {
+export function getMoneyText (amount) {
     if (amount == undefined)
         amount = 0;
 
-    const container = document.createElement("div");
-
-    if (showcurrency == "BB") {
-        container.innerText = `${Math.floor(amount / bigBlind * 100) / 100} BB`;
+        const container = document.createElement("div");
+        if (showcurrency == "BB") {
+            container.innerText = `${Math.floor(amount / bigBlind * 100) / 100} BB`;
     } else if (showcurrency == "USD") {
         console.log(amount);
         console.log(usdRate);
         console.log(Math.floor(amount * usdRate * 100) / 100);
         var img = document.createElement("img");
-        img.src = "../images/desktop/coins 3 (2) (1).png";
-        container.classList.add("imageFeatures1"); 
-
+        img.src = "./images/desktop/coins 3 (2) (1).png";
+        container.classList.add("imageFeatures1");
         container.appendChild(img);
-
         const amountText = document.createElement("span");
         amountText.innerText = ` ${Math.floor(amount * usdRate * 100) / 100}`;
         container.appendChild(amountText);
         // container.innerText = `$ ${Math.floor(amount * usdRate * 100) /100}`;
     } else {
         var img = document.createElement("img");
-        img.src = "../images/desktop/coins 3 (1).png";
-        container.classList.add("imageFeatures"); 
-
+        img.src = "./images/desktop/coins 3 (1).png";
+        container.classList.add("imageFeatures");
         container.appendChild(img);
-
         const amountText = document.createElement("span");
         amountText.innerText = ` ${Math.floor(amount * 100) / 100}`;
         container.appendChild(amountText);
     }
-
     return container;
 }
 
+export function getcurrencyIcon() {
+    const container = document.createElement("div");
+    if (showcurrency == "BB") {
+        container.innerText = `BB`;
+    } else if (showcurrency == "USD") {
+        var img = document.createElement("img");
+        img.src = "./images/desktop/coins 3 (2) (1).png";
+        container.classList.add("imageFeatures1");
+        container.appendChild(img);
+    } else {
+        var img = document.createElement("img");
+        img.src = "./images/desktop/coins 3 (1).png";
+        container.classList.add("imageFeatures");
+        container.appendChild(img);
+    }
+    return container;
+}
 
 export function getMoneyValue(amount) {
     if (amount == undefined)
@@ -73,7 +71,7 @@ export function getMoneyValue(amount) {
     return Math.floor(amount * 100) / 100;
 }
 
-export function getRoundValue(amount) {
+export function getRoundValue (amount) {
     if (amount == undefined)
         amount = 0;
 

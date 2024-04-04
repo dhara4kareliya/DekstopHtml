@@ -2,6 +2,7 @@ import './style.css';
 import "./services/game-server"
 import "./UI/card-ui"
 import "./UI/checkbox"
+import "./UI/language-ui"
 import "./UI/game-ui"
 import "./UI/main-ui";
 import "./UI/action-ui"
