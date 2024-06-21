@@ -50,6 +50,63 @@
         </div>
     </div>
 </div>
+<div class="modal fade notepad-game" id="modal-game" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-game" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content upQuestion" id="notepaddiv-game">
+
+            <div class="modal-body">
+                <i class="bi bi-x-circle-fill close_cona" data-bs-dismiss="modal" aria-label="Close "></i>
+                <h6 style="color: #FFEB00; font-weight: 700;">Payouts </h6>
+                <table class="table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="backg">Royal flush</th>
+                            <td class="backg"><snap style="color: yellow">X 500</snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Straight flush</th>
+                            <td class="backg"><snap style="color: yellow">X 150 </snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Four of a kind</th>
+                            <td class="backg"><snap style="color: yellow">X 50 </snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Full house</th>
+                            <td class="backg"><snap style="color: yellow">X 7.5 </snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Flush </th>
+                            <td class="backg"><snap style="color: yellow">X 5 </snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Straight </th>
+                            <td class="backg"><snap style="color: yellow"> X 2.5 </snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Three of a kind </th>
+                            <td class="backg"><snap style="color: yellow"> X 2 </snap></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">High Card </th>
+                            <td class="backg"><snap style="color: yellow"> X 1.5 </snap></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <body>
     <div class="loader"></div>
@@ -404,7 +461,7 @@
                                         </div>
                                         <div class="message blocks position-relative  mx-3 mt-4 mb-3 d-block"
                                             id="divmessages">
-                                            <div class="userMessage result_div" style="max-height: 236px!important;"></div>
+                                            <div class="userMessage result_div"></div>
                                             <div id="message_result">
 
                                             </div>
@@ -899,7 +956,7 @@
                 <div class="fund_prent mb-1">
                     <div class="fund  font">
                         <div class="hudge">Side Bet Panel</div>
-                        <div><i class="bi bi-question-circle" data-bs-toggle="modal" data-bs-target="#modal-note"></i></div>
+                        <div><i class="bi bi-question-circle aboutSideBet" data-bs-toggle="modal" data-bs-target="#modal-note"></i></div>
 
                     </div>
                 </div>
@@ -1105,10 +1162,6 @@
         });
     </script> -->
     <script>
-        window.onbeforeunload = function() {
-            return true;
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
             let box1 = document.querySelector("#button31_q31");
             let box22 = document.querySelector("#button32_q31");
@@ -1173,10 +1226,8 @@
             var result_divS = document.querySelector(".result_div");
             if (emojiFunc.style.display === "none" || emojiFunc.style.display === "") {
                 emojiFunc.style.display = "block";
-                result_divS.style.maxHeight = "50px";
             } else {
                 emojiFunc.style.display = "none";
-                result_divS.style.maxHeight = "178px";
             }
         });
 

@@ -3,7 +3,7 @@ import { disConnectSocket, playerLeave, updatePlayerInfo, submitSideBet, ShowTip
 import { toggleCheckbox } from "./checkbox";
 import { getPlayerSeat, getCurrentTurn, turnAction, joinWaitingList } from '../services/table-server';
 import { showBuyIn } from './game-ui';
-import { userMode, userToken } from '../services/game-server';
+import { setDetectedDoubleBrowser, userMode, userToken } from '../services/game-server';
 import { getMoneyText, getMoneyValue, getcurrencyIcon } from "./money-display";
 import { getCardImageFilePath, getPlayerCardHandGroup } from './card-ui';
 import { shareHandHostAddress } from '../http-client';
@@ -79,6 +79,8 @@ const insurancePrice = $(".insurancePrice")[0];
 const allInPrice = $(".allInPrice");
 const autoFoldModeButtonDiv = $(".autoFoldModeButton")[0];
 const currencyImage = $(".currencyImage")[0];
+
+let isBeforeunload = true;
 
 export class MainUI {
     constructor(buyInUI) {
@@ -286,7 +288,10 @@ export class MainUI {
         });
 
         for (const button of multiTableButtons) {
-            button.addEventListener('click', () => { window.open("https://nrpoker.net/frontUser/newhome", userToken); });
+            button.addEventListener('click', () => {
+                isBeforeunload = undefined;
+                window.open("https://nrpoker.net/frontUser/newhome", userToken);
+            });
         }
 
         insuranceYesButton.addEventListener('click', () => {
@@ -296,6 +301,10 @@ export class MainUI {
         insuranceNextTime.addEventListener('click', () => {
             $('#insuranceModal').modal('hide');
         });
+
+        window.onbeforeunload = function() {
+            return isBeforeunload;
+        }
     }
 
     setTrophyInfo(position, number) {
@@ -869,6 +878,8 @@ export class MainUI {
     }
 
     showDoubleLoginMsg(msg) {
+        setDetectedDoubleBrowser(true);
+
         $('.error-message')[0].innerHTML = msg;
         $('#msgModal #myModalLabel')[0].innerText = "Message"
         $('#msgModal button')[1].innerText = "Close Browser"
@@ -901,7 +912,7 @@ export class MainUI {
         $('#tournamentResultModal').modal('show');
 
         $("#tournamentResultModal").on('hide.bs.modal', function () {
-            alert('The modal is about to be hidden.');
+            //alert('The modal is about to be hidden.');
             window.close();
         });
     }

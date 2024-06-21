@@ -9,9 +9,13 @@ export let userToken = getParamToken();
 let tsData = undefined;
 let mtData = undefined;
 
-// export const userMode = getParamUserMode();
- export const userMode = 0;
+export const userMode = getParamUserMode();
+//  export const userMode = 0;
 
+let detectedDoubleBrowser = false;
+export function setDetectedDoubleBrowser(value) {
+    detectedDoubleBrowser = value;
+}
 
 connect().catch(err => {
     console.error(err);
@@ -20,6 +24,8 @@ subscribe("onConnect", join);
 subscribe("onDisconnect", reconnect);
 
 async function reconnect () {
+    if (detectedDoubleBrowser) return;
+
     $('.error-message')[0].innerHTML = "Socket disconnected, reconnecting"
     $('#msgModal').modal('show');
 
@@ -52,7 +58,7 @@ function getParamToken () {
 }
 
 function getParamUserMode () {
-    return getParam("Observer");
+    return Number(getParam("Observer"));
 }
 
 function getParam (paramName) {
@@ -96,7 +102,7 @@ export function join () {
         return;
     }
 
-    joinToTs(userToken, tsData.token, userMode === 1 ? 'Observer' : 'Player');
+    joinToTs(userToken, tsData.token, userMode == 1 ? 'Observer' : 'Player');
 }
 
 export function setServer (server, token) {

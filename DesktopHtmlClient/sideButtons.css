@@ -597,13 +597,13 @@ input:focus {
     font-size: calc(2 * var(--aspect-ratio))!important;
     color: #99a1b6;
     transform: rotate(45deg);
-    top: calc(29.2 * var(--aspect-ratio))!important;
+    top: calc(29.4 * var(--aspect-ratio))!important;
     left: calc(31.4 * var(--aspect-ratio))!important;
 }
 
 @-moz-document url-prefix() {
     .send {
-        top: calc(29.2 * var(--aspect-ratio))!important;
+        top: calc(29.4 * var(--aspect-ratio))!important;
         left: calc(25.4 * var(--aspect-ratio))!important;
     }
 }

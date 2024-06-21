@@ -1,4 +1,4 @@
-const hostAddress = "https://dev.nrpoker.net";
+const hostAddress = "https://nrpoker.net";
 // const hostAddress = "http://localhost:3002";
 export const shareHandHostAddress = "http://localhost:3000";
 // const hostAddress = "http://server149.xite.io:3000";

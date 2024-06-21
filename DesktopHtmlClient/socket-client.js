@@ -141,10 +141,7 @@ export function hitGame01(bbRatio, callback) {
     socket.emit("REQ_PLAYER_HITGAME01", bbRatio,
         (strResult) => {
             const result = JSON.parse(strResult);
-            
-            if (result.status) {
-                callback(result);
-            }
+            callback(result);
         }
     );
 }
@@ -153,21 +150,19 @@ export function dealGame02(bbRatio, callback) {
     socket.emit("REQ_PLAYER_DEALGAME02", bbRatio,
         (strResult) => {
             const result = JSON.parse(strResult);
-            
-            if (result.status) {
-                callback(result);
-            }
+            callback(result);
         }
     );
 }
 
-export function joinToTs(userToken, tsToken) {
+export function joinToTs(userToken, tsToken, mode) {
     socket.emit("REQ_PLAYER_ENTER", {
         user: userToken,
         user_token: userToken,
         thread: userToken,
         table: tsToken,
-        table_token: tsToken
+        table_token: tsToken,
+        mode: mode
     }, (success) => {
         if (success) {
             console.log("Success to join table server.");

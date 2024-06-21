@@ -16,7 +16,7 @@ const bet50 = $("#bet50")[0];
 const bet33 = $("#bet33")[0];
 const minusButton = $("#betMinus")[0];
 const plusButton = $("#betPlus")[0];
-const raiseButtonSpan = $("#raiseButton span")[0];
+const raiseButtonSpan = $("#raiseButton .valueDisplay")[0];
 const autoModeCheckbox = $(".autoModeButton .checkbox")[0];
 
 export class ActionUI {
@@ -35,15 +35,15 @@ export class ActionUI {
             let value = Math.floor(getMoneyOriginalValue(parseFloat(e.target.value)) * 100) / 100;
             value = this.m_showInBB ? value * this.m_bigBlind : value;
             value = this.m_showInUSD ? value * this.m_usdRate : value;
-            this.setRaise(value - this.m_CurrentBet);
+            this.setRaise(value);
         });
 
         betInput.addEventListener('input', (e) => {
             const value = Math.floor(getMoneyOriginalValue(parseFloat(e.target.value)) * 100) / 100;
-            const raiseBy = value - this.m_CurrentBet;
+            const raiseBy = value;
 
             if (raiseBy == this.getValidAmount(raiseBy))
-                raiseButtonSpan.innerText = value;
+                raiseButtonSpan.innerText = value + this.m_CurrentBet;
         });
 
         this.showActionUI(false);
@@ -133,7 +133,7 @@ export class ActionUI {
         this.showActionUI(false);
         // turnAction("bet", this.m_Raise);
         //console.error(`betInput.value : ${betInput.value},getMoneyOriginalValue : ${getMoneyOriginalValue(parseFloat(betInput.value))},m_CurrentBet : ${this.m_CurrentBet} = ${getMoneyOriginalValue(parseFloat(betInput.value)) - this.m_CurrentBet}`);
-        turnAction("bet", getMoneyOriginalValue(parseFloat(betInput.value)) - this.m_CurrentBet)
+        turnAction("bet", getMoneyOriginalValue(parseFloat(betInput.value)))
     }
 
     showActionUI (value) {
@@ -204,7 +204,7 @@ export class ActionUI {
             this.fold();
         }
         else if (random < 7 && raiseButton.style.visibility == "visible") {
-            betInput.value = Math.floor(Math.random() * (this.m_MaxRaise - this.m_MinRaise)) + this.m_MinRaise + this.m_CurrentBet;
+            betInput.value = Math.floor(Math.random() * (this.m_MaxRaise - this.m_MinRaise)) + this.m_MinRaise;
             this.raise();
         }
         else {

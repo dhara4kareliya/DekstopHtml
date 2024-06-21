@@ -1,4 +1,4 @@
-import { SubmitReport, getPlayerSeat, sitDown } from "../services/table-server";
+import { SubmitReport, getPlayerSeat, sitDown, tableSettings } from "../services/table-server";
 import { getMoneyValue, getMoneyText } from "./money-display";
 import { Card, getCardImageFilePath } from "./card-ui";
 import { userMode } from '../services/game-server';
@@ -279,7 +279,7 @@ export class Player {
         this.usdRate = usd;
     }
 
-    storeFoldCards(visible, cards) {
+    storeSitoutAndFoldCards(visible, cards) {
         $(this.wrapper).find('> div')[0].onclick = undefined;
         if (visible == true) {
             this.storedCards = cards;
@@ -288,7 +288,7 @@ export class Player {
                 if ($(this.wrapper).find(".fold-cards").length !== 0) {
                     $(this.wrapper).find(".fold-cards").remove();
                 } else {
-                    this.showFoldCards(this.storedCards);
+                    this.showSitoutFoldCards(this.storedCards);
                 }
             };
         } else {
@@ -299,7 +299,7 @@ export class Player {
         }
     }
 
-    showFoldCards(cards) {
+    showSitoutFoldCards(cards) {
         if (cards == undefined) return;
 
         $(this.wrapper).append('<div class="fold-cards"></div>');
@@ -438,6 +438,16 @@ export class Player {
         const amountText = getMoneyText(amount);
         let value = amount ? amountText.outerHTML : false;
         this.setWrapperField("money", value);
+        
+        if (this.wrapper.classList.contains('isPlayer')) {
+            const elements = $("#tip-button button");
+            const bigBlind = tableSettings.bigBlind;
+            for (const element of elements) {
+                const tipValue = element.attributes['value'].value;
+                element.disabled = (amount < (tipValue * bigBlind));
+            }
+
+        }
     }
 
     setPlayerBet(amount) {
@@ -712,9 +722,22 @@ export class Player {
                 } else if ($(button)[0].value === "Other") {
                     Check.addClass("active");
                 }
-                this.submitReport($(button)[0].value, playerSeat);
+                // this.submitReport($(button)[0].value, playerSeat);
             });
         }
+
+        const SubmitButton = $(".btn").find(".submit")[0];
+        SubmitButton.addEventListener(
+            "click",
+            () => {
+                const selectedOption = document.querySelector('input[name="option"]:checked');
+                const InputReport = $(this.wrapper).find(".write")[0];
+                console.log(selectedOption.value);
+                SubmitReport(selectedOption.value, InputReport.value, playerSeat, () => {
+                    $(this.wrapper).find(".main-section").remove();
+                });
+            }, {}
+        );
     }
 
     closeReport() {

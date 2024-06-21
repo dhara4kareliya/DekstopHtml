@@ -481,6 +481,12 @@ tr,
     visibility: hidden;
 }
 
+#tip-button>button:disabled,
+button[disabled] {
+    background-color: gray !important;
+    color: #ffffff;
+}
+
 .button-prents {
 	/* width: 80px; */
 	/* height: 40px; */

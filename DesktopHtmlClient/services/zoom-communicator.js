@@ -1,11 +1,12 @@
 import { playerBuyChips, playerLeave } from "../socket-client";
 import { toggleCheckbox } from "../UI/checkbox";
 import { connectWithMtData, getParamGameId, userToken } from "./game-server";
-import { getPlayerSeat, round, sitOut, tableSettings, tableSubscribe, turn } from "./table-server";
+import { getPlayerSeat, leaveMT, sitOut, tableSettings, tableSubscribe, turn } from "./table-server";
 import { changeLanguage } from "../UI/language-ui";
 // Add the origin where the zoom page is hosted.
 const allowedZoomOrigins = [
-    "https://dev.nrpoker.net",
+    // "http://localhost:3000",
+    "https://nrpoker.net",
 ];
 
 let playerResult = undefined;
@@ -36,10 +37,14 @@ export function dispatchEvent (eventName, eventData) {
     let targetWindow = window.parent;
     if (!targetWindow || targetWindow == window)
         targetWindow = window.opener;
-    if (!targetWindow)
-        throw "Can't send messege to target window null";
-    if (targetWindow == window)
-        throw "Target window is window?";
+    if (!targetWindow) {
+        console.warn("Can't send messege to target window null");
+        return;
+    }
+    if (targetWindow == window) {
+        console.warn("Target window is window?");
+        return;
+    }
     for (const allowedZoomOrigin of allowedZoomOrigins) {
         let sent = false;
         try {
@@ -81,6 +86,7 @@ addEventListener('tsdata', data => {
     console.log("Getting TS data from MT", data)
 });
 
+addEventListener('leaveMT', leaveMT);
 addEventListener('sitOut', sitOut);
 addEventListener('leave', playerLeave);
 addEventListener('buy-in', e => {

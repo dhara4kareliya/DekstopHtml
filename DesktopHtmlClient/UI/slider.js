@@ -1,4 +1,5 @@
 import { getMoneyText, getMoneyValue } from "./money-display";
+import { actionUI  } from "./game-ui";
 
 const sliderClass = ".slider";
 const thumbClass = ".thumb";
@@ -78,7 +79,7 @@ function updateDisplay(slider) {
         }
     }
 
-    betInput.value = getMoneyValue(slider.value);
+    betInput.value = getMoneyValue(slider.value - actionUI.m_CurrentBet);
 }
 
 export function setSliderValue(slider, value) {

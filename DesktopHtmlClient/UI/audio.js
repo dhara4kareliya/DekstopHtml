@@ -90,8 +90,9 @@ export class Sound {
     }
 
     playTurnTime(isPlay) {
-        if (soundEnable == true)
+        if (soundEnable != true)
             return true;
+
 
         if (isPlay) {
             this.m_audioTurnTimer.play();

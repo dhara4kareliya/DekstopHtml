@@ -36,7 +36,7 @@ export class Table {
         this.siticonVisible = false;
         this.closeTable = false;
         this.numberOfSeats = 9;
-        this.sixPlayerSeats = [0, 1, 3, 5, 6, 7];
+        this.sixPlayerSeats = [0, 1, 3, 5, 7, 8];
         this.ninePlayerSeats = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     }
 
@@ -173,7 +173,7 @@ export class Table {
         const tempArray = this.players.slice();
         const seats = this.numberOfSeats == 6 ? this.sixPlayerSeats : this.ninePlayerSeats;
 
-        this.shift = (seats.indexOf(destinationSeat) - seats.indexOf(targetSeat) + this.players.length) % this.players.length;
+        this.shift = (seats.indexOf(destinationSeat) - targetSeat + this.players.length) % this.players.length;
         for (let i = 0; i < this.players.length; i++) {
             this.players[i] = tempArray[(i + this.shift) % this.players.length];
         }
@@ -244,7 +244,7 @@ export class Table {
                 player.setAmountAnimation(false);
                 // player.setPlayerBet(seat.lastAction == "allin" ? seat.bet : seat.lastBet);
                 player.setPlayerBet(seat.lastBet);
-                player.storeFoldCards(getPlayerSeat() != -1 && getPlayerSeat() == i && seat.fold, seat.cards);
+                player.storeSitoutAndFoldCards(getPlayerSeat() != -1 && getPlayerSeat() == i && (seat.fold || seat.sitOutSideBet), seat.cards);
                 if (lastBetPlayer == i) {
                     var checkAction = seat.lastAction == "check" || seat.lastAction == "fold";
                     this.PlayerAnimation({ type: "betAction", animation: !checkAction, actionCheck: checkAction, data: { index: lastBetPlayer } });

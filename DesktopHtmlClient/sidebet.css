@@ -44,15 +44,40 @@
 
 .notepad {
     transition: transform .3s ease-out;
-    /* position: absolute; */
-    top: calc((-35 * var(--aspect-ratio)))!important;
-    left: calc((66.5 * var(--aspect-ratio)))!important;
+    position: absolute;
+    /*top: calc((13 * var(--aspect-ratio)));*/
+    left: calc((64.5 * var(--aspect-ratio)));
+}
+
+#modal-note .modal-dialog {
+    height: 0px !important;
 }
 
 #notepaddiv {
     color: white;
     width: calc((28* var(--aspect-ratio)))!important;
-    height: calc((12 * var(--aspect-ratio)))!important;
+    height: calc((16 * var(--aspect-ratio)))!important;
+    background: linear-gradient(100deg, rgba(20, 24, 47, 0.9), #666DB8)!important;
+    border: 1px solid #666DB8!important;
+    border-radius: 4px!important;
+}
+
+.notepad-game {
+    transition: transform .3s ease-out;
+    /* position: absolute; */
+    top: calc((-9 * var(--aspect-ratio)))!important;
+    left: calc((66.5 * var(--aspect-ratio)))!important;
+}
+
+.backg{
+    background-color: transparent!important;
+    color: white!important;
+}
+
+#notepaddiv-game {
+    color: white;
+    width: calc((28* var(--aspect-ratio)))!important;
+    height: calc((43 * var(--aspect-ratio)))!important;
     background: linear-gradient(100deg, rgba(20, 24, 47, 0.9), #666DB8)!important;
     border: 1px solid #666DB8!important;
     border-radius: 4px!important;
@@ -1067,7 +1092,7 @@ span.mulitplier-symbol {
     align-items: baseline;
 }
 .Hitting_panel {
-    font-size: calc(1.7* var(--aspect-ratio));
+    font-size: calc(1.2 * var(--aspect-ratio));
     font-family: Montserrat;
     font-weight: 500;
     letter-spacing: 0em;

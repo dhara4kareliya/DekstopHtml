@@ -62,7 +62,7 @@ export class PlayerInfo {
 
 export class TableSetting {
     constructor(name, numberOfSeats, mode, gameType, level, nextSB,
-        nextBB, duration, smallBlind, bigBlind, ante, minBuyIn, maxBuyIn, displaySB, displayBB, displayAnte) {
+        nextBB, duration, smallBlind, bigBlind, ante, minBuyIn, maxBuyIn, displaySB, displayBB, displayAnte, sideGameEnabled, sideBetEnabled) {
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.mode = mode;
@@ -79,6 +79,8 @@ export class TableSetting {
         this.displaySB = displaySB;
         this.displayBB = displayBB;
         this.displayAnte = displayAnte;
+        this.sideGameEnabled = sideGameEnabled;
+        this.sideBetEnabled = sideBetEnabled;
     }
 }
 
@@ -449,6 +451,10 @@ export function sitOutNextHand(value = true) {
 
 export function sitOut() {
     emit("REQ_PLAYER_SITOUT");
+}
+
+export function leaveMT() {
+    emit("REQ_PLAYER_LEAVE_MT")
 }
 
 export function sitIn() {

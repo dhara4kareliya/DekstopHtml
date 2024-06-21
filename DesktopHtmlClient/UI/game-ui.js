@@ -21,7 +21,7 @@ const table = new Table();
 const buyInUI = new BuyInUI();
 const mainUI = new MainUI(buyInUI);
 const sidebetUI = new SidebetUI(mainUI);
-const actionUI = new ActionUI();
+export const actionUI = new ActionUI();
 const sound = new Sound();
 
 const showBBCheckbox = $("#showAsBBCheckbox")[0];
@@ -126,6 +126,8 @@ function onTableSettings(settings) {
     table.setCloseTable(settings.closeTable);    
     table.setNumberOfSeats(settings.numberOfSeats);
     sidebetUI.setSidebetBB(settings.sidebetBB);
+    sidebetUI.showPanel(settings.sideGameEnabled || settings.sideBetEnabled)
+    sidebetUI.setSideGameStatus(settings.sideGameEnabled);
     mainUI.setHandId(settings.handId);
 
     if (settings.mode == "tournament") {
@@ -163,7 +165,10 @@ function onPlayerState(state) {
     mainUI.showSitIn(state == "SitOut");
     mainUI.showFoldToAnyBetCheckbox(state == "Playing");
     sidebetUI.toggleSideBetAndGame(state == "Waiting" || state == "SitOut");
-    sidebetUI.showPanel(state == "Waiting" || state == "Playing" || state == "SitOut");
+    
+    if (tableSettings.sideBetEnabled || tableSettings.sideGameEnabled) {
+        sidebetUI.showPanel(state == "Waiting" || state == "Playing" || state == "SitOut");
+    }
 
     if (tableSettings.mode == "cash") {
 
