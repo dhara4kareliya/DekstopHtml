@@ -8,20 +8,17 @@
     visibility: hidden;
 } */
 
-#turnActionsDiv,
-#automaticActionsDiv {
-    position: absolute;
-    bottom: calc( 7.1 * var(--aspect-ratio))!important;
-    right: 2vw;
-    text-align: right;
-    vertical-align: bottom;
-    visibility: hidden;
-} 
-
-
-#turnActionsDiv {
-    /*  bottom: calc( -5 * var(--aspect-ratio)); */
-    bottom: calc( 1 * var(--aspect-ratio));
+#turnActionsDiv , .actionCheckbox{
+	position: absolute;
+	bottom: calc( 58.1 * var(--aspect-ratio));
+	right: 24vw;
+	text-align: right;
+	vertical-align: bottom;
+	visibility: hidden;
+}
+.actionCheckbox{
+    right: 50vw !important;
+    bottom: calc( 62.1 * var(--aspect-ratio));
 }
 
 #turnActionsDiv td div {
@@ -45,6 +42,11 @@
 
 #callButton {
     background: transparent linear-gradient(0deg, #171717 0%, #6E6E6E 100%) 0% 0% no-repeat padding-box;
+    display: inline-flex;
+}
+
+#callButton>div {
+    margin-left: 5px;
 }
 
 #raiseButton {
@@ -58,16 +60,22 @@
     margin-bottom: calc(-2 * var(--aspect-ratio));
 }
 
+.actionButton:hover {
+    background: #3f3c61 0% 0% no-repeat padding-box !important;
+}
+
 #betDiv table {
     border-spacing: calc( 1 * var(--aspect-ratio));
     border-collapse: separate;
 }
+
 
 /* #betDiv td:nth-child(2) div:not(#lineUnderAllIn) {
     text-align: center;
     cursor: pointer;
     padding: calc( 2 * var(--aspect-ratio));
 } */
+
 #betDiv td:nth-child(2) div:not(#lineUnderAllIn) {
     text-align: center;
     cursor: pointer;
@@ -104,9 +112,11 @@
 .slider_prents {
     transform: rotate(90deg);
     position: absolute;
-    top: calc( -8 * var(--aspect-ratio));
-    left: calc( 11.5 * var(--aspect-ratio));
+    top: calc( -7 * var(--aspect-ratio));
+	left: calc( 13.6 * var(--aspect-ratio));
+	border-left: 1px solid rgba(168, 168, 168, 1);
 }
+
 
 /* #betSlider {
     display: flex;
@@ -127,12 +137,12 @@
 }
 
 #betSlider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3vw;
-    height: calc( 24 * var(--aspect-ratio));
-    cursor: grab;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 1.4vw;
+	height: calc( 23 * var(--aspect-ratio));
+	cursor: grab;
 }
 
 #betSliderArea {
@@ -141,6 +151,7 @@
     border-radius: calc(2.5 * var(--aspect-ratio));
     background: rgba(0, 2, 47, 0.72);
 }
+
 #betDiv table {
     border-spacing: calc( 1.5 * var(--aspect-ratio))!important;
     border-collapse: separate;
@@ -154,6 +165,12 @@
 }
 
 #bet70:hover {
+    background: #4464bb96 0% 0% no-repeat padding-box;
+    border-radius: calc( 1 * var(--aspect-ratio));
+    padding: calc( .4 * var(--aspect-ratio));
+}
+
+#allInButton:hover {
     background: #4464bb96 0% 0% no-repeat padding-box;
     border-radius: calc( 1 * var(--aspect-ratio));
     padding: calc( .4 * var(--aspect-ratio));
@@ -193,25 +210,26 @@
     pointer-events: auto;
 }
 
-#autoCheckButton {
+
+/* #autoCheckButton {
     background: transparent linear-gradient(0deg, #E50202 0%, #676060 100%) 0% 0% no-repeat padding-box;
-}
+} */
 
 #betDivWrapper {
     display: inline-block;
 }
 
 #betDiv {
-    display: inline-block;
-    border-radius: calc(0.4 * var(--aspect-ratio));
-    margin-bottom: calc(-2 * var(--aspect-ratio));
-    position: relative;
-    top: calc( -5 * var(--aspect-ratio));
-    left: calc( -31 * var(--aspect-ratio));
-    height: calc(8.3 * var(--aspect-ratio));
-    width: calc(30.3 * var(--aspect-ratio));
-    background: linear-gradient(180deg, #323C59 0%, #4A5571 100%)!important;
-    border-radius: calc( 1 * var(--aspect-ratio));
+	display: inline-block;
+	border-radius: calc(0.4 * var(--aspect-ratio));
+	margin-bottom: calc(-2 * var(--aspect-ratio));
+	position: absolute;
+	top: calc( -10 * var(--aspect-ratio));
+	left: calc( 9 * var(--aspect-ratio));
+	height: calc(9.3 * var(--aspect-ratio));
+	width: calc(30.3 * var(--aspect-ratio));
+	background: linear-gradient(180deg, #323C59 0%, #4A5571 100%) !important;
+	border-radius: calc( 1 * var(--aspect-ratio));
 }
 
 
@@ -221,25 +239,28 @@
 } */
 
 #betShow input {
-    width: calc( 8 * var(--aspect-ratio));
-    text-align: center;
-    background: linear-gradient(180deg, #323C59 0%, #4A5571 100%);
-    height: calc( 8 * var(--aspect-ratio));
-    border-radius: calc( 1 * var(--aspect-ratio));
+	width: calc( 8 * var(--aspect-ratio));
+	text-align: center;
+	background: linear-gradient(180deg, #323C59 0%, #4A5571 100%);
+	height: calc( 9.3 * var(--aspect-ratio));
+	border-radius: calc( 1 * var(--aspect-ratio));
 }
 
 .border-underline {
     padding-right: calc( 0.6 * var(--aspect-ratio));
     border-right: 1.94px solid rgba(168, 168, 168, 1);
 }
+
 #betShow {
-    position: absolute;
-    left: calc( -0.3 * var(--aspect-ratio));
-    top: calc( -4.8 * var(--aspect-ratio));
+	position: absolute;
+	left: calc( 0 * var(--aspect-ratio));
+	top: calc( -10 * var(--aspect-ratio));
 }
-increase-placeholder{
+
+increase-placeholder {
     position: relative;
 }
+
 .amount_of_input {
     position: absolute;
     font-size: calc( 1.4 * var(--aspect-ratio));
@@ -255,4 +276,30 @@ increase-placeholder{
 
 #showCardsButton {
     background: transparent linear-gradient(180deg, #7700B5 0%, #8D2626 100%) 0% 0% no-repeat padding-box;
+}
+/* bet amount div */
+.betAmount {
+	top: calc( -14.5 * var(--aspect-ratio));
+	background: #3A4768;
+	position: absolute;
+	padding: 5px 4px;
+	left: calc( 9 * var(--aspect-ratio));
+	display: flex;
+	width: calc(30 * var(--aspect-ratio));
+	justify-content: space-between;
+	border-radius: 4px;
+}
+
+.betAmount div{
+        border: 1px solid #91CAFE;
+        border-radius: 4px;
+        background: #050022;
+        width: calc(4.5 * var(--aspect-ratio));
+        text-align: center;
+        font-size: calc(1.2 * var(--aspect-ratio));
+        padding: 4px 0px;
+        box-shadow: 0px 1px 2px 0px rgba(255, 255, 255, 0.35);
+}
+.betAmount div.active{
+    box-shadow: inset 0px 0px 3px 1.5px rgba(145, 202, 254, 0.8);
 }

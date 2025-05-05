@@ -29,10 +29,11 @@ function setSocketEventListeners() {
     socket.on("REQ_TABLE_PLAYERSHOWCARDS", eventTrigger("onTablePlayerShowCards"));
     socket.on("REQ_TABLE_PLAYERMUCKCARDS", eventTrigger("onTablePlayerMuckCards"));
     socket.on("REQ_TABLE_PLAYERSHOWCARDSBTN", eventTrigger("onTablePlayerShowCardsButton"));
-    socket.on("REQ_TABLE_FOLDANYBET", eventTrigger("onTablePlayerFoldAnyBet"));
+    socket.on("REQ_TABLE_FOLDANYBET", eventTrigger("onTablePlayerAlwaysFold"));
     socket.on("REQ_TABLE_BUYIN", eventTrigger("onBuyInOpen"));
     socket.on("REQ_PLAYER_LEAVE", eventTrigger("onPlayerLeave"));
     socket.on("REQ_MESSAGE", eventTrigger("onMessage"));
+    socket.on("REQ_CANCEL_BET", eventTrigger("onCancelBet"));
     socket.on("REQ_INSURANC", eventTrigger("onInsurance"));
     socket.on("REQ_Animation", eventTrigger("onAnimation"));
     socket.on("REQ_TOURNEY_INFO", eventTrigger("onTourneyInfo"));
@@ -48,7 +49,14 @@ function setSocketEventListeners() {
     socket.on("REQ_TABLE_TIP", eventTrigger("onTip"));
     socket.on("REQ_TABLE_CARD", eventTrigger("onTableExtraCard"));
     socket.on("REQ_PLAYER_CARD", eventTrigger("onPlayerCard"));
+    socket.on("REQ_Tournament_Cancel_Time", eventTrigger("onTournamentCancelTime"));
     socket.on("REQ_PLAYER_SIDEBETCARD", eventTrigger("onPlayerSidebetCard"));
+    socket.on("REQ_PLAYER_GENERATE_HASH_AND_RANDOM_STRING", eventTrigger("onPlayerGenerateHashAndRandomString"));
+    socket.on("REQ_PLAYER_SIDE_GAME_RANDOM_STRING", eventTrigger("onPlayerSideGameRandomString"))
+    socket.on("REQ_ALL_Hashes", eventTrigger("onAllHashes"));
+    socket.on("REQ_PLAYER_RANDOM_STRING", eventTrigger("onPlayerRandomString"));
+    socket.on("REQ_PLAYER_GAME_SETTING", eventTrigger("onPlayerGameSetting"))
+    socket.on("REQ_VERIFY_JSON_STRING", eventTrigger("onVerifyJsonString"));
 }
 
 // TS -> client
@@ -65,10 +73,11 @@ const eventListeners = {
     onTablePlayerShowCards: [],
     onTablePlayerMuckCards: [],
     onTablePlayerShowCardsButton: [],
-    onTablePlayerFoldAnyBet: [],
+    onTablePlayerAlwaysFold: [],
     onBuyInOpen: [],
     onPlayerLeave: [],
     onMessage: [],
+    onCancelBet: [],
     onInsurance: [],
     onAnimation: [],
     onTourneyInfo: [],
@@ -82,9 +91,16 @@ const eventListeners = {
     onTableFreeBalance: [],
     onTableExtraCard: [],
     onPlayerCard: [],
+    onTournamentCancelTime: [],
     onPlayerSidebetCard: [],
     onConnect: [],
-    onDisconnect: []
+    onDisconnect: [],
+    onPlayerGenerateHashAndRandomString: [],
+    onAllHashes: [],
+    onPlayerRandomString: [],
+    onVerifyJsonString: [],
+    onPlayerSideGameRandomString: [],
+    onPlayerGameSetting: [],
 };
 
 function triggerEventListeners(name, data) {
@@ -137,8 +153,8 @@ export function ShowTipToDealer(amount) {
     socket.emit("REQ_TIP_DEALER", { amount: amount });
 }
 
-export function hitGame01(bbRatio, callback) {
-    socket.emit("REQ_PLAYER_HITGAME01", bbRatio,
+export function hitGame01(bbRatio, hash = undefined, callback) {
+    socket.emit("REQ_PLAYER_HITGAME01", { bbRatio, hash },
         (strResult) => {
             const result = JSON.parse(strResult);
             callback(result);
@@ -146,8 +162,8 @@ export function hitGame01(bbRatio, callback) {
     );
 }
 
-export function dealGame02(bbRatio, callback) {
-    socket.emit("REQ_PLAYER_DEALGAME02", bbRatio,
+export function dealGame02(bbRatio, hash = undefined, callback) {
+    socket.emit("REQ_PLAYER_DEALGAME02", { bbRatio, hash },
         (strResult) => {
             const result = JSON.parse(strResult);
             callback(result);
@@ -186,8 +202,8 @@ export function joinToTsWithMtData(userEncrypted, tsToken) {
     });
 }
 
-export function submitSideBet(bets, street, callback) {
-    socket.emit("REQ_PLAYER_SIDEBET", { sidebets: bets, street },
+export function submitSideBet(bets, street, isHolePreCards, callback) {
+    socket.emit("REQ_PLAYER_SIDEBET", { sidebets: bets, street, isHolePreCards },
         (strResult) => {
             const result = JSON.parse(strResult);
             console.log('Side Bet submitted \n', result.sideBet);
@@ -305,8 +321,21 @@ export function updatePlayerInfo(callback) {
         }
     });
 }
-export function autoFold(value, callback) {
-    socket.emit("REQ_AUTO_FOLD", { value: value }, callback);
+
+export function sideGameRandomString(value) {
+    socket.emit("REQ_PLAYER_SIDE_GAME_RANDOM_STRING", { value: value });
+}
+
+export function shufflingVerificationReport(value) {
+    socket.emit("REQ_PRE_VERIFY_SHUFFLING", { value: value });
+}
+
+export function getPreFlopAutoFold(value, callback) {
+    socket.emit("REQ_PRE_FLOP_AUTO_FOLD", { value: value }, callback);
+}
+
+export function updatePlayerSetting(setting, value) {
+    socket.emit("REQ_PLAYER_GAME_SETTING", { setting: setting, value: value });
 }
 
 export function playerLeaveGame() {

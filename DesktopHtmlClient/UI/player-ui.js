@@ -3,6 +3,8 @@ import { getMoneyValue, getMoneyText } from "./money-display";
 import { Card, getCardImageFilePath } from "./card-ui";
 import { userMode } from '../services/game-server';
 import { Sound } from './audio';
+import countryData from '../languages/country.json';
+import { customTimer } from "../services/utils-server";
 
 const sound = new Sound();
 const actionColors = {
@@ -16,6 +18,7 @@ const actionColors = {
     "SMALL BLIND": "#595959",
     "MISSING BB": "#595959",
     "MISSING SB": "#595959",
+    "ANTE": "#595959",
     "BB": "#595959",
     "SB": "#595959",
     "Sitting Out": "#595959",
@@ -64,6 +67,10 @@ const fieldAlternativeActions = {
     avatar: (element, value) => {
         element.src = value;
     },
+    flag: (element, value) => {
+        if (value)
+            element.src = `./images/flag/${countryData[value].toLowerCase()}.svg`;
+    },
     lastAction: (element, value) => {
         element.innerText = value;
         if (actionColors[value])
@@ -95,20 +102,18 @@ const playerWrapperHTML = `<div>
     <table>
     <tr>
         <td>
-        <img class = "flag" src="./images/desktop/546dfc16a2add4db09ebc44d307ac72a@2x.png">
+        <img class ="flag" src="./images/flag/us.svg">
         </td>
         <td></td>
         <td>
         <div class = "stars box">
-            <img src="./images/desktop/material-star.svg">
+            <i aria-hidden="true" class="fa fa-star"></i>
             <span class="rating">4.2</span>
         </div>
         </td>
     </tr>
     <tr>
-        <td></td>
-        <td><span class="name">Tangotag</span></td>
-        <td></td>
+        <td colspan="3"><span class="name">Tangotag</span></td>
     </tr>
     <tr>
         <td></td>
@@ -138,13 +143,12 @@ const playerWrapperHTML = `<div>
     <span></span>
     <canvas></canvas>
 </div>
-<div class="toast-container text-black p-3">
-            <div id="toastMessage" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Thank you user for 10BB Tips</strong>
-                  </div>
-            </div>
-          </div>
+<div class="tipThankMessage">  
+    <div class="thankyouCard">   
+            <div><img src="./images/thankyou.png"  class="thankyou-img" alt=""></div>
+            <div><img src="./images/Thanktext.png" class="thanktext" alt=""></div>
+    </div>
+</div>
 </div>
 `;
 
@@ -175,25 +179,25 @@ const PlayerDetail = ` <div class="main-section">
         <div class="report-dd">
             <ul>
                  <li>
-                     <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 check">
+                     <input type="radio" value="Offensive Language"  name='option' id="checkbox1" class="check1 reportType">
                      <label class="check-label lang" key="offensiveLang">Offensive Language</label>    
                  </li>
                  <li>
-                    <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 check">
+                    <input type="radio" name='option' value="Act like a bot"  id="checkbox2" class="check2 reportType">
                     <label class="check-label lang" key="actLikeBot">Act like a bot</label>    
                 </li>
                 <li class="other">
-                    <input type="radio" name='option' value="Other" id="checkbox3" class="check3 check">
+                    <input type="radio" name='option' value="Other" id="checkbox3" class="check3 reportType">
                     <label class="check-label lang" key="other">Other</label> 
                 </li>
             </ul>
-            <div class="text">
-            <span key="describeReport" class="lang">Describe Your Report</span>
-                <input type="text" class="write lang" key="reportText"  placeholder="Type report...">
+            <div class="text reportTextDiv">
+                <span key="describeReport" class="lang">Describe Your Report</span>
+                <input type="text" class="otherTextReport lang" key="reportText"  placeholder="Type report...">
             </div>
             <div class="btn">
-                <button class="submit lang" key="submit">Submit</button>
-                <button class="cancel lang" key="Cancel">cancel</button>
+                <button class="submitReport lang" key="submit">Submit</button>
+                <button class="cancelReport cancel lang" key="Cancel">cancel</button>
             </div>
          </div> 
     </div>
@@ -251,7 +255,9 @@ export class Player {
         this.missingSB = false;
         this.mucked = false;
         this.isPlaying = false;
+        this.isPlayerTurn = false;
         this.storedCards = [];
+        this.playerState = undefined;
 
 
     }
@@ -307,7 +313,7 @@ export class Player {
         let fourCardsClassName = "";
 
         if (cards.length == 2) twoCardsClassName = "two-cards";
-        if (cards.length == 4 || cards.length == 5) fourCardsClassName = "four-cards";
+        if (cards.length == 4 || cards.length == 5 || cards.length == 6) fourCardsClassName = "four-cards";
 
         if (fourCardsClassName != "") {
             $(this.wrapper).find('.fold-cards').addClass(fourCardsClassName);
@@ -337,13 +343,16 @@ export class Player {
             return;
         }
 
+        this.clearCards();
         this.cards = cards;
 
         let twoCardsClassName = "";
         let fourCardsClassName = "";
 
         if (cards.length == 2) twoCardsClassName = "two-cards";
-        if (cards.length == 4 || cards.length == 5) fourCardsClassName = "four-cards";
+        if (cards.length == 4 || cards.length == 5 || cards.length == 6) fourCardsClassName = "four-cards";
+
+        if (this.cards.every(c => c !== '?')) fourCardsClassName += " isCardsOpen";
 
         if (fourCardsClassName != "") {
             $(this.wrapper).find('.player-cards').addClass(fourCardsClassName);
@@ -359,13 +368,22 @@ export class Player {
                                 </div>`;
 
             $(this.wrapper).find('.player-cards').append(playerCard)
+            if(this.wrapper.classList.contains('isPlayer')){
+                const logcards = $(`<img class="" src="${cardImgFilePath}" style="opacity:1;height: 40px;width: 25px;"/>`);
+                $('.playerCards').find('.cards').append(logcards)
+            }
         }
     }
 
     showCards(cards) {
         if (JSON.stringify(this.cards) === JSON.stringify(cards)) return;
 
+
         const playerCards = $(this.wrapper).find(".player-card");
+
+        const isCardsOpen = cards.every(c => c !== '?');
+        if (isCardsOpen)
+            $(this.wrapper).find('.player-cards').addClass("isCardsOpen");
 
         let i = 0;
         for (const card of playerCards) {
@@ -380,18 +398,32 @@ export class Player {
             card.style.animationName = "flip-animation";
         }
     }
+    checkPlayerCards() {
+        const playerCards = $(this.wrapper).find(".player-card");
+        if(playerCards.length > 0)
+            return true;
+        else 
+            return false;
+    }
 
     clearCards() {
-            $(this.wrapper).find('.player-cards')[0].innerHTML = '';
-            this.cards = [];
+        if(this.wrapper.classList.contains('isPlayer')){
+          $('.playerCards').find('.cards').html('')
         }
-        /**
-         * Sets the value in the element.
-         * undefined or false will make it invisible.
-         * true will make it visible again.
-         * @param {String} fieldName 
-         * @param {String} value 
-         */
+        const playerCards = $(this.wrapper).find('.player-cards')[0];
+        playerCards.innerHTML = '';
+        playerCards.classList.remove("isCardsOpen");
+
+        this.cards = [];
+    }
+
+    /**
+     * Sets the value in the element.
+     * undefined or false will make it invisible.
+     * true will make it visible again.
+     * @param {String} fieldName 
+     * @param {String} value 
+     */
     setWrapperField(fieldName, value) {
         const selector = playerFieldSelectors[fieldName];
         if (!selector)
@@ -426,6 +458,8 @@ export class Player {
         if (seat.state == 'SitOut') {
             this.setWrapperField("lastAction", "Sitting Out");
         }
+
+        this.playerState = seat.state;
     }
 
     setPlayerName(name) {
@@ -435,19 +469,10 @@ export class Player {
 
     setPlayerMoney(amount) {
         this.money = getMoneyValue(amount);
-        const amountText = getMoneyText(amount);
-        let value = amount ? amountText.outerHTML : false;
+        const amountText = tableSettings.mode == 'cash' ? getMoneyText(amount).outerHTML : getMoneyValue(amount);
+        let value = amount ? amountText : false;
         this.setWrapperField("money", value);
-        
-        if (this.wrapper.classList.contains('isPlayer')) {
-            const elements = $("#tip-button button");
-            const bigBlind = tableSettings.bigBlind;
-            for (const element of elements) {
-                const tipValue = element.attributes['value'].value;
-                element.disabled = (amount < (tipValue * bigBlind));
-            }
-
-        }
+        this.setTip(amount);
     }
 
     setPlayerBet(amount) {
@@ -455,14 +480,20 @@ export class Player {
         let value = false;
 
         if (amount) {
-            const amountText = getMoneyText(amount);
-            value = amountText.outerHTML;
+            const amountText = tableSettings.mode == 'cash' ? getMoneyText(amount).outerHTML : getMoneyValue(amount);
+            value = amountText;
         }
 
         this.setWrapperField("lastBet", value);
     }
 
     setPlayerRating(rating) {
+        var ratingBox = $(this.wrapper).find(".stars.box")[0];
+        if (tableSettings.mode !== 'cash') {
+            ratingBox.style.visibility = 'hidden';
+            return;
+        }
+
         if (!rating) return;
 
         this.setWrapperField("rating", rating);
@@ -499,12 +530,13 @@ export class Player {
 
     muckCards() {
         this.mucked = true;
-        this.clearCards();
+        //this.clearCards();
         this.setWrapperField("lastAction", "MUCKED");
     }
 
     removeMuckedFlag() {
         this.mucked = false;
+        this.setWrapperField("lastAction", false);
     }
 
     removeActionLabel() {
@@ -537,8 +569,8 @@ export class Player {
     showPrize(amount) {
         let value = false;
         if (amount) {
-            const amountText = getMoneyText(amount);
-            value = amountText.outerHTML;
+            const amountText = tableSettings.mode == 'cash' ? getMoneyText(amount).outerHTML : getMoneyValue(amount);
+            value = amountText;
         }
         this.setWrapperField("prize", value);
     }
@@ -572,7 +604,7 @@ export class Player {
     }
 
     setSmallBlindButton(visible) {
-        if (this.missingSB) return;
+        // if (this.missingSB) return;
         if (!visible)
             this.setWrapperField("blind", false);
         else
@@ -580,7 +612,7 @@ export class Player {
     }
 
     setBigBlindButton(visible) {
-        if (this.missingBB) return;
+        //  if (this.missingBB) return;
         if (!visible)
             this.setWrapperField("blind", false);
         else
@@ -614,6 +646,9 @@ export class Player {
 
     setPlayerAvatar(avatar) {
         this.setWrapperField("avatar", avatar);
+    }
+    setPlayerCountry(country) {
+        this.setWrapperField("flag", country);
     }
 
     setTotalCardMask() {
@@ -672,8 +707,8 @@ export class Player {
                     $(this.wrapper).append(PlayerDetail);
                     $(this.wrapper).find(".report-name")[0].innerText = seat.player.name;
                     $(this.wrapper).find(".report-create")[0].innerText = seat.player.joiningDate;
-
                     this.setPlayerRating(seat.player.rating);
+
                     this.addReportMenu(playerSeat);
                 }
             };
@@ -684,13 +719,16 @@ export class Player {
         }
     }
 
-    submitReport(type, playerSeat) {
-        const SubmitButton = $(".btn").find(".submit")[0];
-        SubmitButton.addEventListener(
+    submitReport(playerSeat) {
+        const submitReport = $(this.wrapper).find(".submitReport")[0];
+        submitReport.addEventListener(
             "click",
             () => {
-                const InputReport = $(this.wrapper).find(".write")[0];
-                SubmitReport(type, InputReport.value, playerSeat, () => {
+                const reportTextDiv = $(this.wrapper).find(".reportTextDiv")[0];
+                const reportType = $(this.wrapper).find(".reportType:checked")[0];
+                const InputReport = $(reportTextDiv).find(".otherTextReport")[0];
+
+                SubmitReport(reportType.value, InputReport.value, playerSeat, () => {
                     $(this.wrapper).find(".main-section").remove();
                 });
             }, {}
@@ -705,44 +743,32 @@ export class Player {
                 reportMenu.removeClass("active");
             } else {
                 reportMenu.addClass("active");
-                this.addReportOption(playerSeat);
+                this.addReportOption();
+                this.submitReport(playerSeat)
                 this.closeReport();
             }
         });
     }
 
-    addReportOption(playerSeat) {
-        const CheckButton = $(".player_wrapper").find(".check");
+    addReportOption() {
+        const reportType = $(this.wrapper).find(".reportType");
+        const reportTextDiv = $(this.wrapper).find(".reportTextDiv");
 
-        for (const button of CheckButton) {
+        for (const button of reportType) {
             button.addEventListener("click", () => {
-                const Check = $(this.wrapper).find(".text");
-                if (Check.hasClass("active")) {
-                    Check.removeClass("active");
-                } else if ($(button)[0].value === "Other") {
-                    Check.addClass("active");
+                if ($(button)[0].value === "Other") {
+                    reportTextDiv.addClass("active");
+                } else {
+                    if (reportTextDiv.hasClass('active'))
+                        reportTextDiv.removeClass("active");
                 }
-                // this.submitReport($(button)[0].value, playerSeat);
             });
         }
-
-        const SubmitButton = $(".btn").find(".submit")[0];
-        SubmitButton.addEventListener(
-            "click",
-            () => {
-                const selectedOption = document.querySelector('input[name="option"]:checked');
-                const InputReport = $(this.wrapper).find(".write")[0];
-                console.log(selectedOption.value);
-                SubmitReport(selectedOption.value, InputReport.value, playerSeat, () => {
-                    $(this.wrapper).find(".main-section").remove();
-                });
-            }, {}
-        );
     }
 
     closeReport() {
         if (this.isPlaying) {
-            const CheckButton = $(".player_wrapper").find(".cancel")[0];
+            const CheckButton = $(this.wrapper).find(".cancelReport")[0];
             CheckButton.addEventListener("click", () => {
                 const Check = $(this.wrapper).find(".report-dd");
                 Check.removeClass("active");
@@ -776,67 +802,79 @@ export class Player {
         }
     }
 
-    setTurnTimer(timeout, timeToReact, timeBank) {
-
+    setTurnTimer(timeout, timeToReact, timeBank, isRootPlayer) {
+        const totalInitialTime = timeToReact + timeBank;
+        const elapsedTime = totalInitialTime - timeout;
+    
+        let remainingReactTime = timeToReact - elapsedTime;
+        if (remainingReactTime < 0) remainingReactTime = 0;
+    
+        let remainingBankTime = timeBank;
+        let elapsedBankTime = 0;
+        if (remainingReactTime === 0) {
+            elapsedBankTime = Math.round(timeBank - timeout);
+            remainingBankTime = Math.round(timeout);
+            if (remainingBankTime < 0) remainingBankTime = 0;
+        }
+    
         this.resetPlayerWrapperClasses();
         if (this.turnCountInterval != undefined) { return; }
-
-        var timeBanksound = false;
-        const timeCircleCount = $(this.wrapper).find(".timeCircle div")[0];
-        timeCircleCount.innerText = timeToReact;
-        var totaltime = timeToReact;
-        this.turnCountInterval = setInterval(() => {
-            const timeCircleCount = $(this.wrapper).find(".timeCircle div")[0];
-            if (timeToReact > 0) {
-                timeCircleCount.innerText = --timeToReact;
-                timeCircleCount.style.width = `${timeToReact *100/totaltime}%`;
-            }
-
-            // --timeToReact;
-
-            if (timeToReact === 0) {
-                if (timeBank >= 0) {
-                    if (!timeBanksound) {
-                        sound.playTurnTime(true);
-                        timeBanksound = true;
-                    }
-
-                    timeCircleCount.innerText = timeBank--;
-                } else if (timeBank == -1) {
-                    this.clearIntervalTimer();
-                }
-            }
-        }, 1000);
-
+        this.isPlayerTurn = true;
+        let timeBanksound = false;
+    
+        let timeCircleCount = $(this.wrapper).find(".timeCircle div")[0];
+        timeCircleCount.innerText = remainingReactTime || remainingBankTime;
+    
+        $(this.wrapper).find(".box").addClass("active-turn");
         $(this.wrapper).addClass("toPlay");
+    
         const timeBar = $(this.wrapper).find(".turnTime div")[0];
         const clonedTimeBar = timeBar.cloneNode(true);
         timeBar.parentNode.replaceChild(clonedTimeBar, timeBar);
-        clonedTimeBar.setAttribute("style", `-webkit-animation: timeReactRunOut calc(${timeToReact + 1}s) steps(500, start);`);
-        /* clonedTimeBar.style.animationDuration = `${timeToReact}s`;
-         clonedTimeBar.style.animationName = "timeReactRunOut";*/
-
-
+    
         const timeCircle = $(this.wrapper).find(".timeCircle")[0];
         const clonedTimeCircle = timeCircle.cloneNode(true);
         timeCircle.parentNode.replaceChild(clonedTimeCircle, timeCircle);
-        clonedTimeCircle.setAttribute("style", `-webkit-animation: turnCircleReact calc(${timeToReact + 1}s) steps(500, start);`);
-        /* clonedTimeCircle.style.animationDuration = `${timeToReact}s`;
-        clonedTimeCircle.style.animationName = "turnCircleReact"; */
-
-        this.reactTimeOut = setTimeout(() => {
-            clonedTimeBar.style.animationDuration = `${timeBank}s`;
-            clonedTimeBar.style.animationName = "timeBankRunOut";
-            clonedTimeCircle.style.animationDuration = `${timeBank + 1}s`;
-            clonedTimeCircle.style.animationName = "turnCircleBank";
-
-            if (this.reactTimeOut != undefined)
-                clearTimeout(this.reactTimeOut);
-        }, timeToReact * 1000);
-
+    
+        if (remainingReactTime > 0) {
+            clonedTimeBar.setAttribute("style", `-webkit-animation: timeReactRunOut ${timeToReact}s steps(500, start) ${-elapsedTime}s forwards;`);
+            clonedTimeCircle.setAttribute("style", `-webkit-animation: turnCircleReact ${timeToReact}s steps(500, start) ${-elapsedTime}s forwards;`);
+        }
+    
+        this.turnCountInterval = new customTimer();
+        this.turnCountInterval.descendingTimer(remainingReactTime, (time) => {
+            if (time.seconds > 0) {
+                let timeCircleCount = $(this.wrapper).find(".timeCircle div")[0];
+                timeCircleCount.innerText = time.seconds;
+            }
+            if (time.seconds == '0') {
+               clonedTimeCircle.style.animation = `turnCircleBank ${remainingBankTime + 1}s steps(500, start) ${-elapsedBankTime}s forwards`;
+                clonedTimeBar.style.animation = `timeBankRunOut ${remainingBankTime}s steps(500, start) ${-elapsedBankTime}s forwards`;
+    
+                if (remainingBankTime > 0) {
+                    if (!timeBanksound && isRootPlayer) {
+                        sound.playTurnTime(true);
+                        timeBanksound = true;
+                    }
+    
+                    this.turnCountInterval.descendingTimer(remainingBankTime, (banktime) => {
+                        let timeCircleCount = $(this.wrapper).find(".timeCircle div")[0];
+                        timeCircleCount.innerText = banktime.seconds;
+                        if (banktime.seconds < 4 && banktime.seconds > 0) {
+                            $(this.wrapper).find(".box").addClass("blink");
+                        }
+                        if(banktime.seconds == '0'){
+                            this.clearIntervalTimer();
+                        }
+                    });
+                } 
+            }
+        });
     }
 
     clearTurnTimer() {
+        $(this.wrapper).find(".box").removeClass("blink");
+        $(this.wrapper).find(".box").removeClass("active-turn");
         sound.playTurnTime(false);
         this.clearIntervalTimer();
         this.resetPlayerWrapperClasses();
@@ -859,20 +897,49 @@ export class Player {
     }
 
     clearIntervalTimer() {
+        this.isPlayerTurn = false;
         if (this.turnCountInterval != undefined) {
-            clearInterval(this.turnCountInterval);
+            this.turnCountInterval.stopTimer();
             this.turnCountInterval = undefined;
         }
     }
 
-    TipDealer(data) {
-        const tostMessage = $(this.wrapper).find("#toastMessage")[0];
-        const tostText = $(this.wrapper).find('#toastMessage .me-auto')[0];
-        tostText.innerText = data.msg;
-        tostMessage.style.display = 'block';
+    setTip(amount) {
+        if (!this.wrapper.classList.contains('isPlayer') || this.playerState !== "Playing" || tableSettings.mode !== "cash")
+            return false;
+
+        const elements = $("#tip-button button");
+        const tipDiv = $("#tip-button")[0];
+        const bigBlind = tableSettings.bigBlind;
+        for (const element of elements) {
+            const tipValue = element.attributes['value'].value;
+            element.disabled = (amount < (tipValue * bigBlind));
+
+        }
+        const elementValue = elements[0].attributes['value'].value;
+        if (!amount || this.isPlayerTurn || (amount < (elementValue * bigBlind))) {
+            tipDiv.style.visibility = 'hidden';
+        } else {
+            tipDiv.style.visibility = 'visible';
+        };
+    }
+
+    setTipMessage(data) {
+        const tipThankMessage = $(this.wrapper).find(".tipThankMessage")[0];
+        tipThankMessage.style.display = 'block';
+        const thankyouImg = $(tipThankMessage).find(".thankyou-img")[0];
+        const thanktext = $(tipThankMessage).find(".thanktext")[0];
+
+        thankyouImg.style.animation = "tipMessageAnimate 2.5s";
+        thanktext.style.animation = "tipMessageAnimate 2.5s";
+
+        if (data.money !== undefined && data.seat === getPlayerSeat())
+            this.setPlayerMoney(data.money);
 
         setTimeout(() => {
-            tostMessage.style.display = 'none';
-        }, 2000);
+            tipThankMessage.style.display = 'none';
+            thankyouImg.style.animation = "";
+            thanktext.style.animation = "";
+        }, 3000);
     }
 }

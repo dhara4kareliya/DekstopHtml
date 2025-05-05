@@ -1,5 +1,5 @@
-import { getMoneyText, getMoneyValue } from "./money-display";
-import { actionUI  } from "./game-ui";
+import { getMoneyText, getMoneyValue, round2 } from "./money-display";
+import { actionUI } from "./game-ui";
 
 const sliderClass = ".slider";
 const thumbClass = ".thumb";
@@ -44,15 +44,16 @@ function offsetofElement(elem) {
 }
 
 function slide(slider, event) {
+    if (!mouseDown)
+        return;
     if (event.changedTouches) {
         const offset = offsetofElement(slider);
         const touch = event.changedTouches[0];
         event.offsetX = touch.clientX - offset.left + window.scrollX;
         event.offsetY = touch.clientY - offset.top + window.screenY;
     }
-    if (!mouseDown)
-        return;
     const vertical = slider.offsetHeight > slider.offsetWidth;
+    
     const thumb = $(slider).find(thumbClass)[0];
     let precent = 100 *
         (vertical ? (event.offsetY / slider.offsetHeight) : (event.offsetX / slider.offsetWidth));
@@ -65,8 +66,13 @@ function slide(slider, event) {
     if (vertical)
         part = 1 - part;
     const range = slider.max - slider.min;
-    slider.value = slider.min + range * part;
-    slider.dispatchEvent(new Event('change', { value: slider.value }));
+    slider.value = round2(slider.min + range * part);
+    if (slider.classList.contains('buyinSlider')) {
+        slider.style.background = `linear-gradient(to right, #91CAFE 0%, #6D8CAE ${precent - (vertical ? 5 : 0)}%, #15163B ${precent}%)`;
+      }
+    setSliderValue(slider, slider.value);
+    actionUI.m_Raise = slider.value - actionUI.m_CurrentBet;
+    // slider.dispatchEvent(new Event('change', { value: slider.value }));
 }
 
 function updateDisplay(slider) {
@@ -79,10 +85,10 @@ function updateDisplay(slider) {
         }
     }
 
-    betInput.value = getMoneyValue(slider.value - actionUI.m_CurrentBet);
+    betInput.value = getMoneyValue(round2(slider.value - actionUI.m_CurrentBet));
 }
 
-export function setSliderValue(slider, value) {
+export function setSliderValue(slider, value, condition = false) {
     if (value < slider.min)
         value = slider.min;
     else if (value > slider.max)
@@ -97,6 +103,10 @@ export function setSliderValue(slider, value) {
     const precent = 100 * part;
     thumb.style[vertical ? "top" : "left"] = `${precent}%`;
     slider.value = value;
+    if (slider.classList.contains('buyinSlider')) {
+        slider.style.background = `linear-gradient(to right, #91CAFE 0%, #6D8CAE ${precent - (vertical ? 5 : 0)}%, #15163B ${precent}%)`;
+      }
+    if(!condition)
     slider.dispatchEvent(new Event('change', { value: value }));
 }
 

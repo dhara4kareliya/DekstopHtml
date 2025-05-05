@@ -89,7 +89,7 @@
     text-align: center;
     font-size: calc(2 * var(--aspect-ratio));
     visibility: hidden;
-    /*  left: calc( 74.5 * var(--aspect-ratio)) !important; */
+    left: calc( 63 * var(--aspect-ratio)) !important;
     position: fixed;
     /*  top: calc( 38.5 * var(--aspect-ratio)) !important; */
     /* margin-left: 30%; */
@@ -135,8 +135,8 @@
     backface-visibility: hidden;
     background-size: contain;
     background-repeat: no-repeat;
-    height: calc( 10 * var(--aspect-ratio));
-    width: calc( 6 * var(--aspect-ratio));
+    height: calc( 15 * var(--aspect-ratio));
+    width: calc( 10 * var(--aspect-ratio));
 }
 
 .front {
@@ -210,4 +210,143 @@
 
 .chipRow>.chipImg:nth-child(3) {
     right: calc(2.5 * var(--aspect-ratio));
+}
+
+
+/* tip */
+
+#tip-button {
+    position: absolute;
+    bottom: calc(63 * var(--aspect-ratio));
+    right: calc(110 * var(--aspect-ratio));
+    text-align: center;
+    vertical-align: bottom;
+    visibility: hidden;
+    text-transform: uppercase;
+}
+
+button[disabled] {
+    background-color: gray !important;
+    color: #ffffff;
+}
+
+.button-prents {
+    /* width: 80px; */
+    /* height: 40px; */
+    /* border-radius: 260px; */
+    /* background: #84a0d333; */
+    /* position: relative; */
+    display: flex;
+    /* width: 122px; */
+    /* height: 40px; */
+    margin-top: calc(-2 * var(--aspect-ratio));
+    padding: calc(1 * var(--aspect-ratio));
+    /* border-radius: calc(50 * var(--aspect-ratio)); */
+    /* background: #84a0d333; */
+    background: linear-gradient(135deg, #305B8B, #243C6A, #203561);
+    position: relative;
+    top: calc(2.5 * var(--aspect-ratio));
+    border-top-left-radius: calc(2* var(--aspect-ratio));
+    border-top-right-radius: calc(2* var(--aspect-ratio));
+    border-top: calc(0.3* var(--aspect-ratio)) solid #F1E643;
+}
+
+.button-prents button {
+    background-color: transparent;
+    border: none;
+    /* width: calc(5* var(--aspect-ratio));
+      height: calc(5* var(--aspect-ratio));
+      padding: 0px;
+      background-color: #FFEF33;
+      border-radius: 50%;
+      font-family: Montserrat;
+      font-weight: 600;
+      letter-spacing: 0em;
+      text-align: center;
+      COLOR: #625A00;
+      box-shadow: 0px 0.7499999403953552px 1.4999998807907104px 0px #00000080 inset; */
+    /* position: absolute; */
+    /* left: 3px; */
+    /* top: 4px; */
+    /* font-size: 10px; */
+    /* line-height: 13px; */
+}
+
+.tip-button:is(.active) {
+    background-color: #f0f0f0;
+    /* Optional: Change button background when active */
+}
+
+.tipButton:is(.active) .tip-text {
+    color: yellow;
+    /* Change text color to yellow when active */
+}
+
+.tipButton:is(.active) .tipImage {
+    content: url("./images/tipclicked.png");
+    /* Image for active button */
+}
+
+.tipButton:disabled {
+    background-color: transparent !important;
+}
+
+.tipButton:disabled .tipImage {
+    content: url("./images/tipdisabled.png");
+    /* Image for active button */
+}
+
+.tipImage {
+    width: calc(4 * var(--aspect-ratio));
+    margin-right: 0;
+    margin-bottom: 0;
+    max-height: none;
+    transition: 0.3s;
+    transform-origin: center center;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.button-prents button {
+    position: relative;
+}
+
+.first-bb-value,
+.first-bb1-value,
+.first-bb2-value {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: calc(1 * var(--aspect-ratio));
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Existing hover styles */
+
+.first_bb:hover .first-bb-value,
+.first_bb1:hover .first-bb1-value,
+.first_bb2:hover .first-bb2-value {
+    color: #fff;
+}
+
+.first_bb:hover .tipImage,
+.first_bb1:hover .tipImage,
+.first_bb2:hover .tipImage {
+    transform: rotate(45deg);
+    color: #9B9BB3;
+    background: #313D67;
+    /* filter: brightness(2); */
+}
+
+.tipButton.active:hover .tipImage {
+    transform: none;
+}
+
+.tipButton.active:hover .tip-text {
+    color: inherit;
+    cursor: default;
 }

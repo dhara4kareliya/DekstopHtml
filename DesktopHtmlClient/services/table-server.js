@@ -1,7 +1,8 @@
-import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, playerSubmitReport, connectSocket, getSocket, ShowTipToDealer } from "../socket-client";
+import { emit, playerSitDown, playerLeaveGame, sendTurnAction, subscribe, playerSubmitReport, connectSocket, getSocket, ShowTipToDealer, updatePlayerSetting } from "../socket-client";
 import { setServer } from "./game-server";
-import { Get } from "../http-client";
-import { changeSelectedLanguage } from "../UI/language-ui";
+import { Get, hostAddress } from "../http-client";
+import { changeSelectedLanguage, getMessage } from "../UI/language-ui";
+import { generateHashAndRandomString, verifyJSONFromServer } from './utils-server';
 
 export const PlayerState = Object.freeze({
     None: 0,
@@ -62,7 +63,7 @@ export class PlayerInfo {
 
 export class TableSetting {
     constructor(name, numberOfSeats, mode, gameType, level, nextSB,
-        nextBB, duration, smallBlind, bigBlind, ante, minBuyIn, maxBuyIn, displaySB, displayBB, displayAnte, sideGameEnabled, sideBetEnabled) {
+        nextBB, duration, smallBlind, bigBlind, ante, minBuyIn, maxBuyIn, displaySB, displayBB, displayAnte, sideGameEnabled, sideBetEnabled, isRandomTable, isEncryptedShuffling) {
         this.name = name;
         this.numberOfSeats = numberOfSeats;
         this.mode = mode;
@@ -81,6 +82,8 @@ export class TableSetting {
         this.displayAnte = displayAnte;
         this.sideGameEnabled = sideGameEnabled;
         this.sideBetEnabled = sideBetEnabled;
+        this.isRandomTable = isRandomTable;
+        this.isEncryptedShuffling = isEncryptedShuffling;
     }
 }
 
@@ -200,9 +203,10 @@ export class RoundResult {
 }
 
 export class SeatShowCards {
-    constructor(seat, cards) {
+    constructor(seat, cards, handrank) {
         this.seat = seat;
         this.cards = cards;
+        this.handrank = handrank;
     }
 }
 
@@ -213,6 +217,18 @@ export const turn = new Turn();
 let playerState = PlayerState.None;
 let playerSeat = -1;
 let type = "";
+let isBeforeunload = true;
+let randomString = undefined;
+let hash = undefined;
+let allHashes = undefined;
+
+window.onbeforeunload = function() {
+    return isBeforeunload;
+}
+
+export function setIsBeforeunload(value) {
+    isBeforeunload = value;
+}
 
 export function getCurrentTurn() {
     return turn;
@@ -241,12 +257,45 @@ function onPlayerLeave(reason) {
 
     const type = reason.type;
     if (type == 'migrate') {
-        setServer(reason.server, reason.token);
+        setServer(reason.server, reason.token, type);
+        $('.notification-message')[0].innerHTML = getMessage('moveNewTable');
+        //$('#msgModal #myModalLabel')[0].innerText = "Message";
+        $('#notificationModal').modal('show');
+        setTimeout(() => {
+            $('#notificationModal').modal('hide');
+        }, 3000);
         connectSocket(reason.server);
+
+        const soundCheckbox = $("#muteCheckbox")[0];
+        const fourColorsCheckbox = $("#fourColorsCheckbox")[0];
+        const showBBCheckbox = $("#showAsBBCheckbox")[0];
+        const showSUDCheckbox = $("#showAsSUDCheckbox")[0];
+        const shuffleVerificationButtonCheckboxe = $("#shuffleVerificationButton")[0];
+        const DisplayCards = $("#DisplayCards")[0];
+        const autoMuckCheckbox = $("#autoMuckCheckbox")[0];
+        const themeColorMenu = $("#themeColor .dropdown-menu li.active")[0];
+
+        setTimeout(function() {
+            updatePlayerSetting('mute', soundCheckbox.checked);
+            updatePlayerSetting('fourColors', fourColorsCheckbox.checked);
+            updatePlayerSetting('autoMuck', autoMuckCheckbox.checked);
+            updatePlayerSetting('shuffleVerification', shuffleVerificationButtonCheckboxe.checked);
+            updatePlayerSetting('DisplayCards', DisplayCards.checked);
+            updatePlayerSetting('showSUD', showSUDCheckbox.checked);
+            updatePlayerSetting('showBB', showBBCheckbox.checked);
+            updatePlayerSetting('themeColor', themeColorMenu.dataset.value);
+        }, 5000);
     } else if (type == 'tournament_leave' || type == 'double_browser_leave') {
+        setIsBeforeunload(undefined);
         triggerEventListeners("onPlayerLeave", reason);
+
+    } else if (type == 'self') {
+        leaveMT();
+        window.close();
     } else {
         triggerEventListeners("onPlayerLeave", reason);
+        setIsBeforeunload(undefined)
+        leaveMT();
         window.close();
     }
 }
@@ -362,7 +411,7 @@ export function showCards() {
 }
 
 function onTablePlayerShowCards(res) {
-    const showCards = new SeatShowCards(res.seat, res.cards);
+    const showCards = new SeatShowCards(res.seat, res.cards, res.handrank, res.avatar);
     triggerEventListeners("onShowCards", showCards);
 }
 
@@ -374,8 +423,8 @@ function onTablePlayerShowCardsButton(res) {
     triggerEventListeners("onShowCardsButton", res);
 }
 
-function onTablePlayerFoldAnyBet(res) {
-    triggerEventListeners("onFoldAnyBet", res);
+function onTablePlayerAlwaysFold(res) {
+    triggerEventListeners("onAlwaysFold", res);
 }
 
 function onSideBetOptions(res) {
@@ -398,16 +447,57 @@ function onPlayerCard(res) {
     triggerEventListeners("onPlayerCard", res);
 }
 
+function onTournamentCancelTime(res) {
+    triggerEventListeners("onTournamentCancelTime", res);
+}
+
 function onPlayerSidebetCard(res) {
     triggerEventListeners("onPlayerSidebetCard", res);
+}
+
+function onPlayerGenerateHashAndRandomString(res) {
+    const generatedInfo = generateHashAndRandomString();
+    hash = generatedInfo.hash;
+    randomString = generatedInfo.randomString;
+    emit('REQ_PLAYER_HASH', hash);
+}
+
+function onAllHashes(res) {
+    allHashes = res;
+    // Each user sends their random string to the server
+
+}
+
+function onPlayerRandomString(res) {
+    emit('REQ_PLAYER_RANDOM_STRING', randomString);
+}
+
+function onVerifyJsonString(res) {
+    triggerEventListeners("onVerifyShuffling", res);
+
+    /* const data = verifyJSONFromServer(res);
+
+
+    emit('REQ_PLAYER_VERIFY_JSON_STRING', data); */
+}
+
+function onPlayerGameSetting(res) {
+    triggerEventListeners("onPlayerGameSetting", res);
+}
+
+function onPlayerSideGameRandomString(res) {
+    triggerEventListeners("onPlayerSideGameRandomString", res);
 }
 
 function onBuyInOpen(res) {
     triggerEventListeners("onBuyInPanelOpen", res);
 }
 
-function onMessage(res) {
+export function onMessage(res) {
     triggerEventListeners("onMessage", res);
+}
+export function onCancelBet() {
+    triggerEventListeners("onCancelBet");
 }
 
 function onInsurance(res) {
@@ -415,7 +505,7 @@ function onInsurance(res) {
 }
 
 function onAnimation(res) {
-    triggerEventListeners("onPlayerAnimation", res);
+    triggerEventListeners("onAnimation", res);
 }
 
 function onTourneyInfo(res) {
@@ -437,6 +527,7 @@ function onLog(res) {
 function onChat(res) {
     triggerEventListeners("onChat", res);
 }
+
 function onTip(res) {
     triggerEventListeners("onTip", res);
 }
@@ -469,20 +560,20 @@ export function sitDown(seatIndex) {
 export function SubmitReport(type, description, playerSeat, callback) {
     playerSubmitReport(type, description, playerSeat, () => {
 
-        $('#successModal .successMessage')[0].innerHTML = '<div>Thank you for your feedback. <br> We will look into it shortly.</div>';
+        $('#successModal .successMessage')[0].innerHTML = `<div>${getMessage('PlayerReportSuccess')}</div>`;
         changeSelectedLanguage();
         $('#successModal').modal('show');
         callback();
     });
 }
 
-export function TipToDealer(amount){
+export function TipToDealer(amount) {
     ShowTipToDealer(amount);
 }
 
-export function joinWaitingList() {
-    emit("REQ_PLAYER_JOINWAITLIST");
-}
+// export function joinWaitingList() {
+//     emit("REQ_PLAYER_JOINWAITLIST");
+// }
 
 export function doChat(msg) {
     emit("REQ_PLAYER_CHAT", msg);
@@ -509,12 +600,13 @@ subscribe("onTableRoundResult", onTableRoundResult);
 subscribe("onTablePlayerShowCards", onTablePlayerShowCards);
 subscribe("onTablePlayerMuckCards", onTablePlayerMuckCards);
 subscribe("onTablePlayerShowCardsButton", onTablePlayerShowCardsButton);
-subscribe("onTablePlayerFoldAnyBet", onTablePlayerFoldAnyBet);
+subscribe("onTablePlayerAlwaysFold", onTablePlayerAlwaysFold);
 subscribe("onBuyInOpen", onBuyInOpen);
 subscribe("onSideBetOptions", onSideBetOptions);
 subscribe("onSideBetHistory", onSideBetHistory);
 subscribe("onTableFreeBalance", onTableFreeBalance);
 subscribe("onMessage", onMessage);
+subscribe("onCancelBet", onCancelBet);
 subscribe("onInsurance", onInsurance);
 subscribe("onAnimation", onAnimation);
 subscribe("onTourneyInfo", onTourneyInfo);
@@ -524,9 +616,28 @@ subscribe("onLog", onLog);
 subscribe("onChat", onChat);
 subscribe("onTip", onTip);
 subscribe("onTableExtraCard", onTableExtraCard);
+subscribe("onTournamentCancelTime", onTournamentCancelTime);
 subscribe("onPlayerCard", onPlayerCard);
 subscribe("onPlayerSidebetCard", onPlayerSidebetCard);
+subscribe("onPlayerGenerateHashAndRandomString", onPlayerGenerateHashAndRandomString);
+subscribe("onPlayerRandomString", onPlayerRandomString);
+subscribe("onPlayerSideGameRandomString", onPlayerSideGameRandomString);
+subscribe("onAllHashes", onAllHashes);
+subscribe("onVerifyJsonString", onVerifyJsonString);
+subscribe("onPlayerGameSetting", onPlayerGameSetting);
 
+
+export async function registerTournament(tournament_id, user_token) {
+    try {
+        const data = await Get(`api/tournamentRegistrationByApi?user_token=${user_token}&tournament_id=${tournament_id}`);
+        const option = JSON.parse(data);
+        $(".loader").hide();
+        if (option.result == 'success')
+            window.location.href = hostAddress + "/html/?t=" + option.token;
+    } catch {
+        throw "Failed to connect to game server."
+    }
+}
 
 export async function getOptions() {
     try {
@@ -552,7 +663,7 @@ function triggerEventListeners(name, data) {
         return;
     try {
         data = JSON.parse(data);
-    } catch { }
+    } catch {}
     eventListeners[name].forEach(listener => {
         listener(data);
     });

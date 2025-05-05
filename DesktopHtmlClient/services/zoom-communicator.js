@@ -14,7 +14,7 @@ let gameId = getParamToken();
 
 const receivedMessagesIds = [];
 
-export function addEventListener (eventName, handler) {
+export function addEventListener(eventName, handler) {
     window.addEventListener('message', message => {
         if (receivedMessagesIds.indexOf(message.data.messageId) != -1)
             return;
@@ -33,7 +33,7 @@ export function addEventListener (eventName, handler) {
     });
 }
 
-export function dispatchEvent (eventName, eventData) {
+export function dispatchEvent(eventName, eventData) {
     let targetWindow = window.parent;
     if (!targetWindow || targetWindow == window)
         targetWindow = window.opener;
@@ -48,7 +48,7 @@ export function dispatchEvent (eventName, eventData) {
     for (const allowedZoomOrigin of allowedZoomOrigins) {
         let sent = false;
         try {
-            targetWindow.postMessage({gameId: gameId, eventName: eventName, eventData: eventData}, allowedZoomOrigin);
+            targetWindow.postMessage({ gameId: gameId, eventName: eventName, eventData: eventData }, allowedZoomOrigin);
             sent = true;
         } catch (e) {
             //console.warn(e);
@@ -58,7 +58,7 @@ export function dispatchEvent (eventName, eventData) {
     }
 }
 
-export function updateZoom () {
+export function updateZoom() {
     const seatToPlay = turn.seat;
     const playerSeat = getPlayerSeat();
     const numberOfSeats = tableSettings.numberOfSeats;
@@ -113,8 +113,8 @@ tableSubscribe('onRoundResult', result => {
         for (const seatIndex of pot.winners) {
             if (seatIndex == getPlayerSeat())
                 playerResult = "win";
-                updateZoom();
-                return;
+            updateZoom();
+            return;
         }
     }
     playerResult = "lose";

@@ -19,6 +19,18 @@
 .checkbox.checked img {
     display: block;
 }
+
+li>.checkbox {
+    box-shadow: none;
+    border: 1px solid #323E67;
+    background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+}
+
+li>.checkbox img {
+    bottom: 0;
+}
+
+
 /*
 @media (max-aspect-ratio: 1/1) {
     .checkbox {

@@ -1,6 +1,9 @@
+import { updatePlayerSetting } from '../socket-client';
+
 const fourColorsCheckbox = $("#fourColorsCheckbox")[0];
 fourColorsCheckbox.addEventListener('change', () => {
     setFourColors(fourColorsCheckbox.checked);
+    updatePlayerSetting('fourColors', fourColorsCheckbox.checked);
 });
 let fourColors = false;
 
@@ -81,19 +84,79 @@ export function getCardImageFilePath(cardName) {
     return `./images/png/102x142/${name}.png`;
 }
 
-function setFourColors (value) {
+export function initializeDeck() {
+    return [
+        'AS', 'KS', 'QS', 'JS', 'TS', '9S', '8S', '7S', '6S', '5S', '4S', '3S', '2S',
+        'AH', 'KH', 'QH', 'JH', 'TH', '9H', '8H', '7H', '6H', '5H', '4H', '3H', '2H',
+        'AD', 'KD', 'QD', 'JD', 'TD', '9D', '8D', '7D', '6D', '5D', '4D', '3D', '2D',
+        'AC', 'KC', 'QC', 'JC', 'TC', '9C', '8C', '7C', '6C', '5C', '4C', '3C', '2C'
+    ];
+}
+
+function setFourColors(value) {
     fourColors = value;
     setupCardImages();
-    
+
     const cards = $(".front");
     for (const card of cards) {
         const filePath = card.src;
         if (value && (filePath.at(-5) == 'c' || filePath.at(-5) == 'd')) {
             card.src = filePath.slice(0, filePath.length - 4) + "1.png";
-        }
-        else if (!value && (filePath.at(-6) == 'c' || filePath.at(-6) == 'd')) {
+        } else if (!value && (filePath.at(-6) == 'c' || filePath.at(-6) == 'd')) {
             card.src = filePath.slice(0, filePath.length - 5) + ".png";
         }
+    }
+}
+
+// Encrypted Shuffle
+
+export class CardShuffler {
+    // XOR two buffers
+    static xorBuffers(a, b) {
+        if (a.length !== b.length) {
+            throw new Error('Buffers must be of the same length to XOR.');
+        }
+        const xorResult = Buffer.alloc(a.length);
+        for (let i = 0; i < a.length; i++) {
+            xorResult[i] = a[i] ^ b[i];
+        }
+        return xorResult;
+    }
+
+    // Generate a deterministic shuffle using a seed
+    static shuffleArray(array, seed) {
+        const random = this.mulberry32(seed);
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // Create a random number generator based on a seed
+    static mulberry32(seed) {
+        return function() {
+            let t = (seed += 0x6d2b79f5);
+            t = Math.imul(t ^ (t >>> 15), t | 1);
+            t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+    }
+
+    // Perform the shuffle
+    shuffle(cards, shuffleKey) {
+        if (!Array.isArray(cards)) {
+            throw new Error('Cards must be an array.');
+        }
+        if (typeof shuffleKey !== 'string') {
+            throw new Error('Shuffle key must be a string.');
+        }
+
+        // Convert shuffleKey to a numeric seed
+        const seed = parseInt(shuffleKey.substring(0, 16), 16);
+
+        // Shuffle the array using the seed
+        return CardShuffler.shuffleArray(cards.slice(), seed); // Use slice to avoid mutating original
     }
 }
 
@@ -103,7 +166,7 @@ export class Card {
         this.canvas = canvas;
         this.cardName = "?";
         this.position = 0;
-        this.ratio  = 1;
+        this.ratio = 1;
     }
 
     setCardName(cardName) {
@@ -122,14 +185,14 @@ export class Card {
         const context = this.canvas.getContext("2d");
         const dx = this.position * cardsImageProperties.cardWidth * this.ratio;
         context.drawImage(getCardImage(this.cardName),
-        dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
+            dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
     }
 
     setMask() {
         const context = this.canvas.getContext("2d");
         const dx = this.position * cardsImageProperties.cardWidth * this.ratio;
         context.drawImage(getCardImage("mask"),
-        dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
+            dx, 0, cardsImageProperties.cardWidth * this.ratio, cardsImageProperties.cardHeight * this.ratio);
     }
 }
 

@@ -29,8 +29,9 @@
 .player_wrapper:nth-child(3){
    left: 57vw; 
 }
-.player_wrapper:nth-child(7){
-top:calc( 15 * var(--aspect-ratio)); ;
+
+.player_wrapper:nth-child(7) {
+    top: calc( 15 * var(--aspect-ratio));
 }
 .chipRow>.chipImg:nth-child(1) {
     left: calc(-2.5 * var(--aspect-ratio));

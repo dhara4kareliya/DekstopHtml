@@ -1,4 +1,5 @@
 import { tableSubscribe } from "../services/table-server";
+import { defaultCurrency } from "../services/game-server";
 
 const showAsBBCheckbox = $("#showAsBBCheckbox")[0];
 const showAsSUDCheckbox = $("#showAsSUDCheckbox")[0];
@@ -10,46 +11,50 @@ var showcurrency = "XRP";
  * If "Show values as BB ratio" is checked, gives ratio text.
  * @param {Number} amount 
  */
-export function getMoneyText (amount) {
+export function getMoneyText(amount) {
     if (amount == undefined)
         amount = 0;
 
-        const container = document.createElement("div");
-        if (showcurrency == "BB") {
-            container.innerText = `${Math.floor(amount / bigBlind * 100) / 100} BB`;
+    const container = document.createElement("div");
+    if (showcurrency == "BB") {
+        container.classList.add("moneyInBB");
+        container.innerText = `${roundWithFormatAmount(Math.floor(round2(amount / bigBlind * 100)) / 100)} BB`;
     } else if (showcurrency == "USD") {
-        console.log(amount);
-        console.log(usdRate);
-        console.log(Math.floor(amount * usdRate * 100) / 100);
         var img = document.createElement("img");
         img.src = "./images/desktop/coins 3 (2) (1).png";
         container.classList.add("imageFeatures1");
         container.appendChild(img);
         const amountText = document.createElement("span");
-        amountText.innerText = ` ${Math.floor(amount * usdRate * 100) / 100}`;
+        amountText.innerText = ` ${roundWithFormatAmount(Math.floor(round2(amount * usdRate * 100)) / 100)}`;
         container.appendChild(amountText);
         // container.innerText = `$ ${Math.floor(amount * usdRate * 100) /100}`;
+    } else if (showcurrency == "USDC") {
+        //var img = document.createElement("img");
+        //img.src = "./images/desktop/usdc_icon2.png";
+        //container.classList.add("imageFeatures2");
+        //container.appendChild(img);
+        const amountText = document.createElement("span");
+        amountText.innerText = ` ${roundWithFormatAmount(amount)}`;
+        container.appendChild(amountText);
     } else {
         var img = document.createElement("img");
         img.src = "./images/desktop/coins 3 (1).png";
         container.classList.add("imageFeatures");
         container.appendChild(img);
         const amountText = document.createElement("span");
-        amountText.innerText = ` ${Math.floor(amount * 100) / 100}`;
+        amountText.innerText = ` ${roundWithFormatAmount(amount)}`;
         container.appendChild(amountText);
     }
     return container;
 }
 
 export function getcurrencyIcon() {
-    const container = document.createElement("div");
-    if (showcurrency == "BB") {
-        container.innerText = `BB`;
-    } else if (showcurrency == "USD") {
-        var img = document.createElement("img");
-        img.src = "./images/desktop/coins 3 (2) (1).png";
-        container.classList.add("imageFeatures1");
-        container.appendChild(img);
+    const container = document.createElement("span");
+    if (defaultCurrency == "USDC") {
+        // var img = document.createElement("img");
+        // img.src = "./images/desktop/usdc_icon2.png";
+        // container.classList.add("imageFeatures2");
+        // container.appendChild(img);
     } else {
         var img = document.createElement("img");
         img.src = "./images/desktop/coins 3 (1).png";
@@ -64,18 +69,18 @@ export function getMoneyValue(amount) {
         amount = 0;
 
     if (showcurrency == "BB") {
-        return Math.floor(amount / bigBlind * 100) / 100;
+        return roundWithFormatAmount(Math.floor(round2(amount / bigBlind * 100)) / 100);
     } else if (showcurrency == "USD") {
-        return Math.floor(amount * usdRate * 100) / 100;
+        return roundWithFormatAmount(Math.floor(round2(amount * usdRate * 100)) / 100);
     }
-    return Math.floor(amount * 100) / 100;
+    return round2(amount);
 }
 
-export function getRoundValue (amount) {
+export function getRoundValue(amount) {
     if (amount == undefined)
         amount = 0;
 
-    return Math.floor(amount * 100) / 100;
+    return (Math.floor(amount * 100) / 100);
 }
 
 export function getMoneyOriginalValue(amount) {
@@ -83,11 +88,15 @@ export function getMoneyOriginalValue(amount) {
         amount = 0;
 
     if (showcurrency == "BB") {
-        return Math.floor(amount * bigBlind * 100) / 100;
+        return (Math.floor(round2(amount * bigBlind * 100)) / 100);
     } else if (showcurrency == "USD") {
-        return Math.floor(amount / usdRate * 100) / 100;
+        return (Math.floor(round2(amount / usdRate * 100)) / 100);
     }
-    return Math.floor(amount * 100) / 100;
+    return (amount);
+}
+
+export function round2(n) {
+    return Math.round(n * 100) / 100;
 }
 
 export function updatCurrency() {
@@ -96,7 +105,7 @@ export function updatCurrency() {
     } else if (showAsSUDCheckbox.checked) {
         showcurrency = "USD";
     } else {
-        showcurrency = "XRP";
+        showcurrency = defaultCurrency;
     }
 }
 
@@ -104,6 +113,13 @@ export function updatCurrency() {
 function onTableSettings(settings) {
     bigBlind = settings.bigBlind;
     usdRate = parseFloat(settings.usdRate).toFixed(2);
+}
+function roundWithFormatAmount(n) {
+    var amount = Math.round(n * 100) / 100
+    if(amount >= 10000 && amount % 1000 === 0)
+        return (n/1000) + 'K';
+
+    return amount.toLocaleString('en-US');
 }
 
 tableSubscribe("onTableSettings", onTableSettings);

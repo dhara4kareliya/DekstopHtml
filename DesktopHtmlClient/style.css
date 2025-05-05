@@ -10,33 +10,51 @@
 @import "./sidebet.css";
 @import "./history.css";
 @import "./game01.css";
+@import "./sideBar.css";
+@import url("./tableTheme.css");
 
 :root {
     --aspect-ratio: 0.56vw;
 }
 
-.sideButtonsDiv{
+
+/* .sideButtonsDiv {
     width: 80%;
-}
-.multiTableButton{
+    height: calc( 30 * var(--aspect-ratio));
+} */
+
+.foldToAnyBetButton,
+.checkToAnyBetButton,
+.callButtonDiv {
     position: absolute;
-    top: calc( 0 * var(--aspect-ratio));
-    left: calc( 15 * var(--aspect-ratio));
-    width: calc( 12 * var(--aspect-ratio))!important;
 }
- .all_left_buttons{
+
+#autoCheckOrFoldButton {
+    top: calc( -8.5 * var(--aspect-ratio));
+}
+
+#autoCheckButton {
+    top: calc( -4.2 * var(--aspect-ratio));
+}
+.callButtonDiv{
+    top:calc( -12.7 * var(--aspect-ratio));
+    
+}
+.all_left_buttons {
     width: 100%!important;
 }
 
 html {
     overflow: hidden;
 }
+
 .top_prent_div {
- overflow: hidden;
+    overflow: hidden;
     width: calc(var(--aspect-ratio) * 1598);
 }
-.side-bet_div{
-    width: calc(30* var(--aspect-ratio)) !important;
+
+.side-bet_div p {
+    margin-left: 0px !important;
 }
 
 .loader {
@@ -56,20 +74,21 @@ body {
     position: relative;
     width: 100vw;
     height: calc(146 * var(--aspect-ratio));
-    background: transparent linear-gradient(90deg, #0A1029 0%, #1E3970 20%, #3261B6 56%, #0A1029 100%) 0% 0% no-repeat padding-box;
+    background: radial-gradient(50% 91.18% at 50% 50%, #335094 0%, #0C1028 100%);
+    /* background: transparent linear-gradient(90deg, #0A1029 0%, #1E3970 20%, #3261B6 56%, #0A1029 100%) 0% 0% no-repeat padding-box; */
     opacity: 0.86;
     font-family: myriad-arabic, sans-serif;
     font-size: calc((1.5 * var(--aspect-ratio)));
     color: #FEFEFE;
-    padding: 1vw;
+    /* padding: 1vw; */
     overflow: overlay;
     /* Preventing marking elements and text */
-    -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-    -khtml-user-select: none; 
-    -moz-user-select: none; 
-    -ms-user-select: none; 
-    user-select: none; 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #backButton {
@@ -93,18 +112,23 @@ body {
     min-height: calc(3 * var(--aspect-ratio));
 }
 
+
 /* #totalPot,
 #winPot {
     position: absolute;
     top: calc(-13 * var(--aspect-ratio));
     left: 32vw;
 } */
+
 #totalPot,
 #winPot {
     position: absolute;
     top: calc(-10 * var(--aspect-ratio));
     left: 29vw;
+    display: flex;
 }
+
+
 /* #totalPot, #winPot {
     position: absolute;
     top: calc(-13 * var(--aspect-ratio));
@@ -129,27 +153,29 @@ body {
     pointer-events: none;
 }
 
-
-.waitingList{
+.waitingList {
     display: grid;
-    grid-template-columns: 1fr 4fr ;
+    grid-template-columns: 1fr 4fr;
     margin: 0px;
     width: 100%;
 }
-.waitingList button{
+
+.waitingList button {
     align-items: center;
     margin: 4px 0px;
 }
 
 .waitingList button:disabled {
-	background-color: grey;
+    background-color: grey;
 }
+
 
 /* .waitingList button{
     padding: 0px 21px;
     margin: 2px 0px;
 } */
-.waitingListSide{
+
+.waitingListSide {
     display: flex;
     margin: 0;
     padding: 0%;
@@ -157,18 +183,16 @@ body {
     justify-content: center;
     align-items: center;
 }
-.sitOutButton {
-    position: absolute;
-    top: calc( 2.4 * var(--aspect-ratio))!important;
-    width: calc( 14 * var(--aspect-ratio))!important;
-}
-.btn-group{
+
+.btn-group {
     width: 100%;
 }
-#usersDropdown{
-    display: none ;
+
+#usersDropdown {
+    display: none;
 }
-.users{
+
+.users {
     background-color: #0E0B27;
     border: 1px solid yellow;
     border-radius: 7px;
@@ -178,12 +202,15 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 1px;
-    height:130px;
+    height: 130px;
 }
-.innerUser{
+
+.innerUser {
     text-align: center;
     margin: 2px 0px;
 }
+
+
 /*
 @media (min-aspect-ratio: 1/1) {
     .portrateOnly {
@@ -230,18 +257,23 @@ input {
     color: inherit;
 }
 
+
 /* Hide the arrows on the input */
 
+
 /* Chrome, Safari, Edge, Opera */
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
+
 /* Firefox */
+
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 
@@ -251,9 +283,7 @@ input[type=number] {
     --aspect-ratio: 0.56vw;
     /* --pos: calc(1598 / (100vw / 100 * 32) / 1920);
     --aspects-ratio: calc(1598px / 1920px); */
-
 }
-
 
 .modal-dialog {
     max-width: 340px;
@@ -307,12 +337,23 @@ input[type=number] {
     box-shadow: 0px 2px 5px #FFFFFF45;
     font-size: medium;
 }
+
+
 /* currency */
 
+.moneyInBB {
+    display: contents;
+}
+
 .imageFeatures,
-.imageFeatures1 {
+.imageFeatures1,
+.imageFeatures2 {
     display: inline-block;
-    
+}
+
+.imageFeatures2 {
+    /* display: flex; */
+    align-items: center;
 }
 
 .text_div {
@@ -340,9 +381,21 @@ input[type=number] {
     width: calc((1.5 * var(--aspect-ratio)));
 }
 
+.imageFeatures2 img {
+    height: calc(1.8 * var(--aspect-ratio));
+    width: calc(1.8 * var(--aspect-ratio)) !important;
+    margin-right: 2px;
+}
+
 .imageFeatures1 img {
     width: calc((1.5 * var(--aspect-ratio)));
-    padding-top: 2px;
+    /* padding-top: 2px; */
+    margin-top: 0 !important;
+}
+
+.button_payout p {
+    display: flex;
+    align-items: center;
 }
 
 .smallBlind .imageFeatures1 img,
@@ -352,44 +405,229 @@ input[type=number] {
     margin-top: -3px;
     padding-top: 0;
 }
-.player_wrapper .money .imageFeatures1 img{
+
+.player_wrapper .money .imageFeatures1 img {
     margin: -1px !important;
     padding-top: 0px !important;
 }
-#insuranceModal .imageFeatures img{
+
+#insuranceModal .imageFeatures img {
     width: calc((3 * var(--aspect-ratio)));
 }
 
-.side-bet_div .Balance2 .imageFeatures,
+#autoFoldSettingModal .close {
+    width: 30px;
+    height: 30px;
+    background: transparent linear-gradient(0deg, #E50202 0%, #676060 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 5px #ffffff45;
+    border-radius: 50px;
+    opacity: 3;
+    position: absolute;
+    right: calc(-1.75* var(--aspect-ratio));
+    top: calc(-1.75* var(--aspect-ratio));
+    padding: calc(0.25* var(--aspect-ratio));
+}
+
+
+/* .side-bet_div .Balance2 .imageFeatures,
 .side-bet_div .Balance2 .imageFeatures1 {
     display: flex;
-}
+} */
 
 #raiseButton {
     width: calc( 19 * var(--aspect-ratio));
     white-space: nowrap;
     display: inline-flex
 }
-#raiseButton > span {
+
+#raiseButton>span {
     display: inline-flex
 }
 
-.valueDisplay{
+.valueDisplay {
     margin-left: calc(1 * var(--aspect-ratio));
 }
-/* --------------- insuranceModal ------------------------*/
 
+/* result modal */
+#tournamentResultModal {
+    height: calc(80 * var(--aspect-ratio));
+}
+
+#tournamentResultModal .modal-dialog {
+    height: calc(80 * var(--aspect-ratio));
+    width: calc(50 * var(--aspect-ratio));
+    max-width: calc(150 * var(--aspect-ratio));
+    margin: auto;
+}
+
+.rebuy_tournament {
+    width: 340px;
+    height: 60px;
+    background: #189918;
+    border-radius: 7px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 0;
+}
+
+.LobbyButton {
+    width: 340px;
+    height: 60px;
+    background: linear-gradient(0deg, #E50202 0%, #676060 100%);
+    box-shadow: 0px 2px 5px #FFFFFF45;
+    border-radius: 8px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#tournamentResultModal img {
+    max-width: 100%;
+    max-height: calc(15 * var(--aspect-ratio));
+}
+
+#tournamentResultModal h5 {
+    font-size: calc(2.5 * var(--aspect-ratio));
+    text-align: center;
+    margin: 0;
+}
+
+@media (max-width: 575.98px) {
+    .my-4 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .rebuy_tournament,
+    .LobbyButton {
+        height: 20px;
+        font-size: 14px;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .rebuy_tournament,
+    .LobbyButton {
+        height: 33px;
+        font-size: 15px;
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .rebuy_tournament,
+    .LobbyButton {
+        height: 41px;
+        font-size: 16px;
+    }
+    #tournamentResultModal img {
+        max-width: 100%;
+        max-height: calc(20 * var(--aspect-ratio));
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .rebuy_tournament,
+    .LobbyButton {
+        height: 47px;
+        font-size: 16px;
+    }
+    #tournamentResultModal img {
+        max-width: 100%;
+        max-height: calc(20 * var(--aspect-ratio));
+    }
+}
+@media (min-width: 1200px) {
+    .rebuy_tournament,
+    .LobbyButton {
+        height: 50px;
+        font-size: 16px;
+    }
+    #tournamentResultModal img {
+        max-width: 100%;
+        max-height: calc(25 * var(--aspect-ratio));
+    }
+}
+
+@keyframes slideIn1 {
+    from {
+        opacity: 0;
+        transform: translate(0%, -0%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(50%, 1500%);
+    }
+}
+
+.result_p1 {
+    background: #29334D;
+    color: #FFFFFF;
+    width: calc(34.4* var(--aspect-ratio));
+    height: calc(4* var(--aspect-ratio));
+    padding: calc(1* var(--aspect-ratio));
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: calc(1* var(--aspect-ratio));
+}
+
+.result_div {
+    position: absolute;
+    left: calc(-1.4 * var(--aspect-ratio));
+    top: calc(-3 * var(--aspect-ratio));
+    font-size: calc(2 * var(--aspect-ratio));
+    width: calc(34.4 * var(--aspect-ratio));
+    overflow-y: auto!important;
+    overflow-x: hidden!important;
+    height: calc(26.4 * var(--aspect-ratio)) !important;
+}
+
+
+/* Hide the vertical scrollbar */
+
+.result_div::-webkit-scrollbar {
+    display: none!important;
+}
+
+.blocks {
+    display: none;
+}
+
+/* Insurance new design */
+.hands-card{
+    text-align: center;
+}
+.hand-lebel{
+    font-weight: 500;
+    font-size: calc(2 *var(--aspect-ratio));
+    color: #ffffffb3;
+}
+.card-parents img{
+    border-radius: 2px;
+}
+.hand_result{
+    font-weight: 500;
+    font-size: calc(2.5 * var(--aspect-ratio));
+    color: #75BDFE;
+    font-family: 'Sofia Sans';
+    text-shadow: 0px 0px 2px rgba(145, 202, 254, 0.5);
+}
 .second-top {
-    width: calc( 52 * var(--aspect-ratio))!important;
-    height: calc( 69 * var(--aspect-ratio))!important;
-    border-radius: 9.66px!important;
-    background: linear-gradient(89.26deg, #181B3A 22.72%, #262A4E 52.04%, #181B3A 81.87%), linear-gradient(0deg, #D6CC18, #D6CC18);
-    border: calc(.2 * var(--aspect-ratio)) solid #D6CC18
+
+    box-sizing: border-box;
+    position: relative;
+    width: calc( 55 * var(--aspect-ratio)) !important;
+    height: calc( 75 * var(--aspect-ratio)) !important;
+    background: linear-gradient(90deg, #181B3A 0%, #262A4E 50%, #181B3A 100%);
+    border: 2px solid #EFA434;
+    border-radius: 25px;
+
 }
 
 .Second-mod {
     transition: transform .3s ease-out!important;
-    transform: translate(84px, -20px)!important;
+    transform: translate(0,0px) !important;
 }
 
 .main-header {
@@ -406,59 +644,82 @@ input[type=number] {
     flex-direction: column!important;
     align-items: center!important;
     display: flex!important;
-    margin-top: calc(6* var(--aspect-ratio));
+    margin-top: calc(0.9 * var(--aspect-ratio)) !important;
 }
 
-.next{
+.next {
     white-space: nowrap;
 }
 
 .border-p {
     /* width: 417px;
     height: 58px; */
-    font-family: Yeseva One;
+    font-family: "Montserrat";
     font-size: calc( 5.5 * var(--aspect-ratio));
-    font-weight: 600;
+    font-weight: 700;
+    color: #fff;
     text-align: center;
-    background: linear-gradient(180deg, #D8B2B2 0%, #FFFFFF 100%);
+    /* background: linear-gradient(180deg, #D8B2B2 0%, #FFFFFF 100%);
     background-clip: text;
     -webkit-background-clip: text;
-    color: transparent;
-    margin-top: calc( -2 * var(--aspect-ratio)) !important; 
-
+    color: transparent; */
+    margin-top: calc( -2 * var(--aspect-ratio)) !important;
 }
 
 .border-p-text {
-    /* width: 176px;
-    height: 58px; */
-    font-family: Yeseva One;
+    font-family: "Sofia Sans";
     font-size: calc(4.5 * var(--aspect-ratio));
-    font-weight: 600;
+    font-weight: 800;
     text-align: center;
-    background: linear-gradient(180deg, #FFB800 0%, #FFB800 52.6%, #FFFFFF 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #75BDFE;
+    margin-bottom: 11px !important;
+}
+
+.flex-container{
+    display:flex;
+    justify-content:space-between;
+    /* align-items: flex-end; */
+    
+}
+.card-parents {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: calc(0.36 * var(--aspect-ratio));
+	/* text-align: center; */
+	margin-top: calc(1.0 * var(--aspect-ratio)) !important;
+	margin-bottom: calc(1.0 * var(--aspect-ratio)) !important;
+	justify-content: center;
+}
+.img_2
+{
+    width: calc(3.6 * var(--aspect-ratio));
+}
+.img_3
+{
+    width: calc(3.6 * var(--aspect-ratio));
 }
 
 .card-prents {
-    /* width: 644.1px;
-    height: 186.15px; */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 75%;
+	margin: auto;
+	justify-content: center;
+	margin-top: calc(1.0 * var(--aspect-ratio)) !important;
+	gap: 5px;
 }
 
 .img_1 {
-    width: calc(49 * var(--aspect-ratio));
-    height: calc(14 * var(--aspect-ratio));
-    margin-top: calc(-1 * var(--aspect-ratio));
-    /* / left: 42px; / */
+    width: calc(8.5 * var(--aspect-ratio));
+  height: calc(12 * var(--aspect-ratio));
 }
 
 .doller_prents {
+    text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
@@ -466,116 +727,76 @@ input[type=number] {
 }
 
 .pay {
-    font-family: Yeseva One;
+    font-family: "Sofia Sans";
     font-size: calc(4 * var(--aspect-ratio));
     font-weight: 600;
     text-align: center;
-    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
-    background-clip: text;
-    /* / Apply background to the text only / */
-    -webkit-background-clip: text;
-    /* / For Safari / */
-    color: transparent;
-
+    color: #FFFFFF;
 }
-
 .sane {
-    font-family: Times New Roman;
+    font-family: "Montserrat";
     font-size: calc(4 * var(--aspect-ratio));
     font-weight: 600;
     text-align: center;
-    background: linear-gradient(180deg, #FFB800 0%, #FFB800 47.92%, #FFFFFF 93.75%), linear-gradient(180deg, #FFB800 0%, #FFB800 50%, #FFFFFF 95.31%);
-    background-clip: text;
-    /* / Apply background to the text only / */
-    -webkit-background-clip: text;
-    /* / For Safari / */
-    color: transparent;
+    color: #75BDFE;
+}
+.amount-detail{
+    display: flex;
+    gap: 10px;
 }
 
+.insuranceYesButton{
+    
+    background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 114.17%);
+    box-shadow: 0px 2px 10px 2px rgba(145, 202, 254, 0.5);
+    border-radius: 5px;
+}
 .two_btn {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    gap: 5px !important;
-    margin-top: calc(4 * var(--aspect-ratio)) !important;
-    padding-left: calc(0 * var(--aspect-ratio)) !important;
-    padding-right: calc(0 * var(--aspect-ratio)) !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center;
+	gap: 35px !important;
+	margin-top: calc(4 * var(--aspect-ratio)) !important;
+	padding-left: calc(0 * var(--aspect-ratio)) !important;
+	padding-right: calc(0 * var(--aspect-ratio)) !important;
+	width: 95%;
+	margin: auto;
 }
 
 .text_btn {
     width: calc(60 * var(--aspect-ratio)) !important;
     height: calc(8 * var(--aspect-ratio)) !important;
-    font-family: "Montserrat" ,sans-serif;
+    font-family: 'Poppins';
     font-size: calc(3.5 * var(--aspect-ratio));
     font-weight: 600;
     color: #FFFFFF;
-    border-radius: calc(2 * var(--aspect-ratio));
-    border: 0.5px solid #2D9240;
-    background: linear-gradient(180deg, #01B320 0%, #0E6F20 100%), linear-gradient(0deg, #2D9240, #2D9240);
-    box-shadow: 2px 0px 10px 0px #25883766;
+    border-radius: calc(1 * var(--aspect-ratio));
+    border: none !important;
+    align-items: center;
 }
 
 .next {
     width: calc(60 * var(--aspect-ratio)) !important;
     height: calc(8 * var(--aspect-ratio)) !important;
-    /* / padding: calc(.9  var(--aspect-ratio)) calc(7.5  var(--aspect-ratio)); / */
-    border-radius: calc(2 * var(--aspect-ratio));
-    background: linear-gradient(0deg, #3D3A3A, #3D3A3A), linear-gradient(180deg, #646363 0%, #3D3A3A 95.83%);
-    font-family: "Montserrat" ,sans-serif;
+    background: linear-gradient(180deg, #4E577A 0%, #282F4D 100%);
+    box-shadow: 0px 2px 10px 2px rgba(145, 202, 254, 0.5);
+    border-radius: calc(1 * var(--aspect-ratio));
+    font-family: 'Poppins';
     font-size: calc(3* var(--aspect-ratio));
     font-weight: 600;
     color: #FFFFFF;
-    border: 0.5px solid #3D3A3A;
-    box-shadow: 2px 0px 10px 0px #515151A8;
-}
-
-
-/* .toast {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #333;
-    color: #fff;
-    padding: 15px 20px;
-    border-radius: 5px;
-    z-index: 9999;
-  } */
-
-@keyframes slideIn1 {
-    from {
-        opacity: 0;
-        transform: translate(0%, -0%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(50%, 1500%);
-    }
-}
-.result_p1 {
-    background: #29334D;
-    color: #FFFFFF;
-    width: calc(34.4* var(--aspect-ratio));
-    height: calc(4* var(--aspect-ratio));
-    padding:  calc(1* var(--aspect-ratio));
-    display: flex;
-    justify-content: left;
+    border: none !important;
     align-items: center;
-    margin-bottom:  calc(1* var(--aspect-ratio));
 }
-.result_div {
-    position: absolute;
-    left: calc(-1.4 * var(--aspect-ratio));
-    top: calc(-3 * var(--aspect-ratio));
-    font-size: calc(2 * var(--aspect-ratio));
-    width: calc(34.4 * var(--aspect-ratio));
-    overflow-y: auto!important;
-    overflow-x: hidden!important;
-    height: calc(26.4 * var(--aspect-ratio)) !important;
+.insuranceClose {
+	position: absolute;
+	top: calc(2 * var(--aspect-ratio));
+	right: calc(2 * var(--aspect-ratio));
+	border: 2px solid #EFA434;
+	background: transparent;
+	border-radius: 50%;
+	padding: 2px 7px 0px 6px;
+	color: #EFA434;
+    cursor: pointer;
 }
 
-/* Hide the vertical scrollbar */
-.result_div::-webkit-scrollbar {
-    display: none!important;
-}

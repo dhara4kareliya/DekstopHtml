@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@500&family=Inter:wght@100;400;600&family=Lato:ital,wght@1,100&family=Montserrat:wght@500&family=Sarala:wght@700&family=Yeseva+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;500;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
 
     <title>Desktop Client</title>
 
@@ -28,7 +31,7 @@
         <div class="modal-content top-content " style="      width: calc((29 * var(--aspect-ratio)))!important;     height: calc((19 * var(--aspect-ratio)))!important;">
             <div class="modal-body top_body ">
                 <button class="close_con"><i class="bi bi-x " data-bs-dismiss="modal" aria-label="Close "></i></button>
-                <div class="winner_trofie" style="background-image: url('images/imgpsh_fullsize_anim.png');   background-size: 100% 100%; ">
+                <div class="winner_trofie">
                     <div class="you_got">
                         <p class="got">Winner!</p>
                         <p class="top_200">$200</p>
@@ -63,42 +66,58 @@
                     <tbody>
                         <tr>
                             <th scope="row" class="backg">Royal flush</th>
-                            <td class="backg"><snap style="color: yellow">X 500</snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow">X 500</snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">Straight flush</th>
-                            <td class="backg"><snap style="color: yellow">X 150 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow">X 150 </snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">Four of a kind</th>
-                            <td class="backg"><snap style="color: yellow">X 50 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow">X 50 </snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">Full house</th>
-                            <td class="backg"><snap style="color: yellow">X 7.5 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow">X 7.5 </snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">Flush </th>
-                            <td class="backg"><snap style="color: yellow">X 5 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow">X 5 </snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">Straight </th>
-                            <td class="backg"><snap style="color: yellow"> X 2.5 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow"> X 2.5 </snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">Three of a kind </th>
-                            <td class="backg"><snap style="color: yellow"> X 2 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow"> X 2 </snap>
+                            </td>
 
                         </tr>
                         <tr>
                             <th scope="row" class="backg">High Card </th>
-                            <td class="backg"><snap style="color: yellow"> X 1.5 </snap></td>
+                            <td class="backg">
+                                <snap style="color: yellow"> X 1.5 </snap>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -110,9 +129,202 @@
 
 <body>
     <div class="loader"></div>
+    <div class="wrapper">
+        <input type="checkbox" id="btn" hidden checked>
+        <label for="btn" class="menu-btn">
+            <div class="backgroundImg collapseImg"></div>
+
+        </label>
+        <nav id="sidebar">
+            <ul class="list-items">
+                <li class="addChipsButton">
+                    <div class="backgroundImg chipsImg"></div> <span class="lang" key="addChips">Add Chips</span></li>
+                <li class="multiTableButton">
+                    <div class="backgroundImg multiTableImg"></div> <span class="lang" key="multiTable">Multi Table</span></li>
+                <li class="autoFoldSetting">
+                    <div class="backgroundImg autoFoldImg"></div><span class="lang" key="autoFoldSetting"> Auto Fold Setting</span></li>
+                <li class="sharehand">
+                    <div class="backgroundImg shareImg"></div> <span class="lang" key="shareHand">Share Hand</span></li>
+                <li class="logTabButton" onclick="showLogTab(true)">
+                    <div class="backgroundImg logTabImg"></div> <span class="lang" key="logTab">Hands History</span></li>
+                <li class="settingsButton">
+                    <div class="backgroundImg settingImg"></div> <span class="lang" key="settings">Settings</span></li>
+                <li class="sitOutButton">
+                    <div class="backgroundImg sitOutImg"></div><span class="lang" key="sitOut">Sit Out</span></li>
+                <li class="backLobbyButton">
+                    <div class="backgroundImg backLobbyImg"></div> <span class="lang" key="lobby">Back to Lobby</span></li>
+                <li class="leaveButton">
+                    <div class="backgroundImg leaveImg"></div> <span class="lang" key="leaveGame">Leave Game</span></li>
+                <li class="forhid d-none">
+                    <div class="backgroundImg RebuyImg"></div>
+                    <span class="lang" key="reBuy">Rebuy/Add-on</span></li>
+                <li class="addTipsButton d-none">
+                    <i class="fa-solid fa-sack-dollar"></i> <span class="lang" key="tipTheDealer">Tip the
+                        Dealer</span>
+                </li>
+                <li class="cashier d-none">
+                    <div class="backgroundImg cashierImg"></div>
+                    <span class="lang" key="Cashier">Cashier</span></li>
+
+                <div class="title">Table Settings</div>
+
+                <li class="alwaysFoldButton">
+                    <div class="checkbox" id="alwaysFold">
+                        <img src="./images/desktop/checked.png">
+                    </div> <span class="lang" key="alwaysFold">Always Fold</span>
+                </li>
+                <li class="sitOutNextHandButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/checked.png">
+                    </div> <span class="lang" key="sitOutNextHand">Sit Out Next Hand</span>
+                </li>
+                <li class="AutoTip">
+                    <div class="checkbox">
+                        <img src="./images/desktop/checked.png">
+                    </div> <span class="lang" key="AutoTip">Auto Tip</span>
+                </li>
+                <li class="autoModeButton" style="display: none;">
+                    <div class="checkbox">
+                        <img src="./images/desktop/checked.png">
+                    </div> <span class="lang" key="autoMode">Auto Mode</span>
+                </li>
+                <li class="preFlopAutoFold">
+                    <div class="checkbox">
+                        <img src="./images/desktop/checked.png">
+                    </div> <span class="lang" key="preFlopAutoFold">Pre Flop Auto fold</span>
+                </li>
+                <li class="waitForBBButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/checked.png">
+                    </div> <span class="lang" key="waitForBB">Wait For BB</span>
+                </li>
+            </ul>
+        </nav>
+        <div class="chatButton" id="chatButton" onclick="showChatBox(true)">
+            <div class="backgroundImg chatImg"></div>
+            <div class="badge">0</div>
+        </div>
+        <!-- chatContainer -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <span>GAME CHAT</span>
+                <button class="close-btn" id="chatCloseBtn" onclick="showChatBox(false)">&times;</button>
+            </div>
+            <div class="chat-messages">
+                <!-- Message Block -->
+                <!--    <div class="message">
+                    <div class="username-time">
+                        <span class="username">Name of user</span>
+                        <span class="timestamp">11:33 PM</span>
+                    </div>
+                    <div class="msg-text">River: 2 playersRiver: 2 players</div>
+                </div>
+                <div class="self-message-box">
+                    <img src="images/image.png" alt="">
+                    <div class="message self">
+                        <div class="username-time">
+                            <span class="username">Your Message</span>
+                            <span class="timestamp">11:33 PM</span>
+                        </div>
+                        <div class="msg-text">River: 2 playersRiver: 2 players</div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="main_emoji blocks" id="emoji_func">
+                <div class="emojiClose justify-content-end">
+                    <button type="button" class="btn-closes-emoji" onclick="showEmojiframe(false)">
+                    <i class="bi bi-x-lg text-ic m-0"></i>
+                </button>
+                </div>
+                <div class="emoji">
+                    <button class="em first_em preChatEmoji">👍</button>
+                    <button class="em preChatEmoji">😊</button>
+                    <button class="em preChatEmoji">😂</button>
+                    <button class="em preChatEmoji">🤮</button>
+                    <button class="em preChatEmoji">☹️</button>
+                    <button class="em preChatEmoji">🥱</button>
+                </div>
+                <div class="emoji">
+                    <button class="em first_em preChatEmoji">😡</button>
+                    <button class="em preChatEmoji">🎉</button>
+                    <button class="em preChatEmoji">😮</button>
+                    <button class="em preChatEmoji">👻</button>
+                    <button class="em preChatEmoji">🐵</button>
+                    <button class="em preChatEmoji">💐</button>
+                </div>
+                <div class="emoji">
+                    <button class="em first_em preChatEmoji">️😎</button>
+                    <button class="em preChatEmoji">😭</button>
+                    <button class="em preChatEmoji">🐟</button>
+                    <button class="em preChatEmoji">👎</button>
+                    <button class="em preChatEmoji">🙋‍♀️</button>
+                    <button class="em preChatEmoji">🙄</button>
+                </div>
+            </div>
+            <div class="chat-input">
+                <div class="input-container">
+                    <input type="text" id="chatInput" placeholder="Your message here" />
+                    <!-- <i class="fas fa-smile input-icon emoji-icon"></i> -->
+                    <div class="backgroundImg chat-emoji-icon chatEmojiImg" onclick="showEmojiframe(true)"></div>
+                    <!-- <i class="fas fa-arrow-right input-icon arrow-icon"></i> -->
+                    <div class="backgroundImg send-message-icon chatSend sendMessageImg"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Log Tab -->
+        <div class="activity-container" id="activityContainer">
+            <!-- <div class="draggable-container" id="draggableDiv"> -->
+                <div class="drag-handle">
+                    <div class="activity-header">
+                        <span style="width: 100%;">ACTIVITIE</span>
+                        <button class="close-btns" id="closeLogButton" onclick="showLogTab(false)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="activity-list logData">
+                    </div>
+                    <div class="playerCards">
+                        <div class="navigation-container">
+                            <div class="navigation-player-container">
+                                <!-- <div class="player-action">
+                                    <span class="bet-action">Call</span> <span class="bet-amount">5</span>
+                                </div> -->
+                                <div class="cards"  style="margin-top: 0;">
+                                    <!-- <div class="card spades black" style="height: 50px; width: 25px;">J</div>
+                                    <div class="card spades black" style="height: 50px; width: 25px;">K</div>
+                                    <div class="card hearts red" style="height: 50px; width: 25px;">Q</div>
+                                    <div class="card spades black" style="height: 50px; width: 25px;">A</div> -->
+                                    <!-- <img class="" src="./images/png/102x142/8d.png" style="opacity:1;height: 50px;width: 25px;">
+                                    <img class="" src="./images/png/102x142/8d.png" style="opacity:1;height: 50px;width: 25px;"> -->
+                                </div>
+                            </div>
+                            <div class="hand-counter">1 / <span class="totalLogs">1</span></div>
+                            <div class="navigation">
+                                <div class="nav-button prev-button">
+                                    <!-- ← -->
+                                    <img src="./images/Left.png" alt="Previous" style="height: 100%;">
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress">
+                                        <div class="progress-handle"></div>
+                                    </div>
+                                </div>
+                                <div class="nav-button next-button">
+                                    <!-- → -->
+                                    <img src="./images/Right1.png" alt="Previous" style="height: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resize-handle"></div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
     <div class="top_prent_div">
         <img id="backgroundLogo" src="./images/logo@2x.png">
-        <img id="hidesidebar" src="./images/sideBar.png">
+        <!-- <img id="hidesidebar" src="./images/sideBar.png"> -->
         <div id="mobileSideBar" class="sideButtonsDiv portrateOnly">
             <button class="backLobbyButton"><img src="./images/desktop/Shape 1.svg"> Back to Lobby</button>
             <button class="sitOutButton"><img src="./images/desktop/Group 60@2x.png"> Sit Out</button>
@@ -123,22 +335,22 @@
         </button>
             <button class="d-none"><img src="./images/desktop/icons8-dollar-50@2x.png"> Cashier</button>
             <button class="settingsButton">
-            <img src="./images/desktop/icons8-settings-250.png"> Settings
-        </button>
-            <button class="autoFoldButton">
-            <div class="checkbox">
-                <img src="./images/desktop/v@2x.png">
-            </div> FOLD TO ANY BET
-        </button>
+                <img src="./images/desktop/icons8-settings-250.png"> Settings
+            </button>
+            <button class="alwaysFoldButton">
+                <div class="checkbox">
+                    <img src="./images/desktop/v@2x.png">
+                </div><span class="lang" key="alwaysFold">Always Fold</span>
+            </button>
             <button class="sitOutNextHandButton button_hebrew_width">
             <div class="checkbox">
                 <img src="./images/desktop/v@2x.png">
-            </div> SIT OUT NEXT HAND
+            </div> Sit Out Next Hand
         </button>
             <button class="waitForBBButton button_hebrew_width">
             <div class="checkbox">
                 <img src="./images/desktop/v@2x.png">
-            </div> WAIT FOR BB
+            </div> Wait For BB
         </button>
         </div>
         <div id="tableDiv">
@@ -171,7 +383,7 @@
                     <span class="lang" key="sidePot">Side pot</span> 3: <img src="./images/desktop/1 copy 4-1@2x.png">
                     <span class="money">$100</span>
                 </div>
-                <div class="sidePot box ">
+                <div class="sidePot box">
                     <span class="lang" key="sidePot">Side pot</span> 4: <img src="./images/desktop/1 copy 4-1@2x.png">
                     <span class="money">$100</span>
                 </div>
@@ -203,15 +415,15 @@
                 <tr>
                     <td class="td1">
                         <div class="sidePot box">
-                            <span class="lang" key="sidePot">Side pot</span> 1: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <!--  <span class="lang" key="sidePot">Side pot</span> -->1: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                         <div class="sidePot box">
-                            <span class="lang" key="sidePot">Side pot</span> 2: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->2: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                         <div class="sidePot box">
-                            <span class="lang" key="sidePot">Side pot</span> 3: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->3: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                     </td>
@@ -230,16 +442,16 @@
                         </div>
                     </td>
                     <td class="td3">
-                        <div class="sidePot box ">
-                            <span class="lang" key="sidePot">Side pot</span> 4: <img src="./images/desktop/1 copy 4-1@2x.png">
+                        <div class="sidePot box">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->4: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                         <div class="sidePot box">
-                            <span class="lang" key="sidePot">Side pot</span> 5: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->5: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                         <div class="sidePot box">
-                            <span class="lang" key="sidePot">Side pot</span> 6: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->6: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                     </td>
@@ -248,7 +460,7 @@
                     <td></td>
                     <td>
                         <div class="sidePot box side-custom">
-                            <span class="lang" key="sidePot">Side pot</span> 7: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->7: <img src="./images/desktop/1 copy 4-1@2x.png">
                             <span class="money">$100</span>
                         </div>
                     </td>
@@ -346,43 +558,9 @@
                     <button class="translate" id="german">Germany</button>
                     <button class="translate" id="hebrew">Hebrew</button>
                 </div> -->
-                    <div class="sideButtonsDiv landscapeOnly">
-                        <button class="backLobbyButton all_left_buttons"><img src="./images/desktop/Shape 1.svg"> <span class="lang" key="lobby" >Back to Lobby</span></button>
 
-                        <button class="sitOutButton all_left_buttons"><img src="./images/desktop/Group 60@2x.png"> <span class="lang" key="sitOut">Sit Out</span></button>
-                        <button class="leaveButton all_left_buttons"><img src="./images/desktop/exit@2x.png"> <span class="lang" key="leaveGame">Leave Game</span></button>
-                        <button class="forhid all_left_buttons" style="visibility: hidden;"><img src="./images/desktop/Group 11@2x.png">
-                        <span class="lang" key="reBuy">Rebuy/Add-on</span></button>
-                        <button class="addChipsButton all_left_buttons">
-                        <img src="./images/desktop/icons8-coin-50@2x.png"> <span class="lang" key="addChips">Add Chips</span>
-                    </button>
-                        <button class="addTipsButton d-none all_left_buttons">
-                        <i class="fa-solid fa-sack-dollar"></i> <span class="lang" key="tipTheDealer">Tip the Dealer</span>
-                    </button>
-                        <button class="settingsButton all_left_buttons">
-                        <img src="./images/desktop/icons8-settings-250.png"> <span class="lang" key="settings">Settings</span>
-                    </button>
-                        <button class="multiTableButton "><img src="./images/desktop/multi table.png"> <span class="lang" key="multiTable">Multi Table</span></button>
-                        <button class="all_left_buttons d-none"><img src="./images/desktop/icons8-dollar-50@2x.png"> <span class="lang" key="Cashier">Cashier</span></button>
-                        <button class="sharehand all_left_buttons"><i class="fa-solid fa-share-from-square"></i>  <span class="lang" key="shareHand">Share Hand</span></button>
-                        <div class="waitingList">
-                            <div class="waitingListSide">
-                                <div>5</div>
-                                <div><img src="./images/desktop/Group 372.svg" id="arrow"></div>
-                            </div>
-                            <button class="lang all_left_buttons" key="joinWaitingList">Join Waiting List</button>
-                        </div>
-                        <div id="usersDropdown">
-                            <div class="users" id="user">
-                                <button class="lang" key="user1">user 1</button>
-                                <div class="innerUser lang" key="user2">user 2</div>
-                                <div class="innerUser lang" key="user3">user 3</div>
-                                <div class="innerUser lang" key="user4">user 4</div>
-                                <div class="innerUser lang" key="user5">user 5</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="trophyDiv portrateOnly"><img src="./images/desktop/trophy@2x.png"> <span>250/2454</span>
+            <div class="trophyDiv portrateOnly position">
+              ----
                     </div>
                 </td>
                 <td>
@@ -390,185 +568,73 @@
                         <table>
                             <tr>
                                 <td>
-                                    <div id="meDiv">
-                                        <span>Hi <span id="myName" class="lang" key="playerName">Tangotag</span>!</span>
-                                        <div class="stars box">
-                                            <img src="./images/desktop/material-star.svg"> 4.2
+                                    <div class="tournamentName"></div>
+                                    <div class="hadeLeftDiv">
+                                        <div class="hadeBox" id="meDiv" style="display: none;">
+                                            <span class="hadeTitle">Hi!</span> <br>
+                                            <span id="myName" class="lang" key="playerName">Tangotag</span>
+                                            <div class="stars box" style="display: none;">
+                                                <img src="./images/desktop/material-star.svg"> 4.2
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox cashGameInfo  text-end">
+                                            <span class="hadeTitle">Game Info </span> <br>
+                                            <div>
+                                                <div><span class="smallBlind handBoldText">10</span>/<span class="bigBlind handBoldText">15</span>, <span class="handBoldText">Ante</span> &nbsp;<span class="ante handBoldText">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox tournamentInfo  text-end" style="display: none;">
+                                            <span class="hadeTitle">Level <span class="level">2</span></span> <br>
+                                            <div>
+                                                <div class="levelInfo"><span class="smallBlind handBoldText">10</span>/<span class="bigBlind handBoldText">15</span>, <span class="handBoldText">Ante</span> &nbsp;<span class="ante handBoldText">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox text-end">
+                                            <div class="tournamentOnly">
+                                                <span class="hadeTitle">Next Level <span class="timer">00:00:49</span></span> <br><span class="nextLevel handBoldText">10/90, Ante  5 <span>- Level 13</span></span>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="handId">Hand ID : 1</div>
+                                <td class="hadeMiddleDiv">
+                                    <div>
+                                        <span class="hadeTitle handId">Hand ID: <label >0</label> </span>
+                                        <br><span class="tableName tableid">TABLE-2</span>
+                                    </div>
                                 </td>
                                 <td>
-                                    <div class="tableName">BLUE TABLE</div>
-                                </td>
+                                    <div class="hadeRightDiv">
+                                        <div class="hadeBox">
+                                            <div class="col-6 tournamentOnly">
+                                                <div class="backgroundImg trophyImg"></div>
 
-                                <td>
-                                    <span class="tableSettingsSpan landscapeOnly">
-                                    <span class="currencyImage"></span>
-                                    <span class="smallBlind">10</span>/<span class="bigBlind">20</span>
-                                    <span class="tournamentOnly">Ante <span class="ante">5</span> - level <span class="level">13</span></span>
-                                    </span>
+                                                <span class="hadeTitle">Your position</span> <br><span class="position handBoldText">25022/ <label >22454</label>  </span></div>
+                                        </div>
+                                        <div class="hadeBox">
+                                            <div class="tournamentOnly">
+                                                <span class="hadeTitle">Biggest Stack</span> <br><span class="biggestStack handBoldText">20BB</span>
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox">
+                                            <div class="tournamentOnly">
+                                                <span class="hadeTitle">Average</span> <br><span class="averageStack handBoldText">30BB</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
-                        <div id="topDivLine"></div>
-                        <div class="tableSettingsSpan tournamentOnly">
-                            Next Level <span class="nextSBBB">10/20</span>&nbsp;<span class="timer">00:00:49</span>
-                        </div>
+                        <!-- <div id="topDivLine"></div> -->
                     </div>
                 </td>
                 <td>
-                    <div class="trophyDiv box landscapeOnly"><img src="./images/desktop/trophy@2x.png">
-                        <span>250/2454</span>
-                    </div>
-                    <img id="openMenuButton" class="portrateOnly" src="./images/menu.png" alt="Menu">
-                    <span class="tableSettingsSpan portrateOnly">
-                    $<span class="smallBlind">10</span>/$<span class="bigBlind">20</span>
-                    <span class="tournamentOnly">Ante <span class="ante">5</span> level <span class="level">13</span></span>
-                    </span>
-                    <!-- right slider start -->
-                    <!-- <div class="slider_prent">
-                    <div id="toggleButton" style="display: flex;">
-                        <div class="left_arrow"><img src="images/Vector 2 (1).png" alt="Show Image" class="w-100" /></div>
-                        <div class="right_arrow">
-                            <img src="images/Vector 3.png" alt="Hide Image" class="w-100" /></div>
-                    </div>
-                   
-           
-                </div> 
-             right slider end -->
                 </td>
             </tr>
             <tr></tr>
             <tr>
                 <td>
-                    <div class="sideButtonsDiv landscapeOnly for-sc-edit">
-                        <div class="btn-group dropright chatButton">
-                            <button type="button" class="dropdown-toggle w-100 d-flex " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="./images/desktop/Icon material-chat.svg"> <span class="lang" key="Chat">Chat</span>
-                        </button>
-                            <div class="dropdown-menu  leftArrow py-0" id="third">
-                                <div class="activitiess style-2" id="">
-                                    <div class="activInner main_div_mes" id="thirdss">
-                                        <div class="main d-flex  justify-content-end " style="align-items:center; text-align:center;">
-                                            <div class="smikes">
-                                                <button type="button" id="btn-closes" class="btn-closes">
-                                                <i class="bi bi-x-lg fr text-ic m-0"></i>
-                                            </button>
-                                            </div>
-                                        </div>
-                                        <div class="message blocks position-relative  mx-3 mt-4 mb-3 d-block"
-                                            id="divmessages">
-                                            <div class="userMessage result_div"></div>
-                                            <div id="message_result">
 
-                                            </div>
-                                        </div>
-                                        <!-- other div for emoji button -->
-                                        <div class="main_emoji blocks" id="emoji_func">
-                                            <div class="emoji">
-                                                <button class="em first_em preChatEmoji">👍</button>
-                                                <button class="em preChatEmoji">😊</button> 
-                                                <button class="em preChatEmoji">😂</button>
-                                                <button class="em preChatEmoji">🤮</button> 
-                                                <button class="em preChatEmoji">☹️</button>
-                                                <button class="em preChatEmoji">🥱</button>
-                                            </div>
-                                            <div class="emoji">
-                                                <button class="em first_em preChatEmoji">😡</button>
-                                                <button class="em preChatEmoji">🎉</button> 
-                                                <button class="em preChatEmoji">😮</button>
-                                                <button class="em preChatEmoji">👻</button> 
-                                                <button class="em preChatEmoji">🐵</button>
-                                                <button class="em preChatEmoji">💐</button>
-                                            </div>
-                                            <div class="emoji">
-                                                <button class="em first_em preChatEmoji">️😎</button>
-                                                <button class="em preChatEmoji">😭</button> 
-                                                <button class="em preChatEmoji">🐟</button>
-                                                <button class="em preChatEmoji">👎</button> 
-                                                <button class="em preChatEmoji">🙋‍♀️</button>
-                                                <button class="em preChatEmoji">🙄</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input_div">
-                                        <input type="text" placeholder="Hello😊" id="msg">
-                                        <i class="bi bi-send-fill send" id="gray13"></i>
-                                        <button class="emoji_click " id="gray12">
-                                            <i class="bi bi-emoji-smile fs m-0"  style="color: #ffffff;"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="btn-group dropright logTabButton">
-                            <button type="button" class="dropdown-toggle w-100 d-flex button_hebrew_width " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="./images/desktop/Icon metro-notification.svg">  <span class="lang" key="logTab">Log Tab</span>
-                        </button>
-                            <div class="dropdown-menu  righht leftArrow py-0">
-                                <div class="activities pb-3 style-2">
-                                    <div class="activInner main_div_mes">
-                                        <div class="act">
-                                            <div class=" main_dib d-flex main justify-content-between  " style="align-items: center;">
-                                                <div class="  acc lang" key="activitie"> Activitie:</div>
-                                                <div class="close_div_button">
-                                                    <button type="button" id="btn-closes_act" class="btn-closes">
-                                                    <i class="bi frs bi-x m-0"></i>
-                                                </button>
-                                                </div>
-                                            </div>
-                                            <div class="maindiv_bar">
-                                                <div class="act_scroll">
-                                                    <div class="message_div  mx-3 mb-3">
-                                                        <div class="log_data">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="autoFoldButton  button_font_size">
-                        <div class="checkbox">
-                            <img src="./images/desktop/v@2x.png">
-                        </div> <span class="lang" key="foldToAnyBet">FOLD TO ANY BET</span>
-                    </button>
-                        <button class="sitOutNextHandButton  button_font_sizes">
-                        <div class="checkbox">
-                            <img src="./images/desktop/v@2x.png">
-                        </div> <span class="lang" key="sitOutNextHand">SIT OUT NEXT HAND</span>
-                    </button>
-                        <button class="waitForBBButton all_left_buttons">
-                        <div class="checkbox">
-                            <img src="./images/desktop/v@2x.png">
-                        </div>  <span class="lang" key="waitForBB">WAIT FOR BB</span>
-                    </button>
-                        <button class="AutoTip all_left_buttons">
-                        <div class="checkbox">
-                            <img src="./images/desktop/v@2x.png">
-                        </div>  <span class="lang" key="AutoTip">Auto Tip</span>
-                    </button>
-
-                        <button class="autoModeButton all_left_buttons">
-                        <div class="checkbox">
-                            <img src="./images/desktop/v@2x.png">
-                        </div> <span class="lang" key="autoMode">Auto Mode</span>
-                    </button>
-
-                        <button class="autoFoldModeButton all_left_buttons">
-                        <div class="checkbox">
-                            <img src="./images/desktop/v@2x.png">
-                        </div> <span class="lang" key="autoFold">Auto Fold</span>
-                    </button>
-                    </div>
                 </td>
                 <td id="centerBottom">
                     <button id="showCardsButton" class="actionButton edit-btn-screen">
@@ -582,12 +648,44 @@
                 <td></td>
             </tr>
         </table>
+        <div class="actionCheckbox">
+            <div class="sideButtonsDiv" style="height: 100%;">
+                <button class="foldToAnyBetButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div>
+                    <span class="lang" key="foldToAnyBet">Fold to any bet</span>
+                </button>
+            </div>
+            <div id="automaticActionsDiv" class="sideButtonsDiv" style="position: absolute">
+                <button id="autoCheckButton" class="checkToAnyBetButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div> <span class="lang" key="check">Auto Check</span>
+                </button>
+                <button id="autoCheckOrFoldButton" class="checkToAnyBetButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div> <span class="lang" key="check/Fold">Check/Fold</span>
+                </button>
+            </div>
+            <div class="sideButtonsDiv" style="height: 100%;">
+                <button class="callButtonDiv">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div>
+                    <span class="lang " key="foldToAnyBet">Call <span class="callText"></span></span>
+                </button>
+            </div>
+        </div>
         <div id="turnActionsDiv">
+            
+           
             <button id="foldButton" class="actionButton lang" key="fold">FOLD</button>
             <button id="callButton" class="actionButton lang" key="call">CALL</button>
-            <button id="raiseButton" class="actionButton"><span key="raiseTo" class="lang">RAISE TO</span> <span
+            <button id="raiseButton" class="actionButton"><span key="raiseTo" class="lang raise_text">RAISE TO</span> <span
                 class="valueDisplay betSlider moneyDisplay">50</span></button>
-            <div id="betDivWrapper" class="bet-mannual">
+            <div id="betDivWrapper">
                 <div id="betShow">
                     <!--
         <span class="valueDisplay betSlider moneyDisplay">50</span>
@@ -634,199 +732,413 @@
                     </table>
                 </div>
             </div>
+            <div id="betAmountDiv" class="amount-mannual">
+                <div class="betAmount">
+
+                    <div><span>1 </span>BB</div>
+                    <div><span>2 </span>BB</div>
+                    <div><span>2.5 </span>BB</div>
+                    <div><span>3 </span>BB</div>
+                    <div><span>3.5 </span>BB</div>
+                    <div><span>4 </span>BB</div>
+                </div>
+            </div>
         </div>
         <div id="tip-button">
-            <p>Tip:</p>
+            <p>Tip</p>
             <div class="button-prents">
-                <button class="first_bb" value="1">1BB</button>
-                <button class="first_bb1" value="2">2BB</button>
-                <button class="first_bb2" value="4">4BB</button>
+                <button class="first_bb tipButton" value="1">
+                    <img src="/images/tip.png" alt="" class="tipImage">
+                    <span class="first-bb-value tip-text">1BB</span>
+                </button>
+                <button class="first_bb1 tipButton" value="2">
+                    <img src="/images/tip.png" alt="" class="tipImage">
+                    <span class="first-bb1-value tip-text">2BB</span>
+                </button>
+                <button class="first_bb2 tipButton" value="4">
+                    <img src="/images/tip.png" alt="" class="tipImage">
+                    <span class="first-bb2-value tip-text">4BB</span>
+                </button>
             </div>
         </div>
-        <div id="automaticActionsDiv">
-            <button id="autoCheckButton" class="actionButton">
-            <div class="checkbox">
-                <img src="./images/desktop/v@2x.png">
-            </div> <span class="lang" key="check">CHECK</span>
-        </button>
-            <button id="autoCheckOrFoldButton" class="actionButton">
-            <div class="checkbox">
-                <img src="./images/desktop/v@2x.png">
-            </div> <span class="lang" key="check/Fold">CHECK/FOLD</span>
-        </button>
-        </div>
 
-        <div id="buyInMenu" class="menuDiv">
-
-            <div style="display: flex;justify-content: center;flex-direction: column;">
-                <div style="width: 100%;width: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-                    <div style="text-align: center; color: #FFEB00;justify-content: center;display: flex;align-items: center;">
-                        <img src="./images/desktop/card.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> <span class="lang" key="transferToTableWallet">Transfer To Table Wallet</span>
-                    </div>
-                    <div style="text-align: center; margin-top: calc(1 * var(--aspect-ratio)) ;"><span class="lang" key="yourGlobalBalance">Your Global Balance</span>: <span id="global-balance">1450</span></div>
-                    <div id="transferSliderContainer">
-                        <div style="display: flex;justify-content: center; align-items: center;">
-
-                            <input type="number" id="transferCount">
-
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div id="transferMinus">
-                                <!-- <span class="lang" key="min">Min</span> -->
-                                <span style="padding-right: calc(2 * var(--aspect-ratio))">50</span>
-                            </div>
-                            <div id="transferSlider" class="slider">
-                                <div>
-                                    <img class="thumb" src="./images/desktop/1 copy 4-1@2x.png">
-                                </div>
-                            </div>
-                            <div id="transferPlus">
-                                <span style="padding-left: calc(2 * var(--aspect-ratio))">2000</span>
-                                <!--<span class="lang" key="max">Max</span> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="transferWaitingClock">
-                        <svg class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206" preserveAspectRatio="none">
-                        <path class="middle"
-                            d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z" />
-                        <path class="outer"
-                            d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z" />
-                    </svg>
-                    </div>
-                    <div style="display: flex; justify-content: center; margin: calc(1 * var(--aspect-ratio)) 0px 0px 0px;">
-                        <button class="transferButton lang" key="transfer" style="background-color: #343964;">Transfer</button>
-
-                    </div>
-                </div>
-                <hr style="background-color: #FFEB00;color: #FFEB00;width: 80%;margin-top: calc(1 * var(--aspect-ratio));margin-bottom: 0rem;">
-
-                <div class="buyin" style="text-align: center; color: #FFEB00;display: flex;align-items: center;margin-bottom: calc(1.5 * var(--aspect-ratio));margin-top: calc(1.5 * var(--aspect-ratio));">
-                    <img src="./images/desktop/money-table.png" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;" alt=""><span class="lang" key="addtoTable">Add To Table</span>
-                </div>
-                <div class="buyin" style="display: flex; justify-content: space-between;width: 75%;">
-                    <div style="display: flex;align-items: center;"><img src="./images/desktop/card.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> <span class="lang" key="tableWallet">Table Wallet</span>:<span id="table-balance">0</span></div>
-                    <div style="display: flex;align-items: center;"> <img src="./images/desktop/round.png" alt="" style="margin-right: calc(1 * var(--aspect-ratio));height: fit-content;"> <span class="lang" key="tableBalance">Table Balance</span>:<span id="table-chip">0</span></div>
-                </div>
-                <div class="buyin buyin_table_balance">
-                    <div  class="added_balance">
-                        <label class="form-label totaladd">Total Add</label>
-                        <input type="number" id="buyin-input">
-                    </div>
-                    <div  class="table_balance">
-                        <label class="form-label totaladd">New Table balance</label>
-                        <input type="number" id="buyin-input">
-                    </div>
-                </div>
-                <div class="buyin" id="buyInSliderContainer">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div id="buyInMinus">
-                            <!-- <span class="lang" key="min">Min</span> -->
-                            <span style="padding-right: calc(2 * var(--aspect-ratio))">50</span>
-                        </div>
-                        <div id="buyInSlider" class="slider">
-                            <div>
-                                <img class="thumb" src="./images/desktop/1 copy 4-1@2x.png">
-                            </div>
-                        </div>
-                        <div id="buyInPlus">
-                            <span style="padding-left: calc(2 * var(--aspect-ratio))">2000</span>
-                            <!-- <span class="lang" key="max">Max</span> -->
-                        </div>
-                    </div>
-                </div>
-                <div class="buyin" id="autoRebuyContainer">
-                    <div><span class="lang" key="autoReBuyChipsWhen">Auto re-buy chips when</span>:</div>
-                    <div>
-                        <div>
-                            <div id="chipsLowerThenBuyInCheckbox" class="checkbox" style="border-radius: 50%;">
-                                <img src="./images/desktop/tickRed.png" style="height: 15px; max-width: 15px;bottom: 0px;">
-                            </div> <span class="lang" key="chipsAreLowerThenBuyin">Chips are lower then Buy-in</span>
-                        </div>
-                        <div>
-                            <div id="runOutOfChipsCheckbox" class="checkbox" style="border-radius: 50%;">
-                                <img src="./images/desktop/tickRed.png" style="height: 15px; max-width: 15px;bottom: 0px;">
-                            </div> <span class="lang" key="runOutChips">You run out of chips completely</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="menuBottomButtons">
-                    <button class="cancleButton lang" key="cancel">CANCLE</button>
-                    <button class="okButton lang buyin" key="ok">OK</button>
-                </div>
+      <div id="buyInMenu" class="menuDiv">
+        <div class="buyinDiv">
+          <div class="buyin_upper_part">
+            <div class="wallet_label ">
+              <img src="./images/wallet_icon.png" alt="" class="wallet_icon" />
+              <span class="lang transferToTableWallet" key="transferToTableWallet">Transfer To Table Wallet</span>
             </div>
-        </div>
-        <div id="settingsMenu" class="menuDiv">
+            <div class="global_balance_div">
+              <span class="lang yourGlobalBalance" key="yourGlobalBalance"
+                >Your Global Balance</span
+              >: <span id="global-balance">1450</span>
+            </div>
+            <div id="transferSliderContainer">
+              <div class="number_div">
+                <input type="number" id="transferCount" value="2"/>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div id="transferMinus">
+                  <span>50</span>
+                </div>
+                <div id="transferSlider" class="slider buyinSlider">
+                    <div class="transferSlider">
+                        <img class="thumb" src="./images/desktop/chipIcon.png"/>
+                    </div>
+                </div>
+                <div id="transferPlus">
+                  <span>2000</span>
+                </div>
+              </div>
+            </div>
+            <div class="transferWaitingClock">
+              <svg class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206" preserveAspectRatio="none">
+                <path class="middle" d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z"/>
+                <path class="outer" d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z"/>
+              </svg>
+            </div>
+            <div >
+              <button class="transferButton lang" key="transfer">
+                Transfer
+              </button>
+            </div>
+          </div>
+          <hr class="hr_division"/>
+          <div
+            class="buyin"
+            style="
+              text-align: center;
+              color: #ffeb00;
+              display: flex;
+              align-items: center;
+              margin-bottom: calc(3 * var(--aspect-ratio));
+              margin-top: calc(1.5 * var(--aspect-ratio));
+              margin-bottom: -5px;
+            "
+          >
+            <img src="./images/desktop/money-table.png"/>
+            <span class="add_to_table" key="addtoTable"
+            >
+            Add To Table</span>
+          </div>
+          <div
+            class="buyin"
+            style="display: flex; justify-content: space-between; width: 55%;"
+          >
+            <div style="display: flex; align-items: center">
+              <img id="card-png"
+                src="./images/desktop/wallet.png" 
+                alt=""
+                style="
+                  margin-right: calc(1 * var(--aspect-ratio));
+                  height: fit-content;
+                  "/>
+              <span class="tablewallet" key="tableWallet" 
+             
+              >
+              <b>Table Wallet</b> </span>: <span
+                id="table-balance"
+                ><b>2</b></span
+              >
+            </div>
+            <div style="display: flex; align-items: center">
+              <img id="round-png"
+                src="./images/desktop/wheel.png"
+                alt=""
+                style="
+                  margin-right: calc(1 * var(--aspect-ratio));
+                  height: fit-content;"/>
+              <span class="table0" key="tableBalance"
+               
+               ><b>Table Balance</b> </span>: <span
+                id="table-chip"
+                ><b>0</b></span
+              >
+            </div>
+          </div>
+          <div class="buyin buyin_table_balance">
+            <div class="added_balance">
+              <label class="form-label totaladd"
+              ><b>Total Add</b></label>             
+              <input type="number" 
+              id="buyin-input" value="2"/>
+            </div>
+            
+            <div class="table_balance">
+              <label class="form-label totaladd"
+              ><b>New Table balance</b></label>
+              <input type="number" 
+              id="buyin-input" value="2"/>
+            </div>
+          </div>
+          <div class="buyin" id="buyInSliderContainer">
+            <div class="d-flex justify-content-between align-items-center">
+              <div id="buyInMinus">
+                <!-- <span class="lang" key="min">Min</span> -->
+                <span style="font-size:calc(1 * var(--aspect-ratio));
+                margin-left:calc(0.01 * var(--aspect-ratio));">50</span>
+              </div>
+              <div id="buyInSlider" class="slider buyinSlider">
+                <div>                      
+                  <img class="thumb" src="./images/desktop/chipIcon.png"/>
+                </div>
+              </div>
+              <div id="buyInPlus">
+                <span style="font-size:calc(1 * var(--aspect-ratio));
+                margin-left:calc(0.01 * var(--aspect-ratio));"><b>2000</b></span>
+                
+                <!-- <span class="lang" key="max">Max</span> -->
+              </div>
+            </div>
+          </div>
+          <div class="buyin" id="autoRebuyContainer">
             <div>
-                <div class="menuTitle">
-                    <img src="./images/desktop/icons8-settings-250@2x.png"> <span class="lang" key="settings">Seetings</span>
-                </div>
-                <div>
-                    <div id="muteCheckbox" class="checkbox">
-                        <img src="./images/desktop/v@2x.png">
-                    </div>
-                    <img src="./images/desktop/volume-mute@2x.png"> <span class="lang" key="muteSounds">Mute sounds</span>
-                </div>
-                <div>
-                    <div id="autoMuckCheckbox" class="checkbox">
-                        <img src="./images/desktop/v@2x.png">
-                    </div>
-                    <img src="./images/desktop/view@2x.png"> <span class="lang" key="autoMuckCards">Auto muck cards</span>
-                </div>
-                <div>
-                    <div id="showAsBBCheckbox" class="checkbox">
-                        <img src="./images/desktop/v@2x.png">
-                    </div>
-                    <img src="./images/desktop/dollar@2x.png"> <span class="lang" key="ValueAsBBRatio">Show values as BB ratio</span>
-                </div>
-                <div style="display: none;">
-                    <div id="showAsSUDCheckbox" class="checkbox">
-                        <img src="./images/desktop/v@2x.png">
-                    </div>
-                    <img src="./images/desktop/dollar@2x.png"> <span class="lang" key="ValueAsUSD">Show values as USD</span>
-                </div>
-                <div>
-                    <div id="fourColorsCheckbox" class="checkbox">
-                        <img src="./images/desktop/v@2x.png">
-                    </div>
-                    <img src="./images/desktop/Group 53@2x.png"><span class="lang" key="FourColours">4 colors deck</span>
-                </div>
-                <img class="menuLogo" src="./images/desktop/TURTLE-STUDIOS-png.png">
-                <div class="menuBottomButtons">
-                    <button class="okButton lang" key="ok">OK</button>
-                </div>
+              <span class="rebuychips" key="autoReBuyChipsWhen" 
+                ><b>Auto re-buy chips when </b></span
+              >:
             </div>
-        </div>
-        <div id="breakTime" class="menuDiv">
             <div>
-                <div class="menuTitle lang" key="breakTime">
-                    Break Time
+              <div>
+                <div 
+                  id="chipsLowerThenBuyInCheckbox"
+                  class="checkbox"
+                  style="border-radius: 50%;"
+                >
+                  <img src="./images/desktop/tickRed.png" />
                 </div>
-                <div class="timer">
-                    00:45
+                
+                <span class="lowerchips" key="chipsAreLowerThenBuyin"
+                style="margin-left: calc(2.5 * var(--aspect-ratio));"
+                  >Chips are lower then Buy-in</span>
+              </div>
+              <span>|</span>
+              <div>
+                <div 
+                  id="runOutOfChipsCheckbox"
+                  class="checkbox"
+                  style="border-radius: 50%"
+                >
+                  <img src="./images/desktop/tickRed.png" />
                 </div>
+                <span class="runoutchips" key="runOutChips"
+                style="margin-left: calc(2.5 * var(--aspect-ratio));"
+                  > You run out of chips completely</span
+                >
+              </div>
             </div>
+          </div>
+          <div class="menuBottomButtons">
+            <button class="cancleButton lang" key="cancel"
+            style="border-radius:4px;box-shadow: 0px 1px 6px 0px #91CAFEB2;"
+             >Cancel</button>
+            <button class="okButton lang buyin" key="ok"
+            style="border-radius:4px;
+            background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+            box-shadow: 0px 1px 6px 0px #91CAFEB2;">OK</button>
+          </div>
         </div>
-        <div class="modal fade" id="msgModal" tabindex="-1" aria-labelledby="msgModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="max-width: 350px;">
-                <div class="modal-content">
-
-                    <div class="modal-body">
-                        <div class="modal-header">
-                            <h5 id="myModalLabel" class="lang" key="errorMessage">Error Message</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
-                        </div>
-                        <div class="modal-body" style="font-size: 1rem;;">
-                            <p class="error-message lang" key="errorBody">One fine body…</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn cancel lang" data-bs-dismiss="modal" aria-hidden="true" key="close">Close</button>
-                        </div>
-                    </div>
-
-                </div>
+      </div>
+    </div>
+      <div id="settingsMenu" class="menuDiv">
+        <div>
+          <div class="menuTitle">
+            <img src="./images/desktop/icons8-settings-250@2x.png" />
+            <span class="lang" key="settings">Seetings</span>
+          </div>
+          <div>
+            <div id="muteCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
             </div>
+            <img src="./images/desktop/volume-mute@2x.png" />
+            <span class="lang" key="muteSounds">Mute sounds</span>
+          </div>
+          <div>
+            <div id="autoMuckCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/view@2x.png" />
+            <span class="lang" key="autoMuckCards">Auto muck cards</span>
+          </div>
+          <div>
+            <div id="showAsBBCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/dollar@2x.png" />
+            <span class="lang" key="ValueAsBBRatio"
+              >Show values as BB ratio</span
+            >
+          </div>
+          <div style="display: none">
+            <div id="showAsSUDCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/dollar@2x.png" />
+            <span class="lang" key="ValueAsUSD">Show values as USD</span>
+          </div>
+          <div>
+            <div id="fourColorsCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/Group 53@2x.png" /><span
+              class="lang"
+              key="FourColours"
+              >4 colors deck</span
+            >
+          </div>
+          <div>
+            <div id="shuffleVerificationButton" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/verification@2x.png" /><span
+              class="lang"
+              key="FourColours"
+              >Shuffle Verification</span
+            >
+          </div>
+          <div>
+            <div id="DisplayCards" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/verification@2x.png" /><span
+              class="lang"
+              key="FourColours"
+              >Display final 5 cards</span
+            >
+          </div>
+          <div>
+            <span
+              class="color-indicator blueTheme"
+              id="selectedThemeColor"
+            ></span>
+            <div class="dropdown" id="themeColor">
+              <button
+                class="dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Blue
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li data-value="blueTheme" class="active">
+                  Blue <span class="color-indicator blueTheme"></span>
+                </li>
+                <li data-value="greenTheme">
+                  Green <span class="color-indicator greenTheme"></span>
+                </li>
+                <li data-value="redTheme">
+                  Red <span class="color-indicator redTheme"></span>
+                </li>
+                <li data-value="grayTheme">
+                  Gray <span class="color-indicator grayTheme"></span>
+                </li>
+              </div>
+            </div>
+            <span
+              class="lang"
+              key="FourColours"
+              style="font-family: 'Roboto'; font-weight: 600"
+              >Theme Color</span
+            >
+          </div>
+          <img class="menuLogo" src="./images/desktop/TURTLE-STUDIOS-png.png" />
+          <div class="menuBottomButtons">
+            <button class="okButton lang" key="ok">OK</button>
+          </div>
         </div>
+      </div>
+      <div id="breakTime" class="menuDiv">
+        <div>
+          <div class="menuTitle lang" key="breakTime">Break Time</div>
+          <div class="timer">00:45</div>
+          <div class="menuBottomButtons">
+            <button class="okButton lang buyin" key="ok">OK</button>
+          </div>
+        </div>
+      </div>
+      <div id="tournamentCancelTime" class="menuDiv">
+        <div>
+          <div class="menuTitle lang" key="breakTime">
+            Waiting for players.<br />
+            Tournament will be canceled in
+          </div>
+          <div class="timer">00:45</div>
+          <div class="menuBottomButtons">
+            <button class="okButton lang" key="ok">OK</button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="msgModal"
+        tabindex="-1"
+        aria-labelledby="msgModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" style="max-width: 350px">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="modal-header">
+                <h5 id="myModalLabel" class="lang" key="errorMessage">
+                  Error Message
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-bs-dismiss="modal"
+                  aria-hidden="true"
+                >
+                  ×
+                </button>
+              </div>
+              <div class="modal-body" style="font-size: 1rem">
+                <p class="error-message lang" key="errorBody">One fine body…</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn cancel lang"
+                  data-bs-dismiss="modal"
+                  aria-hidden="true"
+                  key="close"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="notificationModal"
+        tabindex="-1"
+        aria-labelledby="notificationModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-hidden="true"
+              >
+                ×
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-body" style="font-size: 1rem">
+                <p class="notification-message lang" key="errorBody">
+                  You have been moved to a new table.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
         <div class="modal fade" id="shareHandMessage">
             <div class="modal-dialog modal-dialog-centered">
@@ -864,45 +1176,191 @@
             </div>
         </div>
 
-        <div class="modal fade" id="insuranceModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog Second-mod" style="transition: transform .3s ease-out!important;transform: translate(84px, -20px)!important;">
-                <div class="modal-content second-top">
+        <div class="modal fade" id="autoFoldSettingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: calc( 76 * var(--aspect-ratio)) !important;">
+                <div class="modal-content second-top" style="width: 100% !important;">
+                    <div class="modal-body fold_modal_body">
+                        <div class="menyos">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="color: white;">&times;</span>
+                            </button>
+                        </div>
+                        <div>
+                            <iframe src="" id="autoFoldFrame" frameborder="0"></iframe>
+                        </div>
 
-                    <div class="modal-body ">
-                        <div class="border-around  mt-3">
-                            <p class="border-p lang" key="allInsurance">
-                                All In Insurance
-                            </p>
-                            <p class="border-p-text allInPrice">
-                                $119.40
-                            </p>
-                        </div>
-                        <div class="card-prents mt-4">
-                            <img src="images/all-card.png" alt="" class="img_1" style="width: -webkit-fill-available;">
-
-                        </div>
-                        <div class="doller_prents mt-4 d-flex justify-content-center ">
-                            <p class="doller_p">
-                                <span class="pay lang" key="pay">Pay</span> <span class="sane insurancePrice">$8</span> <span class="pay lang" key="save">save</span> <span class="sane allInPrice">$119.40 </span>
-                            </p>
-                        </div>
-                        <div class="two_btn px-5 mt-5" style="display: flex;justify-content: center;align-items: center;">
-                            <button class="btn btn-primary text_btn insuranceYesButton lang" key="yes">
-              Yes 
-             </button>
-                            <img src="images/Light Effect PNG Clip Art Image 5.png" alt="" srcset="">
-                            <button class="btn btn-primary next insuranceNextTime lang" key="nextTime">
-              Next Time
-             </button>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
+      <div class="modal fade" id="insuranceModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog Second-mod" style="transition: transform 0.3s ease-out !important;     ">
+          <div class="modal-content second-top">
+               
+            <div class="modal-body insuranceBody">
+                <button
+                type="button"
+                class="insuranceClose"
+                data-bs-dismiss="modal"
+                aria-hidden="true"
+              >
+                X
+              </button>
+              <div class="border-around ">
+                <p class="border-p lang" key="allInsurance">Pot Insurance</p>
+                <p class="border-p-text allInPrice">$119.40</p>
+              </div>
+
+              <div class="flex-container hands-card">
+                <div>
+                    <p class="hand-lebel"> Your Hand</p>
+                    <div class="card-parents your-cards">
+                      <img
+                        src="./images/png/52x72/kc.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/7c1.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/qh.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/3d.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/js.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/9d1.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                    </div>
+                    <span class="your-hand-result hand_result">75%</span>
+                </div>
+                <div>
+                    <p class="hand-lebel"> Op. Hand</p>
+                    <div class="card-parents opp-cards">
+                        <img
+                        src="./images/png/52x72/2s.png"
+                        alt=""
+                        class="img_3"
+                        style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/jc.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/ac1.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/kh.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/4d.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/qd1.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                    </div>
+                    <span class="opp-hand-result hand_result">25%</span>
+                </div>
+
+              </div>
+              <div class="card-prents table-cards">
+                <!-- <img src="images/all-card.png" alt="" class="img_1" style="width: -webkit-fill-available;"> -->
+                <img
+                  src="./images/png/102x142/5d.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+                <img
+                  src="./images/png/102x142/kd.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+                <img
+                  src="./images/png/102x142/6d.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+                <img
+                  src="./images/png/102x142/ad.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+              </div>
+              <div class="doller_prents">
+                    <div class="amount-detail">
+                        <span class="pay lang" key="pay">Pay</span>
+                        <span
+                          class="sane insurancePrice"
+                          style="display: inline-block"
+                          >$8</span>
+                    </div>
+                    <div class="amount-detail">
+                        <span class="pay lang" key="save">Save</span>
+                        <span class="sane allInPrice" style="display: inline-block">
+                            $119.40
+                        </span>
+                    </div>
+              </div>
+              <div class="two_btn" style=" " >
+                <button class="btn btn-primary text_btn insuranceYesButton lang" key="yes" >
+                  Yes
+                </button>
+                <button class="btn btn-primary next insuranceNextTime lang" key="nextTime" >
+                  Skip
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div style="width: 100%;">
         <div class="modal fade" id="tournamentResultModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" style="max-width: 400px;">
+            <div class="modal-dialog" style="margin: auto;">
                 <div class="modal-content" id="mContent">
                     <div class="modal-body p-0">
                         <div class="menyos">
@@ -917,20 +1375,28 @@
 
                             <div class="row my-2 ">
                                 <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
-                                    <h5> <span style="color: #CE152E; "><span class="lang" key="finishedTournament">Finished Tournament</span> :</span> <span style="color: #E78D2B;"><span id="tournamentRank">39</span></span>
+                                    <h5 style="text-align: center;"> <span style="color: #CE152E; "><span class="lang" key="finishedTournament">Tournament Finished</span> :</span> <br>
+                                        <span style="color: #E78D2B;"><span id="tournamentRank">39</span></span>
                                     </h5>
                                 </div>
                             </div>
                             <div class="row my-4 tournament-prize">
                                 <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
-                                    <h5> <span style="color: #254A98;" class="lang" key="price">Price:</span> <span style="color: #C92138;"><span
+                                    <h5> <span style="color: #254A98;" class="lang" key="price">Prize :</span> <span style="color: #C92138;"><span
                                             id=tournamentPrize>150</span></span>
                                     </h5>
                                 </div>
                             </div>
+                            <div class="row tournament-rebuy">
+                                <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
+                                    <button class="rebuy_tournament">
+                                    <h5 class="m-0">Rebuy (<span >25</span>)</h5>
+                                </button>
+                                </div>
+                            </div>
                             <div class="row mt-2 mb-5">
                                 <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
-                                    <button data-dismiss="modal" style="width: 340px;height: 60px;background: transparent linear-gradient(0deg, #E50202 0%, #676060 100%) 0% 0% no-repeat padding-box;box-shadow: 0px 2px 5px #FFFFFF45;border-radius: 6px;opacity: 1; display: flex; justify-content: center;align-items: center; color: white;"
+                                    <button data-dismiss="modal"
                                         class="LobbyButton">
                                     <h5 class="m-0 lang" key="lobby">Back to Lobby</h5>
                                 </button>
@@ -944,146 +1410,222 @@
             </div>
         </div>
     </div>
+
     <div class="sidebet_cards">
     </div>
     <div class="side-bet_div" style="display: none;">
-        <!-- right slider start -->
-
-
-        <div class="body-content body_pran">
-            <div id="body_toge">
-                <!-- Content to be displayed/hidden -->
-                <div class="fund_prent mb-1">
-                    <div class="fund  font">
-                        <div class="hudge">Side Bet Panel</div>
-                        <div><i class="bi bi-question-circle aboutSideBet" data-bs-toggle="modal" data-bs-target="#modal-note"></i></div>
-
-                    </div>
-                </div>
-                <div class="fund_prent1 mb-1">
-                    <div class="fund1_1 text-center">
-                        <button id="button31_q31" class="div_fund1 ">
-                    <p class="Balance2" id="free-balance">$0</p>
-                    <p class="Balance">Free Balance</p>
-                      
-                </button>
-                        <div class="troffie" id="open_history"><img src="images/Frame 161.png" alt=""></div>
-                        <button id="button32_q31" class="div_fund2">
-                    <p class="Balance2" id="total-paid">$0</p>
-                    <p class="Balance">total paid</p>
-                </button>
-                    </div>
-                </div>
-                <div class="street">
-                    <p class="text-street">street</p>
-                    <button class="img-1"><img src="images/21.png" alt=""></button>
-                    <button class="img-2"><img src="images/22.png" alt="" srcset=""></button>
-                </div>
-                <!-- *************game01************ -->
-                <div class="gane_div_prents">
-                    <div class="main_table_div">
-                        <div class="game_01_icon">
-                            <i class="bi bi-question-circle game_01_q_icon " data-bs-toggle="modalss"
-                                data-bs-target="#modal-game"></i>
+        <div class="right-content-wrapper">
+            <div class="top-bar">
+                <div class="balance-info">
+                    <div class="balance-info-first">
+                        <div class="freebalance_img">
+                            <img src="./images/desktop/xrp_coin.png" alt="">
                         </div>
-                        <div class="table-board">
-                            <div class="card_queen" style="z-index: 10">
-                                <img src="images/Frame.svg" alt="">
-                            </div>
-                            <div class="d-flex justify-content-center flex-column ard-acrd ">
-                                <div class="card-table1">
-                                    <img src="images/Group 177733.png" alt="" class="img_board">
-                                    <div class="row1">
-                                        <div class="card1">
-                                            <img src="images/card(1).svg" alt="">
-                                        </div>
-                                        <div id="dealer_cards">
-                                        </div>
-                                        <div>
-                                        </div>
-                                    </div>
-                                    <div class="row2  ">
-                                    </div>
-                                    <div class="row3">
-                                        <div id="player_cards">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chooseamount d-flex justify-content-center">
-                                    <div class="insideamount d-flex justify-content-between bet-chips">
-                                        <button class="bigcoin1" id="buttonstart">
-                                            <img src="images/Layer_1.svg" class="tarimg" alt="" value="1">
-                                        </button>
-                                        <button class="bigcoin2" id="buttoncenter">
-                                            <img src="images/Layer_1 (1).svg" class="tarimg" alt="" value="2">
-                                        </button>
-                                        <button class="bigcoin3" id="buttonend">
-                                            <img src="images/Layer_1 (2).svg" class="tarimg" alt="" value="4">
-                                        </button>
-                                    </div>
-                                    <div class="polygon">
-                                        <img src="images/Polygon.svg" alt="">
-                                    </div>
-                                </div>
-                                <div class="amounttext">CHOOSE AMOUNT</div>
-                                <button class="hitme" style="border: none;">HIT ME</button>
-                            </div>
-                        </div>
+                        <p class="top-balance"><span class="side-balance-bet" id="free-balance">584</span> Free Balance</p>
                     </div>
-
-                </div>
-                <!-- *************game01************ -->
-                <div id="scroll_bar">
-                    <div class="start_prents">
-                        <div class="scroll_prents">
+                    <div class="balance-info-first">
+                        <div class="totalPaid_img">
+                            <img src="./images/desktop/xrp_coin.png" alt="">
                         </div>
+                        <p class="top-balance"><span class="side-bet-paid" id="total-paid">0</span> Total paid</p>
                     </div>
-                    <div class="text-center text_div">
-                        <div class="d-flex text_div2">
-                            <div class="dum">
-                                <div class="dum2">
-                                    <p class="text_last_sum" id="total-payout">$0</p>
-                                    <p class="text_last_sum2">PAY OUT</p>
-                                </div>
-                            </div>
-                            <button id="submit-sidebet" class="last_sum">
-                    <P id="total-amount" class="text_last_sum22"> $0 </P>
-                    <P class="text_last_sum2">Submit</P>
-                </button>
-                        </div>
-                    </div>
-                </div>
-                <div>
                 </div>
             </div>
-            <!-- display block start -->
-            <div class="" id="body_toge1">
-                <!-- Content to be displayed/hidden -->
-                <div class="fund_prents mb-1">
-                    <div class="fund  fonts">
-                        <div class="troffies mx-2"><img src="./images/Group 177703.png" id="back_button" alt=""></div>
-                        <div class="win_win mt-1"> Wining history</div>
 
+            <div class="side-bet-panel">
+                <div class="side-bet-panel-box">
+                    <h2>Side Bet Panel</h2>
+
+                    <!--   <img src="./images/desktop/question.png" class="aboutSideBet" alt=""> -->
+                    <div class="flash-draw-img">
+                        <img class="" src="./images/desktop/question.png" alt="">
+                        <div class="hover-container aboutSideBetNote">
+                            You can protect your hands with side bets.<br><br> Side bets are made using your main balance, not the game balance.<br><br> The results of side bets will apply even if you fold your hand.1
+                        </div>
                     </div>
+
                 </div>
-                <div class="fund_prents1 mb-1">
-                    <div class="bg-imges" style="background-image: url('images/Group\ 177702.png') ; background-size: 100% 100%;">
-                        <img src="./images/Group 177685.png" class="w-100 winner_image" alt="">
-                        <p class="total ">Total Wins:<span class="sidebet-total-win"> $0</span> </p>
+                <div class="side-bet-panel-btn sideBetTabs">
+                    <!--   <button class="side-bet-panel-btn-first active" data-tab="flop">Flop</button>
+                    <button class="side-bet-panel-btn-second" data-tab="next-cards">Next cards</button>
+                    <button class="side-bet-panel-btn-third" data-tab="bets">Bets</button> -->
+
+                </div>
+            </div>
+            <!-- *************game01************ -->
+            <div class="gane_div_prents">
+                <div class="main_table_div">
+                    <div class="game_01_icon">
+                        <i class="bi bi-question-circle game_01_q_icon aboutSideGame"></i>
                     </div>
-                </div>
-                <div id="scroll_bar ">
-                    <div class="start_prentss mt-5">
-                        <div class="scroll_prentss">
+                    <div class="table-board">
+                        <div class="card_queen" style="z-index: 10">
+                            <img src="images/Frame.svg" alt="">
+                        </div>
+                        <div class="d-flex justify-content-center flex-column ard-acrd ">
+                            <div class="card-table1">
+                                <img src="images/Group 177733.png" alt="" class="img_board">
+                                <div class="row1">
+                                    <div class="card1">
+                                        <img src="images/card(1).svg" alt="">
+                                    </div>
+                                    <div id="dealer_cards">
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="row2  ">
+                                </div>
+                                <div class="row3">
+                                    <div id="player_cards">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chooseamount d-flex justify-content-center">
+                                <div class="insideamount d-flex justify-content-between bet-chips">
+                                    <button class="bigcoin1" id="buttonstart">
+                            <img src="images/Layer_1.svg" class="tarimg" alt="" value="1">
+                        </button>
+                                    <button class="bigcoin2" id="buttoncenter">
+                            <img src="images/Layer_1 (1).svg" class="tarimg" alt="" value="2">
+                        </button>
+                                    <button class="bigcoin3" id="buttonend">
+                            <img src="images/Layer_1 (2).svg" class="tarimg" alt="" value="4">
+                        </button>
+                                </div>
+                                <div class="polygon">
+                                    <img src="images/Polygon.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="amounttext">CHOOSE AMOUNT</div>
+                            <button class="hitme" style="border: none;">HIT ME</button>
                         </div>
                     </div>
                 </div>
-                <div>
+
+            </div>
+            <!-- *************game01************ -->
+            <div class="flash-draw-wrap" id="scroll_bar">
+                <div class="flash-draw-box">
+                    <!-- Flop content -->
+                    <div id="bets-options-content" class="tab-content active scroll_prents">
+                        <!-- <div class="flash-draw-second">
+                            <div class="flash-draw">
+                                <div class="flash-draw-before"></div>
+                                <h5>Flash Draw</h5>
+                                <img src="./images/desktop/question.png" alt="">
+                            </div>
+                            <div class="flash-bet-content">
+                                <h4><span>X</span> 8.5</h4>
+                                <div class="flash-bet-box">
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">4</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">10</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">20</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flash-draw-second" style="margin: 5px 0;">
+                            <div class="flash-draw">
+                                <div class="flash-draw-before"></div>
+
+                                <h5>Flash</h5>
+                                <img src="./images/desktop/question.png" alt="">
+                            </div>
+                            <div class="flash-bet-content">
+                                <div class="flash-bet-content-head">
+                                    <h4><span>X</span> 8.5</h4>
+                                    <p style="">Payout: <img class="payout-img" src="./images/desktop/xrp_coin.png" alt=""><span class="total-payout-value">85</span> </p>
+                                </div>
+                                <div class="flash-bet-box">
+                                    <button class="four-btn"><img src="./images/desktop/xrp_coin.png" alt="">4</button>
+                                    <button class="ten-btn"><img src="./images/desktop/xrp_coin.png" alt="">10</button>
+                                    <button class="20-btn"><img src="./images/desktop/xrp_coin.png" alt="">20</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flash-draw-second">
+                            <div class="flash-draw">
+                                <div class="flash-draw-before"></div>
+
+                                <h5>2 Pairs</h5>
+                                <div class="flash-draw-img">
+                                    <img class="flash-draw-img flash-draw-img-first" src="./images/desktop/question.png" alt="">
+                                    <div class="hover-container">
+                                        Hitting 2 pairs using two hole cards (including higher hands hole cards)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flash-bet-content">
+                                <h4><span>X</span> 8.5</h4>
+                                <div class="flash-bet-box">
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">4</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">10</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">20</button>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- BETS CONTENT -->
+                <div id="bets-history-content" class="tab-content">
+                    <!-- <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div>
+                    <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div>
+                    <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div>
+                   <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div> 
+                    <div class="flop-card flop-card-four">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                        <div class="loose-card"><img src="./images/loose.png.png" alt=""></div>
+
+                        <div class="loose-card-second loose-card1"><img src="./images/loose.gif" alt=""></div>
+                    </div>
+                    <div class="flop-card flop-card-second">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout flop-payout-second">Payout: <span><img src="./images/desktop/xrp_coin.png" alt="">
+                                20</span></div>
+                        <div class="win-card"><img src="./images/win.png" alt=""></div>
+                        <div class="wind-card-second"><img src="./images/flower.gif" alt=""></div>
+                    </div> -->
+
+
+                </div>
+                <div class="bottom-bar text_div sideBetBottomBar">
+                    <div class="balance-info">
+                        <div class="balance-info-first">
+                            <div class="totalPayout">
+                                <img class="payout-img" src="./images/desktop/xrp_coin.png" alt="">
+                            </div>
+                            <p class="total-payout">
+                                <span class="total-payout-value" id="total-payout">0</span> Total Payout
+                            </p>
+                        </div>
+                        <div class="balance-info-submit">
+                            <button class="submit-btn" id="submit-sidebet">
+                                <img class="payout-img submit-img" src="./images/white.png" alt="">
+                               <span> Submit</span></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- display block end -->
         </div>
-        <!-- display none end -->
     </div>
     <!-- right slider end -->
     <script>
@@ -1162,28 +1704,28 @@
         });
     </script> -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            let box1 = document.querySelector("#button31_q31");
-            let box22 = document.querySelector("#button32_q31");
+        /* document.addEventListener("DOMContentLoaded", () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    let box1 = document.querySelector("#button31_q31");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    let box22 = document.querySelector("#button32_q31");
 
-            box22.addEventListener('click', () => {
-                box22.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
-                box1.style.background = "#1e2142";
-            });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    box22.addEventListener('click', () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box22.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box1.style.background = "#1e2142";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    });
 
-            box1.addEventListener('click', () => {
-                box22.style.background = "#1e2142";
-                box1.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
-            });
-        });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    box1.addEventListener('click', () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box22.style.background = "#1e2142";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box1.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }); */
 
 
-        document.addEventListener('DOMContentLoaded', function() {
+        /*document.addEventListener('DOMContentLoaded', function() {
             let historyopen = document.getElementById('open_history');
             let historynone = document.getElementById('body_toge');
             let historynone1 = document.getElementById('body_toge1');
             let historyback = document.getElementById('back_button');
-            let hidesidebar = document.getElementById('hidesidebar');
+
 
             historyopen.addEventListener('click', function() {
                 historynone.style.display = 'none';
@@ -1194,47 +1736,46 @@
                 historynone.style.display = 'block';
                 historynone1.style.display = 'none';
             });
-
-            hidesidebar.addEventListener('click', function() {
-                let sidebuttons = document.getElementsByClassName('sideButtonsDiv');
-                console.log(sidebuttons);
-
-                // Convert the HTMLCollection to an array using Array.from()
-                let sidebuttonsArray = Array.from(sidebuttons);
-
-                // Loop through the array and toggle the display property
-                sidebuttonsArray.forEach(element => {
-                    // Check the current display property
-                    if (element.style.display !== "none" || element.style.display === "") {
-                        element.style.display = "none";
-                    } else {
-                        element.style.display = "block";
-                    }
-                });
-            });
-
-
-
-
-        });
+        });*/
     </script>
 
     <!-- emoji func -->
     <script>
-        document.getElementById("gray12").addEventListener("click", function() {
+        function showChatBox(value) {
+            const chatContainer = document.getElementById("chatContainer");
+            if (value) {
+                const badge = $(".chatButton").find(".badge")[0];
+                badge.innerText = 0;
+                badge.style.visibility = "hidden";
+                chatContainer.classList.toggle("openChatBox");
+            } else
+                chatContainer.classList.remove("openChatBox");
+        }
+
+        function showLogTab(value) {
+            const activityContainer = document.getElementById("activityContainer");
+            if (value)
+                activityContainer.classList.toggle("openChatBox");
+            else
+                activityContainer.classList.remove("openChatBox");
+        }
+
+
+        function showEmojiframe(showEmoji) {
             var emojiFunc = document.getElementById("emoji_func");
             var result_divS = document.querySelector(".result_div");
-            if (emojiFunc.style.display === "none" || emojiFunc.style.display === "") {
+            if (showEmoji) {
                 emojiFunc.style.display = "block";
+                // result_divS.style.maxHeight = "50px";
             } else {
                 emojiFunc.style.display = "none";
+                //  result_divS.style.maxHeight = "178px";
             }
-        });
-
+        }
         // Add event listener to each emoji button to insert the emoji into the input value
         var emojiButtons = document.querySelectorAll(".preChatEmoji");
-        var inputField = document.getElementById("msg");
-        var emoji = '';   
+        var inputField = document.getElementById("chatInput");
+        var emoji = '';
         emojiButtons.forEach(function(button) {
             button.addEventListener("click", function() {
                 emoji = this.textContent;

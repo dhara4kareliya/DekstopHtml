@@ -1,6 +1,9 @@
+import { updatePlayerSetting } from '../socket-client'
+
 const soundCheckbox = $("#muteCheckbox")[0];
 soundCheckbox.addEventListener('change', () => {
     setSoundEnable(!soundCheckbox.checked);
+    updatePlayerSetting('mute', soundCheckbox.checked);
 });
 
 let soundEnable = true;
@@ -36,6 +39,12 @@ export class Sound {
         this.m_audioWin = new Audio("./audio/win.wav");
 
         this.m_audioNotification = new Audio("./audio/Notification.wav");
+
+        this.m_submitSideBet = new Audio("./audio/submitBet.wav");
+
+        this.m_winSideBet = new Audio("./audio/winSideBet.wav");
+
+        this.m_winSideGame = new Audio("./audio/winSideGame.wav");
 
     }
 
@@ -110,6 +119,21 @@ export class Sound {
     playNotification() {
         if (soundEnable == true)
             this.m_audioNotification.play();
+    }
+
+    submitBet() {
+      if (soundEnable == true)
+        this.m_submitSideBet.play();
+    }
+
+    winSideBet() {
+      if (soundEnable == true)
+        this.m_winSideBet.play();
+    }
+
+    winSideGame() {
+      if (soundEnable == true)
+        this.m_winSideGame.play();
     }
 
 }

@@ -1,4 +1,5 @@
-.box,.sideButtonsDiv button {
+.box,
+.sideButtonsDiv button {
     background: #FFFFFF22 0% 0% no-repeat padding-box;
     color: #FEFEFE;
     padding: calc(0.4 * var(--aspect-ratio));
@@ -6,18 +7,18 @@
     border-radius: calc( 0.6 * var(--aspect-ratio));
     border-style: none;
     white-space: nowrap;
-
 }
 
 button:hover {
     background-color: #ffffff0a;
 }
 
-button > img , .waitingList img{
+button>img,
+.waitingList img {
     margin-right: calc(0.5 * var(--aspect-ratio));
     margin-bottom: calc(0.2 * var(--aspect-ratio));
     object-fit: contain;
-    max-height:calc( 2 * var(--aspect-ratio));
+    max-height: calc( 2 * var(--aspect-ratio));
 }
 
 button img {
@@ -69,29 +70,30 @@ button img {
     position: absolute;
     width: 0;
     height: 0;
-    margin-top: calc(1.7 * var(--aspect-ratio));; 
-    left: calc(-2 * var(--aspect-ratio));;
+    margin-top: calc(1.7 * var(--aspect-ratio));
+    left: calc(-2 * var(--aspect-ratio));
     transform: rotate(270deg);
-    margin-left: calc(-1 * var(--aspect-ratio));;
+    margin-left: calc(-1 * var(--aspect-ratio));
     border-style: solid;
     color: white;
     border-width: calc(1.6 * var(--aspect-ratio));
     border-color: transparent transparent white transparent;
 }
-.activities{
+
+.activities {
     max-height: 100%;
     max-width: 100%;
     height: 100%;
     overflow-y: scroll;
     background-color: white;
-    padding: calc(2 * var(--aspect-ratio)) , calc(4 * var(--aspect-ratio));
+    padding: calc(2 * var(--aspect-ratio)), calc(4 * var(--aspect-ratio));
 }
 
-.activitiesMain{
+.activitiesMain {
     width: calc(0 * var(--aspect-ratio));
     height: calc(21 * var(--aspect-ratio));
     min-width: calc(20 * var(--aspect-ratio));
-    transform:none !important;
+    transform: none !important;
     top: 0px;
     margin-left: calc(18 * var(--aspect-ratio)) !important;
     left: 0px;
@@ -112,15 +114,16 @@ button img {
     margin-top: calc(-4 * var(--aspect-ratio)) !important;
     font-size: inherit;
 }
+
 .activitiesMain2::before {
     content: ' ';
     position: absolute;
     width: 0;
     height: 0;
-    margin-top: calc(3.7 * var(--aspect-ratio));; 
-    left: calc(-2 * var(--aspect-ratio));;
+    margin-top: calc(3.7 * var(--aspect-ratio));
+    left: calc(-2 * var(--aspect-ratio));
     transform: rotate(270deg);
-    margin-left: calc(-1 * var(--aspect-ratio));;
+    margin-left: calc(-1 * var(--aspect-ratio));
     border-style: solid;
     color: white;
     border-width: calc(1.6 * var(--aspect-ratio));
@@ -176,27 +179,7 @@ button img {
     box-shadow: 0px 0px 7px 0px white;
 } */
 
-.activityHead , .activityPrice{
+.activityHead,
+.activityPrice {
     color: #ffc502;
-}
-
-
-.style-2::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: calc(1 * var(--aspect-ratio));
-    background-color: #F5F5F5;
-}
-
-.style-2::-webkit-scrollbar
-{
-    width: calc(1 * var(--aspect-ratio));
-    background-color: #F5F5F5;
-}
-
-.style-2::-webkit-scrollbar-thumb
-{
-    border-radius: calc(1 * var(--aspect-ratio));
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: grey;
 }

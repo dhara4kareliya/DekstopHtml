@@ -236,8 +236,8 @@ export class BuyInUI {
 
         setSliderValue(buyInSlider, Math.max(this.currentTableMoney, this.minBuyIn));
         newTableBalanceInput.value = getMoneyValue(Math.max(this.currentTableMoney, this.minBuyIn));
-        const tableChipText = getMoneyText(this.currentTableMoney);
-        tableChipSpan.innerHTML = tableChipText.outerHTML;
+        const tableChipText = tableSettings.mode == 'cash' ? getMoneyText(this.currentTableMoney).outerHTML : getMoneyValue(this.currentTableMoney);
+        tableChipSpan.innerHTML = tableChipText;
     }
 
   showBuyIn(visible) {
@@ -246,6 +246,7 @@ export class BuyInUI {
     transferLoader.style.visibility = 'hidden';
     toggleCheckbox(chipsLowerThenBuyInCheckbox, this.autoTopUpLess);
     toggleCheckbox(runOutOfChipsCheckbox, this.autoTopUpZero);
+
   }
 
   setBuyInPanelInfo(minBuyIn) {

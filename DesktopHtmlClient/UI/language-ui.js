@@ -1,6 +1,14 @@
 const translates = $(".translate");
 var selectedLanguage = "english";
 var selectedLanguageData = [];
+var msgResponse = [];
+var messageData = [];
+(async() => {
+    msgResponse = await fetch(`./languages/msg.json`);
+    messageData = await msgResponse.json();
+
+})();
+
 
 for (let i = 0; i < translates.length; i++) {
     const translate = translates[i];
@@ -28,12 +36,15 @@ export function hideLanguageOption() {
         element.style.visibility = "hidden";
 }
 
+export function getMessage(msg) {
+    return messageData[msg] || `Unknown error occurred.`;
+}
+
 function updateLanguage() {
     const langDiv = $(".lang");
     for (let i = 0; i < langDiv.length; i++) {
         const element = langDiv[i];
         var key = element.getAttribute("key");
-        console.log(`kay : ${key} ,selectedLanguageData : ${selectedLanguageData[key]}`);
         element.innerHTML = selectedLanguageData[key];
         if (element.getAttribute("placeholder"))
             element.setAttribute("placeholder", selectedLanguageData[key]);
@@ -66,18 +77,19 @@ function updateLanguage() {
 
 async function getLanguageData() {
     const response = await fetch(`./languages/${selectedLanguage}.json`);
-    console.log(response);
+    
     selectedLanguageData = await response.json();
 }
 
-export async function changeSelectedLanguage(){
-    console.log(selectedLanguageData.length);
+export async function changeSelectedLanguage() {
+    
     if (selectedLanguageData.length !== 0) {
-    if($('#successModal .successMessage')[0].innerText === 'Thank You'){
-        $('#successModal .successMessage')[0].innerHTML = selectedLanguageData['thankYou'];
-    }else if($('#successModal .successMessage')[0].innerText !== 'Thank You'){
-        $('#successModal .successMessage')[0].innerHTML = selectedLanguageData['thankYou1'];
-    }} else{
+        if ($('#successModal .successMessage')[0].innerText === 'Thank You') {
+            $('#successModal .successMessage')[0].innerHTML = selectedLanguageData['thankYou'];
+        } else if ($('#successModal .successMessage')[0].innerText !== 'Thank You') {
+            $('#successModal .successMessage')[0].innerHTML = selectedLanguageData['thankYou1'];
+        }
+    } else {
         return;
     }
 }
