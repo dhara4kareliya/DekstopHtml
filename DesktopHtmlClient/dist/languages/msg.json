@@ -1,0 +1,12 @@
+{
+    "socketDisconnect": "Socket disconnected, reconnecting.",
+    "moveNewTable": "You have been moved to a new table.",
+    "PlayerReportSuccess": "Thank you for your feedback.<br> We will investigate shortly.",
+    "playerHashMatch": "Successfully verified the JSON string from server.",
+    "successVerification": "Verification successful: Shuffling was fair.",
+    "failVerification": "Verification failed: Shuffling was compromised.",
+    "notEnoughFreeBalance": "Low Account Balance",
+    "cancelTournament": "Tournament cancelled due to insufficient players.",
+    "aboutSideGame": "Win the bet when dealt a better hand than the dealer.",
+    "aboutSideBet": " You can protect your hands with side bets.<br><br> Side bets are made using your main balance, not the game balance.<br><br> The results of side bets will apply even if you fold your hand."
+}
