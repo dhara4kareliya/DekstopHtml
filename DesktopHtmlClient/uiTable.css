@@ -1,0 +1,535 @@
+.trophyDiv {
+  padding-right: calc(1.5 * var(--aspect-ratio));
+  pointer-events: none;
+}
+
+.trophyDiv img {
+  height: calc(5 * var(--aspect-ratio));
+}
+
+#uiTable {
+  height: 100%;
+  width: 75vw;
+}
+
+#uiTable tr td {
+  height: 0px;
+}
+
+#uiTable tr td:nth-child(1) {
+  width: 10vw;
+}
+
+#uiTable tr td:nth-child(4) {
+  width: 10vw;
+}
+
+#uiTable td:not(#centerBottom) {
+  vertical-align: top;
+  /* padding-right: calc( 2 * var(--aspect-ratio)); */
+}
+
+#topDiv {
+  width: 100%;
+  white-space: nowrap;
+  background: linear-gradient(
+    180deg,
+    rgba(86, 185, 236, 0) 0%,
+    rgba(86, 185, 236, 0.2) 100%
+  );
+  border-radius: 0px 0px 8px 8px;
+}
+
+.hadeLeftDiv {
+  /* display: block ruby; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(49 * var(--aspect-ratio));
+  margin-right: calc(2 * var(--aspect-ratio));
+}
+    .position label {
+        margin-bottom: unset;
+    }
+.hadeRightDiv {
+  display: block ruby;
+  width: calc(40 * var(--aspect-ratio));
+  padding-left: calc(6 * var(--aspect-ratio)) !important;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.5vw;
+}
+
+.playerName {
+  text-align: left;
+}
+
+.hadeBox {
+  /* display: grid; */
+  padding: 0px 3px 0px 2px;
+  margin-left: 1.19vw;
+}
+    .tournamentLevelInfo .tournamentName {
+  color: #9b9bb3;
+  font-weight: 700;
+  font-size: calc(1.6 * var(--aspect-ratio));
+  /* width: fit-content; */
+  margin-left: 24px;
+  padding-bottom: 0 !important;
+}
+
+.cashGameInfo > div,
+    .tournamentLevelInfo>div {
+  display: block ruby !important;
+}
+
+.hadeMiddleDiv {
+  background: linear-gradient(180deg, rgba(86, 185, 236, 0) 0%, #56b9ec 209%);
+  /*  background: linear-gradient(180deg, rgba(86, 185, 236, 0) 0%, #56B9EC 100%); */
+  border-radius: 0px 0px 8px 8px;
+  text-align: center;
+}
+
+.hadeTitle {
+  color: #9b9bb3;
+  font-weight: 700;
+  /* line-height: 15px; */
+  font-size: calc(1.6 * var(--aspect-ratio));
+}
+
+#topDiv table {
+  width: 100%;
+  font-size: calc(1.4 * var(--aspect-ratio));
+  font-family: inter;
+}
+
+#topDiv table tr td > div {
+  padding: calc(1 * var(--aspect-ratio));
+}
+
+.trophyImg {
+  height: calc(4.4 * var(--aspect-ratio));
+  width: calc(3.6 * var(--aspect-ratio)) !important;
+  position: absolute;
+  top: calc(0.5 * var(--aspect-ratio));
+  right: calc(8 * var(--aspect-ratio));
+  mask: url("./images/desktop/trophy@3x.png") center/contain no-repeat;
+}
+
+#topDivLine {
+  width: 100%;
+  box-shadow: calc(0.2 * var(--aspect-ratio)) calc(0.3 * var(--aspect-ratio))
+    calc(1 * var(--aspect-ratio)) #ebff00;
+  border-bottom: calc(0.8 * var(--aspect-ratio)) solid #ffeb00;
+  border-width: calc(0.5 * var(--aspect-ratio));
+}
+
+.handBoldText {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: calc(1.7 * var(--aspect-ratio));
+}
+
+.handId {
+  width: calc(0 * var(--aspect-ratio));
+  font-size: 0.9vw;
+}
+
+.handId span {
+  font-family: "Inter";
+  /* font-weight: 500; */
+  color: white;
+}
+
+.handId label {
+  font-family: "Inter";
+  font-weight: 500;
+  color: white;
+}
+/*  #meDiv {
+        white-space: nowrap;
+    } */
+
+.stars {
+  display: inline;
+  background: transparent linear-gradient(180deg, #21d0de 0%, #11686f 100%) 0%
+    0% no-repeat padding-box;
+  width: fit-content;
+  padding-right: calc(1 * var(--aspect-ratio));
+}
+
+.stars > i {
+  margin-right: calc(0.5 * var(--aspect-ratio));
+  margin-bottom: calc(0.2 * var(--aspect-ratio));
+  object-fit: contain;
+  min-height: calc(1 * var(--aspect-ratio));
+}
+
+.tableSettingsSpan {
+  letter-spacing: 0px;
+  text-align: right;
+  width: calc((36.5 * var(--aspect-ratio)));
+}
+
+#centerBottom {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .trophyDiv {
+    padding-right: 0vw;
+  }
+  .tableName {
+    font-size: 2.5vw;
+  }
+}
+
+.tournamentOnly {
+  font-family: "Inter", serif;
+  font-weight: 300;
+  font-size: calc(1.7 * var(--aspect-ratio));
+}
+
+.nextLevel span {
+  font-family: "Inter", serif;
+  font-weight: 300;
+  font-size: calc(1.7 * var(--aspect-ratio));
+}
+
+.tableid {
+  font-size: 0.9vw;
+  font-family: "Inter", serif;
+  font-weight: 600;
+}
+
+/* winning history modal */
+#winningHistoryModal, #statsModal{
+	z-index: 1;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 3%);
+}
+#winningHistoryModal .modal-container, #statsModal .modal-container {
+  font-family: "Montserrat";
+  color: white;
+  border: 2px solid #29abe2;
+  padding: calc(1.5 * var(--aspect-ratio));
+  width: calc(53 * var(--aspect-ratio));
+
+  background: radial-gradient(
+    96.75% 56.92% at 50% 50%,
+    #005fb6 0%,
+    #0d1e35 100%
+  );
+  box-shadow: 0px 0px 15px 2px rgba(145, 202, 254, 0.5);
+  border-radius: 20px;
+}
+table {
+  width: 100%;
+}
+#winningHistoryModal td:first-child {
+  font-family: "Montserrat";
+  text-align: left;
+  width: 40%;
+}
+#winningHistoryModal td:last-child {
+  font-family: "Montserrat";
+  text-align: right;
+  width: 40%;
+}
+#winningHistoryModal td:nth-child(2) {
+  font-family: "Montserrat";
+  text-align: left;
+  width: 20%;
+}
+.historyBox td:nth-child(2) {
+  width: 45% !important;
+}
+.historyBox td:first-child, .historyBox td:last-child {
+  width: 27.5% !important;
+}
+.winnings-history-box td {
+  font-family: "Montserrat";
+  width: calc(1 / 3 * 100%);
+}
+.winningData {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tableInfo,
+.profileInfo,
+.winnings-history-box {
+  background: linear-gradient(114.57deg, #262a4e -165.15%, #141732 100%);
+  box-shadow: 0px 0px 4px #a1d3ff;
+  border-radius: 10px;
+  padding: calc(1.5 * var(--aspect-ratio));
+}
+.tableInfoTital,
+.profileInfoTital, .box-title {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: calc(1.6 * var(--aspect-ratio));
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  text-shadow: 0px 0px 2px rgba(145, 202, 254, 0.5);
+}
+.skyFont {
+  font-family: "Montserrat";
+  color: #51e2ff;
+}
+.modal-title {
+  font-family: "Montserrat";
+  text-align: center;
+  margin-bottom: calc(1 * var(--aspect-ratio));
+}
+
+.table-info-box, .profile-data-box, .winnings-history-item {
+	background: rgba(217, 217, 217, 0.12);
+	border-radius: 7px;
+	padding: calc(0.5 * var(--aspect-ratio)) calc(0.8 * var(--aspect-ratio));
+}
+tr{
+    padding: 0 calc(1 * var(--aspect-ratio));
+}
+.box-title {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.info-row,
+.winnings-history-item {
+  font-family: "Montserrat";
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95em;
+}
+
+.info-label {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: calc(1.3 * var(--aspect-ratio));
+  line-height: calc(1.3 * var(--aspect-ratio));
+  letter-spacing: -0.05em;
+  font-variant: all-small-caps;
+  color: rgba(255, 255, 255, 0.5);
+  align-self: center;
+}
+
+.winnings-amount {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: right;
+  letter-spacing: -0.05em;
+  text-transform: capitalize;
+
+  color: #27f564;
+}
+
+.winnings-history-item:last-child {
+  border-bottom: none;
+}
+
+.winnings-details {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.card-stack {
+	display: flex;
+	justify-content: start;
+	gap: calc(0.3 * var(--aspect-ratio));
+}
+.playerCardContainer{
+  margin-right: calc(3 * var(--aspect-ratio));
+}
+.card-image {
+	width: calc(2 * var(--aspect-ratio));
+	height: calc(3.1 * var(--aspect-ratio));
+	margin-left: calc(-0.7 * var(--aspect-ratio));
+	/* border-radius: 4px; */
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card-image:first-child {
+  margin-left: 0;
+}
+
+.arrow {
+  color: #29abe2;
+  font-size: 0.7rem;
+  margin-left: 10px;
+
+  color: rgba(145, 202, 254, 0.7);
+}
+.info-data {
+  font-family: "Montserrat";
+  font-size: calc(1.3 * var(--aspect-ratio));
+  line-height: calc(2.3 * var(--aspect-ratio));
+  letter-spacing: -0.05em;
+  font-variant: all-small-caps;
+}
+.winnings-history-item {
+  margin-bottom: 9px;
+}
+.winningHistoryBox {
+  height: calc( 26 * var(--aspect-ratio));
+  overflow: auto;
+  scrollbar-color: #91cafe transparent;
+  scrollbar-width: thin;
+}
+.winHistoryClose {
+	background: linear-gradient(180deg, #4E577A 0%, #282F4D 100%);
+	box-shadow: 0px 2px 10px 2px rgba(145, 202, 254, 0.5);
+	border-radius: 5px;
+	width: calc(17 * var(--aspect-ratio));
+	height: calc(5 * var(--aspect-ratio));
+	font-family: 'Poppins';
+	font-weight: 600;
+	font-size: calc(2.5 * var(--aspect-ratio));
+	letter-spacing: 0.05em;
+	text-transform: capitalize;
+	color: #FFFFFF;
+	border: none !important;
+	margin: auto;
+	align-items: center;
+	margin-top: calc(2 * var(--aspect-ratio));
+	display: flex;
+	justify-content: center;
+}
+
+/* stats data modal */
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: calc( 1.1 * var(--aspect-ratio));
+}
+
+.avatar-container {
+    width: calc( 8.5 * var(--aspect-ratio));
+    height: calc( 8.5 * var(--aspect-ratio));
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: calc( 0.5 * var(--aspect-ratio));
+    border: 2px solid #29ABE2;
+}
+
+.statsAvatar {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-size: cover;
+    background-position: center;
+}
+.statsAvatar img{
+    width: 100%;
+    height: 100%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.flag {
+    width: 20px;
+    margin-right: 5px;
+    /* Replace with your flag image URL */
+    background-image: url('flag-it.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 15px;
+    display: inline-block;
+}
+
+.statsUsername {
+	font-family: 'Sofia Sans';
+	font-weight: 700;
+	font-size: calc(1.4 * var(--aspect-ratio));
+	line-height: calc( 1.1 * var(--aspect-ratio));
+	color: #FFFFFF;
+}
+
+.statsBalanceInfo {
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.statsBalanceInfo td:nth-child(2) {
+    width: 20%;
+    text-align: center;
+}
+.statsBalanceInfo td:first-child {
+	width: 40%;
+	font-size: calc( 1.2 * var(--aspect-ratio));
+	font-weight: bold;
+	color: #fff;
+}
+.statsBalanceInfo td:last-child {
+	text-align: end;
+	color: #75BDFE;
+	font-weight: bold;
+	font-size: calc(1.2 * var(--aspect-ratio));
+}
+
+.balance-label {
+    color: #ccc;
+}
+
+.stats-box {
+	background-color: #171A37;
+	border-radius: 8px;
+	/* padding: calc( 1.8 * var(--aspect-ratio)); */
+	margin-bottom: 15px;
+}
+
+.stats-title {
+	text-align: center;
+	font-family: 'Montserrat';
+	font-weight: 600;
+	font-size: calc(1.5 * var(--aspect-ratio));
+	line-height: calc(4.7 * var(--aspect-ratio));
+	letter-spacing: 0.02em;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px rgba(145, 202, 254, 0.5);
+}
+.stats-box .box-head{
+  background-color: rgba(217, 217, 217, 0.12);;
+}
+.stats-box tr {
+	line-height: calc(3* var(--aspect-ratio));
+}
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+}
+
+.stats-table th, .stats-table td {
+    padding:calc(0.7 * var(--aspect-ratio));
+    text-align: center;
+    border-left: 1px solid rgba(217, 217, 217, 0.12);
+    font-size: calc( 1.1 * var(--aspect-ratio));
+}
+
+.stats-table th {
+    font-weight: bold;
+    color: #aaa;
+}
+
+.sepration{
+  height: calc(2 * var(--aspect-ratio));
+  border-bottom: 1px dashed #75BDFE;
+  margin-bottom: calc( 2 * var(--aspect-ratio));
+}
+
+.totalStatsType, .currentStatsType{
+  color: #75BDFE;
+}

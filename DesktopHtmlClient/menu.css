@@ -1,0 +1,2485 @@
+.menuDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0e0b27c4 0% 0% no-repeat padding-box;
+    display: flex;
+    visibility: hidden;
+    z-index: 100;
+    font-size: calc(2 * var(--aspect-ratio));
+}
+
+.menuDiv div:not(.menuTitle) > img:not(.menuLogo) {
+    width: calc(3 * var(--aspect-ratio));
+}
+
+.menuDiv > div {
+    aspect-ratio: 1;
+    border-radius: 100%;
+    height: 45%;
+    background: #15122D 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 70px #FFFFFF29;
+    border: calc(0.5 * var(--aspect-ratio)) solid #FFEB00;
+    margin: auto;
+    display: grid;
+    padding-bottom: calc(5 * var(--aspect-ratio));
+    padding-top: calc(4 * var(--aspect-ratio));
+    margin-top: calc(9 * var(--aspect-ratio));
+    margin-left: calc(56 * var(--aspect-ratio));
+}
+#buyInMenu > div {
+    background: radial-gradient(73.98% 73.98% at 50% 50%, #050022 0%, #181839 100%);
+    box-shadow: 0px 0px 124px rgba(200, 187, 19, 0.3);
+}
+.menuDiv > div > * {
+    margin: auto;
+}
+
+.menuTitle {
+    color: #FFEB00;
+    font-size: calc(3 * var(--aspect-ratio));
+}
+
+.menuTitle img {
+    height: calc(5 * var(--aspect-ratio));
+}
+
+#bankroll {
+    color: #b8b7bfce;
+}
+
+#buyInCount,#buyInSlider,#transferCount,#transferSlider {
+    box-shadow: inset calc(0.3 * var(--aspect-ratio)) calc(0.5 * var(--aspect-ratio)) calc(1 * var(--aspect-ratio)) #000000B8;
+    border-radius: calc(3 * var(--aspect-ratio));
+}
+
+#buyInCount , #transferCount{
+    box-shadow: inset calc(0.3 * var(--aspect-ratio)) calc(0.5 * var(--aspect-ratio)) calc(1 * var(--aspect-ratio)) #000000B8;
+    border-radius: 0px;
+}
+#buyInCount {
+    padding: calc(1 * var(--aspect-ratio));
+    min-width: 8vw;
+    max-width: 5vw;
+    text-align: center;
+}
+.disabledDiv {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+#transferCount {
+	width: 8vw;
+	text-align: center;
+	background: #181838;
+	box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.25), inset -4px -4px 7px rgba(14, 16, 34, 0.25), inset 6px 5px 14px #0E1022;
+	border-radius: calc(0.8 * var(--aspect-ratio));
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 500;
+	font-size: calc(2 * var(--aspect-ratio));
+	line-height: 40px;
+	font-variant: small-caps;
+	color: #FFFFFF;
+	height: 2.5vw;
+}
+
+.menuLogo {
+    object-fit: contain;
+    height: calc(10 * var(--aspect-ratio));
+}
+
+#buyInSliderContainer {
+    width: 60%;
+}
+
+#buyInSliderContainer > div {
+    padding: calc(.5 * var(--aspect-ratio));
+}
+
+#buyInSliderContainer > div:nth-child(1) > div {
+    display: inline;
+    font-size: calc(1.5 * var(--aspect-ratio));
+    cursor: pointer;
+}
+
+#buyInSliderContainer > div:nth-child(1) > div > span {
+    font-size: calc(3 * var(--aspect-ratio));
+}
+
+#buyInSliderContainer > div:nth-child(1) > div:nth-child(2) {
+    float: right;
+}
+
+#transferSliderContainer {
+    width: 60%;
+}
+
+#transferSliderContainer > div {
+    padding: calc(.5 * var(--aspect-ratio));
+}
+
+#transferSliderContainer > div:nth-child(1) > div {
+    display: inline;
+    font-size: calc(1.5 * var(--aspect-ratio));
+    cursor: pointer;
+}
+
+#transferSliderContainer > div:nth-child(1) > div > span {
+    font-size: calc(2 * var(--aspect-ratio));
+}
+
+#transferSliderContainer > div:nth-child(1) > div:nth-child(2) {
+    float: right;
+}
+
+#buyInSlider {
+    width: 100%;
+    height: calc(3 * var(--aspect-ratio));
+    cursor: grab;
+}
+.transferSlider{
+    width: 94%;
+}
+#transferSlider {
+	width: 100%;
+	height: calc(1.7 * var(--aspect-ratio));
+	cursor: grab;
+	border-radius: calc(3 * var(--aspect-ratio));
+	background: #15163B;
+	border: 1px solid #323E67;
+    margin-top: 5px;
+    
+}
+
+#buyInSlider div {
+    width: 97%;
+    position: relative;
+    top: calc(-1 * var(--aspect-ratio));
+    left: -2%;
+}
+
+#buyInSlider img {
+    position: relative;
+    left: 0%;
+    top: calc(0 * var(--aspect-ratio));
+    height: calc(2 * var(--aspect-ratio));
+    margin-top: 3px;
+	transform: translateY(1px);
+    width: calc(2 * var(--aspect-ratio));
+}
+
+#transferSlider img {
+    position: relative;
+	left: 0%;
+    margin-top: 3.2px;
+    top: calc(0 * var(--aspect-ratio));
+	transform: translateY(-8px);
+	width: calc(2 * var(--aspect-ratio));
+    height:calc(2 * var(--aspect-ratio));
+}
+
+#chipsLowerThenBuyInCheckbox img,
+#runOutOfChipsCheckbox img {
+    height: calc(2 * var(--aspect-ratio));
+    max-width: calc(1.6 * var(--aspect-ratio));
+    bottom: calc(0 * var(--aspect-ratio));
+}
+
+#chipsLowerThenBuyInCheckbox,
+#runOutOfChipsCheckbox {
+    border: 1px solid white;
+    display:inline-flex;
+    margin-inline: 1px;
+    /* align-items: center; */
+    
+}
+
+#autoRebuyContainer {
+    text-align: center;
+    font-size: calc(1.4 * var(--aspect-ratio));
+}
+
+#autoRebuyContainer > div {
+    margin-top:calc(1.5 * var(--aspect-ratio)) ;
+    margin-bottom: calc(2 * var(--aspect-ratio));
+}
+
+#autoRebuyContainer > div:nth-child(2) > div {
+    display: inline;
+    padding-left: calc(1 * var(--aspect-ratio));
+    padding-right: calc(1 * var(--aspect-ratio));
+    vertical-align: middle;
+}
+
+.menuBottomButtons button {
+    border-style: none;
+    border-radius: calc(1 * var(--aspect-ratio));
+    width: calc(10 * var(--aspect-ratio));
+    height: calc(4 * var(--aspect-ratio));
+    color: white;
+    box-shadow: 0px 2px 5px #FFFFFF45;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+}
+
+#settingsMenu > div > div {
+    display: flex;
+}
+
+#settingsMenu > div > div > * {
+    margin: auto;
+    margin-right: calc(2 * var(--aspect-ratio));
+}
+
+#settingsMenu > div > div:not(.menuBottomButtons,.menuTitle) {
+    margin-left: calc(20 * var(--aspect-ratio));
+    cursor: pointer;
+}
+
+#themeColor li span {
+    display: inline-flex;
+}
+
+#themeColor li, #fourColorsCheckbox li {
+    color: #FFFFFF;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+}
+
+#themeColor li:is(.active) , #fourColorsCheckbox li:is(.active){
+    background: rgba(145, 202, 254, 0.21);
+    border: none;
+}
+
+#themeColor .dropdown-menu {
+    background-color: #181838;
+    min-width: calc(10 * var(--aspect-ratio));
+}
+#fourColorsCheckbox .dropdown-menu{
+    background-color: #181838;
+}
+
+#settingsMenu .checkbox {
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 3px #0E1022;
+}
+
+#themeColor #dropdownMenuButton, #fourColorDropdown {
+    background: #181838;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.25), inset 6px 5px 14px #0E1022, inset -4px -4px 7px rgba(14, 16, 34, 0.25);
+    border-radius: 5px;
+    color: #D5D5D9;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    /* font-size: 22px; */
+    line-height: 28px;
+    border: none;
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 3px #0E1022;
+    min-width: calc(10 * var(--aspect-ratio));
+}
+
+.color-indicator {
+    width: 15px;
+    height: 15px;
+    width: -webkit-fill-available;
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 3px #0E1022;
+    border-radius: 17.5px;
+}
+
+.color-indicator:is(.greenTheme) {
+    background: #00D420;
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 15px #0E1022;
+}
+
+.color-indicator:is(.redTheme) {
+    background: #CF0101;
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 15px #0E1022;
+}
+
+.color-indicator:is(.grayTheme) {
+    background: #989898;
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 15px #0E1022;
+}
+
+.color-indicator:is(.blueTheme) {
+    background: #0046FF;
+    box-shadow: 0px 0px 3px #FFFFFF, inset 0px 0px 15px #0E1022;
+}
+
+#openMenuButton {
+    cursor: pointer;
+    object-fit: contain;
+    width: 10vw;
+}
+.transferButton {
+    border-style: none;
+    width: calc(12 * var(--aspect-ratio));
+    height: calc(4 * var(--aspect-ratio));
+    color: white;
+    text-align: center;
+	box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+    background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+	font-family: 'Poppins';
+	font-weight: 600;
+	font-size: calc(1.8 * var(--aspect-ratio));
+	letter-spacing: 0.05em;
+	text-transform: capitalize;
+	margin-top: calc(0.7 * var(--aspect-ratio));
+    margin-bottom:6px;
+    border-radius: 3px;
+}
+/*
+@media (max-aspect-ratio: 1/1) {
+    .menuDiv > div {
+        height: unset;
+        width: 100%;
+        font-size: 2vw;
+    }
+
+    #settingsMenu > div > div:not(.menuBottomButtons,.menuTitle) {
+        margin-left: 20vw;
+    }
+
+    .menuLogo {
+        height: unset;
+        width: 10vw;
+    }
+}
+*/
+/* Loader animation */
+.transferWaitingClock{
+    margin-top:calc(0.5 * var(--aspect-ratio));
+}
+.hourglass{
+    display:block;
+    background:#15122d;
+    width:0.8vw;
+    height:0.8vw;
+    animation:hourglass 3s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+.outer{
+    fill:brown;
+}
+
+.middle{
+    fill:#15122d;
+}
+
+@keyframes hourglass{
+    0%{
+        transform:rotate(0deg);
+        box-shadow:
+            inset #ffc502 0 -0.1em 0 0,
+            inset #15122d 0 -0.75em 0 0,
+            inset #ffc502 0 -1.4em 0 0;
+    }
+    95%{
+        transform:rotate(0deg);
+        box-shadow:
+            inset #ffc502 0 -0.75em 0 0,
+            inset #15122d 0 -0.75em 0 0,
+            inset #ffc502 0 -0.75em 0 0;
+    }
+    100%{
+        transform:rotate(180deg);
+        box-shadow:
+            inset #ffc502 0 -0.75em 0 0,
+            inset #15122d 0 -0.75em 0 0,
+            inset #ffc502 0 -0.75em 0 0;
+    }
+}
+
+.table_balance, .added_balance {
+    width: calc(13 * var(--aspect-ratio))!important;
+    height: calc(5 * var(--aspect-ratio))!important;
+    display: grid;
+    background: none;
+    color: white;
+    font-size: calc(1.5* var(--aspect-ratio))!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.buyin_table_balance {
+    display: flex;
+    justify-content: space-around;
+    width:  calc(29 * var(--aspect-ratio))!important;
+}
+.totaladd {
+    font-size: calc(1* var(--aspect-ratio))!important;
+    color: #F1B863;
+    margin-bottom: calc(0* var(--aspect-ratio))!important;
+    margin-top: calc(.4 * var(--aspect-ratio))!important;
+}
+.Edit-form {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-left: calc(4 * var(--aspect-ratio))!important;
+    margin-bottom: calc(1 * var(--aspect-ratio))!important;
+    width: calc(13 * var(--aspect-ratio))!important;
+    height: calc(2 * var(--aspect-ratio))!important;
+}
+.Edit-form:focus {
+    color: white;
+    background-color: transparent!important;
+    border-color: unset;
+    outline: 0!important;
+    border: none!important;
+    box-shadow: none!important;
+}
+#buyin-input {
+    padding: calc(.5 * var(--aspect-ratio))!important;
+    min-width: 7vw!important;
+    max-width: 5vw!important;
+    text-align: center!important;
+    max-width: 5vw!important;
+    box-shadow: inset calc(0.3* var(--aspect-ratio)) calc(0.5* var(--aspect-ratio)) calc(1* var(--aspect-ratio)) #000000B8;
+    border-radius: 0px;
+}
+
+#notificationModal .modal-dialog {
+    max-width: calc(60.5 * var(--aspect-ratio)) !important;
+    margin-left: calc(50.5 * var(--aspect-ratio)) !important;
+}
+
+#tournamentResultModal .modal-dialog {
+    margin-left: calc(55.5 * var(--aspect-ratio)) !important;
+}
+
+#notificationModal .modal-header .close {
+    padding: 0rem 0.19rem 0.1rem 0.19rem;
+    margin: -1rem 0rem -2rem auto;
+    font-size: calc(1.8 * var(--aspect-ratio));
+    border: 2.2px solid #91CAFE;
+    border-radius: 100%;
+    color: #91CAFE;
+}
+
+#notificationModal .modal-header .close :hover {
+    color: #91CAFE;
+}
+
+#notificationModal .modal-body .notification-message {
+    font-family: 'Krub';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(3 * var(--aspect-ratio));
+    line-height: 34px;
+}
+
+#notificationModal .modal-body {
+    padding: calc(0.5 * var(--aspect-ratio)) 0rem calc(1.5 * var(--aspect-ratio)) 0;
+    text-align: center;
+}
+
+#notificationModal .modal-content {
+    background: linear-gradient(180deg, #56B9EC -50%, #0B1140 135.66%);
+    box-sizing: border-box;
+    border: 2px solid #91CAFE;
+    box-shadow: 0px 3px 15px 3px rgba(145, 202, 254, 0.4);
+    border-radius: 22px;
+}
+
+
+/* Tournament Info modal*/
+
+#tournamentInfoModal.modal.fade .modal-dialog, #prizeInfoModal .modal-dialog {
+	transition: transform .3s ease-out;
+	transform: translatey(-50%);
+	top: 50%;
+    max-width: calc(40 * var(--aspect-ratio)) !important;
+    pointer-events: auto;
+}
+.tournament-popup-content {
+    background: radial-gradient(58.94% 58.94% at 50% 50%, #005FB6 0%, #0D1E35 100%);
+    color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 16px #0008;
+    margin: 40px auto;
+    padding: 10px 0 14px 0;
+    position: relative;
+    border: 2px solid #ffb84d;
+}
+
+.tournament-popup-title {
+    font-size: calc(2.3 * var(--aspect-ratio));
+    text-align: center;
+    color: #fff;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    line-height: calc( 4 * var(--aspect-ratio));
+    letter-spacing: -0.06em;
+}
+
+.tournament-popup-close {
+    position: absolute;
+    right: calc(2 * var(--aspect-ratio));
+    top: calc(1 * var(--aspect-ratio));
+    width: calc(3 * var(--aspect-ratio));
+    height: calc(3 * var(--aspect-ratio));
+    background: #0e2a4a;
+    border: 2px solid #ffb84d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+}
+
+.tournament-popup-close:hover {
+    background: #1b4c7a;
+}
+
+.tournament-popup-close .close-inner {
+    color: #ffb84d;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1;
+    display: block;
+    margin-top: calc(-0.1 * var(--aspect-ratio));
+}
+
+.tournament-popup-table {
+    width: 100%;
+    padding: calc(1.5 * var(--aspect-ratio));
+    border-collapse: unset;
+    table-layout: fixed;
+}
+
+.tournament-popup-table td {
+    vertical-align: top;
+	font-family: 'Montserrat';
+	font-weight: 600;
+	font-size: calc(1.6 * var(--aspect-ratio));
+	line-height: calc(4 * var(--aspect-ratio));
+}
+.tournament-popup-table td:first-child {
+	width: 55%;
+}
+
+.tournament-popup-table td:nth-child(2) {
+    text-align: center;
+    width: 10%;
+}
+
+.tournament-popup-table td:last-child {
+    color: #7BADD9;
+    text-align: right;
+	/* width: 35%; */
+}
+
+.popup-view-btn {
+    background: rgba(123, 173, 217, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    border-radius: 4px;
+    padding: 1px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px #0003;
+}
+
+.popup-view-btn:hover {
+    background: #1b4c7a;
+}
+
+@media (max-width: 350px) {
+    .tournament-popup-content {
+        width: 98vw;
+        padding: 6px 0 6px 0;
+    }
+    .tournament-popup-table td:first-child {
+        padding-left: 4px;
+        width: 90px;
+    }
+    .tournament-popup-table td:last-child {
+        padding-right: 4px;
+    }
+}
+/* prize structure info */
+.prize-popup-table {
+	background: linear-gradient(114.57deg, #262A4E -165.15%, #141732 100%);
+	/* border: 1px solid #000000; */
+	box-shadow: 0px 0px 4px #A1D3FF;
+	border-radius: 10px;
+	padding: 13px;
+	border-collapse: unset;
+}
+#prizeInfoModal .tournament-popup-title{
+	margin-bottom: calc(3 * var(--aspect-ratio));
+}
+.prize-popup-table td {
+	font-family: 'Montserrat';
+	font-weight: 800;
+	font-size: calc(1.8 * var(--aspect-ratio));
+	line-height: calc(3 * var(--aspect-ratio));
+	letter-spacing: 0.05em;
+}
+.prize-popup-table td:first-child {
+	text-align: left;
+    font-variant: all-small-caps;
+    color: rgba(255, 255, 255, 0.5);
+    width: 50%;
+}
+.prize-popup-table td:nth-child(2) {
+	text-align: center;
+    width: 20%;
+}
+.prize-popup-table td:last-child {
+	text-align: right;
+    width: 30%;
+}
+#prizeInfoModal .modal-dialog .tournament-popup-content{
+    width: calc(32 * var(--aspect-ratio));
+    padding: 10px 10px 14px;
+}
+
+/* Auto fold setting */
+
+.modal-body.fold_modal_body {
+    height: inherit !important;
+}
+
+.second-top1 {
+    width: 469px !important;
+  }
+  
+  #autoFoldFrame {
+    width: calc(72 * var(--aspect-ratio)) !important;
+    height: 455px !important;
+  }
+  
+  @media (min-width: 1200px) {
+    #autoFoldFrame {
+        height: calc(65.5* var(--aspect-ratio)) !important;
+        width: calc(71.50* var(--aspect-ratio)) !important;
+    }
+  }
+  @media (min-width: 1125px) and (max-width: 1200px) {
+    #autoFoldFrame {
+      height: 455px !important;
+      width: 440px !important;
+    }
+  }
+  @media (max-width: 1100px) {
+    #autoFoldFrame {
+      height: 465px;
+    }
+  }
+  @media (max-width: 1090px) {
+    #autoFoldFrame {
+      height: 455px !important;
+      width: 440px !important;
+    }
+  }
+  @media (max-width: 950px) {
+    #autoFoldFrame {
+      height: 435px;
+    }
+  }
+  @media (max-width: 900px) {
+    #autoFoldFrame {
+      height: 400px;
+    }
+  }
+  @media (max-width: 768px) {
+    #autoFoldFrame {
+      height: 370px;
+    }
+  }
+  @media (max-width: 668px) {
+    #autoFoldFrame {
+      width: calc(80 * var(--aspect-ratio)) !important;
+      height: 350px;
+    }
+  }
+  @media (max-width: 670px) {
+    .modal.show .modal-dialog.fold_modal_body {
+      height: 500px !important;
+    }
+    .second-top1 {
+      height: 393px !important;
+    }
+  }
+  
+  @media (min-width: 575px) and (max-width: 620px) {
+    #autoFoldFrame {
+      width: calc(85 * var(--aspect-ratio)) !important;
+    }
+  }
+  @media (max-width: 575px) {
+    #autoFoldFrame {
+      width: calc(94 * var(--aspect-ratio)) !important;
+    }
+  }
+  @media (max-width: 500px) {
+    #autoFoldFrame {
+      width: calc(105 * var(--aspect-ratio)) !important;
+    }
+  }
+  @media (max-width: 455px) {
+    #autoFoldFrame {
+      width: calc(125 * var(--aspect-ratio)) !important;
+    }
+  }
+  @media (max-width: 390px) {
+    #autoFoldFrame {
+      width: calc(150 * var(--aspect-ratio)) !important;
+    }
+  }
+  @media (max-width: 310px) {
+    #autoFoldFrame {
+      width: calc(170 * var(--aspect-ratio)) !important;
+    }
+  }
+
+  /* buyin modal new design */
+.buyinDiv {
+	height: calc(74 * var(--aspect-ratio)) !important;
+	margin-top: calc(2 * var(--aspect-ratio)) !important;
+}
+.buyin_upper_part{
+    width: 100%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+.wallet_label{
+    text-align: center;
+    color: #ffeb00; 
+    justify-content: center; 
+    display: flex;
+    align-items: center;
+}
+.wallet_icon{
+    margin-right: calc(1 * var(--aspect-ratio));
+    height: fit-content;
+}
+.transferToTableWallet {
+	font-family: 'Sofia Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-size: calc(2.5 * var(--aspect-ratio));
+	line-height: 50px;
+	font-variant: small-caps;
+	color: #91CAFE;
+	text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
+}
+.global_balance_div{
+    text-align: center;
+    margin-top: calc(1 * var(--aspect-ratio));
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.yourGlobalBalance{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: calc(1.8 * var(--aspect-ratio));
+    line-height: 39px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
+}
+#global-balance{
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: calc(1.8 * var(--aspect-ratio));
+    line-height: 39px;
+    text-transform: capitalize;
+    color: #7EF2F4;
+    text-shadow: 0px 0px 1px #FFFFFF;
+}
+.number_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#transferMinus
+{
+    box-sizing: border-box;
+	background: #15163B;
+	border: 1px solid rgba(155, 155, 179, 0.1);
+	border-radius: 4px;
+	font-family: 'Inter';
+	font-weight: 700;
+	font-size: calc(1 * var(--aspect-ratio));
+	padding: calc(0.2 * var(--aspect-ratio));
+    margin-right: 5px;
+}
+
+#transferPlus {
+	box-sizing: border-box;
+	background: #15163B;
+	border: 1px solid rgba(155, 155, 179, 0.1);
+	border-radius: 4px;
+	font-family: 'Inter';
+	font-weight: 700;
+	font-size: calc(1 * var(--aspect-ratio));
+	padding: calc(0.2 * var(--aspect-ratio));
+    margin-left: 5px;
+}
+.hr_division{
+    border-bottom: 2px white dashed;
+    height: 11px;
+    width: 85%;
+    border-top: none;
+    
+}
+@media screen and (max-width:600px) and (min-width:300px) {
+    .hr_division{
+        border-bottom: 1px white dashed;
+        height: 10px;
+        width: 80%;
+        border-top: none;
+        margin-top: calc(1 * var(--aspect-ratio));
+        margin-bottom: none;
+    }
+}
+
+
+.add_to_table{
+    font-family: 'Sofia Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: calc(2.5 * var(--aspect-ratio));
+    line-height: calc(5 * var(--aspect-ratio));
+    font-variant:small-caps;
+    color: #91CAFE;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+    margin-left:calc(1.7 * var(--aspect-ratio)) ;
+}      
+
+#buyInMinus{
+    box-sizing: border-box;
+	background: #15163B;
+	border: 1px solid rgba(155, 155, 179, 0.1);
+	border-radius: 4px;
+	font-family: 'Inter';
+	font-weight: 700;
+	font-size: calc(1 * var(--aspect-ratio));
+	/* padding: calc(0.1 * var(--aspect-ratio)); */
+    margin-right: calc(1.5 * var(--aspect-ratio));  
+}
+#buyInPlus{
+    box-sizing: border-box;
+	background: #15163B;
+	border: 1px solid rgba(155, 155, 179, 0.1);
+	border-radius: 4px;
+	font-family: 'Inter';
+	font-weight: 700;
+	font-size: calc(1* var(--aspect-ratio));
+	/* padding: calc(0.1 * var(--aspect-ratio));  */
+    margin-left: calc(1.5 * var(--aspect-ratio));
+
+
+}
+.cancleButton{
+    box-shadow: 0px 2px 10px 2px #91CAFEB2;
+    border-style: none;
+	width: calc(12 * var(--aspect-ratio));
+	height: calc(4 * var(--aspect-ratio));
+	color: white;
+	text-align: center;
+    /* box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7); */
+	box-shadow: 0px 1px 6px 0px #91CAFEB2;
+    background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+	font-family: 'Poppins';
+	font-weight: 600;
+	font-size: calc(1.8 * var(--aspect-ratio));
+	letter-spacing: 0.05em;
+	text-transform: capitalize;
+	margin-top: calc(0.7 * var(--aspect-ratio));
+    /* margin-bottom:6px; */
+    margin-bottom: calc(2 * var(--aspect-ratio));
+}
+.okButton{
+    color:whitesmoke;
+    background:rgb(95, 149, 249);
+    letter-spacing: 0.05em;
+    font-family: 'Poppins';
+    background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+    box-shadow: 0px 1px 6px 0px #91CAFEB2;
+    /* box-shadow: 0px 1px 6px 2px rgba(145, 202, 254, 0.7); */
+    font-size: calc(1.6 * var(--aspect-ratio));
+}
+.table_balance{
+    color:goldenrod;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+    margin-top: calc(0.5 * var(--aspect-ratio));
+}
+.added_balance{
+    color:goldenrod;
+    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+    margin-top: calc(0.5 * var(--aspect-ratio));
+}
+#buyin-input{
+    background: #15122D;
+    border-radius:calc(0.8 * var(--aspect-ratio));
+    box-shadow: 0px 0px 5px #424E7D;
+    margin-top: calc(1 * var(--aspect-ratio));
+    color:white;
+    box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+    border-radius: calc(0.8 * var(--aspect-ratio));
+          
+}
+#buyInSlider{  
+    width: 100%;
+	height: calc(1.7 * var(--aspect-ratio));
+	cursor: grab;
+	border-radius: calc(3 * var(--aspect-ratio));
+	background: #15163B;
+	border: 1px solid #323E67;
+    margin-top: calc(1 * var(--aspect-ratio));
+    width: 542;
+
+}
+#table-balance{
+    color: #91CAFE;
+    margin-right:calc(0.5 * var(--aspect-ratio));
+    margin-left:calc(0.5 * var(--aspect-ratio));
+    /* font-size: calc(1.2 * var(--aspect-ratio)); */
+
+}
+#table-chip{
+    color: #91CAFE;
+    margin-right:calc(0.5 * var(--aspect-ratio));
+    margin-left:calc(0.5 * var(--aspect-ratio));
+    /* font-size: calc(1.2 * var(--aspect-ratio)); */
+
+}
+#card-png{
+    height: calc(3 * var(--aspect-ratio));
+    width:calc(3 * var(--aspect-ratio));
+}
+#round-png{
+    height: calc(1.7 * var(--aspect-ratio));
+    width:calc(1.7 * var(--aspect-ratio));
+} 
+
+#runOutOfChipsCheckbox.checkbox, #chipsLowerThenBuyInCheckbox.checkbox{
+    margin-bottom: calc(-0.5 * var(--aspect-ratio));
+    align-content: center;
+    position:fixed;
+}
+.runoutchips,.lowerchips{
+    display:inline-flex;
+    align-items: center;
+    /* gap: calc(5 * var(--aspect-ratio));     */
+    margin-top:calc(0 * var(--aspect-ratio));
+    font-size: calc(1.3 * var(--aspect-ratio));
+    height:calc(0 * var(--aspect-ratio));
+    /* margin-right: calc(1 *var(--aspect-ratio)); */
+}
+.rebuychips{
+     font-size: calc(1.8 * var(--aspect-ratio));
+     letter-spacing: 0.5px;
+}
+.tablewallet , .table0{
+    font-size: calc(1.5 * var(--aspect-ratio));
+    margin:calc(1 * var(--aspect-ratio));
+}
+
+
+@media screen and (max-width:1024px) and (min-width:600px){
+    
+    .wallet_label{
+        height: calc(2 * var(--aspect-ratio));
+        margin-top: calc(2 * var(--aspect-ratio));
+        margin-bottom: calc(5 * var(--aspect-ratio));
+        height: calc(10 * var(--aspect-ratio));
+        text-align: center;
+        color: #ffeb00; 
+        justify-content: center; 
+        display: flex;
+        align-items: center;
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        margin-top: calc(1 * var(--aspect-ratio));
+        font-size: calc(2 * var(--aspect-ratio));
+    }
+    
+    .transferToTableWallet {
+        font-family: 'Sofia Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2.5 * var(--aspect-ratio));
+        line-height: 50px;
+        font-variant: small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
+        margin-bottom:calc(0.01 * var(--aspect-ratio));
+        margin-top: calc(0.01 * var(--aspect-ratio));
+        
+    }
+    .global_balance_div{
+        height: calc(2 * var(--aspect-ratio));
+        /* width: calc(1 * var(--aspect-ratio)); */
+        text-align: center;
+        margin-top: calc(1 * var(--aspect-ratio));
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        margin-top: calc(0.01 * var(--aspect-ratio));
+        font-size: calc(2 * var(--aspect-ratio));
+    }
+    .transferButton{
+        font-size: calc(1 * var(--aspect-ratio));
+
+     }
+
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+        font-size: calc(1.2 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+        font-size: calc(1.2 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:1225px){
+    .wallet_label{
+        height: calc(2 * var(--aspect-ratio));
+        margin-top: calc(2 * var(--aspect-ratio));
+        margin-bottom: calc(5 * var(--aspect-ratio));
+        height: calc(10 * var(--aspect-ratio));
+        text-align: center;
+        color: #ffeb00; 
+        justify-content: center; 
+        display: flex;
+        align-items: center;
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        margin-top: calc(1 * var(--aspect-ratio));
+        font-size: calc(2 * var(--aspect-ratio));
+    }
+    
+    
+    .transferToTableWallet {
+        font-family: 'Sofia Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2.5 * var(--aspect-ratio));
+        line-height: 50px;
+        font-variant: small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
+        margin-bottom:calc(0.01 * var(--aspect-ratio));
+        margin-top: calc(0.01 * var(--aspect-ratio));
+        
+    }
+    .global_balance_div{
+        height: calc(2 * var(--aspect-ratio));
+        /* width: calc(1 * var(--aspect-ratio)); */
+        text-align: center;
+        margin-top: calc(1 * var(--aspect-ratio));
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        margin-top: calc(0.01 * var(--aspect-ratio));
+        font-size: calc(2 * var(--aspect-ratio));
+    }
+     .transferButton{
+        font-size: calc(1 * var(--aspect-ratio));
+
+     }
+
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+        /* font-size: calc(1.2 * var(--aspect-ratio)); */
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+        /* font-size: calc(1.2 * var(--aspect-ratio)); */
+ 
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:950px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:900px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:768px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:668px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:575px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:500px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:455px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}
+
+@media screen and (max-width:390px){
+    .tablewallet , .table0{
+        font-size: calc(1 * var(--aspect-ratio)) ;
+        margin:calc(1 * var(--aspect-ratio)) ;
+    }
+
+    .rebuychips{
+        font-size: calc(1 * var(--aspect-ratio));
+         letter-spacing: 0.5px;
+   }
+
+
+    .runoutchips,.lowerchips{
+        font-size: calc(1.1 * var(--aspect-ratio));
+    }
+
+     
+    .add_to_table{
+        font-family: 'Sofia Sans';
+        margin-top:calc(1 * var(--aspect-ratio));
+        margin-bottom:calc(1 * var(--aspect-ratio));
+        font-style: normal;
+        font-weight: 700;
+        font-size: calc(2 * var(--aspect-ratio));
+        line-height: calc(1 * var(--aspect-ratio));
+        font-variant:small-caps;
+        color: #91CAFE;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8); 
+        margin-left:calc(1.7 * var(--aspect-ratio)) ;
+    }           
+
+    #buyInMinus ,#buyInPlus{
+        box-sizing: border-box;
+        background: #15163B;
+        border: 1px solid rgba(155, 155, 179, 0.1);
+        border-radius: 2px;
+        font-family: 'Inter';
+        font-weight: 700;
+        font-size: calc(0.1 * var(--aspect-ratio));
+        margin-right: calc(1.5 * var(--aspect-ratio));
+       
+    }
+    
+    .cancleButton{
+        box-shadow: 0px 2px 10px 2px #91CAFEB2;
+        border-style: none;
+        width: calc(12* var(--aspect-ratio));
+        height: calc(1 * var(--aspect-ratio));
+        color: white;
+        text-align: center;
+        box-shadow: 0px 1px 6px 0px rgba(145, 202, 254, 0.7);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        background: linear-gradient(180deg, #424E7D 0%, #262F54 100%);
+        font-family: 'Poppins';
+        font-weight: 600;
+        font-size: calc(1 * var(--aspect-ratio));
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        margin-top: calc(0.7 * var(--aspect-ratio));
+        margin-bottom: calc(2 * var(--aspect-ratio));
+    }
+
+    .okButton{
+        color:whitesmoke;
+         width: calc(2.3* var(--aspect-ratio)); 
+        height: calc(1.5 * var(--aspect-ratio)); 
+        background:rgb(95, 149, 249);
+        letter-spacing: 0.05em;
+        font-family: 'Poppins';
+        background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+        box-shadow: 0px 1px 6px 0px #91CAFEB2;
+        font-size: calc(1 * var(--aspect-ratio));
+        margin-left:calc(1* var(--aspect-ratio));
+    }
+    
+
+    .table_balance{
+        color:goldenrod;
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+        margin-top: calc(0.5 * var(--aspect-ratio));
+    }
+
+    .added_balance{
+            color:goldenrod;
+            text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.4);
+            margin-top: calc(0.5 * var(--aspect-ratio));
+        }
+
+        #table-balance{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }   
+
+    #table-chip{
+        color: #91CAFE;
+        margin-right:calc(0.5 * var(--aspect-ratio));
+        margin-left:calc(0.5 * var(--aspect-ratio));
+    }
+
+    #card-png{
+        height: calc(3 * var(--aspect-ratio));
+        width:calc(3 * var(--aspect-ratio));
+    }
+
+    #round-png{
+        height: calc(1.7 * var(--aspect-ratio));
+        width:calc(1.7 * var(--aspect-ratio));
+    }
+
+    .checkbox{
+        margin-bottom: calc(-0.5 * var(--aspect-ratio));
+        align-content: center;
+    }
+
+    #buyin-input{
+        background: #15122D;
+        border-radius:calc(0.8 * var(--aspect-ratio));
+        box-shadow: 0px 0px 5px #424E7D;
+        margin-top: 5px;
+        color:white;
+        box-shadow:aliceblue 0px 0px 2px rgba(255, 255, 255, 0.3), inset -9px -4px 7px rgba(14, 16, 34, 1), inset 3px 5px 14px #0E1022;
+        border-radius: 4px;
+              
+    }
+
+    #buyInSlider{  
+        width: 100%;
+        height: calc(1.7 * var(--aspect-ratio));
+        cursor: grab;
+        border-radius: calc(3 * var(--aspect-ratio));
+        background: #15163B;
+        border: 1px solid #323E67;
+        margin-top: calc(1 * var(--aspect-ratio));
+        width: 542;
+    
+    }
+}

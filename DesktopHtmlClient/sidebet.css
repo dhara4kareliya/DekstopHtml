@@ -1,0 +1,806 @@
+* {
+    font-family: "Inter", sans-serif;
+}
+
+
+/* :root {
+    --aspect-ratio: 0.56vw;
+}
+ */
+
+* {
+    scrollbar-color: #9ba4e7 transparent;
+    scrollbar-width: thin;
+}
+
+
+/* Optional: Add styling for the track and thumb if needed */
+
+* {
+    scrollbar-face-color: #9ba4e7;
+    scrollbar-track-color: transparent;
+}
+
+
+/* WebKit (Chrome, Safari) specific styles */
+
+ ::-webkit-scrollbar,
+ ::-webkit-scrollbar-thumb,
+ ::-webkit-scrollbar-track {
+    width: calc(.5 * var(--aspect-ratio)) !important;
+    border: none;
+    background: transparent;
+    border-radius: 20px;
+}
+
+ ::-webkit-scrollbar-button,
+ ::-webkit-scrollbar-track-piece,
+ ::-webkit-scrollbar-corner,
+ ::-webkit-resizer {
+    display: none;
+}
+
+ ::-webkit-scrollbar-thumb {
+    border-radius: 1px;
+    background-color: #9ba4e7;
+    height: 3px;
+}
+
+p {
+    margin: 0!important;
+}
+
+.scroll-wrapper {
+    overflow-y: scroll;
+    /* Ensure the wrapper has a vertical scrollbar */
+    position: relative;
+}
+
+
+/* Style the scrollbar track using a pseudo-element */
+
+.scroll-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('images/Line 2.png');
+    background-size: 34% 90%;
+    background-repeat: repeat-y;
+    background-position: center;
+    pointer-events: none;
+    /* Allow interactions with the scrollbar */
+}
+
+
+/* Top Bar */
+
+.top-bar {
+    width: 20vw;
+    background-color: #15163b;
+    color: white;
+    padding: calc(2 * var(--aspect-ratio)) calc(1 * var(--aspect-ratio));
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.01vw solid #323e67;
+}
+
+.balance-info {
+    display: flex;
+    gap: calc(2 * var(--aspect-ratio));
+    padding: calc(0.6* var(--aspect-ratio)) calc(0* var(--aspect-ratio));
+}
+
+.balance-info p {
+    display: flex;
+    flex-direction: column;
+}
+
+.balance-info-first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: calc(0.8 * var(--aspect-ratio));
+}
+
+.balance-info-first p {
+    font-weight: 600;
+    color: #9b9bb3;
+    font-size: calc(1.6 * var(--aspect-ratio));
+}
+
+.balance-info-first img {
+    width: calc(2.7 * var(--aspect-ratio));
+}
+
+.side-bet-panel {
+    background: #15163b;
+}
+
+.side-bet-panel-box {
+    display: flex;
+    align-items: self-start;
+    justify-content: space-between;
+    padding: calc(1.7 * var(--aspect-ratio)) calc(1 * var(--aspect-ratio));
+}
+
+.side-bet-panel-box h2 {
+    font-size: calc(2.1 * var(--aspect-ratio));
+    font-weight: bold;
+}
+
+.side-bet-panel-box img {
+    width: calc(2 * var(--aspect-ratio));
+}
+
+.side-bet-panel-btn {
+    margin-left: calc(1.2 * var(--aspect-ratio));
+    display: flex;
+}
+
+.side-bet-panel-btn-first,
+.side-bet-panel-btn-second,
+.side-bet-panel-btn-third {
+    border: none;
+    outline: none;
+    background: rgba(33, 50, 107, 0.4);
+    padding: calc(0.5 * var(--aspect-ratio)) calc(1.6 * var(--aspect-ratio));
+    border-top-left-radius: 8px;
+    font-size: calc(1.6 * var(--aspect-ratio));
+    border-top-right-radius: 8px;
+    color: grey;
+    font-weight: bold;
+    border-top-right-radius: calc(1 * var(--aspect-ratio));
+    border-top-left-radius: calc(1 * var(--aspect-ratio));
+}
+
+.side-bet-panel-btn button.active {
+    background-color: #21326B !important;
+    color: #fff;
+}
+
+.side-bet-panel-btn button:hover {
+    background-color: rgba(33, 50, 107, 0.6) !important;
+    color: #fff;
+}
+
+
+/* .flash-draw-box {
+  padding: calc(0.6* var(--aspect-ratio)) calc(1.4* var(--aspect-ratio));
+} */
+
+.flash-draw-second {
+    border: 0.01vw solid #323e67;
+    margin-top: calc(0.2 * var(--aspect-ratio));
+    margin-bottom: calc(1 * var(--aspect-ratio));
+}
+
+.flash-draw {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flash-draw1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flash-draw-second {
+    padding: calc(1.1 * var(--aspect-ratio));
+    border-radius: calc(1 * var(--aspect-ratio));
+}
+
+.flash-draw-before {
+    content: "";
+    position: absolute;
+    width: 97%;
+    height: 1px;
+    background: #323e67;
+    /* Default background */
+    top: calc(3.5 * var(--aspect-ratio));
+    right: calc(0.5 * var(--aspect-ratio));
+    transition: background 0.3s ease;
+    /* Smooth transition */
+}
+
+.flash-draw h5 {
+    font-size: calc(1.6 * var(--aspect-ratio));
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.flash-draw img {
+    width: calc(2 * var(--aspect-ratio));
+}
+
+.flash-bet-content {
+    margin-top: calc(2 * var(--aspect-ratio)) !important;
+}
+
+
+/* .flash-bet-content button {
+    border: none;
+    outline: none;
+    padding: calc(0.7 * var(--aspect-ratio)) calc(1.8 * var(--aspect-ratio));
+    background: #15163b;
+    font-size: 0.9vw;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 4px;
+} */
+
+.flash-bet-box {
+    display: flex;
+    justify-content: space-evenly;
+    gap: calc(0.5 * var(--aspect-ratio));
+}
+
+.flash-bet-box button img {
+    width: calc(1.5 * var(--aspect-ratio));
+}
+
+.sidebet_cards {
+    position: absolute;
+    top: calc(2* var(--aspect-ratio));
+    left: calc(5* var(--aspect-ratio));
+    display: flex;
+    justify-content: flex-end;
+    width: calc(144* var(--aspect-ratio));
+}
+
+.balance-info-submit button {
+    border: none;
+    outline: none;
+    padding: calc(0.8 * var(--aspect-ratio)) calc(2.5 * var(--aspect-ratio)) !important;
+    font-size: calc(1.6 * var(--aspect-ratio));
+    color: #9b9bb3;
+    background: #323e67;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: calc(1 * var(--aspect-ratio)) calc(-1 * var(--aspect-ratio));
+    margin-top: calc(1 * var(--aspect-ratio));
+}
+
+.flash-bet-content h4 {
+    font-size: calc(2.2 * var(--aspect-ratio));
+}
+
+.flash-bet-content span {
+    font-size: calc(1.9* var(--aspect-ratio));
+    margin-left: calc(0.3* var(--aspect-ratio));
+}
+
+
+/* hover o Question mark  */
+
+.flash-draw-img {
+    position: relative;
+    cursor: pointer;
+}
+
+.flash-draw-img .hover-container {
+    display: none;
+    position: absolute;
+    top: 149%;
+    left: calc(-11.39* var(--aspect-ratio));
+    transform: translateX(-50%);
+    width: calc(26* var(--aspect-ratio));
+    padding: calc(0.8* var(--aspect-ratio)) calc(1.1* var(--aspect-ratio));
+    background-color: #171f49;
+    color: #fff;
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    font-size: 11px;
+    z-index: 20;
+    font-size: calc(1.5* var(--aspect-ratio));
+}
+
+.flash-draw-img:hover .hover-container {
+    display: block;
+    color: #fff;
+}
+
+.flash-draw-img-first:hover {
+    filter: brightness(2);
+}
+
+.flash-bet-content-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flash-bet-content-head img {
+    width: calc(1.5* var(--aspect-ratio));
+}
+
+.flassh-bet-content p {
+    display: none;
+}
+
+.right-content-wrapper {
+    background: #15163b;
+    height: 100%;
+    width: calc(30 * var(--aspect-ratio)) !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.flash-draw-wrap {
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
+    background: linear-gradient( 180deg, rgba(33, 50, 107, 1) 0%, rgba(33, 50, 107, 0) 100%);
+    overflow-y: scroll;
+    height: calc(58 * var(--aspect-ratio));
+}
+
+.flash-draw-wrap::-webkit-scrollbar {
+    width: 6px !important;
+    /* Scrollbar ki width */
+}
+
+.flash-draw-wrap::-webkit-scrollbar-track {
+    background: red !important;
+}
+
+.flash-draw-wrap::-webkit-scrollbar-thumb {
+    background: #888;
+    /* Thumb ka color */
+    border-radius: 10px;
+    /* Round corner */
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient( 180deg, rgba(50, 62, 103, 1) 0%, rgba(50, 62, 103, 0) 100%);
+    color: white;
+    padding: calc(1 * var(--aspect-ratio));
+}
+
+.flash-bet-content button {
+    border: none;
+    outline: none;
+    padding: calc(0.7 * var(--aspect-ratio)) calc(1 * var(--aspect-ratio));
+    background: linear-gradient(180deg, #424e7d 0%, #262f54 100%);
+    font-size: 0.9vw;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 1px;
+    width: 35.33%;
+    display:flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+}
+.flash-bet-content button:first-child {
+    width: 30%;
+}
+
+.flash-bet-content button:hover {
+    background: #34b056;
+    box-shadow: 0px 8px 24px 0px rgba(40, 129, 64, 0.8);
+}
+
+.balance-info-submit button:hover {
+    background: #34b056;
+    color: #ffffff;
+    box-shadow: 0px 8px 24px 0px rgba(40, 129, 64, 0.8);
+}
+
+.flash-bet-content button.active:hover {
+    background: #34b056;
+    box-shadow: 0px 8px 24px 0px rgba(40, 129, 64, 0.8);
+}
+
+.flash-bet-content button:hover img {
+    filter: brightness(2);
+}
+
+.flash-bet-content button:focus img {
+    filter: brightness(2);
+}
+
+.flash-bet-box button:focus {
+    background: #288140;
+}
+
+.flash-bet-box button:focus:hover {
+    background: #34b056;
+}
+
+.flash-bet-box button:focus~.bottom-bar .balance-info-submit button {
+    background: #288140 !important;
+    color: white;
+}
+
+.top-balance {
+    font-weight: 600;
+}
+
+.side-balance-bet,
+.side-bet-paid {
+    font-size: 1.3vw;
+    color: #fff;
+    font-weight: normal;
+}
+
+.top-balance {
+    color: #9b9bb3;
+}
+
+.tab-content {
+    display: none;
+    border: none;
+    padding: calc(1.1* var(--aspect-ratio));
+    /* height: calc(55 * var(--aspect-ratio));
+    overflow-x: auto; */
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* BET SECTion */
+
+
+/* .flop-card {
+  background: linear-gradient(
+    to right,
+    rgba(21, 22, 59, 1) 0%,
+    rgba(21, 22, 59, 0.2) 100%
+  );
+
+  border-radius: calc(1 * var(--aspect-ratio));
+  padding: calc(1.4 * var(--aspect-ratio)) calc(0.6 * var(--aspect-ratio));
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #323E67;
+  margin: calc(0.8* var(--aspect-ratio)) calc(0* var(--aspect-ratio));
+} */
+
+.flop-card {
+    background: linear-gradient( to right, rgba(21, 22, 59, 1) 0%, rgba(21, 22, 59, 0.2) 100%);
+    border-radius: calc(1* var(--aspect-ratio));
+    /* padding: calc(1* var(--aspect-ratio)) calc(1* var(--aspect-ratio)); */
+    padding: calc(2* var(--aspect-ratio));
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: calc(0.1 * var(--aspect-ratio)) solid #323E67;
+    margin: calc(0.8* var(--aspect-ratio)) calc(0* var(--aspect-ratio));
+}
+
+.flop-title {
+    font-size: calc(1.2 * var(--aspect-ratio));
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.flop-content {
+    font-size: calc(1.6 * var(--aspect-ratio));
+    font-weight: 800;
+    text-transform: uppercase;
+    /* margin-bottom: calc(0.5 * var(--aspect-ratio)); */
+}
+
+.flop-payout {
+    font-size: calc(1.5 * var(--aspect-ratio));
+    font-weight: 500;
+    display: flex;
+    color: #fff;
+    align-items: self-start;
+    gap: 5px;
+}
+
+.flop-payout img {
+    filter: brightness(2);
+    padding-top: 0.2vw;
+}
+
+.flop-payout span {
+    font-size: calc(1.5 * var(--aspect-ratio));
+    font-weight: 800;
+    color: #ffffff;
+    display: flex;
+    align-items: self-start;
+    gap: 3px;
+    /* padding-top: 0.2vw; */
+}
+
+.backg {
+    background-color: transparent!important;
+    color: white!important;
+}
+
+.notepad-game {
+    transition: transform .3s ease-out;
+    /* position: absolute; */
+    top: calc((-9 * var(--aspect-ratio)))!important;
+    left: calc((66.5 * var(--aspect-ratio)))!important;
+}
+
+.notepad {
+    transition: transform .3s ease-out;
+    position: absolute;
+    /*top: calc((13 * var(--aspect-ratio)));*/
+    left: calc((64.5 * var(--aspect-ratio)));
+}
+
+#modal-note .modal-dialog {
+    height: 0px !important;
+}
+
+.sidebet-note {
+    font-family: Montserrat;
+    font-size: calc((1.2 * var(--aspect-ratio)))!important;
+    font-weight: 400;
+    line-height: calc((1.2 * var(--aspect-ratio)))!important;
+    letter-spacing: 0em;
+}
+
+.flop-payout img {
+    width: calc(2 * var(--aspect-ratio));
+}
+
+.flop-card-second {
+    background: linear-gradient(to right, #2e2e30 0%, #11112b 100%);
+    background-repeat: no-repeat;
+    background-position: right;
+    position: relative;
+    border: calc(0.1 * var(--aspect-ratio)) solid #e2d83e;
+}
+
+.win-card {
+    position: absolute;
+    right: calc(4* var(--aspect-ratio));
+    top: calc(3.5* var(--aspect-ratio));
+}
+
+.win-cards {
+    position: absolute;
+    right: calc(2.5* var(--aspect-ratio));
+    top: calc(3.5* var(--aspect-ratio));
+}
+
+.win-card img {
+    width: calc(4.2 * var(--aspect-ratio));
+}
+
+.wind-card-second {
+    position: relative;
+}
+
+.wind-card-second img {
+    width: calc(11* var(--aspect-ratio));
+    position: absolute;
+    right: calc(-1.3* var(--aspect-ratio));
+    top: calc(-9.3* var(--aspect-ratio));
+}
+
+.flop-payout-second,
+.flop-payout-second span {
+    color: #e2d83e;
+}
+
+.submit-img {
+    /* visibility: hidden; */
+    display: none;
+}
+
+#notepaddiv {
+    color: white;
+    width: calc((28* var(--aspect-ratio)))!important;
+    height: calc((16 * var(--aspect-ratio)))!important;
+    background: linear-gradient(100deg, rgba(20, 24, 47, 0.9), #666DB8)!important;
+    border: 1px solid #666DB8!important;
+    border-radius: 4px!important;
+}
+
+#notepaddiv-game {
+    color: white;
+    width: calc((28* var(--aspect-ratio)))!important;
+    height: calc((43 * var(--aspect-ratio)))!important;
+    background: linear-gradient(100deg, rgba(20, 24, 47, 0.9), #666DB8)!important;
+    border: 1px solid #666DB8!important;
+    border-radius: 4px!important;
+}
+
+
+/* 25/11/24 */
+
+#bets-history-content {
+    padding: calc(0.6* var(--aspect-ratio)) calc(1.4* var(--aspect-ratio));
+}
+
+.flop-card1 {
+    background: linear-gradient( to right, rgba(21, 22, 59, 1) 0%, rgba(21, 22, 59, 0.2) 100%);
+    /* border-top-left-radius: calc(1 * var(--aspect-ratio));
+  border-bottom-left-radius: calc(1 * var(--aspect-ratio)); */
+    border-radius: calc(1* var(--aspect-ratio));
+    padding: calc(1.4 * var(--aspect-ratio)) calc(0.6 * var(--aspect-ratio));
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* margin: 5px 0; */
+    /* border: 1px solid grey; */
+    /* margin: calc(0.8* var(--aspect-ratio)) calc(0* var(--aspect-ratio)); */
+}
+
+.flop-card-third {
+    background: linear-gradient(90deg, #3A3B3F, #2C3753, #1E2F5A);
+    /* background: linear-gradient(to right, #E2D83E 0%, #F4E75E 100%); */
+    background-repeat: no-repeat;
+    background-position: right;
+    position: relative;
+    border-left: calc(0.4 * var(--aspect-ratio)) solid #e2d83e;
+}
+
+.sidebet_card {
+    /*  position: absolute;
+    right: calc(30* var(--aspect-ratio));
+    top: calc(2* var(--aspect-ratio)); */
+    width: calc(27* var(--aspect-ratio));
+}
+
+.loose-card1 img {
+    width: calc(8* var(--aspect-ratio));
+    /* right: calc(-0.3* var(--aspect-ratio));
+  top: calc(-7.3* var(--aspect-ratio)); */
+}
+
+.loose-card {
+    position: absolute;
+    top: calc(3.5* var(--aspect-ratio));
+    right: calc(2* var(--aspect-ratio));
+}
+
+.loose-card-second {
+    position: absolute;
+    top: calc(0.8* var(--aspect-ratio));
+    right: calc(0.5* var(--aspect-ratio));
+}
+
+.loose-card-second img {
+    opacity: 0.5;
+}
+
+.loose-card img {
+    width: calc(5* var(--aspect-ratio));
+}
+
+.flop-card-four {
+    position: relative;
+}
+
+.betButton.selected {
+    background: linear-gradient(-180deg, #369247, #053F0F);
+}
+
+
+/*  side bet win popup */
+
+.top_body {
+    position: relative!important;
+    flex: 1 1 auto;
+    /* padding: var(--bs-modal-padding); */
+    /* padding: 35px; */
+    height: calc((8 * var(--aspect-ratio)))!important;
+}
+
+.top-dialog {
+    transition: transform .3s ease-out!important;
+    top: calc(-10 * var(--aspect-ratio));
+    left: calc(73 * var(--aspect-ratio));
+}
+
+.top-content {
+    background-color: transparent!important;
+    color: white;
+    width: calc((19 * var(--aspect-ratio)))!important;
+}
+
+.modal-dialog {
+    max-width: 316px!important;
+    /* max-height: 453px; */
+}
+
+.close_con {
+    position: absolute;
+    right: calc(2.4 * var(--aspect-ratio));
+    top: calc(2.5 * var(--aspect-ratio));
+    background: #116469;
+    color: #CCCF59;
+    border: calc(0.2 * var(--aspect-ratio)) solid #CCCF59;
+    font-size: calc(1.5 * var(--aspect-ratio));
+    width: calc(2.4 * var(--aspect-ratio));
+    height: calc(2.4 * var(--aspect-ratio));
+    border-radius: calc(50 * var(--aspect-ratio));
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.got {
+    font-family: Montserrat;
+    font-size: calc((2 * var(--aspect-ratio)))!important;
+    font-weight: 700;
+    line-height: calc((4 * var(--aspect-ratio)))!important;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FFFCED;
+}
+
+.top_200 {
+    font-family: Montserrat;
+    font-size: calc((3.6 * var(--aspect-ratio)))!important;
+    font-weight: 700;
+    line-height: calc((5 * var(--aspect-ratio)))!important;
+    letter-spacing: 0em;
+    text-align: center;
+    background: linear-gradient(180deg, #E6D61B 0%, #FFF68F 49.48%, #E0D00B 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.you_got {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc((17 * var(--aspect-ratio)))!important;
+    width: calc((23 * var(--aspect-ratio)))!important;
+}
+
+.close_con:hover {
+    background: #116469;
+}
+
+.winner_trofie {
+    animation: ani 500ms;
+    background-image: url("/images/imgpsh_fullsize_anim.png");
+    background-size: 100% 100%;
+}
+
+@keyframes ani {
+    0% {
+        transform: scale(0.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (min-width: 700px) and (max-width: 899px) {
+    .flash-draw-wrap {
+        height: calc(80 * var(--aspect-ratio));
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1024px) {
+    .flash-draw-wrap {
+        height: calc(70 * var(--aspect-ratio));
+    }
+}
+
+@media (min-width: 1025px) and (max-width:1140px) {
+    .flash-draw-wrap {
+        height: calc(60 * var(--aspect-ratio));
+    }
+}
+
+@media (min-width: 1141px) and (max-width:1190px) {
+    .flash-draw-wrap {
+        height: calc(55 * var(--aspect-ratio));
+    }
+}

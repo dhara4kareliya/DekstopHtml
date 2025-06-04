@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="favicon" rel="icon" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@500&family=Inter:wght@100;400;600&family=Lato:ital,wght@1,100&family=Montserrat:wght@500;600&family=Sarala:wght@700&family=Yeseva+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic" rel="stylesheet" />
+
+    <title>Desktop Client</title>
+
+</head>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="modal-wining-payout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-wining-payoutLabel" aria-hidden="true">
+    <div class="modal-dialog top-dialog">
+        <div class="modal-content top-content " style="      width: calc((29 * var(--aspect-ratio)))!important;     height: calc((19 * var(--aspect-ratio)))!important;">
+            <div class="modal-body top_body ">
+                <button class="close_con"><i class="bi bi-x " data-bs-dismiss="modal" aria-label="Close "></i></button>
+                <div class="winner_trofie">
+                    <div class="you_got">
+                        <p class="got">Winner!</p>
+                        <p class="top_200">$200</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade notepad" id="modal-note" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-note" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content upQuestion" id="notepaddiv">
+
+            <div class="modal-body">
+                <i class="bi bi-x-circle-fill close_cona" data-bs-dismiss="modal" aria-label="Close "></i>
+                <p class="sidebet-note"> Write your helping guide here...</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade notepad-game" id="modal-game" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-game" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content upQuestion" id="notepaddiv-game">
+
+            <div class="modal-body">
+                <i class="bi bi-x-circle-fill close_cona" data-bs-dismiss="modal" aria-label="Close "></i>
+                <h6 style="color: #FFEB00; font-weight: 700;">Payouts </h6>
+                <table class="table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="backg">Royal flush</th>
+                            <td class="backg">
+                                <snap style="color: yellow">X 500</snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Straight flush</th>
+                            <td class="backg">
+                                <snap style="color: yellow">X 150 </snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Four of a kind</th>
+                            <td class="backg">
+                                <snap style="color: yellow">X 50 </snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Full house</th>
+                            <td class="backg">
+                                <snap style="color: yellow">X 7.5 </snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Flush </th>
+                            <td class="backg">
+                                <snap style="color: yellow">X 5 </snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Straight </th>
+                            <td class="backg">
+                                <snap style="color: yellow"> X 2.5 </snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">Three of a kind </th>
+                            <td class="backg">
+                                <snap style="color: yellow"> X 2 </snap>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row" class="backg">High Card </th>
+                            <td class="backg">
+                                <snap style="color: yellow"> X 1.5 </snap>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<body>
+    <div class="loader" style="display: none;"></div>
+    <div class="wrapper">
+        <input type="checkbox" id="btn" hidden checked>
+        <label for="btn" class="menu-btn">
+            <div class="backgroundImg collapseImg"></div>
+
+        </label>
+        <nav id="sidebar">
+            <ul class="list-items sidebarOption">
+                <div class="upperPart">
+                    <li class="addChipsButton">
+                        <div>
+                            <div class="backgroundImg chipsImg"></div> 
+                            <span class="lang" key="addChips">Add Chips</span>
+                        </div>
+                    </li>
+                    <li class="multiTableButton">
+                        <div>
+                            <div class="backgroundImg multiTableImg"></div> 
+                            <span class="lang" key="multiTable">Multi Table</span>
+                        </div>
+                    </li>
+                    <li class="autoFoldSetting">
+                        <div>
+                            <div class="backgroundImg autoFoldImg"></div>
+                            <span class="lang" key="autoFoldSetting"> Auto Fold Setting</span>
+                        </div>
+                    </li>
+                    <li class="sharehand">
+                        <div>
+                            <div class="backgroundImg shareImg"></div> 
+                            <span class="lang" key="shareHand">Share Hand</span>
+                        </div>
+                    </li>
+                    <li class="logTabButton" onclick="showLogTab(true)">
+                        <div>
+                            <div class="backgroundImg logTabImg"></div> 
+                            <span class="lang" key="logTab">Hands History</span>
+                        </div>
+                    </li>
+                    <li class="logTabButton" onclick="showwinningTab(true)">
+                        <div>
+                            <div class="backgroundImg logTabImg"></div> 
+                            <span class="lang" key="logTab">Winning History</span>
+                        </div>
+                    </li>
+                    <li class="logTabButton statsTabButton" onclick="showStatsTab(true)">
+                        <div>
+                            <div class="backgroundImg logTabImg"></div> 
+                            <span class="lang" key="logTab">Stats Data</span>
+                        </div>
+                    </li>
+                    <li class="settingsButton">
+                        <div>
+                            <div class="backgroundImg settingImg"></div> 
+                            <span class="lang" key="settings">Settings</span>
+                        </div>
+                    </li>
+                    <li class="sitOutButton">
+                        <div>
+                            <div class="backgroundImg sitOutImg"></div>
+                            <span class="lang" key="sitOut">Sit Out</span>
+                        </div>
+                    </li>
+                    <li class="backLobbyButton">
+                        <div>
+                            <div class="backgroundImg backLobbyImg"></div> 
+                            <span class="lang" key="lobby">Back to Lobby</span>
+                        </div>
+                    </li>
+                    <li class="leaveButton">
+                        <div>
+                            <div class="backgroundImg leaveImg"></div> 
+                            <span class="lang" key="leaveGame">Leave Game</span>
+                        </div>
+                    </li>
+                    <li class="forhid d-none">
+                        <div>
+                            <div class="backgroundImg RebuyImg"></div>
+                            <span class="lang" key="reBuy">Rebuy/Add-on</span>
+                        </div>
+                    </li>
+                    <li class="addTipsButton d-none">
+                        <div>
+                            <i class="fa-solid fa-sack-dollar"></i> 
+                            <span class="lang" key="tipTheDealer">Tip the Dealer</span>
+                        </div>
+                    </li>
+                    <li class="cashier d-none">
+                        <div>
+                            <div class="backgroundImg cashierImg"></div>
+                            <span class="lang" key="Cashier">Cashier</span>
+                        </div>
+                    </li>
+                </div>
+                <div class="lowerPart">
+                    <div class="title">Table Settings</div>
+                    <li class="tournamentInfo">
+                        <div>
+                            <span class="lang" key="alwaysFold">Tournament Info</span>
+                        </div>
+                    </li>
+
+                    <li class="alwaysFoldButton">
+                        <div>
+                            <div class="checkbox" id="alwaysFold">
+                                <img src="./images/desktop/checked.png">
+                            </div> 
+                            <span class="lang" key="alwaysFold">Always Fold</span>
+                        </div>
+                    </li>
+                    <li class="sitOutNextHandButton">
+                        <div>
+                            <div class="checkbox">
+                                <img src="./images/desktop/checked.png">
+                            </div> <span class="lang" key="sitOutNextHand">Sit Out Next Hand</span>
+                        </div>
+                    </li>
+                    <li class="AutoTip">
+                        <div>
+                            <div class="checkbox">
+                                <img src="./images/desktop/checked.png">
+                            </div> <span class="lang" key="AutoTip">Auto Tip</span>
+                        </div>
+                    </li>
+                    <li class="autoModeButton" style="display: none;">
+                        <div>
+                            <div class="checkbox">
+                                <img src="./images/desktop/checked.png">
+                            </div> 
+                            <span class="lang" key="autoMode">Auto Mode</span>
+                        </div>
+                    </li>
+                    <li class="preFlopAutoFold">
+                        <div>
+                            <div class="checkbox">
+                                <img src="./images/desktop/checked.png">
+                            </div> 
+                            <span class="lang" key="preFlopAutoFold">Pre Flop Auto fold</span>
+                        </div>
+                    </li>
+                    <li class="waitForBBButton">
+                        <div>
+                            <div class="checkbox">
+                                <img src="./images/desktop/checked.png">
+                            </div> 
+                            <span class="lang" key="waitForBB">Wait For BB</span>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+        <div class="chatButton" id="chatButton" onclick="showChatBox(true)">
+            <div class="backgroundImg chatImg"></div>
+            <div class="badge">0</div>
+        </div>
+        <!-- chatContainer -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <span>GAME CHAT</span>
+                <button class="close-btn" id="chatCloseBtn" onclick="showChatBox(false)">&times;</button>
+            </div>
+            <div class="chat-messages">
+                <!-- Message Block -->
+                <!--    <div class="message">
+                    <div class="username-time">
+                        <span class="username">Name of user</span>
+                        <span class="timestamp">11:33 PM</span>
+                    </div>
+                    <div class="msg-text">River: 2 playersRiver: 2 players</div>
+                </div>
+                <div class="self-message-box">
+                    <img src="images/image.png" alt="">
+                    <div class="message self">
+                        <div class="username-time">
+                            <span class="username">Your Message</span>
+                            <span class="timestamp">11:33 PM</span>
+                        </div>
+                        <div class="msg-text">River: 2 playersRiver: 2 players</div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="main_emoji blocks" id="emoji_func">
+                <div class="emojiClose justify-content-end">
+                    <button type="button" class="btn-closes-emoji" onclick="showEmojiframe(false)">
+                    <i class="bi bi-x-lg text-ic m-0"></i>
+                </button>
+                </div>
+                <div class="emoji">
+                    <button class="em first_em preChatEmoji">👍</button>
+                    <button class="em preChatEmoji">😊</button>
+                    <button class="em preChatEmoji">😂</button>
+                    <button class="em preChatEmoji">🤮</button>
+                    <button class="em preChatEmoji">☹️</button>
+                    <button class="em preChatEmoji">🥱</button>
+                </div>
+                <div class="emoji">
+                    <button class="em first_em preChatEmoji">😡</button>
+                    <button class="em preChatEmoji">🎉</button>
+                    <button class="em preChatEmoji">😮</button>
+                    <button class="em preChatEmoji">👻</button>
+                    <button class="em preChatEmoji">🐵</button>
+                    <button class="em preChatEmoji">💐</button>
+                </div>
+                <div class="emoji">
+                    <button class="em first_em preChatEmoji">️😎</button>
+                    <button class="em preChatEmoji">😭</button>
+                    <button class="em preChatEmoji">🐟</button>
+                    <button class="em preChatEmoji">👎</button>
+                    <button class="em preChatEmoji">🙋‍♀️</button>
+                    <button class="em preChatEmoji">🙄</button>
+                </div>
+            </div>
+            <div class="chat-input">
+                <div class="input-container">
+                    <input type="text" id="chatInput" placeholder="Your message here" />
+                    <!-- <i class="fas fa-smile input-icon emoji-icon"></i> -->
+                    <div class="backgroundImg chat-emoji-icon chatEmojiImg" onclick="showEmojiframe(true)"></div>
+                    <!-- <i class="fas fa-arrow-right input-icon arrow-icon"></i> -->
+                    <div class="backgroundImg send-message-icon chatSend sendMessageImg"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Log Tab -->
+        <div class="activity-container" id="activityContainer">
+            <!-- <div class="draggable-container" id="draggableDiv"> -->
+                <div class="drag-handle">
+                    <div class="activity-header">
+                        <span style="width: 100%;">ACTIVITIE</span>
+                        <button class="close-btns" id="closeLogButton" onclick="showLogTab(false)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="activity-list logData">
+                    </div>
+                    <div class="playerCards">
+                        <div class="navigation-container">
+                            <div class="navigation-player-container">
+                                <!-- <div class="player-action">
+                                    <span class="bet-action">Call</span> <span class="bet-amount">5</span>
+                                </div> -->
+                                <div class="cards"  style="margin-top: 0;">
+                                    <!-- <div class="card spades black" style="height: 50px; width: 25px;">J</div>
+                                    <div class="card spades black" style="height: 50px; width: 25px;">K</div>
+                                    <div class="card hearts red" style="height: 50px; width: 25px;">Q</div>
+                                    <div class="card spades black" style="height: 50px; width: 25px;">A</div> -->
+                                    <!-- <img class="" src="./images/png/102x142/8d.png" style="opacity:1;height: 50px;width: 25px;">
+                                    <img class="" src="./images/png/102x142/8d.png" style="opacity:1;height: 50px;width: 25px;"> -->
+                                </div>
+                            </div>
+                            <div class="hand-counter">1 / <span class="totalLogs">1</span></div>
+                            <div class="navigation">
+                                <div class="nav-button prev-button">
+                                    <!-- ← -->
+                                    <img src="./images/Left.png" alt="Previous" style="height: 100%;">
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress">
+                                        <div class="progress-handle"></div>
+                                    </div>
+                                </div>
+                                <div class="nav-button next-button">
+                                    <!-- → -->
+                                    <img src="./images/Right1.png" alt="Previous" style="height: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resize-handle"></div>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    <div class="top_prent_div">
+        <img id="backgroundLogo" src="./images/logo@2x.png">
+        <!-- <img id="hidesidebar" src="./images/sideBar.png"> -->
+        <div id="mobileSideBar" class="sideButtonsDiv portrateOnly">
+            <button class="backLobbyButton"><img src="./images/desktop/Shape 1.svg"> Back to Lobby</button>
+            <button class="sitOutButton"><img src="./images/desktop/Group 60@2x.png"> Sit Out</button>
+            <button class="leaveButton"><img src="./images/desktop/exit@2x.png"> Leave Game</button>
+            <button style="visibility: hidden;"><img src="./images/desktop/Group 11@2x.png"> Rebuy/Add-on</button>
+            <button class="addChipsButton">
+            <img src="./images/desktop/icons8-coin-50@2x.png"> Add Chips
+        </button>
+            <button class="d-none"><img src="./images/desktop/icons8-dollar-50@2x.png"> Cashier</button>
+            <button class="settingsButton">
+                <img src="./images/desktop/icons8-settings-250.png"> Settings
+            </button>
+            <button class="alwaysFoldButton">
+                <div class="checkbox">
+                    <img src="./images/desktop/v@2x.png">
+                </div><span class="lang" key="alwaysFold">Always Fold</span>
+            </button>
+            <button class="sitOutNextHandButton button_hebrew_width">
+            <div class="checkbox">
+                <img src="./images/desktop/v@2x.png">
+            </div> Sit Out Next Hand
+        </button>
+            <button class="waitForBBButton button_hebrew_width">
+            <div class="checkbox">
+                <img src="./images/desktop/v@2x.png">
+            </div> Wait For BB
+        </button>
+        </div>
+        <div id="tableDiv">
+            <div id="totalPot" class="box">
+                <div class="lang" key="totalPot" style="display: inline-block;">Total Pot</div>: <span class="money">$100</span>
+                <div class="chipRow">
+                    <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                    <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                    <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                </div>
+            </div>
+            <div id="winPot" class="box" style="visibility: hidden;">
+                <span class="lang" key="totalWinPot">Total Win Pot</span>: <span class="money">$100</span>
+                <div class="chipRow">
+                    <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                    <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                    <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                </div>
+            </div>
+            <div id="mobileTable" class="portrateOnly">
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 1: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 2: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 3: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 4: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+                <canvas></canvas>
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 5: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 6: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+                <div class="sidePot box">
+                    <span class="lang" key="sidePot">Side pot</span> 7: <img src="./images/desktop/1 copy 4-1@2x.png">
+                    <span class="money">$100</span>
+                </div>
+            </div>
+            <table id="tableTable" class="landscapeOnly">
+                <tr>
+                    <td></td>
+                    <td>
+                        <div id="currentSreetPotDiv" class="custom">
+                            <img src="./images/desktop/1 copy 4-1@2x.png" class="chipImg">
+                            <span class="money">$50</span>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <div class="sidePot box">
+                            <!--  <span class="lang" key="sidePot">Side pot</span> -->1: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                        <div class="sidePot box">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->2: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                        <div class="sidePot box">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->3: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                    </td>
+                    <td class="tdcanvas">
+                        <div class="timers">
+                            <div>
+                                <span class="minutes">00</span>
+                                <div class="smalltext lang" key="minutes">Minutes</div>
+                            </div>
+                            <div>
+                                <span class="seconds">00</span>
+                                <div class="smalltext lang" key="seconds">Seconds</div>
+                            </div>
+                        </div>
+                        <div class="tableCards">
+                        </div>
+                    </td>
+                    <td class="td3">
+                        <div class="sidePot box">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->4: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                        <div class="sidePot box">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->5: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                        <div class="sidePot box">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->6: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="sidePot box side-custom">
+                            <!-- <span class="lang" key="sidePot">Side pot</span> -->7: <img src="./images/desktop/1 copy 4-1@2x.png">
+                            <span class="money">$100</span>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+            <div class="handResult lang" key="threeOfKind">Three of a kind</div>
+            <div id="playerWrappers">
+                <div class="player_wrapper">
+                    <!--<img class="avatar" src="./images/desktop/22 copy 7@2x.png">
+                <canvas></canvas>
+                <div class="d-flex">
+                    <div class="box">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img class="flag" src="./images/desktop/546dfc16a2add4db09ebc44d307ac72a@2x.png">
+                                </td>
+                                <td></td>
+                                <td>
+                                    <div class="stars box">
+                                        <img src="./images/desktop/material-star.svg"> 4.2
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span class="name lang" key="playerName">Tangotag</span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><span class="money">$5.24</span></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div class="action">CHECK</div>
+                    </div>
+                    <div class="tip-option">
+                        <p></p>
+                    </div>
+                </div>
+                <div class="turnTime">
+                    <div></div>
+                </div>
+                <table class="tokensRow">
+                    <tr>
+                        <td>
+                            <img class="blind" src="./images/desktop/SB.png">
+                        </td>
+                        <td>
+                            <div class="lastBetDiv">
+                                <img src="./images/desktop/1 copy 4-1@2x.png">
+                                <span>$55</span>
+                            </div>
+                        </td>
+                        <td>
+                            <img class="dealer" src="./images/desktop/D.png">
+                        </td>
+                    </tr>
+                </table>
+                <img class="winnerImg" src="./images/desktop/WINNER.svg">-->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+                <div class="player_wrapper">
+                    <!-- <button class="sitDownButton"></button> -->
+                </div>
+            </div>
+        </div>
+        <table id="uiTable" style="display: none;">
+            <tr>
+                <td>
+                    <!-- <div class="d-flex">
+                    <button class="translate" id="english">English</button>
+                    <button class="translate" id="german">Germany</button>
+                    <button class="translate" id="hebrew">Hebrew</button>
+                </div> -->
+
+            <div class="trophyDiv portrateOnly position">
+              ----
+                    </div>
+                </td>
+                <td>
+                    <div id="topDiv">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="hadeLeftDiv">
+                                        <div class="hadeBox" id="meDiv" style="display: none;">
+                                            <span class="hadeTitle">Hi!</span> <br>
+                                            <span id="myName" class="lang" key="playerName">Tangotag</span>
+                                            <div class="stars box" style="display: none;">
+                                                <img src="./images/desktop/material-star.svg"> 4.2
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox cashGameInfo  text-end">
+                                            <span class="hadeTitle">Game Info </span> <br>
+                                            <div>
+                                                <div><span class="smallBlind handBoldText">10</span>/<span class="bigBlind handBoldText">15</span>, <span class="handBoldText">Ante</span> &nbsp;<span class="ante handBoldText">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox tournamentLevelInfo  text-end" style="display: none;">
+                                            <span class="hadeTitle">Level <span class="level">2</span></span> <br>
+                                            <div>
+                                                <div class="levelInfo"><span class="smallBlind handBoldText">10</span>/<span class="bigBlind handBoldText">15</span>, <span class="handBoldText">Ante</span> &nbsp;<span class="ante handBoldText">0</span></div>
+                                            </div>
+                                            <br>
+                                            <div class="tournamentName"></div>
+                                        </div>
+                                        <div class="hadeBox text-end">
+                                            <div class="tournamentOnly">
+                                                <span class="hadeTitle">Next Level <span
+                                                        class="timer">00:00:49</span></span> <br><span class="nextLevel handBoldText">10/90, Ante 5 <span>- Level
+                                                        13</span></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="hadeMiddleDiv">
+                                    <div>
+                                        <span class="hadeTitle handId">Hand ID: <label >0</label> </span>
+                                        <br><span class="tableName tableid">TABLE-2</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="hadeRightDiv">
+                                        <div class="hadeBox">
+                                            <div class="col-6 tournamentOnly">
+                                                <div class="backgroundImg trophyImg"></div>
+                                                <span class="hadeTitle">Your position</span>
+                                                <br><span class="position handBoldText">25022/ <label>22454</label> </span>
+                                                <br><span class="totalPlayingPlayers handBoldText">24 Playing </span>
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox">
+                                            <div class="tournamentOnly">
+                                                <span class="hadeTitle">Biggest Stack</span> <br><span class="biggestStack handBoldText">20BB</span>
+                                            </div>
+                                        </div>
+                                        <div class="hadeBox">
+                                            <div class="tournamentOnly">
+                                                <span class="hadeTitle">Average</span> <br><span class="averageStack handBoldText">30BB</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <div id="topDivLine"></div> -->
+                    </div>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+
+                </td>
+                <td id="centerBottom">
+                    <button id="showCardsButton" class="actionButton edit-btn-screen">
+                    <span class="lang" key="showCards">SHOW CARDS</span>
+                </button>
+                    <button id="backButton">
+                    <img src="./images/desktop/office-chair@2x.png">
+                    <span class="lang" key="IMback">I AM BACK</span>
+                </button>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="actionCheckbox">
+            <div class="sideButtonsDiv" style="height: 100%;">
+                <button class="foldToAnyBetButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div>
+                    <span class="lang" key="foldToAnyBet">Fold to any bet</span>
+                </button>
+            </div>
+            <div id="automaticActionsDiv" class="sideButtonsDiv" style="position: absolute">
+                <button id="autoCheckButton" class="checkToAnyBetButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div> <span class="lang" key="check">Auto Check</span>
+                </button>
+                <button id="autoCheckOrFoldButton" class="checkToAnyBetButton">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div> <span class="lang" key="check/Fold">Check/Fold</span>
+                </button>
+            </div>
+            <div class="sideButtonsDiv" style="height: 100%;">
+                <button class="callButtonDiv">
+                    <div class="checkbox">
+                        <img src="./images/desktop/v@2x.png">
+                    </div>
+                    <span class="lang " key="foldToAnyBet">Call <span class="callText"></span></span>
+                </button>
+            </div>
+        </div>
+        <div id="turnActionsDiv" style="visibility: visible !important;">
+            
+            <div id="betDivWrapper" style="visibility: visible !important;">
+                <div >
+                    <div class="betPercentButtonDiv">
+                        <button class="betPercentButton">
+                            <div id="bet33">33%</div>
+                        </button>
+                        <button class="betPercentButton">
+                            <div id="bet50">50%</div>
+                        </button>
+                        <button class="betPercentButton">
+                            <div id="bet70">70%</div>
+                        </button>
+                        <button class="betPercentButton">
+                            <div id="allInButton">ALL-IN</div>
+                        </button>
+                    </div>
+                </div>
+                <div id="betShow">
+                    <div class="betPercentButtonDiv">
+                        <button class="betInputButton">
+                            <input type="number" class="increase-placeholder">
+                        </button>
+                        <div>
+                            <div id="betSlider" class="slider betSlider">
+                                <div class="betSliderArea">
+                                    <img class="thumb" src="./images/Frame 22.png"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actionButtonDiv">
+
+                <button id="foldButton" class="actionButton lang" key="fold">FOLD</button>
+                <button id="callButton" class="actionButton lang" key="call">CALL</button>
+                <button id="raiseButton" class="actionButton" style="visibility: visible !important;"> <span key="raiseTo" class="lang raise_text">RAISE TO</span> <span
+                    class="valueDisplay betSlider moneyDisplay">50</span>
+                </button>
+            </div>
+            <div id="betAmountDiv" class="amount-mannual">
+                <div class="betAmount">
+
+                    <div><span>1 </span>BB</div>
+                    <div><span>2 </span>BB</div>
+                    <div><span>2.5 </span>BB</div>
+                    <div><span>3 </span>BB</div>
+                    <div><span>3.5 </span>BB</div>
+                    <div><span>4 </span>BB</div>
+                </div>
+            </div>
+        </div>
+        <div id="tip-button">
+            <p>Tip</p>
+            <div class="button-prents">
+                <button class="first_bb tipButton" value="1">
+                    <img src="/images/tip.png" alt="" class="tipImage">
+                    <span class="first-bb-value tip-text">1BB</span>
+                </button>
+                <button class="first_bb1 tipButton" value="2">
+                    <img src="/images/tip.png" alt="" class="tipImage">
+                    <span class="first-bb1-value tip-text">2BB</span>
+                </button>
+                <button class="first_bb2 tipButton" value="4">
+                    <img src="/images/tip.png" alt="" class="tipImage">
+                    <span class="first-bb2-value tip-text">4BB</span>
+                </button>
+            </div>
+        </div>
+
+      <div id="buyInMenu" class="menuDiv">
+        <div class="buyinDiv">
+          <div class="buyin_upper_part">
+            <div class="wallet_label ">
+              <img src="./images/wallet_icon.png" alt="" class="wallet_icon" />
+              <span class="lang transferToTableWallet" key="transferToTableWallet">Transfer To Table Wallet</span>
+            </div>
+            <div class="global_balance_div">
+              <span class="lang yourGlobalBalance" key="yourGlobalBalance"
+                >Your Global Balance</span
+              >: <span id="global-balance">1450</span>
+            </div>
+            <div id="transferSliderContainer">
+              <div class="number_div">
+                <input type="number" id="transferCount" value="2"/>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div id="transferMinus">
+                  <span>50</span>
+                </div>
+                <div id="transferSlider" class="slider buyinSlider">
+                    <div class="transferSlider">
+                        <img class="thumb" src="./images/desktop/chipIcon.png"/>
+                    </div>
+                </div>
+                <div id="transferPlus">
+                  <span>2000</span>
+                </div>
+              </div>
+            </div>
+            <div class="transferWaitingClock">
+              <svg class="hourglass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 206" preserveAspectRatio="none">
+                <path class="middle" d="M120 0H0v206h120V0zM77.1 133.2C87.5 140.9 92 145 92 152.6V178H28v-25.4c0-7.6 4.5-11.7 14.9-19.4 6-4.5 13-9.6 17.1-17 4.1 7.4 11.1 12.6 17.1 17zM60 89.7c-4.1-7.3-11.1-12.5-17.1-17C32.5 65.1 28 61 28 53.4V28h64v25.4c0 7.6-4.5 11.7-14.9 19.4-6 4.4-13 9.6-17.1 16.9z"/>
+                <path class="outer" d="M93.7 95.3c10.5-7.7 26.3-19.4 26.3-41.9V0H0v53.4c0 22.5 15.8 34.2 26.3 41.9 3 2.2 7.9 5.8 9 7.7-1.1 1.9-6 5.5-9 7.7C15.8 118.4 0 130.1 0 152.6V206h120v-53.4c0-22.5-15.8-34.2-26.3-41.9-3-2.2-7.9-5.8-9-7.7 1.1-2 6-5.5 9-7.7zM70.6 103c0 18 35.4 21.8 35.4 49.6V192H14v-39.4c0-27.9 35.4-31.6 35.4-49.6S14 81.2 14 53.4V14h92v39.4C106 81.2 70.6 85 70.6 103z"/>
+              </svg>
+            </div>
+            <div >
+              <button class="transferButton lang" key="transfer">
+                Transfer
+              </button>
+            </div>
+          </div>
+          <hr class="hr_division"/>
+          <div
+            class="buyin"
+            style="
+              text-align: center;
+              color: #ffeb00;
+              display: flex;
+              align-items: center;
+              margin-bottom: calc(3 * var(--aspect-ratio));
+              margin-top: calc(1.5 * var(--aspect-ratio));
+              margin-bottom: -5px;
+            "
+          >
+            <img src="./images/desktop/money-table.png"/>
+            <span class="add_to_table" key="addtoTable"
+            >
+            Add To Table</span>
+          </div>
+          <div
+            class="buyin"
+            style="display: flex; justify-content: space-between; width: fit-content;"
+          >
+            <div style="display: flex; align-items: center">
+              <img id="card-png"
+                src="./images/desktop/wallet.png" 
+                alt=""
+                style="
+                  margin-right: calc(1 * var(--aspect-ratio));
+                  height: fit-content;
+                  "/>
+              <span class="tablewallet" key="tableWallet" 
+             
+              >
+              <b>Table Wallet</b> </span>: <span
+                id="table-balance"
+                ><b>2</b></span
+              >
+            </div>
+            <div style="display: flex; align-items: center">
+              <img id="round-png"
+                src="./images/desktop/wheel.png"
+                alt=""
+                style="
+                  margin-right: calc(1 * var(--aspect-ratio));
+                  height: fit-content;"/>
+              <span class="table0" key="tableBalance"
+               
+               ><b>Table Balance</b> </span>: <span
+                id="table-chip"
+                ><b>0</b></span
+              >
+            </div>
+          </div>
+          <div class="buyin buyin_table_balance">
+            <div class="added_balance">
+              <label class="form-label totaladd"
+              ><b>Total Add</b></label>             
+              <input type="number" 
+              id="buyin-input" value="2"/>
+            </div>
+            
+            <div class="table_balance">
+              <label class="form-label totaladd"
+              ><b>New Table balance</b></label>
+              <input type="number" 
+              id="buyin-input" value="2"/>
+            </div>
+          </div>
+          <div class="buyin" id="buyInSliderContainer">
+            <div class="d-flex justify-content-between align-items-center">
+              <div id="buyInMinus">
+                <!-- <span class="lang" key="min">Min</span> -->
+                <span style="font-size:calc(1 * var(--aspect-ratio));
+                margin-left:calc(0.01 * var(--aspect-ratio));">50</span>
+              </div>
+              <div id="buyInSlider" class="slider buyinSlider">
+                <div>                      
+                  <img class="thumb" src="./images/desktop/chipIcon.png"/>
+                </div>
+              </div>
+              <div id="buyInPlus">
+                <span style="font-size:calc(1 * var(--aspect-ratio));
+                margin-left:calc(0.01 * var(--aspect-ratio));"><b>2000</b></span>
+                
+                <!-- <span class="lang" key="max">Max</span> -->
+              </div>
+            </div>
+          </div>
+          <div class="buyin" id="autoRebuyContainer">
+            <div>
+              <span class="rebuychips" key="autoReBuyChipsWhen" 
+                ><b>Auto re-buy chips when </b></span
+              >:
+            </div>
+            <div>
+              <div>
+                <div 
+                  id="chipsLowerThenBuyInCheckbox"
+                  class="checkbox"
+                  style="border-radius: 50%;"
+                >
+                  <img src="./images/desktop/tickRed.png" />
+                </div>
+                
+                <span class="lowerchips" key="chipsAreLowerThenBuyin"
+                style="margin-left: calc(2.5 * var(--aspect-ratio));"
+                  >Chips are lower then Buy-in</span>
+              </div>
+              <span>|</span>
+              <div>
+                <div 
+                  id="runOutOfChipsCheckbox"
+                  class="checkbox"
+                  style="border-radius: 50%"
+                >
+                  <img src="./images/desktop/tickRed.png" />
+                </div>
+                <span class="runoutchips" key="runOutChips"
+                style="margin-left: calc(2.5 * var(--aspect-ratio));"
+                  > You run out of chips completely</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="menuBottomButtons">
+            <button class="cancleButton lang" key="cancel"
+            style="border-radius:4px;box-shadow: 0px 1px 6px 0px #91CAFEB2;"
+             >Cancel</button>
+            <button class="okButton lang buyin" key="ok"
+            style="border-radius:4px;
+            background: linear-gradient(180deg, #68B8FF 0%, rgba(0, 36, 68, 0.7) 150.83%);
+            box-shadow: 0px 1px 6px 0px #91CAFEB2;">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div id="settingsMenu" class="menuDiv">
+        <div>
+          <div class="menuTitle">
+            <img src="./images/desktop/icons8-settings-250@2x.png" />
+            <span class="lang" key="settings">Setings</span>
+          </div>
+          <div>
+            <div id="muteCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/volume-mute@2x.png" />
+            <span class="lang" key="muteSounds">Mute sounds</span>
+          </div>
+          <div>
+            <div id="autoMuckCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/view@2x.png" />
+            <span class="lang" key="autoMuckCards">Auto muck cards</span>
+          </div>
+          <div>
+            <div id="showAsBBCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/dollar@2x.png" />
+            <span class="lang" key="ValueAsBBRatio"
+              >Show values as BB ratio</span
+            >
+          </div>
+          <div style="display: none">
+            <div id="showAsSUDCheckbox" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/dollar@2x.png" />
+            <span class="lang" key="ValueAsUSD">Show values as USD</span>
+          </div>
+          
+          <div>
+            <div id="shuffleVerificationButton" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/verification@2x.png" /><span
+              class="lang"
+              key="FourColours"
+              >Shuffle Verification</span
+            >
+          </div>
+          <div>
+            <div id="DisplayCards" class="checkbox">
+              <img src="./images/desktop/v@2x.png" />
+            </div>
+            <img src="./images/desktop/verification@2x.png" /><span
+              class="lang"
+              key="FourColours"
+              >Display final 5 cards</span
+            >
+          </div>
+          <div>
+            <!-- <span
+              class="color-indicator fullcolor"
+              id="selectedDeckColor"
+            ></span> -->
+            <div class="dropdown" id="fourColorsCheckbox">
+              <button
+                class="dropdown-toggle"
+                type="button"
+                id="fourColorDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Full colors deck
+              </button>
+              <div class="dropdown-menu" aria-labelledby="fourColorDropdown">
+                <li data-value="fullcolor" class="active"> Full colors deck </li>
+                <li data-value="4color"> 4 Color deck </li>
+                <li data-value="2color"> 2 Color deck </li>
+              </div>
+            </div>
+            <span
+              class="lang"
+              key="FourColours"
+              >Cards color deck</span
+            > 
+          </div>
+          <div style="margin-left: calc(16.5 * var(--aspect-ratio));">
+            <span
+              class="color-indicator blueTheme"
+              id="selectedThemeColor"
+            ></span>
+            <div class="dropdown" id="themeColor">
+              <button
+                class="dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              > Blue </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li data-value="blueTheme" class="active">
+                  Blue <span class="color-indicator blueTheme"></span>
+                </li>
+                <li data-value="greenTheme">
+                  Green <span class="color-indicator greenTheme"></span>
+                </li>
+                <li data-value="redTheme">
+                  Red <span class="color-indicator redTheme"></span>
+                </li>
+                <li data-value="grayTheme">
+                  Gray <span class="color-indicator grayTheme"></span>
+                </li>
+              </div>
+            </div>
+            <span
+              class="lang"
+              key="FourColours"
+              style="font-family: 'Roboto'; font-weight: 600"
+              >Theme Color</span
+            >
+          </div>
+          <img class="menuLogo" src="./images/desktop/TURTLE-STUDIOS-png.png" />
+          <div class="menuBottomButtons">
+            <button class="okButton lang" key="ok">OK</button>
+          </div>
+        </div>
+      </div>
+      <div id="breakTime" class="menuDiv">
+        <div>
+          <div class="menuTitle lang" key="breakTime">Break Time</div>
+          <div class="timer">00:45</div>
+          <div class="menuBottomButtons">
+            <button class="okButton lang buyin" key="ok">OK</button>
+          </div>
+        </div>
+      </div>
+      <div id="tournamentCancelTime" class="menuDiv">
+        <div>
+          <div class="menuTitle lang" key="breakTime">
+            Waiting for players.<br />
+            Tournament will be canceled in
+          </div>
+          <div class="timer">00:45</div>
+          <div class="menuBottomButtons">
+            <button class="okButton lang" key="ok">OK</button>
+          </div>
+        </div>
+      </div>
+	  
+	  
+      <div class="modal fade" id="h4hMessagegModal" tabindex="-1" aria-labelledby="msgModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 350px">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <h5 id="myModalLabel" class="lang" key="errorMessage">
+                            Tournament Message
+                        </h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
+                            ×
+                        </button>
+                    </div>
+                    <div class="modal-body" style="font-size: 1rem">
+                        <p class="h4h-message lang" key="errorBody">One fine body…</p>
+                        <p class="timer lang" key="timer">00:00</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn cancel lang" data-bs-dismiss="modal" aria-hidden="true" key="close">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	  <div
+        class="modal fade"
+        id="msgModal"
+        tabindex="-1"
+        aria-labelledby="msgModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" style="max-width: 350px">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="modal-header">
+                <h5 id="myModalLabel" class="lang" key="errorMessage">
+                  Error Message
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-bs-dismiss="modal"
+                  aria-hidden="true"
+                >
+                  ×
+                </button>
+              </div>
+              <div class="modal-body" style="font-size: 1rem">
+                <p class="error-message lang" key="errorBody">One fine body…</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="btn cancel lang"
+                  data-bs-dismiss="modal"
+                  aria-hidden="true"
+                  key="close"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="notificationModal"
+        tabindex="-1"
+        aria-labelledby="notificationModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-bs-dismiss="modal"
+                aria-hidden="true"
+              >
+                ×
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-body" style="font-size: 1rem">
+                <p class="notification-message lang" key="errorBody">
+                  You have been moved to a new table.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="modal fade" id="shareHandMessage">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <div class="modal-body d-flex">
+                        <h5 class="lang" key="shareHandMessage">Link Copied</h5>
+                        <button type="button" class="close ms-auto" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="successModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content Mod_Con3">
+                    <div class="modal-header d-flex justify-content-end Mod_head3">
+                        <button type="button" class="But1"><i class="bi bi-x" data-bs-dismiss="modal"
+                            aria-label="Close"></i></button>
+                    </div>
+                    <div class="modal-body Mod_body3">
+                        <div class="d-flex justify-content-center img_div"><img src="./images/Group 177714 (1).png" alt="">
+                        </div>
+                        <div class="d-flex justify-content-center mt-1 cash_div">
+                            <div>
+                                <div class="lang successMessage" key="thankYou">Thank You</div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button id="GO" class="lang" key="GoToTable">GO TO TABLE</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="autoFoldSettingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" style="max-width: calc( 76 * var(--aspect-ratio)) !important;">
+                <div class="modal-content second-top" style="width: 100% !important;">
+                    <div class="modal-body fold_modal_body">
+                        <div class="menyos">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" style="color: white;">&times;</span>
+                            </button>
+                        </div>
+                        <div>
+                            <iframe src="" id="autoFoldFrame" frameborder="0"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="modal fade" id="insuranceModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog Second-mod" style="transition: transform 0.3s ease-out !important;     ">
+          <div class="modal-content second-top">
+               
+            <div class="modal-body insuranceBody">
+                <button
+                type="button"
+                class="insuranceClose"
+                data-bs-dismiss="modal"
+                aria-hidden="true"
+              >
+                X
+              </button>
+              <div class="border-around ">
+                <p class="border-p lang" key="allInsurance">Pot Insurance</p>
+                <p class="border-p-text allInPrice">$119.40</p>
+              </div>
+
+              <div class="flex-container hands-card">
+                <div>
+                    <p class="hand-lebel"> Your Hand</p>
+                    <div class="card-parents your-cards">
+                      <img
+                        src="./images/png/52x72/kc.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/7c1.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/qh.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/3d.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/js.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                      <img
+                        src="./images/png/52x72/9d1.png"
+                        alt=""
+                        class="img_2"
+                        style="width: -webkit-fill-available"
+                      />
+                    </div>
+                    <span class="your-hand-result hand_result">75%</span>
+                </div>
+                <div>
+                    <p class="hand-lebel"> Op. Hand</p>
+                    <div class="card-parents opp-cards">
+                        <img
+                        src="./images/png/52x72/2s.png"
+                        alt=""
+                        class="img_3"
+                        style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/jc.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/ac1.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/kh.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/4d.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                        <img
+                            src="./images/png/52x72/qd1.png"
+                            alt=""
+                            class="img_3"
+                            style="width: -webkit-fill-available"
+                        />
+                    </div>
+                    <span class="opp-hand-result hand_result">25%</span>
+                </div>
+
+              </div>
+              <div class="card-prents table-cards">
+                <!-- <img src="images/all-card.png" alt="" class="img_1" style="width: -webkit-fill-available;"> -->
+                <img
+                  src="./images/png/102x142/5d.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+                <img
+                  src="./images/png/102x142/kd.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+                <img
+                  src="./images/png/102x142/6d.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+                <img
+                  src="./images/png/102x142/ad.png"
+                  alt=""
+                  class="img_1"
+                  style="width: -webkit-fill-available"
+                />
+              </div>
+              <div class="doller_prents">
+                    <div class="amount-detail">
+                        <span class="pay lang" key="pay">Pay</span>
+                        <span
+                          class="sane insurancePrice"
+                          style="display: inline-block"
+                          >$8</span>
+                    </div>
+                    <div class="amount-detail">
+                        <span class="pay lang" key="save">Save</span>
+                        <span class="sane allInPrice" style="display: inline-block">
+                            $119.40
+                        </span>
+                    </div>
+              </div>
+              <div class="two_btn" style=" " >
+                <button class="btn btn-primary text_btn insuranceYesButton lang" key="yes" >
+                  Yes
+                </button>
+                <button class="btn btn-primary next insuranceNextTime lang" key="nextTime" >
+                  Skip
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div style="width: 100%;">
+        <div class="modal fade" id="tournamentResultModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" style="margin: auto;">
+                <div class="modal-content" id="mContent">
+                    <div class="modal-body p-0">
+                        <div class="menyos">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width: 30px;height: 30px;background: transparent linear-gradient(0deg, #E50202 0%, #676060 100%) 0% 0% no-repeat padding-box;box-shadow: 0px 2px 5px #ffffff45;border-radius: 50px;opacity: 3;position: absolute;right: -9px;top: -8px;">
+                            <span aria-hidden="true" style="color: white;">&times;</span>
+                        </button>
+                            <div class="row" style="padding-top: 5rem;">
+                                <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
+                                    <img src="./images/desktop/trophy.svg" alt="">
+                                </div>
+                            </div>
+
+                            <div class="row my-2 ">
+                                <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
+                                    <h5 style="text-align: center;"> <span style="color: #CE152E; "><span class="lang" key="finishedTournament">Tournament Finished</span> :</span> <br>
+                                        <span style="color: #E78D2B;"><span id="tournamentRank">39</span></span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row my-4 tournament-prize">
+                                <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
+                                    <h5> <span style="color: #254A98;" class="lang" key="price">Prize :</span> <span style="color: #C92138;"><span
+                                            id=tournamentPrize>150</span></span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row tournament-rebuy">
+                                <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
+                                    <button class="rebuy_tournament">
+                                    <h5 class="m-0">Rebuy (<span >25</span>)</h5>
+                                </button>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-5">
+                                <div class="col-12 d-flex" style="justify-content: center; align-items: center;">
+                                    <button data-dismiss="modal"
+                                        class="LobbyButton">
+                                    <h5 class="m-0 lang" key="lobby">Back to Lobby</h5>
+                                </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="winningHistoryModal" style="display:none;">
+        <div class="modal-container">
+            <div class="winningData">
+                <div class="tableInfo">
+                    <div class="modal-title tableInfoTital">Table Information</div>
+
+                    <table class="table-info-box">
+                        <tr class="info-row">
+                            <td class="info-label">TABLE NAME</td>
+                            <td class="info-label">:</td>
+                            <td class="info-data winHistoryTablename">---</td>
+                        </tr>
+                        <tr class="info-row">
+                            <td class="info-label">BLINDS</td>
+                            <td class="info-label">:</td>
+                            <td class="info-data">
+                                <span class="sb">--</span> / <span class="bb">--</span>
+                            </td>
+                        </tr>
+                        <tr class="info-row">
+                            <td class="info-label">GAME TYPE</td>
+                            <td class="info-label">:</td>
+                            <td class="skyFont info-data gameType">---</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="profileInfo">
+                    <div class="box-title profileInfoTital">Profile Data</div>
+                    <table class="profile-data-box">
+                        <tr class="info-row">
+                            <td class="info-label">BUY-IN</td>
+                            <td class="info-label">:</td>
+                            <td class="info-data winHistoryBuyIn">0</td>
+                        </tr>
+                        <tr class="info-row">
+                            <td class="info-label">PROFIT & LOSS</td>
+                            <td class="info-label">:</td>
+                            <td class="skyFont info-data profit">0</td>
+                        </tr>
+                        <tr class="info-row">
+                            <td class="info-label">CURRENT TABLE VPIP</td>
+                            <td class="info-label">:</td>
+                            <td class="skyFont info-data"><span class=" winHistoryVpip">0</span>%</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="winnings-history-box">
+                    <div class="box-title">Winnings History</div>
+                    <div class="winningHistoryBox">
+                        <table class="historyBox">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <button class="winHistoryClose"  onclick="showwinningTab(false)">
+                 Close
+                </button>
+        </div>
+    </div>
+    <div id="statsModal" style="display:none;">
+        <div class="modal-container">
+            <div class="profile-header">
+                <div class="avatar-container">
+                    <div class="statsAvatar"></div>
+                </div>
+                <div class="user-info">
+                    <span>
+                        <span class="flag statsFlag"></span>
+                        <span class="statsUsername">---</span>
+                    </span>
+                </div>
+            </div>
+
+            <table class="statsBalanceInfo">
+                <tr class="balance-row">
+                    <td class="balance-label">Available Balance</td>
+                    <td>:</td>
+                    <td class="statsGlobal">0</td>
+                </tr>
+                <tr class="balance-row">
+                    <td class="balance-label">Table Wallet Balance</td>
+                    <td>:</td>
+                    <td class="statsWallet">0</td>
+                </tr>
+                <tr class="balance-row">
+                    <td class="balance-label">Table Balance</td>
+                    <td>:</td>
+                    <td class="statsTable">0</td>
+                </tr>
+            </table>
+            <div class="sepration"></div>
+            <div class="stats-box">
+                <div class="stats-title">Total Stats <span class="totalStatsType">PL06</span></div>
+                <table class="stats-table">
+                    <thead>
+                        <tr class="stats-row-labels box-head">
+                            <th>HANDS</th>
+                            <th>VPIP</th>
+                            <th>PFR</th>
+                            <th>WIN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="stats-row-values">
+                            <td ><span class="totalhand">0</span></td>
+                            <td ><span class="totalvpip">0</span>%</td>
+                            <td ><span class="totalpfr">0</span>%</td>
+                            <td ><span class="totalwin">0</span>%</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr class="stats-row-labels box-head">
+                            <th>C-BET</th>
+                            <th>3 BET</th>
+                            <th>WT</th>
+                            <th>WSD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="stats-row-values">
+                            <td><span class="totalcbet">0</span>%</td>
+                            <td><span class="total3bet">0</span>%</td>
+                            <td><span class="totalwt">0</span>%</td>
+                            <td><span class="totalwsd">0</span>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="stats-box">
+                <div class="stats-title">Current Table Stats <span class="currentStatsType">PL06</span></div>
+                <table class="stats-table">
+                    <thead>
+                        <tr class="stats-row-labels box-head">
+                            <th>HANDS</th>
+                            <th>VPIP</th>
+                            <th>PFR</th>
+                            <th>WIN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="stats-row-values ">
+                            <td class="currentHand">0</td>
+                            <td><span class="currentVpip">0</span>%</td>
+                            <td><span class="currentPfr">0</span>%</td>
+                            <td><span class="currentWin">0</span>%</td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr class="stats-row-labels box-head" >
+                            <th>C-BET</th>
+                            <th>3 BET</th>
+                            <th>WT</th>
+                            <th>WSD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="stats-row-values">
+                            <td><span class="currentCbet">0</span>%</td>
+                            <td><span class="current3bet">0</span>%</td>
+                            <td><span class="currentWT">0</span>%</td>
+                            <td><span class="currentWsd">0</span>%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="winHistoryClose"  onclick="showStatsTab(false)"> Close </button>
+        </div>
+    </div>
+    <div class="modal fade" id="tournamentInfoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="tournament-popup-content">
+                <span class="tournament-popup-close"  onclick="hideModal('tournamentInfoModal')">
+                <span class="close-inner">&times;</span></span>
+                <div class="tournament-popup-title">Tournament Information</div>
+                <table class="tournament-popup-table">
+                    <tr>
+                        <td>Tournament Name</td>
+                        <td>:</td>
+                        <td class="tournamentName">Sunday Million</td>
+                    </tr>
+                    <tr>
+                        <td>Tournament Structure</td>
+                        <td>:</td>
+                        <td class="tournamentStructure">Hyper</td>
+                    </tr>
+                    <tr>
+                        <td>Game</td>
+                        <td>:</td>
+                        <td class="gameType">PLO 6</td>
+                    </tr>
+                    <tr>
+                        <td>Level</td>
+                        <td>:</td>
+                        <td class="tournamentLevelInfo">
+                            <div >
+                            <span class="smallBlind"></span> SB <span class="bigBlind"></span> BB
+                            </div>
+                            <span class="level"></span> Ante <span class="ante"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Position</td>
+                        <td>:</td>
+                        <td class="position">14 / 152</td>
+                    </tr>
+                    <tr>
+                        <td>Average Stack</td>
+                        <td>:</td>
+                        <td class="averageStack">1,00,000</td>
+                    </tr>
+                    <tr>
+                        <td>Bigger Stack</td>
+                        <td>:</td>
+                        <td class="biggestStack">1,45,000</td>
+                    </tr>
+                    <tr>
+                        <td>Prizes Pool</td>
+                        <td>:</td>
+                        <td class="prizePool">100$</td>
+                    </tr>
+                    <tr>
+                        <td>Prizes Structure</td>
+                        <td>:</td>
+                        <td><button class="popup-view-btn" onclick="showModal('prizeInfoModal')">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>Next Prize</td>
+                        <td>:</td>
+                        <td class="nextPrize">10$ Place 10</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="prizeInfoModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="tournament-popup-content">
+                <span class="tournament-popup-close"  onclick="hideModal('prizeInfoModal')">
+                <span class="close-inner">&times;</span></span>
+                <div class="tournament-popup-title">Prizes Structure</div>
+                <table class="prize-popup-table">
+                  
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="sidebet_cards">
+    </div>
+    <div class="side-bet_div" style="display: none;">
+        <div class="right-content-wrapper">
+            <div class="top-bar">
+                <div class="balance-info">
+                    <div class="balance-info-first">
+                        <div class="freebalance_img">
+                            <img src="./images/desktop/xrp_coin.png" alt="">
+                        </div>
+                        <p class="top-balance"><span class="side-balance-bet" id="free-balance">584</span> Free Balance</p>
+                    </div>
+                    <div class="balance-info-first">
+                        <div class="totalPaid_img">
+                            <img src="./images/desktop/xrp_coin.png" alt="">
+                        </div>
+                        <p class="top-balance"><span class="side-bet-paid" id="total-paid">0</span> Total paid</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-bet-panel">
+                <div class="side-bet-panel-box">
+                    <h2>Side Bet Panel</h2>
+
+                    <!--   <img src="./images/desktop/question.png" class="aboutSideBet" alt=""> -->
+                    <div class="flash-draw-img">
+                        <img class="" src="./images/desktop/question.png" alt="">
+                        <div class="hover-container aboutSideBetNote">
+                            You can protect your hands with side bets.<br><br> Side bets are made using your main balance, not the game balance.<br><br> The results of side bets will apply even if you fold your hand.1
+                        </div>
+                    </div>
+
+                </div>
+                <div class="side-bet-panel-btn sideBetTabs">
+                    <!--   <button class="side-bet-panel-btn-first active" data-tab="flop">Flop</button>
+                    <button class="side-bet-panel-btn-second" data-tab="next-cards">Next cards</button>
+                    <button class="side-bet-panel-btn-third" data-tab="bets">Bets</button> -->
+
+                </div>
+            </div>
+            <!-- *************game01************ -->
+            <div class="gane_div_prents">
+                <div class="main_table_div">
+                    <div class="game_01_icon">
+                        <i class="bi bi-question-circle game_01_q_icon aboutSideGame"></i>
+                    </div>
+                    <div class="table-board">
+                        <div class="card_queen" style="z-index: 10">
+                            <img src="images/Frame.svg" alt="">
+                        </div>
+                        <div class="d-flex justify-content-center flex-column ard-acrd ">
+                            <div class="card-table1">
+                                <img src="images/Group 177733.png" alt="" class="img_board">
+                                <div class="row1">
+                                    <div class="card1">
+                                        <img src="images/card(1).svg" alt="">
+                                    </div>
+                                    <div id="dealer_cards">
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <div class="row2  ">
+                                </div>
+                                <div class="row3">
+                                    <div id="player_cards">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chooseamount d-flex justify-content-center">
+                                <div class="insideamount d-flex justify-content-between bet-chips">
+                                    <button class="bigcoin1" id="buttonstart">
+                            <img src="images/Layer_1.svg" class="tarimg" alt="" value="1">
+                        </button>
+                                    <button class="bigcoin2" id="buttoncenter">
+                            <img src="images/Layer_1 (1).svg" class="tarimg" alt="" value="2">
+                        </button>
+                                    <button class="bigcoin3" id="buttonend">
+                            <img src="images/Layer_1 (2).svg" class="tarimg" alt="" value="4">
+                        </button>
+                                </div>
+                                <div class="polygon">
+                                    <img src="images/Polygon.svg" alt="">
+                                </div>
+                            </div>
+                            <div class="amounttext">CHOOSE AMOUNT</div>
+                            <button class="hitme" style="border: none;">HIT ME</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- *************game01************ -->
+            <div class="flash-draw-wrap" id="scroll_bar">
+                <div class="flash-draw-box">
+                    <!-- Flop content -->
+                    <div id="bets-options-content" class="tab-content active scroll_prents">
+                        <!-- <div class="flash-draw-second">
+                            <div class="flash-draw">
+                                <div class="flash-draw-before"></div>
+                                <h5>Flash Draw</h5>
+                                <img src="./images/desktop/question.png" alt="">
+                            </div>
+                            <div class="flash-bet-content">
+                                <h4><span>X</span> 8.5</h4>
+                                <div class="flash-bet-box">
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">4</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">10</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">20</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flash-draw-second" style="margin: 5px 0;">
+                            <div class="flash-draw">
+                                <div class="flash-draw-before"></div>
+
+                                <h5>Flash</h5>
+                                <img src="./images/desktop/question.png" alt="">
+                            </div>
+                            <div class="flash-bet-content">
+                                <div class="flash-bet-content-head">
+                                    <h4><span>X</span> 8.5</h4>
+                                    <p style="">Payout: <img class="payout-img" src="./images/desktop/xrp_coin.png" alt=""><span class="total-payout-value">85</span> </p>
+                                </div>
+                                <div class="flash-bet-box">
+                                    <button class="four-btn"><img src="./images/desktop/xrp_coin.png" alt="">4</button>
+                                    <button class="ten-btn"><img src="./images/desktop/xrp_coin.png" alt="">10</button>
+                                    <button class="20-btn"><img src="./images/desktop/xrp_coin.png" alt="">20</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flash-draw-second">
+                            <div class="flash-draw">
+                                <div class="flash-draw-before"></div>
+
+                                <h5>2 Pairs</h5>
+                                <div class="flash-draw-img">
+                                    <img class="flash-draw-img flash-draw-img-first" src="./images/desktop/question.png" alt="">
+                                    <div class="hover-container">
+                                        Hitting 2 pairs using two hole cards (including higher hands hole cards)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flash-bet-content">
+                                <h4><span>X</span> 8.5</h4>
+                                <div class="flash-bet-box">
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">4</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">10</button>
+                                    <button><img src="./images/desktop/xrp_coin.png" alt="">20</button>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- BETS CONTENT -->
+                <div id="bets-history-content" class="tab-content">
+                    <!-- <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div>
+                    <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div>
+                    <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div>
+                   <div class="flop-card">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                    </div> 
+                    <div class="flop-card flop-card-four">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout">Payout: <span><img src="./images/desktop/xrp_coin.png" alt=""> 20</span></div>
+                        <div class="loose-card"><img src="./images/loose.png.png" alt=""></div>
+
+                        <div class="loose-card-second loose-card1"><img src="./images/loose.gif" alt=""></div>
+                    </div>
+                    <div class="flop-card flop-card-second">
+                        <div class="flop-title">Flop</div>
+                        <div class="flop-content">RAINBOW</div>
+                        <div class="flop-payout flop-payout-second">Payout: <span><img src="./images/desktop/xrp_coin.png" alt="">
+                                20</span></div>
+                        <div class="win-card"><img src="./images/win.png" alt=""></div>
+                        <div class="wind-card-second"><img src="./images/flower.gif" alt=""></div>
+                    </div> -->
+
+
+                </div>
+                <div class="bottom-bar text_div sideBetBottomBar">
+                    <div class="balance-info">
+                        <div class="balance-info-first">
+                            <div class="totalPayout">
+                                <img class="payout-img" src="./images/desktop/xrp_coin.png" alt="">
+                            </div>
+                            <p class="total-payout">
+                                <span class="total-payout-value" id="total-payout">0</span> Total Payout
+                            </p>
+                        </div>
+                        <div class="balance-info-submit">
+                            <button class="submit-btn" id="submit-sidebet">
+                                <img class="payout-img submit-img" src="./images/white.png" alt="">
+                               <span> Submit</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- right slider end -->
+    <script>
+        // var element = document.querySelector(".player_wrapper:nth-child(6)");
+        // var turnActionsDiv = document.querySelector("#turnActionsDiv");
+        // var element3 = document.querySelector(".player_wrapper:nth-child(3)");
+        // var element2 = document.querySelector(".player_wrapper:nth-child(2)");
+        // var element5 = document.querySelector(".player_wrapper:nth-child(5)");
+        // var element7 = document.querySelector(".player_wrapper:nth-child(7)");
+        // var element4 = document.querySelector(".player_wrapper:nth-child(4)");
+        let box = document.querySelector('#uiTable');
+        let box2 = document.querySelector('#tableDiv');
+        document.getElementById("toggleButton").addEventListener("click", function() {
+            var bodyContent = document.querySelector(".body-content");
+            if (bodyContent.style.display === "none") {
+                bodyContent.style.display = "block";
+                //  box.style.width = '89.3%'; // Corrected the property name to 'width'
+                //  box2.style.width = '65.3vw'; // Corrected the property name to 'width'
+                //  element.style.left = "23vw";
+                //  element7.style.left = "0vw";
+                //  element5.style.left = "43vw";
+                //  element2.style.left = "39vw";
+                //  element4.style.right = "2vw";
+                //  element3.style.left = "52vw";
+                //  element.style.top = "calc(24 * var(--aspect-ratio))";
+                //  element3.style.top = "calc(2 * var(--aspect-ratio))";
+                // turnActionsDiv.style.right="18vw";
+
+            } else {
+                bodyContent.style.display = "none";
+                //  box.style.width = '100%'; // Corrected the property name to 'width'
+                //  box2.style.width = '78vw'; // Corrected the property name to 'width'
+                //  element.style.left = "32vw";
+                //  element7.style.left = "6vw";
+                //  element5.style.left = "56vw";
+                //  element2.style.left = "43vw";
+                //  element4.style.left = "-9vw";
+                //  element3.style.left = "60vw";
+                //  element3.style.top = "calc(-5 * var(--aspect-ratio))";
+                // turnActionsDiv.style.right="0vw";
+            }
+        });
+    </script>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let box1 = document.querySelector("#button31_q31");
+            let box22 = document.querySelector("#button32_q31");
+
+            box22.addEventListener('click', () => {
+                box22.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
+                box1.style.background = "#1e2142";
+            });
+
+            box1.addEventListener('click', () => {
+                box22.style.background = "#1e2142";
+                box1.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let historyopen = document.getElementById('open_history');
+            let historynone = document.getElementById('body_toge');
+            let historynone1 = document.getElementById('body_toge1');
+            let historyback = document.getElementById('back_button');
+
+            historyopen.addEventListener('click', function () {
+                historynone.style.display = 'none';
+                historynone1.style.display = 'block';
+            });
+
+            historyback.addEventListener('click', function () {
+                historynone.style.display = 'block';
+                historynone1.style.display = 'none';
+            });
+        });
+    </script> -->
+    <script>
+        /* document.addEventListener("DOMContentLoaded", () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    let box1 = document.querySelector("#button31_q31");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    let box22 = document.querySelector("#button32_q31");
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    box22.addEventListener('click', () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box22.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box1.style.background = "#1e2142";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    });
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    box1.addEventListener('click', () => {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box22.style.background = "#1e2142";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        box1.style.background = "linear-gradient(-180deg, #827EFC, #2B26DD)";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }); */
+
+
+        /*document.addEventListener('DOMContentLoaded', function() {
+            let historyopen = document.getElementById('open_history');
+            let historynone = document.getElementById('body_toge');
+            let historynone1 = document.getElementById('body_toge1');
+            let historyback = document.getElementById('back_button');
+
+
+            historyopen.addEventListener('click', function() {
+                historynone.style.display = 'none';
+                historynone1.style.display = 'block';
+            });
+
+            historyback.addEventListener('click', function() {
+                historynone.style.display = 'block';
+                historynone1.style.display = 'none';
+            });
+        });*/
+    </script>
+
+    <!-- emoji func -->
+    <script>
+        function showChatBox(value) {
+            const chatContainer = document.getElementById("chatContainer");
+            if (value) {
+                const badge = $(".chatButton").find(".badge")[0];
+                badge.innerText = 0;
+                badge.style.visibility = "hidden";
+                chatContainer.classList.toggle("openChatBox");
+            } else
+                chatContainer.classList.remove("openChatBox");
+        }
+        function hideModal(id){
+            $("#"+id).modal('hide');
+        }
+        function showModal(id){
+            $("#"+id).modal('show');
+        }
+        function showLogTab(value) {
+            const activityContainer = document.getElementById("activityContainer");
+            if (value)
+                activityContainer.classList.toggle("openChatBox");
+            else
+                activityContainer.classList.remove("openChatBox");
+        }
+        function showwinningTab(value) {
+            const winningHistoryModal = document.getElementById("winningHistoryModal");
+            if (value)
+                winningHistoryModal.style.display = 'flex';
+            else
+                 winningHistoryModal.style.display = 'none';
+        }
+        function showStatsTab(value) {
+            const statsModal = document.getElementById("statsModal");
+            if (value)
+                statsModal.style.display = 'flex';
+            else
+                 statsModal.style.display = 'none';
+        }
+
+
+        function showEmojiframe(showEmoji) {
+            var emojiFunc = document.getElementById("emoji_func");
+            var result_divS = document.querySelector(".result_div");
+            if (showEmoji) {
+                emojiFunc.style.display = "block";
+                // result_divS.style.maxHeight = "50px";
+            } else {
+                emojiFunc.style.display = "none";
+                //  result_divS.style.maxHeight = "178px";
+            }
+        }
+        // Add event listener to each emoji button to insert the emoji into the input value
+        var emojiButtons = document.querySelectorAll(".preChatEmoji");
+        var inputField = document.getElementById("chatInput");
+        var emoji = '';
+        emojiButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                emoji = this.textContent;
+                inputField.value += emoji;
+
+            });
+        });
+    </script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/c54b754062.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+<script src="https://momentjs.com/downloads/moment-timezone-with-data-1970-2030.min.js"></script>
+
+</html>
+<script type="module" src="/main.js"></script>
